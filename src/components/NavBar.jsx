@@ -6,9 +6,9 @@ import { IoMenu, IoClose } from "react-icons/io5";
 const NavBar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <main className="flex flex-row justify-between p-[40px]">
+    <main className="flex flex-row justify-between p-[20px] h-[56px]">
       <div>
-        <img src={Logo} alt="logo" className="h-[30px]" />
+        <img src={Logo} alt="logo" className="h-[15px]" />
       </div>
       {/* <div
         onClick={() => setOpen(!open)}
@@ -22,7 +22,7 @@ const NavBar = () => {
         }`}
       >
         <Link to="/" className="">
-        <IoMenu name={open ? "close" : "menu"} className="text-neutral text-3xl"/>
+        <IoMenu name={open ? "close" : "menu"} className="text-neutral text-2xl"/>
         
         </Link>
 
