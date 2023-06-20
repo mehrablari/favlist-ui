@@ -1,66 +1,61 @@
-
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import parse from 'autosuggest-highlight/parse';
-import match from 'autosuggest-highlight/match';
-import data from './data';
-import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import data from "./data";
+import SearchIcon from "@mui/icons-material/Search";
+import { useState } from "react";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
 export default function Highlights() {
-  const [textinput, setTextinput] = useState("")
+  const [nameList, setNameList] = useState([]);
 
-    const handleChange = (event) => {
-      console.log(event.target.value)
-    };
+  const handleChange = (event, value) => {
+    if (value) {
+      setNameList((prevNameList) => [...prevNameList, value.title]);
+    }
+  };
+
   return (
-    <Autocomplete
-    className=' bg-neutral mx-auto  p-[12px]'
-      id="highlights-demo"
-      
-      options={data}
-      getOptionLabel={(option) => option.title}
-      renderInput={(params) => (
-        <TextField sx={{borderRadius:'16px'}}
-          {...params}
+    <div className="flex flex-col justify-center align-middle bg-neutral w-full h-full pt-[80px]  ">
+      <Autocomplete
+        className=" bg-neutral mx-auto  p-[20px] w-[327px]"
+        id="highlights-demo"
+        options={data}
+        getOptionLabel={(option) => option.title}
+        renderInput={(params) => (
+          <TextField
           
-          InputProps={{
-            ...params.InputProps,
-            placeholder: 'start typing an answer',
-            startAdornment: (
-              <>
-                <SearchIcon color="action" />
-                {params.InputProps.startAdornment}
-              </>
-            ),
-            endAdornment: null, 
-          }}
-          onInput={handleChange}
-
-        />
-      )}
-      
-      renderOption={(props, option, { inputValue }) => {
-        const matches = match(option.title, inputValue, { insideWords: true });
-        const parts = parse(option.title, matches);
-
-        return (
-          <li {...props}>
-            <div>
-              {parts.map((part, index) => (
-                <span
-                  key={index}
-                  style={{
-                    fontWeight: part.highlight ? 700 : 400,
-                  }}
-                >
-                  {part.text}
-                </span>
-              ))}
-            </div>
-          </li>
-        );
-      }}
-    />
+          sx={{ borderRadius: "20px", width:"327px", height:"44px" }}
+            {...params}
+            InputProps={{
+              ...params.InputProps,
+              placeholder: "Start typing an answer",
+              startAdornment: (
+                <>
+                  <SearchIcon color="action" />
+                  {params.InputProps.startAdornment}
+                </>
+              ),
+              endAdornment: null,
+            }}
+          />
+        )}
+        onChange={handleChange}
+      />
+      <div className="flex flex-col p-[10px]">
+        {nameList.map((nameItem, index) => (
+          <div
+            key={index}
+            className="w-[327px] bg-[#e6d0d0] rounded-lg font-[400] text-gray-light p-[10px] m-[10px] h-[44px] mx-auto flex flex-row justify-between"
+          >
+            <span className="text-[13px]">{nameItem}</span>
+            <ArrowCircleRightOutlinedIcon
+            sx={{ color: "#FF5252", height: "12px" }}
+          />
+          
+          
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
