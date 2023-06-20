@@ -6,9 +6,10 @@ import { IoMenu, IoClose } from "react-icons/io5";
 const NavBar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <main className="flex flex-row justify-between p-[20px] h-[56px]">
+    <main className="flex flex-row justify-between p-[20px] h-[56px] bg-[#3973D4]">
       <div>
         <img src={Logo} alt="logo" className="h-[15px]" />
+        
       </div>
       {/* <div
         onClick={() => setOpen(!open)}

@@ -6,11 +6,15 @@ import {
 } from "react-router-dom";
 
 import Layout from "./components/Layout";
+import Answers from "./components/questionbox/Answers";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-    </Route>
+    <>
+      <Route path="/" element={<Layout />} />
+      <Route path="/answers" element={<Answers />}/>
+    </>
+    
   )
 );
 

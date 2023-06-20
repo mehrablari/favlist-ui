@@ -1,11 +1,11 @@
 
 // import AnswerRef from "../utils/AnswerRef";
 import AnsweredList from "./questionbox/AnsweredList";
-import Answers from "./questionbox/Answers";
 import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardContainer from "./Card/CardContainer";
 import NavBar from "./NavBar";
+import TinderCards from "./Card/TinderCards";
 
 
 const Layout = () => {
@@ -15,9 +15,12 @@ const Layout = () => {
       <CardContainer />
       <Searchbox />
       <Suggestion />
-      <Answers />
       <AnsweredList />
       {/* <AnswerRef /> */}
+      <div className="overflow-hidden">
+
+        <TinderCards />
+      </div>
       
     </>
   )
