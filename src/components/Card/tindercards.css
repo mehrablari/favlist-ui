@@ -1,0 +1,40 @@
+.swiper {
+    width: 240px;
+    height: 320px;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .sliderone {
+    background-color: rgb(206, 17, 17);
+  }
+  
+  .slidertwo {
+    background-color: rgb(0, 140, 255);
+  }
+  
+  .sliderthree {
+    background-color: rgb(10, 184, 111);
+  }
+  
+  .sliderfour {
+    background-color: rgb(211, 122, 7);
+  }
+  
+  .sliderfive {
+    background-color: rgb(118, 163, 12);
+  }
+  
+  .slidersix {
+    background-color: rgb(180, 10, 47);
+  }
+  
+ 

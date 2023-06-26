@@ -1,5 +1,6 @@
 import SettingsIcon from '@mui/icons-material/Settings';
 import NoAnswer from '../../assets/images/Noanswers.svg';
+import { Link } from 'react-router-dom';
 
 const AnsweredList = () => {
   return (
@@ -9,11 +10,11 @@ const AnsweredList = () => {
           <p className='text-[15px] font-[600]'>Your Answers</p>
           <p className='text-[12px] font-[400]'>Minimum 3, maximum 5 answers</p>
         </div>
-        <div>
+        <Link to="background" className='text-primary-light cursor-pointer'>
           <span className="text-primary text-[12px] font-[500]">Answer settings</span>
-          <SettingsIcon sx={{color:"#FF5252",height:"12px"}}/>
+          <SettingsIcon sx={{color:"#A13E97",height:"12px"}}/>
           
-        </div>
+        </Link>
       </div>
       <div className="w-[126px] mx-auto p-[12px] flex flex-col gap-[20px] justify-center">
         <div className=" flex justify-center">
@@ -125,3 +126,9 @@ export default AnsweredList;
 
 // export default AnsweredList;
 
+
+// Say i want to create a backdrop such that when i click this element it create an overlay over the whole component, <Link to="settings" className='text-primary-light cursor-pointer'>
+//           <span className="text-primary text-[12px] font-[500]">Answer settings</span>
+//           <SettingsIcon sx={{color:"#A13E97",height:"12px"}}/>
+          
+//         </Link>

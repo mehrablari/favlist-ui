@@ -6,23 +6,26 @@ import Suggestion from "../utils/Suggestion";
 import CardContainer from "./Card/CardContainer";
 import NavBar from "./NavBar";
 import TinderCards from "./Card/TinderCards";
+import Navbarex from "./Navbarex";
+
 
 
 const Layout = () => {
+  
   return (
-    <>
+    <div >
       <NavBar />
+      {/* <Navbarex /> */}
       <CardContainer />
       <Searchbox />
       <Suggestion />
       <AnsweredList />
-      {/* <AnswerRef /> */}
-      <div className="overflow-hidden">
-
-        <TinderCards />
-      </div>
+      <TinderCards />
       
-    </>
+      
+  
+      
+    </div>
   )
 }
 

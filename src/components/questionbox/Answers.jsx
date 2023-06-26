@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 import data from "../../utils/data"
 import CancelIcon from '@mui/icons-material/Cancel';
 import Searchbox from "../../utils/Searchbox";
+import soundEffect from "../../assets/audio/software.wav"
 
 
 const Answers = () => {
+  const audio = new Audio(soundEffect);
+
+  const playSoundEffect = () => {
+    audio.play();
+  };
+
 
 return (
     <div className="flex flex-col bg-neutral p-[20px]">
@@ -20,7 +27,7 @@ return (
         {data.slice(0, 36).map((movie) => (
           <div key={movie.id} className="w-1/3">
             <div className="bg-gray-lighter bg-opacity-10 p-[10px] rounded-[16px] m-[12px]">
-              <h3 className="text-[12px] text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3">{movie.title.length > 8 ? `${movie.title.slice(0, 12)}...` : movie.title}</h3>
+              <h3 className="text-[12px] text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 cursor-pointer" onClick={playSoundEffect}>{movie.title.length > 8 ? `${movie.title.slice(0, 12)}...` : movie.title}</h3>
             </div>
           </div>
         ))}

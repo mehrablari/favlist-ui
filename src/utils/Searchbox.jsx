@@ -15,16 +15,15 @@ export default function Highlights() {
   };
 
   return (
-    <div className="flex flex-col justify-center align-middle bg-neutral w-full h-full pt-[80px]  ">
+    <div className="flex flex-col justify-center mx-auto  bg-neutral w-full h-full pt-[80px]  ">
       <Autocomplete
-        className=" bg-neutral mx-auto  p-[20px] w-[327px]"
+        className=" bg-neutral mx-auto  w-[327px]"
         id="highlights-demo"
         options={data}
         getOptionLabel={(option) => option.title}
         renderInput={(params) => (
-          <TextField
+          <TextField fullWidth color="secondary" id="fullWidth"
           
-          sx={{ borderRadius: "20px", width:"327px", height:"44px" }}
             {...params}
             InputProps={{
               ...params.InputProps,
@@ -45,11 +44,11 @@ export default function Highlights() {
         {nameList.map((nameItem, index) => (
           <div
             key={index}
-            className="w-[327px] bg-[#e6d0d0] rounded-lg font-[400] text-gray-light p-[10px] m-[10px] h-[44px] mx-auto flex flex-row justify-between"
+            className="w-[327px] bg-primary-bg rounded-lg font-[400] text-gray-light p-[10px] m-[10px] h-[44px] mx-auto flex flex-row justify-between"
           >
             <span className="text-[13px]">{nameItem}</span>
             <ArrowCircleRightOutlinedIcon
-            sx={{ color: "#FF5252", height: "12px" }}
+            sx={{ color: "#F5252", height: "12px" }}
           />
           
           
