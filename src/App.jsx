@@ -9,6 +9,8 @@ import {
 import Layout from "./components/Layout";
 import Answers from "./components/questionbox/Answers";
 import Background from "./utils/Background";
+import Preview from "./components/Questionpreview/Preview";
+import Submit from "./components/Submitted/Submit";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +18,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<Layout />} />
       <Route path="/answers" element={<Answers />}/>
       <Route path="/background" element={<Background />} />
+      <Route path="/preview" element={<Preview />} />
+      <Route path="/submit" element={<Submit />} />
     </>
     
   )

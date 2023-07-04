@@ -132,3 +132,46 @@ export default AnsweredList;
 //           <SettingsIcon sx={{color:"#A13E97",height:"12px"}}/>
           
 //         </Link>
+
+
+
+
+// import React from 'react';
+// import SettingsIcon from '@mui/icons-material/Settings';
+// import NoAnswer from '../../assets/images/Noanswers.svg';
+// import { Link } from 'react-router-dom';
+
+// const AnsweredList = ({ nameList }) => {
+//   return (
+//     <div className="flex flex-col p-[20px] bg-neutral justify-between">
+//       <div className="bg-neutral p-[12px] flex flex-row justify-between">
+//         <div className="text-grey-text">
+//           <p className="text-[15px] font-[600]">Your Answers</p>
+//           <p className="text-[12px] font-[400]">Minimum 3, maximum 5 answers</p>
+//         </div>
+//         <Link to="background" className="text-primary-light cursor-pointer">
+//           <span className="text-primary text-[12px] font-[500]">Answer settings</span>
+//           <SettingsIcon sx={{ color: '#A13E97', height: '12px' }} />
+//         </Link>
+//       </div>
+//       <div className="w-[126px] mx-auto p-[12px] flex flex-col gap-[20px] justify-center">
+//         {nameList && nameList.length > 0 ? (
+//           nameList.map((nameItem, index) => (
+//             <div key={index} className="flex justify-center">
+//               <p className="text-gray-light text-center h-[42px] text-[12px] leading-3">{nameItem}</p>
+//             </div>
+//           ))
+//         ) : (
+//           <div className="flex flex-col items-center justify-center">
+//             <img src={NoAnswer} alt="placeholder" className="w-[80px] h-[80px]" />
+//             <p className="text-gray-light text-center h-[42px] text-[12px] leading-3">
+//               Select answers from the bubbles above to fill up your answers
+//             </p>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AnsweredList;

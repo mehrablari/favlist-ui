@@ -25,14 +25,18 @@ export default {
       'primary-light':"#A13E97",
       'primary-lighter':"#D09ECB",
       'primary-bg':"#ECD8EA",
+      'text-blue':'#3973D4',
+      'button-inactive':'#F7F0F7',
       'neutral': '#FFFFFF',
       'primary-border':"#F7F0F7",
       'grey-text':'#464E56',
       'gray-dark': '#212A34',
       'gray-light':'#464E56',
       'gray-lighter':'#909499',
+      'gray-purple':'#989099',
       'gray-bg':'#B5B8BB',
-      'overlay': '#F2F2F2',  
+      'overlay': '#F2F2F2',
+
     },
     
     screens: {

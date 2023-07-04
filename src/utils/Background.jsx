@@ -1,5 +1,4 @@
 
-import Layout from '../components/Layout'
 import Settings from './Settings'
 
 const Background = () => {

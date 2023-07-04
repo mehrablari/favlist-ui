@@ -79,9 +79,9 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { Link } from "react-router-dom";
 
 export default function MenuAppBar() {
 
@@ -100,10 +100,12 @@ export default function MenuAppBar() {
   return (
     <Box className="bg-primary" >
       <AppBar position="static">
-        <Toolbar className="flex flex-row justify-between bg-primary">
-        <img src={Logo} alt="logo" className="h-[15px]" />
+        <Toolbar className="flex flex-row justify-between bg-primary px-[8] py-[16px]">
+          <Link to="/">
+            <img src={Logo} alt="logo" className="h-[15px]" />
+          </Link>
         
-        <div>
+        <div className="">
               <IconButton
               size="large"
               edge="start"
@@ -115,6 +117,8 @@ export default function MenuAppBar() {
               <MenuIcon />
             </IconButton>
               <Menu
+                
+                
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -130,13 +134,18 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Closed Question</MenuItem>
+                <hr className="h-[8px] bg-[#F6F6F6] border-0 dark:bg-gray-lighter"/>
                 <MenuItem onClick={handleClose}>How it works</MenuItem>
+                
                 <MenuItem onClick={handleClose}>About Favlist</MenuItem>
+                <hr className="h-[8px] bg-[#F6F6F6] border-0 dark:bg-gray-lighter" />
                 <MenuItem onClick={handleClose}>Download App</MenuItem>
               </Menu>
             </div>
+           
       
         </Toolbar>
+        <hr className="text-gray-dark"/>
       </AppBar>
     </Box>
   );
