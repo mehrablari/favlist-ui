@@ -11,6 +11,7 @@ import Answers from "./components/questionbox/Answers";
 import Background from "./utils/Background";
 import Preview from "./components/Questionpreview/Preview";
 import Submit from "./components/Submitted/Submit";
+import AnswerGraphics from "./components/AnswerGraphic/AnswerGraphic";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/background" element={<Background />} />
       <Route path="/preview" element={<Preview />} />
       <Route path="/submit" element={<Submit />} />
+      <Route path="/answergraphics" element={<AnswerGraphics />} />
     </>
     
   )

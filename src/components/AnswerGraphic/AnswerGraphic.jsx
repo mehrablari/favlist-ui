@@ -6,38 +6,27 @@ import Twitter from "../../assets/icons/twitter.svg";
 import Tiktok from "../../assets/icons/tiktok.svg";
 import Instagram from "../../assets/icons/instagram.svg";
 import Share from "../../assets/icons/share.svg";
-import highFive from "../../assets/gif/highfivegif.gif"
+import ArrowBack from "../../assets/icons/arrowback.svg"
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 
-const Submit = () => {
+const AnswerGraphics = () => {
   return (
     <div className="bg-primary pt-[80px] pb-[20px]">
-      <div className="bg-neutral h-[570px] w-[327px] rounded-lg mx-auto p-[20px]">
-        <div className="flex flex-col justify-center align-middle">
-          <img
-            src={highFive}
-            alt="gif"
-            className="w-[150px] h-[150px] mx-auto"
-          />
-          <h2 className="w-[287px] font-[500] text-[14px] leading-5">
-            Yaayy! Your answers have been submitted!
-          </h2>
-        </div>
-        <hr className="m-[10px] border-t-1 border-[#B5B8BB] mx-auto" />
+      <div className="bg-neutral h-[372px] w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-row justify-center pt-[20px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />
           <h1 className="font-[500] text-[13px] text-text-blue">
             Your Answer graphics
           </h1>
         </div>
-        <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg m-[10px]"></div>
-        <hr className="pt-[10px]" />
+        <div className="h-[144px] bg-gray-lighter max-w-[287px] p-[20px] rounded-lg m-[10px]"></div>
+        <hr className="pt-[10px] border-t-1 border-[#B5B8BB] mx-auto" />
         <div className="flex flex-col">
           <div className="flex flex-col justify-center align-middle p-[10px]">
-            <h1 className="font-[500] text-[13px] text-text-blue text-center p-[10px]">
+            <h1 className="font-[500] text-[13px] text-text-blue text-center">
               Share to social media
             </h1>
-            <div className="flex flex-row justify-evenly align-middle">
+            <div className="flex flex-row justify-evenly align-middle h-[24px]">
                 <TwitterShareButton
                   url={"https://uranno.netlify.app"}
                   quote={"check out this content!"}
@@ -59,16 +48,16 @@ const Submit = () => {
             </div>
           </div>
 
-          <div className="flex flex-row align-middle justify-center bg-button-inactive mx-auto rounded-lg h-[40px] p-[10px]">
-            <img src={Home} alt="home" className="w-[20px] h-[20px] pr-[5px]" />
-            <span className="text-[14px] font-[500] text-primary h-[20px]">
-              Go Home
-            </span>
+          <div className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] bg-button-inactive max-w-[193px]">
+          <img src={ArrowBack} alt="" className="h-[18px] w-[18px] pr-[5px]" />
+          <div className="text-[12px] font-semibold text-primary h-[50px] pt-[10px]">
+            Go back to edit answers
           </div>
+        </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Submit;
+export default AnswerGraphics;

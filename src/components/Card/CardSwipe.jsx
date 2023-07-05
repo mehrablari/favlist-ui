@@ -58,7 +58,7 @@
 //   );
 // };
 
-// export default CardSwipe
+// export default CardSwipe;
 
 // const CardSwipe = (data) => {
 //   console.log("this is cardswipe",data)
