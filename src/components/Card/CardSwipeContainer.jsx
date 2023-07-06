@@ -1,55 +1,64 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-cards";
+import "./tindercards.css";
+import { EffectCards } from "swiper";
 
-import CardSwipe from "./CardSwipe";
+import path14 from "../../assets/images/path14.png";
 
-const CardSwipeContainer = (questionData) => {
-  console.log("this is question",questionData)
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 
+const CardSwipeContainer = ({ questionData, handleSwipe }) => {
+ 
+  console.log("questionData",questionData)
+  
+  const handleSwipeChange = swiper =>  (questionData[swiper.activeIndex], handleSwipe(questionData[swiper.activeIndex].answersJson))
 
 
   return (
-    <div className="bg-primary">
-     <CardSwipe data={questionData} />
-    
-    </div>
+    <Swiper
+      effect={"cards"}
+      grabCursor={true}
+      modules={[EffectCards]}
+      className="mySwiper h-[300px] bg-primary flex justify-center align-middle w-[400px] p-[20px]"
+      onSlideChange={(swiper) => handleSwipeChange(swiper) }
+    >
+      {questionData.map((question, id) => (
+        <SwiperSlide key={id} className="bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[20px] p-[10px] m-[3rem] min-w-[271px] drop-shadow-lg mb-[20px]">
+          <div className=" p-[10px] flex flex-col w-[311px] h-[211px] bg-neutral  rounded-lg">
+            <p className="text-[12px] text-gray-light font-[400]">
+              Today's question
+            </p>
+           
+            <div className="flex flex-row justify-center p-[12px] align-middle">
+              <div>
+                <AccessTimeOutlinedIcon
+                  style={{ fontSize: "12px", height: "12px" }}
+                  className="text-primary-light"
+                />
+              </div>
+              <h1 className="pl-[12px] text-[12px] text-primary-light h-[12px] mb-[10px] font-[400]">
+                6d to expiry
+              </h1>
+            </div>
+            <div className="text-gray-dark">{question.text}</div>
+           
+            <div className="flex flex-col justify-center w-[43px] h-[56px] mx-auto">
+              <h3 className="text-gray-lighter text-[12px] font-[400]">
+                sponsor
+              </h3>
+              <div className="flex justify-center ">
+                <img src={path14} alt="netflix" className="w-[24px] h-[24px]" />
+              </div>
+              <h3 className="text-gray-light font-[600] pb-[20px] mx-auto flex justify-center align-middle">
+                Favlist
+              </h3>
+            </div>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
 export default CardSwipeContainer;
-
-
-
-// {selectedQuestion && (
-//     <div className="bg-primary">
-//       <h3>{selectedQuestion.text}</h3>
-//       <p>Category: {selectedQuestion.category.name}</p>
-//       <p>Date to Post: {selectedQuestion.dateToPost}</p>
-//       <p>Sponsor: {selectedQuestion.sponsor.name}</p>
-//       {/* Include other question properties as needed */}
-//       <p>Days to Remain Open: {selectedQuestion.daysToRemainOpen}</p>
-//       <p>Min Answer Count: {selectedQuestion.minAnswerCount}</p>
-//       <p>Max Answer Count: {selectedQuestion.maxAnswerCount}</p>
-//       <ul>
-//         {selectedQuestion.answersJson.map((answer, index) => (
-//           <li key={index}>{answer}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   )}
-
-//   const handleCardSwipe = (question) => {
-//     console.log("Selected question:", question);
-//     // Perform any desired actions with the selected question
-//   };
-
-// import CardSwipe from "./CardSwipe";
-
-
-// const CardSwipeContainer = ({questionData}) => {
-//   return (
-//     <div className="bg-primary">
-//       <CardSwipe questionData={questionData}/>
-//     </div>
-//   )
-// }
-
-// export default CardSwipeContainer

@@ -5,7 +5,7 @@ import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
 import NavBar from "./NavBar";
-import TinderCards from "./Card/TinderCards";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -14,6 +14,20 @@ import axios from "axios";
 const Layout = () => {
 
     const [apiData, setApiData] = useState([]);
+
+    const [activeAnswerJson, setActiveAnswerJson] = useState(null)
+
+    const handleSwipe = (activeAnswerJson) => {
+      setActiveAnswerJson(activeAnswerJson)
+
+    }
+    //Create handleSubmission
+
+    //pass handleSubmission as props to searchbox
+
+    //In searchbox, pass data submitted to the the handleSubmission passed in from layout
+
+    //in layout create a state object to manage submitted value
 
 
   useEffect(() => {
@@ -32,6 +46,7 @@ const Layout = () => {
           }
         );
         setApiData(response.data);
+        setActiveAnswerJson(response.data[0].answersJson);
       } catch (error) {
         console.error("Error fetching API data:", error);
       }
@@ -39,20 +54,15 @@ const Layout = () => {
 
     fetchData();
   }, []);
-  console.log(apiData);
+
   
   return (
     <div >
       <NavBar />
-      <CardSwipeContainer questionData={apiData}/>
-      <Searchbox answerData={apiData}/>
+      <CardSwipeContainer questionData={apiData} handleSwipe={handleSwipe}/>
+      <Searchbox answerData={apiData} activeAnswerJson={activeAnswerJson}/>
       <Suggestion />
-      <AnsweredList />
-      {/* <TinderCards /> */}
-      
-      
-  
-      
+      <AnsweredList  />
     </div>
   )
 }

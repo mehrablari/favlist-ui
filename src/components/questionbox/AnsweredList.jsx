@@ -1,8 +1,11 @@
 import SettingsIcon from '@mui/icons-material/Settings';
 import NoAnswer from '../../assets/images/Noanswers.svg';
 import { Link } from 'react-router-dom';
+import AnswerSubmit from '../../utils/AnswerSubmit';
 
-const AnsweredList = () => {
+
+const AnsweredList = ({selectedOption, isButtonActive}) => {
+  // console.log(selectedOption)
   return (
     <div className="flex flex-col p-[20px] bg-neutral justify-between">
       <div className="bg-neutral p-[12px] flex flex-row justify-between ">
@@ -25,6 +28,7 @@ const AnsweredList = () => {
           Select answers from the bubbles above to fill up your answers
         </h3>
       </div>
+      <AnswerSubmit selectedOption={selectedOption} isButtonActive={isButtonActive} /> 
     </div>
   );
 };
