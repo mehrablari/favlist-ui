@@ -1,13 +1,4 @@
 
-//   const datalist = activeAnswerJson && activeAnswerJson.map((item, id) => (
-    
-//       <div key={id}>
-//         <li>
-//           {item}
-//         </li>
-        
-//       </div>
-//   ));
 import SearchIcon from "@mui/icons-material/Search";
 
 
@@ -23,6 +14,7 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
   const datalist = activeAnswerJson && activeAnswerJson.map((item, id) => (
     {  id: `${item}-${id}`,label: item, value: item }
   ));
+
 
   const isOptionEqualToValue = (option, value) => option.value === value.value;
   
@@ -43,9 +35,6 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
     const handleSubmit = (event, newValue) => {
       setSubmit(newValue.value);
       handleSubmission(newValue.value)
-      // Emit an event or call a function here with the selected option
-      const newAnswer = newValue.value;
-      console.log("this is Selected option:", newAnswer);
       
     };
 
@@ -65,7 +54,7 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
       {
         datalist ? (
         <Autocomplete
-        className="w-[327px] mx-auto h-[44px] rounded-[20px]"
+        className="w-[327px] mx-auto h-[44px] rounded-[20px] flex justify-center align-middle"
           value={selectedOption}
           // onChange={handleOptionChange}
           onChange={(event, newValue) => {
@@ -101,12 +90,4 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
   );
 }
 
-
-
-
-
- // if(!answerData) {
-//   return <p>Loading</p>
-// }
-  // console.log("this is answerdata:",answerData)
 
