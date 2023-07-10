@@ -1,57 +1,54 @@
-
-// import AnswerRef from "../utils/AnswerRef";
 import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
 import NavBar from "./NavBar";
-import AppContext from "./context/AppContext";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AnswerSettings from "../questionbox/AnswerSettings";
-
-
-
 
 const Layout = () => {
+  const [apiData, setApiData] = useState([]);
 
-    const [apiData, setApiData] = useState([]);
-
-    const [activeAnswerJson, setActiveAnswerJson] = useState(null)
-    const [selectedOption, setSelectedOption] = useState([])
-    // Define the submit state in the App component
+  const [activeAnswerJson, setActiveAnswerJson] = useState(null);
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [suggestedOption, setSuggestedOption] = useState([]);
+  const [answers, setAnswers] = useState([]);
   
 
+  const handleSwipe = (activeAnswerJson) => {
+    setActiveAnswerJson(activeAnswerJson);
+    setSelectedOption(activeAnswerJson[0]);
+    setSuggestedOption(activeAnswerJson); 
+  };
 
-
-    const handleSwipe = (activeAnswerJson) => {
-      setActiveAnswerJson(activeAnswerJson)
+  const handleSubmission = (selectedOption) => {
+    if (
+      selectedOption &&
+      !answers.some((answer) => answer === selectedOption) &&
+      answers.length < 5
+    ) {
+      answers.push(selectedOption);
+      setAnswers([...answers]);
     }
+  };
 
+  const handleDismiss = (index) => {
+    const updatedAnswers = [...answers];
+    updatedAnswers.splice(index, 1);
+    setAnswers(updatedAnswers);
+  };
 
-    const handleSubmission = (selectedOption) => {
-      setSelectedOption(selectedOption)
-    }
-
-    
-
-    // console.log("submitted",handleSubmission())
-    
-    //Create handleSubmission
-
-    //pass handleSubmission as props to searchbox
-
-    //In searchbox, pass data submitted to the the handleSubmission passed in from layout
-
-    //in layout create a state object to manage submitted value
-//https://35.209.30.214:443
+  const handleSuggestion = (suggestedOption) => {
+    setSuggestedOption(suggestedOption);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://35.209.30.214:443/api/v1/questions",
-        
+
           {
             headers: {
               "Content-Type": "application/json",
@@ -63,9 +60,10 @@ const Layout = () => {
           }
         );
         setApiData(response.data);
-        
+
         setActiveAnswerJson(response.data[0].answersJson);
         setSelectedOption(response.data[0].answersJson[0])
+        setSuggestedOption(response.data[0].answersJson);
       } catch (error) {
         console.error("Error fetching API data:", error);
       }
@@ -74,16 +72,24 @@ const Layout = () => {
     fetchData();
   }, []);
 
-  
   return (
-    <div >
+    <div className="m-w-[375px]">
       <NavBar />
       <CardSwipeContainer questionData={apiData} handleSwipe={handleSwipe} />
-      <Searchbox answerData={apiData} activeAnswerJson={activeAnswerJson} handleSubmission={handleSubmission}  />
-      <Suggestion />
-      <AnsweredList answerSelected={selectedOption} handleSubmission={selectedOption}  />
+      <Searchbox
+        answerData={apiData}
+        activeAnswerJson={activeAnswerJson}
+        handleSubmission={handleSubmission}
+      />
+      <Suggestion
+        className="bg-neutral"
+        suggestedOption={suggestedOption}
+        handleSuggestion={handleSuggestion}
+        
+      />
+      <AnsweredList answers={answers} handleDismiss={handleDismiss} />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

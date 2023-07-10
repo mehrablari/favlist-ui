@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const Preview = () => {
   return (
-    <div className="flex flex-col p-[40px] bg-primary">
-      <div className="mx-auto">
+    <div className="flex flex-col p-[40px] bg-primary  mx-auto w-[327px]">
+      <div className="mx-auto ">
         <h1 className="text-neutral font-[700] text-[13px] p-[10px]">
           Preview your answers
         </h1>
