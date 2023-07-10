@@ -7,12 +7,16 @@ import Tiktok from "../../assets/icons/tiktok.svg";
 import Instagram from "../../assets/icons/instagram.svg";
 import Share from "../../assets/icons/share.svg";
 import highFive from "../../assets/gif/highfivegif.gif"
-import { FacebookShareButton, TwitterShareButton } from "react-share";
+
+// import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { RWebShare } from "react-web-share";
+
+
 
 const Submit = () => {
   return (
     <div className="bg-primary pt-[80px] pb-[20px]">
-      <div className="bg-neutral h-[570px] w-[327px] rounded-lg mx-auto p-[20px]">
+      <div className="bg-neutral h-[600px] w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-col justify-center align-middle">
           <img
             src={highFive}
@@ -20,7 +24,7 @@ const Submit = () => {
             className="w-[150px] h-[150px] mx-auto"
           />
           <h2 className="w-[287px] font-[500] text-[14px] leading-5">
-            Yaayy! Your answers have been submitted!
+            yaayy! Your answers have been submitted!
           </h2>
         </div>
         <hr className="m-[10px] border-t-1 border-[#B5B8BB] mx-auto" />
@@ -33,29 +37,27 @@ const Submit = () => {
         <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg m-[10px]"></div>
         <hr className="pt-[10px]" />
         <div className="flex flex-col">
-          <div className="flex flex-col justify-center align-middle p-[10px]">
-            <h1 className="font-[500] text-[13px] text-text-blue text-center p-[10px]">
+          <div className="flex flex-col justify-center align-middle p-[15px]">
+            <h1 className="font-[500] text-[13px] text-text-blue text-center p-[20px]">
               Share to social media
             </h1>
-            <div className="flex flex-row justify-evenly align-middle">
-                <TwitterShareButton
-                  url={"https://uranno.netlify.app"}
-                  quote={"check out this content!"}
-                  hashtag="#favlist"
-                >
-                  <img src={Twitter} alt="twitter" />
-                </TwitterShareButton>
-              <FacebookShareButton
-                url={"https://www.example.com"}
-                quote={"Dummy text!"}
-                hashtag="#muo"
+            <div className="h-[20px] p-[10px]">
+              <RWebShare
+                data={{
+                  text: "Like humans, flamingos make friends for life",
+                  url: "https://on.natgeo.com/2zHaNup",
+                  title: "Flamingos",
+                }}
+                onClick={() => console.log("shared successfully!")}
               >
-                <img src={Facebook} alt="facebook" />
-              </FacebookShareButton>
-              <img src={Instagram} alt="instagram" />
-
-              <img src={Tiktok} alt="tiktok" />
-              <img src={Share} alt="share" />
+                <button className="flex flex-row mx-auto align-middle">
+                  <img src={Twitter} alt="twitter" />
+                  <img src={Facebook} alt="facebook" />
+                  <img src={Instagram} alt="instagram" />
+                  <img src={Tiktok} alt="tiktok" />
+                  <img src={Share} alt="share" />
+                </button>
+              </RWebShare>
             </div>
           </div>
 
@@ -72,3 +74,25 @@ const Submit = () => {
 };
 
 export default Submit;
+
+
+  {/* <div className="flex flex-row justify-evenly align-middle">
+              <TwitterShareButton
+                url={"https://uranno.netlify.app"}
+                quote={"check out this content!"}
+                hashtag="#favlist"
+              >
+                <img src={Twitter} alt="twitter" />
+              </TwitterShareButton>
+              <img src={Instagram} alt="instagram" />
+
+              <img src={Tiktok} alt="tiktok" />
+              <img src={Share} alt="share" />acebookShareButton
+                url={"https://www.example.com"}
+                quote={"Dummy text!"}
+                hashtag="#muo"
+              
+                <img src={Facebook} alt="facebook" />
+              </FacebookShareButton>
+              
+            </div> */}

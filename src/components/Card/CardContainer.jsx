@@ -68,7 +68,7 @@ const CardContainer = () => {
           <h2 className="text-[18px] font-[700]">{item.text}</h2>
           <div className="flex flex-col justify-center w-[43px] h-[56px] mx-auto">
             <h3 className="text-gray-lighter text-[12px] font-[400]">
-              sponsor
+              affiliate
             </h3>
             <div className="flex justify-center ">
               <img src={path14} alt="netflix" className="w-[24px] h-[24px]" />

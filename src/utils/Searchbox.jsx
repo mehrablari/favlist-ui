@@ -1,16 +1,3 @@
-// import TextField from "@mui/material/TextField";
-// import Autocomplete from "@mui/material/Autocomplete";
-// import data from "./data";
-import SearchIcon from "@mui/icons-material/Search";
-// import { useState } from "react";
-// import Select from 'react-select';
-
-
-// export default function Highlights({answerData, activeAnswerJson}) {
-//   const [selectedOption, setSelectedOption] = useState(null);
-
-
-
 
 //   const datalist = activeAnswerJson && activeAnswerJson.map((item, id) => (
     
@@ -21,20 +8,58 @@ import SearchIcon from "@mui/icons-material/Search";
         
 //       </div>
 //   ));
+import SearchIcon from "@mui/icons-material/Search";
+
 
 import { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-export default function Highlights({ answerData, activeAnswerJson }) {
+export default function Highlights({ answerData, activeAnswerJson, handleSubmission}) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [submit, setSubmit] = useState(null);
+  const [inputLength, setInputLength] = useState(0);
 
   const datalist = activeAnswerJson && activeAnswerJson.map((item, id) => (
     {  id: `${item}-${id}`,label: item, value: item }
   ));
 
   const isOptionEqualToValue = (option, value) => option.value === value.value;
+  
+  
 
+  const handleOptionChange = (event, newValue) => {
+    if (!selectedOption || newValue?.value !== selectedOption?.value) {
+      const isOptionSelected = selectedOption ? selectedOption.value === newValue?.value : false;
+      if (isOptionSelected) {
+        console.log("Option has already been selected");
+        // Render a message to the user indicating that the option has already been selected
+      } else {
+        setSelectedOption(newValue);
+      }
+    }
+  };
+
+    const handleSubmit = (event, newValue) => {
+      setSubmit(newValue.value);
+      handleSubmission(newValue.value)
+      // Emit an event or call a function here with the selected option
+      const newAnswer = newValue.value;
+      console.log("this is Selected option:", newAnswer);
+      
+    };
+
+    const handleInputChange = (event) => {
+      const inputValue = event.target.value;
+      setInputLength(inputValue.length);
+      if (inputValue.length > 5) {
+        setSelectedOption(null);
+      }
+    };
+  
+    // const isDisabled = inputLength <= 5;
+    const isDisabled = inputLength < 5 || (selectedOption && selectedOption.length >= 3);
+  
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full p-[60px] ">
       {
@@ -42,8 +67,10 @@ export default function Highlights({ answerData, activeAnswerJson }) {
         <Autocomplete
         className="w-[327px] mx-auto h-[44px] rounded-[20px]"
           value={selectedOption}
+          // onChange={handleOptionChange}
           onChange={(event, newValue) => {
-            setSelectedOption(newValue);
+            handleOptionChange(event, newValue);
+            handleSubmit(event, newValue); // Call both functions
           }}
           options={datalist}
           getOptionLabel={(option) => option.label}
@@ -51,7 +78,7 @@ export default function Highlights({ answerData, activeAnswerJson }) {
           renderInput={(params) => (
             <TextField
               {...params}
-
+              onChange={handleInputChange}
               InputProps={{
                 ...params.InputProps,
                 placeholder: "Start typing an answer",
@@ -63,10 +90,13 @@ export default function Highlights({ answerData, activeAnswerJson }) {
                 ),
                 endAdornment: null,
               }}
+              disabled={isDisabled}
             />
           )}
+          disabled={selectedOption && selectedOption.length >= 5}
         />) : null
       }
+      
     </div>
   );
 }
@@ -80,83 +110,3 @@ export default function Highlights({ answerData, activeAnswerJson }) {
 // }
   // console.log("this is answerdata:",answerData)
 
-  // const isButtonActives = selectedOption && selectedOption.length >= 3;
-  // const isAutocompleteDisabled = selectedOption && selectedOption.length >= 5;
-
-
-// {/* <Autocomplete
-// className="bg-neutral mx-auto w-[327px]"
-// id="highlights-demo"
-// options={datalist}
-// getOptionLabel={(option) => option}
-// // onChange={handleOptionSelect}
-// // disabled={isAutocompleteDisabled}
-// renderInput={(params) => (
-//   <TextField
-//     fullWidth
-//     color="secondary"
-//     id="fullWidth"
-//     {...params}
-    // InputProps={{
-    //   ...params.InputProps,
-    //   placeholder: "Start typing an answer",
-    //   startAdornment: (
-    //     <>
-    //       <SearchIcon color="action" />
-    //       {params.InputProps.startAdornment}
-    //     </>
-    //   ),
-    //   endAdornment: null,
-    // }}
-//   />
-// )}
-// /> */}
-
-// import TextField from "@mui/material/TextField";
-// import Autocomplete from "@mui/material/Autocomplete";
-// import data from "./data";
-// import SearchIcon from "@mui/icons-material/Search";
-// import { useContext } from "react";
-// import { AnswerContext } from "./context/AnswerContext";
-
-// export default function Searchbox() {
-//   const { selectedOption } = useContext(AnswerContext);
-
-//   const handleOptionSelect = (event, value) => {
-//     // Update the selectedOption value using the context API or any other mechanism
-//   };
-
-//   const isAutocompleteDisabled = selectedOption && selectedOption.length >= 5;
-
-//   return (
-//     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[80px]">
-//       <Autocomplete
-//         className="bg-neutral mx-auto w-[327px]"
-//         id="highlights-demo"
-//         options={data}
-//         getOptionLabel={(option) => option.title}
-//         onChange={handleOptionSelect}
-//         disabled={isAutocompleteDisabled}
-//         renderInput={(params) => (
-//           <TextField
-//             fullWidth
-//             color="secondary"
-//             id="fullWidth"
-//             {...params}
-//             InputProps={{
-//               ...params.InputProps,
-//               placeholder: "Start typing an answer",
-//               startAdornment: (
-//                 <>
-//                   <SearchIcon color="action" />
-//                   {params.InputProps.startAdornment}
-//                 </>
-//               ),
-//               endAdornment: null,
-//             }}
-//           />
-//         )}
-//       />
-//     </div>
-//   );
-// }
