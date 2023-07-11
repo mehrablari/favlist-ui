@@ -25,7 +25,7 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
       const isOptionSelected = selectedOption ? selectedOption.value === newValue?.value : false;
       if (isOptionSelected) {
         console.log("Option has already been selected");
-        // Render a message to the user indicating that the option has already been selected
+        
       } else {
         setSelectedOption(newValue);
       }

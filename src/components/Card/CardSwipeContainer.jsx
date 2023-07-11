@@ -11,7 +11,6 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 
 const CardSwipeContainer = ({ questionData, handleSwipe }) => {
  
-  console.log("questionData one",questionData)
   
   const handleSwipeChange = swiper =>  (questionData[swiper.activeIndex], handleSwipe(questionData[swiper.activeIndex].answersJson))
 

@@ -7,6 +7,7 @@ import Tiktok from "../../assets/icons/tiktok.svg";
 import Instagram from "../../assets/icons/instagram.svg";
 import Share from "../../assets/icons/share.svg";
 import highFive from "../../assets/gif/highfivegif.gif"
+import { Link } from "react-router-dom";
 
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { RWebShare } from "react-web-share";
@@ -61,12 +62,12 @@ const Submit = () => {
             </div>
           </div>
 
-          <div className="flex flex-row align-middle justify-center bg-button-inactive mx-auto rounded-lg h-[40px] p-[10px]">
+          <Link to="/" className="flex flex-row align-middle justify-center bg-button-inactive mx-auto rounded-lg h-[40px] p-[10px]">
             <img src={Home} alt="home" className="w-[20px] h-[20px] pr-[5px]" />
             <span className="text-[14px] font-[500] text-primary h-[20px]">
               Go Home
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

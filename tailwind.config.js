@@ -34,6 +34,7 @@ export default {
       'gray-light':'#464E56',
       'gray-lighter':'#909499',
       'gray-purple':'#989099',
+      'gray-inactive':'#756B78',
       'gray-bg':'#B5B8BB',
       'overlay': '#F2F2F2',
 
