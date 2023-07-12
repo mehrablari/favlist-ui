@@ -11,7 +11,7 @@ import { useState } from "react";
 
 
 
-const Suggestion = ({ suggestedOption }) => {
+const Suggestion = ({ suggestedOption, handleClick }) => {
   const [items, addItems] = useState([])
 
   const location = useLocation();
@@ -21,18 +21,21 @@ const Suggestion = ({ suggestedOption }) => {
   const playSoundEffect = () => {
     audio.play();
   };
-  
-  const handleClick = (index) => {
-    const currentItem = suggestedOption[index];
-    addItems(currentItem)
-    console.log("clicked",currentItem)
-  }
 
-  // console.log("suggestion data",suggestedOption)
+  console.log("handleClick",handleClick)
+  
+ 
+  const handleItemClick = (item) => {
+    addItems([...items]);
+    handleClick(item);
+    playSoundEffect();
+  };
+
 
   const renderSwiperSlides = () => {
     const totalItems = suggestedOption.length;
-    const numSlides = Math.ceil(totalItems / 12);
+   
+    const numSlides = Math.min(Math.ceil(totalItems / 12), 5)
     const slides = [];
 
     for (let i = 0; i < numSlides; i++) {
@@ -47,7 +50,8 @@ const Suggestion = ({ suggestedOption }) => {
               <div className="bg-gray-lighter bg-opacity-10 p-[10px] w-[96px] rounded-[16px] h-[32px] flex justify-evenly " onClick={() => handleClick(index)} value={items}>
                 <h3
                   className="text-[12px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-3 cursor-pointer"
-                  onClick={playSoundEffect}
+                 
+                  onClick={() => handleItemClick(suggestion)}
                 >
                   {suggestion.length > 12
                     ? `${suggestion.slice(0, 18)}...`
@@ -64,7 +68,7 @@ const Suggestion = ({ suggestedOption }) => {
   };
 
   return (
-    <main className="bg-neutral p-[12px] flex flex-col justify-center h-[240px] mx-auto ">
+    <main className="bg-neutral p-[12px] flex flex-col justify-center h-[250px] mx-auto ">
       <div className="flex flex-row justify-between bg-neutral w-[327px] mx-auto">
         <div className="text-grey-text text-[15px] font-[600]">Suggestions</div>
         <Link to="/answers" state={suggestedOption}>
@@ -87,6 +91,7 @@ const Suggestion = ({ suggestedOption }) => {
             "--swiper-pagination-bullet-inactive-color": "#999999",
             "--swiper-pagination-bullet-inactive-opacity": "1",
             "--swiper-pagination-bullet-size": "5px",
+            "--swiper-pagination-bullet": "10px",
             "--swiper-pagination-bullet-horizontal-gap": "5px"
           }}
           className="mySwiper w-[327px] h-[250px] bg-neutral"
