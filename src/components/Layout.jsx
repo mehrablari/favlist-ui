@@ -19,22 +19,14 @@ const Layout = () => {
 
 
   const handleClick = (index) => {
-    const currentItem = suggestedOption[index];
-    setClickedValue(currentItem);
+    if (
+      suggestedOption[index] &&
+      !answers.some((answer) => answer === suggestedOption[index]) &&
+      answers.length < 5
+    ) {
+      setAnswers((prevAnswers) => [...prevAnswers, suggestedOption[index]]);
+    }
   };
-  // const handleClick = (selectedOption) => {
-  //   if (
-  //     selectedOption &&
-  //     !clickedValue.some((clicked) => clicked === selectedOption) &&
-  //     clickedValue.length < 5
-  //   ) {
-  //     answers.push(selectedOption);
-  //   setClickedValue([...clickedValue]);
-  //   }
-  // };
-
-  // console.log("handleclick",handleClick)
-
   
 
   const handleSwipe = (activeAnswerJson) => {

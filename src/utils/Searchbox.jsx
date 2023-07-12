@@ -1,7 +1,7 @@
 
 import SearchIcon from "@mui/icons-material/Search";
 
-
+import Popper from '@mui/material/Popper';
 import { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -47,20 +47,20 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
     };
   
     // const isDisabled = inputLength <= 5;
-    const isDisabled = inputLength < 5 || (selectedOption && selectedOption.length >= 3);
+    // const isDisabled = inputLength < 5 || (selectedOption && selectedOption.length >= 3);
   
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full p-[60px] ">
-      {
-        datalist ? (
+      {datalist ? (
         <Autocomplete
-        className="w-[327px] mx-auto h-[44px] rounded-[20px] flex justify-center align-middle"
+          className="w-[327px] mx-auto h-[44px] rounded-[20px] flex justify-center align-middle"
           value={selectedOption}
-          // onChange={handleOptionChange}
           onChange={(event, newValue) => {
             handleOptionChange(event, newValue);
             handleSubmit(event, newValue); // Call both functions
           }}
+          PopperComponent={Popper}
+          
           options={datalist}
           getOptionLabel={(option) => option.label}
           isOptionEqualToValue={isOptionEqualToValue}
@@ -79,13 +79,12 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
                 ),
                 endAdornment: null,
               }}
-              disabled={isDisabled}
+              // disabled={isDisabled}
             />
           )}
           disabled={selectedOption && selectedOption.length >= 5}
-        />) : null
-      }
-      
+        />
+      ) : null}
     </div>
   );
 }
