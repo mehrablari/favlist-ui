@@ -1,10 +1,10 @@
-
 import SearchIcon from "@mui/icons-material/Search";
-
 import Popper from '@mui/material/Popper';
 import { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+
+
 
 export default function Highlights({ answerData, activeAnswerJson, handleSubmission}) {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -46,8 +46,7 @@ export default function Highlights({ answerData, activeAnswerJson, handleSubmiss
       }
     };
   
-    // const isDisabled = inputLength <= 5;
-    // const isDisabled = inputLength < 5 || (selectedOption && selectedOption.length >= 3);
+    
   
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full p-[60px] ">

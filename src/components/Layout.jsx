@@ -86,6 +86,19 @@ const Layout = () => {
     fetchData();
   }, []);
 
+    useEffect(() => {
+      // Save answers to localStorage
+      sessionStorage.setItem("answers", JSON.stringify(answers));
+    }, [answers]);
+
+    useEffect(() => {
+      // Retrieve answers from localStorage
+      const storedAnswers = sessionStorage.getItem("answers");
+      if (storedAnswers) {
+        setAnswers(JSON.parse(storedAnswers));
+      }
+    }, []);
+
   return (
     <div className="m-w-[375px]">
       <NavBar />

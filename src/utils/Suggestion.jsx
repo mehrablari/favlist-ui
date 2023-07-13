@@ -21,8 +21,6 @@ const Suggestion = ({ suggestedOption, handleClick }) => {
   const playSoundEffect = () => {
     audio.play();
   };
-
-  console.log("handleClick",handleClick)
   
  
   const handleItemClick = (item) => {
@@ -45,21 +43,26 @@ const Suggestion = ({ suggestedOption, handleClick }) => {
 
       slides.push(
         <SwiperSlide key={i} className="flex flex-wrap p-[10px] ">
-          {items.map((suggestion, index) => (
-            <div key={index} className="w-1/3">
-              <div className="bg-gray-lighter bg-opacity-10 p-[10px] w-[96px] rounded-[16px] h-[32px] flex justify-evenly " onClick={() => handleClick(index)} value={items}>
-                <h3
-                  className="text-[12px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-3 cursor-pointer"
-                 
-                  onClick={() => handleItemClick(suggestion)}
+          {items.map((suggestion, index) => {
+            const itemIndex = startIndex + index; // Calculate the correct index value
+  
+            return (
+              <div key={index} className="w-1/3">
+                <div
+                  className="bg-gray-lighter bg-opacity-10 p-[10px] w-[96px] rounded-[16px] h-[32px] flex justify-evenly"
+                  onClick={() => handleItemClick(itemIndex)}
                 >
-                  {suggestion.length > 12
-                    ? `${suggestion.slice(0, 18)}...`
-                    : suggestion}
-                </h3>
+                  <h3
+                    className="text-[12px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-3 cursor-pointer"
+                  >
+                    {suggestion.length > 12
+                      ? `${suggestion.slice(0, 18)}...`
+                      : suggestion}
+                  </h3>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </SwiperSlide>
       );
     }
