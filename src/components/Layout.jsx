@@ -3,59 +3,85 @@ import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
 import NavBar from "./NavBar";
+import soundEffect from "../assets/audio/software.wav";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 
+
+
+
 const Layout = () => {
+//state management
   const [apiData, setApiData] = useState([]);
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [clickedValue, setClickedValue] = useState([]);
+  const [filteredOptions, setFilteredOptions] = useState();
+  const [questionId, setQuestionId] = useState("")
+
+//sound when a suggestion is clicked
+  const audio = new Audio(soundEffect);
+  const playSoundEffect = () => {
+    audio.play();
+  };
 
 
+  //manage when a suggestion is clicked
+  const handleClick = (option) => {
+    if(!answers.includes(option) && answers.length < 5 ){
+      setAnswers((prevItems) => [...prevItems, option]);
+      playSoundEffect();
+    } 
 
+  };
+//manage the swiping card of question container
+  const handleSwipe = (activeQuestion) => {
+    setActiveAnswerJson(activeQuestion.answersJson);
+    setSelectedOption(activeQuestion.answersJson[0]);
+    setSuggestedOption(activeQuestion.answersJson);
+    setQuestionId(activeQuestion.id);    
 
-  const handleClick = (index) => {
-    if (
-      suggestedOption[index] &&
-      !answers.some((answer) => answer === suggestedOption[index]) &&
-      answers.length < 5
-    ) {
-      setAnswers((prevAnswers) => [...prevAnswers, suggestedOption[index]]);
+  };
+
+  //handle filtering when user search via searchbar
+  const handleFilter = (inputValue) => {
+   
+    if (inputValue) {
+      const suggestedOptions = [...suggestedOption];
+      const options =
+        suggestedOptions.filter((word) =>
+          word.toLowerCase().startsWith(inputValue.toLowerCase())
+        ) || [];
+      setFilteredOptions(options);
+    } else {
+      setFilteredOptions(suggestedOption);
     }
   };
-  
 
-  const handleSwipe = (activeAnswerJson) => {
-    setActiveAnswerJson(activeAnswerJson);
-    setSelectedOption(activeAnswerJson[0]);
-    setSuggestedOption(activeAnswerJson); 
-  };
-
+  //handle when answers is submitted to answeredlist
   const handleSubmission = (selectedOption) => {
     if (
       selectedOption &&
       !answers.some((answer) => answer === selectedOption) &&
       answers.length < 5
     ) {
-      answers.push(selectedOption);
-      setAnswers([...answers]);
+      setAnswers(prevAnswers => [...prevAnswers, selectedOption])
     }
   };
 
+  //manage removal of answers from answeredlist
   const handleDismiss = (index) => {
-    const updatedAnswers = [...answers];
-    updatedAnswers.splice(index, 1);
-    setAnswers(updatedAnswers);
+    setAnswers(prevAnswers => prevAnswers.filter((_, i) => i !== index))
   };
 
-  const handleSuggestion = (suggestedOption) => {
-    setSuggestedOption(suggestedOption);
-  };
 
+
+
+
+// manage api request
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,17 +93,17 @@ const Layout = () => {
               "Content-Type": "application/json",
             },
             method: "GET",
-            body: JSON.stringify({
-              apiData: apiData,
-            }),
           }
         );
         setApiData(response.data);
+        console.log("response", response.data)
 
         setActiveAnswerJson(response.data[0].answersJson);
-        setSelectedOption(response.data[0].answersJson[0])
+        setSelectedOption(response.data[0].answersJson[0]);
         setSuggestedOption(response.data[0].answersJson);
         setClickedValue(response.data[0].answersJson);
+        setQuestionId(response.data[0].id);
+        
       } catch (error) {
         console.error("Error fetching API data:", error);
       }
@@ -86,18 +112,20 @@ const Layout = () => {
     fetchData();
   }, []);
 
-    useEffect(() => {
-      // Save answers to localStorage
-      sessionStorage.setItem("answers", JSON.stringify(answers));
-    }, [answers]);
 
-    useEffect(() => {
-      // Retrieve answers from localStorage
-      const storedAnswers = sessionStorage.getItem("answers");
-      if (storedAnswers) {
-        setAnswers(JSON.parse(storedAnswers));
-      }
-    }, []);
+  //save current answer to localstorage
+  useEffect(() => {
+    // Save answers to localStorage
+    localStorage.setItem("answers", JSON.stringify(answers));
+  }, [answers]);
+
+// Retrieve answers from localStorage
+  useEffect(() => {
+    const storedAnswers = localStorage.getItem("answers");
+    if (storedAnswers) {
+      setAnswers(JSON.parse(storedAnswers));
+    }
+  }, []);
 
   return (
     <div className="m-w-[375px]">
@@ -107,16 +135,22 @@ const Layout = () => {
         answerData={apiData}
         activeAnswerJson={activeAnswerJson}
         handleSubmission={handleSubmission}
+        handleFilter={handleFilter}
       />
       <Suggestion
         className="bg-neutral"
         suggestedOption={suggestedOption}
-        handleSuggestion={handleSuggestion}
+        setSuggestedOption={setSuggestedOption}
         handleAnswers={handleSubmission}
         handleClick={handleClick}
-        
+        filteredOptions={filteredOptions}
       />
-      <AnsweredList answers={answers} handleDismiss={handleDismiss} clickedValue={clickedValue} />
+      <AnsweredList
+        answers={answers}
+        handleDismiss={handleDismiss}
+        questionId={questionId}
+        clickedValue={clickedValue}
+      />
     </div>
   );
 };

@@ -8,8 +8,8 @@ import {
 
 import Layout from "./components/Layout";
 import Answers from "./components/questionbox/Answers";
-import Background from "./utils/Background";
 import Preview from "./components/Questionpreview/Preview";
+import  RankedAnswers from "./components/Submitted/RankedAnswers"
 import Submit from "./components/Submitted/Submit";
 import AnswerGraphics from "./components/AnswerGraphic/AnswerGraphic";
 
@@ -18,10 +18,10 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Layout />} />
       <Route path="/answers" element={<Answers />}/>
-      <Route path="/background" element={<Background />} />
       <Route path="/preview" element={<Preview />} />
       <Route path="/submit" element={<Submit />} />
       <Route path="/answergraphics" element={<AnswerGraphics />} />
+      <Route path="/rankedanswers" element={<RankedAnswers />} />
     </>
     
   )

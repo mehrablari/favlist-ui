@@ -41,7 +41,7 @@ return (
               className="text-[12px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 cursor-pointer"
               onClick={playSoundEffect}
             >
-              {option.length > 8 ? `${option.slice(0, 16)}...` : option}
+              {option.length > 8 ? `${option.slice(0, 20)}...` : option}
             </h3>
           </div>
         </div>

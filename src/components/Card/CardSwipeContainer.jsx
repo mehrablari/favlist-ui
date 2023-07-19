@@ -3,17 +3,35 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import "./tindercards.css";
 import { EffectCards } from "swiper";
-
-
 import path14 from "../../assets/images/path14.png";
-
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 
-const CardSwipeContainer = ({ questionData, handleSwipe }) => {
- 
-  
-  const handleSwipeChange = swiper =>  (questionData[swiper.activeIndex], handleSwipe(questionData[swiper.activeIndex].answersJson))
 
+const CardSwipeContainer = ({ questionData, handleSwipe }) => {
+  //swipe handler
+  const handleSwipeChange = swiper =>  (questionData[swiper.activeIndex], handleSwipe(questionData[swiper.activeIndex]));
+
+//remaining days handler
+  const getDaysRemaining = () => {
+    const expirationDate = new Date(questionData.dateToPost);
+    const currentDate = new Date();
+    const timeDifference = expirationDate.getTime() - currentDate.getTime();
+    const daysRemaining = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    return daysRemaining;
+  };
+
+  const generateResponse = () => {
+    const daysRemaining = getDaysRemaining();
+    if (daysRemaining > 0) {
+      return `${daysRemaining}d to expiry`;
+    } else if (daysRemaining === 0) {
+      return 'Today is the last day';
+    } else {
+      return 'Expired';
+    }
+  };
+
+  const response = generateResponse();
 
   return (
     <Swiper
@@ -38,7 +56,7 @@ const CardSwipeContainer = ({ questionData, handleSwipe }) => {
                 />
               </div>
               <h1 className="pl-[5px] text-[12px] text-primary-light font-[400]">
-                6d to expiry
+                {response}
               </h1>
             </div>
             <div className="text-gray-dark w-[287px] text-[18px] h-[72px]">{question.text}</div>
@@ -51,7 +69,7 @@ const CardSwipeContainer = ({ questionData, handleSwipe }) => {
                 <img src={path14} alt="netflix" className="w-[24px] h-[24px]" />
               </div>
               <h3 className="text-gray-dark text-[12px] font-[600] pb-[20px]">
-                favlist
+              {question.sponsor.name}
               </h3>
             </div>
           </div>

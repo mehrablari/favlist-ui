@@ -1,91 +1,54 @@
 import SearchIcon from "@mui/icons-material/Search";
-import Popper from '@mui/material/Popper';
 import { useState } from "react";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 
 
 
-export default function Highlights({ answerData, activeAnswerJson, handleSubmission}) {
+export default function Highlights({ answerData, activeAnswerJson, handleFilter}) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [submit, setSubmit] = useState(null);
   const [inputLength, setInputLength] = useState(0);
 
-  const datalist = activeAnswerJson && activeAnswerJson.map((item, id) => (
-    {  id: `${item}-${id}`,label: item, value: item }
-  ));
+  // const datalist = activeAnswerJson && activeAnswerJson.map((item, id) => (
+  //   {  id: `${item}-${id}`,label: item, value: item }
+  // ));
 
 
-  const isOptionEqualToValue = (option, value) => option.value === value.value;
+  // const isOptionEqualToValue = (option, value) => option.value === value.value;
   
   
-
-  const handleOptionChange = (event, newValue) => {
-    if (!selectedOption || newValue?.value !== selectedOption?.value) {
-      const isOptionSelected = selectedOption ? selectedOption.value === newValue?.value : false;
-      if (isOptionSelected) {
-        console.log("Option has already been selected");
-        
-      } else {
-        setSelectedOption(newValue);
-      }
-    }
-  };
-
-    const handleSubmit = (event, newValue) => {
-      setSubmit(newValue.value);
-      handleSubmission(newValue.value)
-      
-    };
+ 
 
     const handleInputChange = (event) => {
       const inputValue = event.target.value;
+  
+      handleFilter(inputValue)
       setInputLength(inputValue.length);
       if (inputValue.length > 5) {
         setSelectedOption(null);
       }
     };
-  
+     
     
   
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full p-[60px] ">
-      {datalist ? (
-        <Autocomplete
-          className="w-[327px] mx-auto h-[44px] rounded-[20px] flex justify-center align-middle"
-          value={selectedOption}
-          onChange={(event, newValue) => {
-            handleOptionChange(event, newValue);
-            handleSubmit(event, newValue); // Call both functions
-          }}
-          PopperComponent={Popper}
-          
-          options={datalist}
-          getOptionLabel={(option) => option.label}
-          isOptionEqualToValue={isOptionEqualToValue}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              onChange={handleInputChange}
-              InputProps={{
-                ...params.InputProps,
-                placeholder: "Start typing an answer",
-                startAdornment: (
-                  <>
-                    <SearchIcon color="action" />
-                    {params.InputProps.startAdornment}
-                  </>
-                ),
-                endAdornment: null,
-              }}
-              // disabled={isDisabled}
-            />
-          )}
-          disabled={selectedOption && selectedOption.length >= 5}
-        />
-      ) : null}
+      <div className="mx-auto my-10 relative flex items-center justify-center">
+        <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
+          <SearchIcon className="h-[15px] w-[15px] text-gray-lighter" aria-hidden="true" />
+        </span>
+        <div className="flex-grow">
+          <input
+            onChange={(event, newValue) => {
+              handleInputChange(event, newValue);
+            }}
+            
+            disabled={selectedOption && selectedOption.length >= 5}
+            type="search"
+            placeholder="Start typing an answer..."
+            className="placeholder:w-[180px] placeholder:text-[13px] placeholder:h-[16px] placeholder:pl-[30px] placeholder:pt-[10px] border-2 border-primary p-[12px] text-lg outline-none w-full rounded-[12px] h-[44px]"
+          />
+        </div>
+      </div>
     </div>
   );
 }
-
-

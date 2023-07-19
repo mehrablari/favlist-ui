@@ -8,10 +8,11 @@ import Instagram from "../../assets/icons/instagram.svg";
 import Share from "../../assets/icons/share.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg"
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { Link } from "react-router-dom";
 
 const AnswerGraphics = () => {
   return (
-    <div className="bg-primary pt-[80px] pb-[20px]">
+    <div className="bg-primary pt-[80px] pb-[20px] h-[600px]">
       <div className="bg-neutral h-[372px] w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-row justify-center pt-[20px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />
@@ -26,7 +27,34 @@ const AnswerGraphics = () => {
             <h1 className="font-[500] text-[13px] text-text-blue text-center">
               Share to social media
             </h1>
-            <div className="flex flex-row justify-evenly align-middle h-[24px]">
+            <button className="flex flex-row mx-auto justify-between gap-[5px] ">
+              <img
+                src={Twitter}
+                alt="twitter"
+                className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"
+              />
+              <img
+                src={Facebook}
+                alt="facebook"
+                className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"
+              />
+              <img
+                src={Instagram}
+                alt="instagram"
+                className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"
+              />
+              <img
+                src={Tiktok}
+                alt="tiktok"
+                className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"
+              />
+              <img
+                src={Share}
+                alt="share"
+                className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"
+              />
+            </button>
+            {/* <div className="flex flex-row justify-evenly align-middle h-[24px]">
                 <TwitterShareButton
                   url={"https://uranno.netlify.app"}
                   quote={"check out this content!"}
@@ -45,15 +73,19 @@ const AnswerGraphics = () => {
 
               <img src={Tiktok} alt="tiktok" />
               <img src={Share} alt="share" />
-            </div>
+            </div> */}
           </div>
 
-          <div className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] bg-button-inactive max-w-[193px]">
-          <img src={ArrowBack} alt="" className="h-[18px] w-[18px] pr-[5px]" />
-          <div className="text-[12px] font-semibold text-primary h-[50px] pt-[10px]">
-            Go back to edit answers
-          </div>
-        </div>
+          <Link to="/" className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] max-w-[193px]">
+            <img
+              src={ArrowBack}
+              alt=""
+              className="h-[18px] w-[18px] pr-[5px]"
+            />
+            <div className="text-[12px] font-semibold text-primary h-[50px] pt-[10px]">
+              Back to question
+            </div>
+          </Link>
         </div>
       </div>
     </div>

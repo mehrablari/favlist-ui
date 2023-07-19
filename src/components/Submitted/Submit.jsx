@@ -25,7 +25,7 @@ const Submit = () => {
             className="w-[150px] h-[150px] mx-auto"
           />
           <h2 className="w-[287px] font-[500] text-[14px] leading-5">
-            yaayy! Your answers have been submitted!
+            Yaayy! Your answers have been submitted!
           </h2>
         </div>
         <hr className="m-[10px] border-t-1 border-[#B5B8BB] mx-auto" />
@@ -37,9 +37,9 @@ const Submit = () => {
         </div>
         <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg m-[10px]"></div>
         <hr className="pt-[10px]" />
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-[10px]">
           <div className="flex flex-col justify-center align-middle p-[15px]">
-            <h1 className="font-[500] text-[13px] text-text-blue text-center p-[20px]">
+            <h1 className="font-[500] text-[13px] text-text-blue text-center">
               Share to social media
             </h1>
             <div className="h-[20px] p-[10px]">
@@ -51,49 +51,39 @@ const Submit = () => {
                 }}
                 onClick={() => console.log("shared successfully!")}
               >
-                <button className="flex flex-row mx-auto align-middle">
-                  <img src={Twitter} alt="twitter" />
-                  <img src={Facebook} alt="facebook" />
-                  <img src={Instagram} alt="instagram" />
-                  <img src={Tiktok} alt="tiktok" />
-                  <img src={Share} alt="share" />
+                <button className="flex flex-row mx-auto justify-between gap-[5px] ">
+                  <img src={Share} alt="share" className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg" />
+                  <img src={Twitter} alt="twitter" className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg" />
+                  <img src={Facebook} alt="facebook"  className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"/>
+                  <img src={Instagram} alt="instagram" className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"/>
+                  <img src={Tiktok} alt="tiktok"  className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"/>
                 </button>
               </RWebShare>
             </div>
           </div>
+          <Link to="/" className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] pt-[20px] max-w-[193px]">
+            <img
+              src={Home}
+              alt="home"
+              className="h-[20px] w-[20px] pr-[5px]"
+            />
+            <div className="text-[14px] font-semibold text-primary h-[50px] pt-[10px]">
+              Go Home
+            </div>
+          <Link />
 
-          <Link to="/" className="flex flex-row align-middle justify-center bg-button-inactive mx-auto rounded-lg h-[40px] p-[10px]">
+          {/* <Link to="/" className="flex flex-row align-middle justify-center mx-auto rounded-lg h-[40px] p-[10px]">
             <img src={Home} alt="home" className="w-[20px] h-[20px] pr-[5px]" />
             <span className="text-[14px] font-[500] text-primary h-[20px]">
               Go Home
             </span>
-          </Link>
-        </div>
+          </Link> */}
+        </Link>
       </div>
     </div>
+  </div>
+    
   );
 };
 
 export default Submit;
-
-
-  {/* <div className="flex flex-row justify-evenly align-middle">
-              <TwitterShareButton
-                url={"https://uranno.netlify.app"}
-                quote={"check out this content!"}
-                hashtag="#favlist"
-              >
-                <img src={Twitter} alt="twitter" />
-              </TwitterShareButton>
-              <img src={Instagram} alt="instagram" />
-
-              <img src={Tiktok} alt="tiktok" />
-              <img src={Share} alt="share" />acebookShareButton
-                url={"https://www.example.com"}
-                quote={"Dummy text!"}
-                hashtag="#muo"
-              
-                <img src={Facebook} alt="facebook" />
-              </FacebookShareButton>
-              
-            </div> */}

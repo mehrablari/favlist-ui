@@ -3,7 +3,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { Link } from "react-router-dom";
 
 const Settings = () => {
-  const label = { inputProps: { "aria-label": "Switch demo" } };
+  
 
   return (
     <div className="flex flex-col bg-neutral rounded-t-[16px] w-full">
