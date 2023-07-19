@@ -5,7 +5,7 @@ import Switch from "@mui/material/Switch";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 
-const AnswerHeader = () => {
+const AnswerHeader = ({handleToggle}) => {
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -14,7 +14,12 @@ const AnswerHeader = () => {
     setOpen(true);
   };
 
-  const label = { inputProps: { "aria-label": "Switch demo" } };
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    handleToggle(event.target.checked)
+  };
 
   return (
     <div className="bg-neutral pt-[15px] flex flex-row justify-between mx-auto w-[327px]">
@@ -32,14 +37,17 @@ const AnswerHeader = () => {
         <SettingsIcon sx={{ color: "#A13E97", height: "12px" }} />
       </div>
       <Backdrop
-        sx={{ color: "#fff",  zIndex: (theme) => theme.zIndex.drawer + 1, display: "flex",
-        alignItems: "flex-end",
-        justifyContent: "center", }}
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "center",
+        }}
         open={open}
-        
       >
         <div className="flex flex-col justify-center fixed rounded-t-[24px] w-full h-[204px] bg-neutral bottom-0 left-0 right-0 ">
-          <hr className="mx-auto w-[64px] rounded-[3px] h-[4px] bg-primary-bg"/>
+          <hr className="mx-auto w-[64px] rounded-[3px] h-[4px] bg-primary-bg" />
           <div className="flex flex-row mx-auto justify-between p-[10px] w-[327px]">
             <h1 className="flex text-gray-dark justify-start font-[700] text-[16px]">
               Answer settings
@@ -59,7 +67,11 @@ const AnswerHeader = () => {
             </div>
 
             <div className="">
-              <Switch {...label} />
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ "aria-label": "controlled" }}
+              />
             </div>
           </div>
         </div>
