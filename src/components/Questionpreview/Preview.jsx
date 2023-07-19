@@ -1,7 +1,11 @@
 import Video from "../../assets/icons/video.svg"
 import ArrowBack from "../../assets/icons/arrowback.svg"
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 
 const Preview = () => {
@@ -12,39 +16,80 @@ const Preview = () => {
   //console.log("this is preview % id",dataContainer)
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(false);
+
+  const navigate = useNavigate()
 
   const handleSubmit = async () => {
+    
     setIsSubmitting(true);
 
-    try {
-      const response = await fetch(
-        "https://35.209.30.214:443/api/v1/submissions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            questionId: dataContainer.questionId,
-            answersJson: dataContainer.answers,
-            ranked:false,
-            }),
-        }
-      );
+    // try {
+    //   const response = await fetch(
+    //     "https://35.209.30.214:443/api/v1/submissions",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         questionId: dataContainer.questionId,
+    //         answersJson: dataContainer.answers,
+    //         ranked:false,
+    //         }),
+    //     }
+    //   );
 
-      if (response.ok) {
-        // Success
-        console.log("Answers submitted successfully");
-      } else {
-        // Error
-        console.log("Failed to submit answers");
-      }
-    } catch (error) {
-      console.log("Error:", error);
+    //   if (response.ok) {
+    //     // Success
+    //     console.log("Answers submitted successfully");
+    //     toast.success("Answers submitted successfully");
+    //   } else {
+    //     // Error
+    //     console.log("Failed to submit answers");
+    //     toast.error("Failed to submit answers");
+    //   }
+    // } catch (error) {
+    //   console.log("Error:", error);
+    //   toast.error("Error: " + error.message);
+    // }
+
+    fetch("https://35.209.30.214:443/api/v1/submissions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        questionId: dataContainer.questionId,
+        answersJson: dataContainer.answers,
+        ranked: false,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setIsSubmitting(false);
+        if (data && data.status) {
+          if (data.status.toLowerCase() === "success") {
+            localStorage.removeItem("answers")
+            toast.success(data.message);
+            setIsSuccessful(true);
+
+          } else {
+            toast.error(data.message);
+          }
+        } 
+
+
+      })
+      .catch((error) => console.log("error: ", error));
+   
+  };
+  useEffect(()=> {
+    if(isSuccessful) {
+      navigate("/submit")
     }
 
-    setIsSubmitting(false);
-  };
+  }, [isSuccessful, navigate])
 
 
   return (
@@ -71,7 +116,7 @@ const Preview = () => {
         <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg"></div>
         
         <form onClick={handleSubmit} className="flex justify-center align-middle max-w-[287px] bg-primary rounded-lg  m-[10px] ">
-          <Link to="/submit" className="">
+          <div className="">
             <button
               disabled={isSubmitting}
               type="submit"
@@ -79,7 +124,7 @@ const Preview = () => {
             >
               {isSubmitting ? "Submitting..." : "Submit Answers"}
             </button>
-          </Link>
+          </div>
         </form>
 
         <div className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] bg-button-inactive max-w-[193px]">
@@ -89,6 +134,7 @@ const Preview = () => {
           </Link>
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

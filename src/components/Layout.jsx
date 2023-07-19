@@ -113,11 +113,11 @@ const Layout = () => {
   }, []);
 
 
-  //save current answer to localstorage
-  useEffect(() => {
-    // Save answers to localStorage
-    localStorage.setItem("answers", JSON.stringify(answers));
-  }, [answers]);
+  // //save current answer to localstorage
+  // useEffect(() => {
+  //   // Save answers to localStorage
+  //   localStorage.setItem("answers", JSON.stringify(answers));
+  // }, [answers]);
 
 // Retrieve answers from localStorage
   useEffect(() => {
@@ -137,7 +137,7 @@ const Layout = () => {
         handleSubmission={handleSubmission}
         handleFilter={handleFilter}
       />
-      <Suggestion
+    <Suggestion
         className="bg-neutral"
         suggestedOption={suggestedOption}
         setSuggestedOption={setSuggestedOption}
@@ -151,6 +151,7 @@ const Layout = () => {
         questionId={questionId}
         clickedValue={clickedValue}
       />
+      
     </div>
   );
 };

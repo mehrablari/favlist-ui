@@ -1,10 +1,16 @@
 import AnswerHeader from "./AnswerHeader";
 import AnswerSettings from "./AnswerSettings";
-import DismisIcon from "../../assets/icons/Dismiss.svg";
+import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 
 const AnsweredList = ({ answers, handleDismiss, questionId}) => {
+
+  const [showIndex, setShowIndex] = useState(false) 
   const handlePreviewAnswers = () => {
+    console.log("answers",answers)
+    localStorage.setItem("answers", JSON.stringify(answers));
     // Handle the preview answers logic
   };
 
@@ -13,9 +19,14 @@ const AnsweredList = ({ answers, handleDismiss, questionId}) => {
     event.preventDefault();
   };
 
+  const handleChange = (value) => {
+    setShowIndex(value)
+}
+
+
   return (
     <form className="bg-neutral pt-[12px] pb-[30px] gap-[12px]" onClick={handleSubmit}>
-      <AnswerHeader />
+      <AnswerHeader handleChange={handleChange}/>
 
       {answers.length === 0 && <AnswerSettings />}
 
@@ -26,17 +37,28 @@ const AnsweredList = ({ answers, handleDismiss, questionId}) => {
             <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px]">
               <div className="w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between">
                 <span className="text-[13px] h-[16px]">{answer}</span>
-
                 <img
-                  src={DismisIcon}
+                  src={DismissIcon}
                   alt="dismiss icon"
                   onClick={() => handleDismiss(index)}
                 />
               </div>
             </div>
+            {setShowIndex === true && 
+            <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px]">
+              <span className="">{index+1}</span>
+              <div className="w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between">
+                <span className="text-[13px] h-[16px]">{answer}</span>
+                <img
+                  src={DismissIcon}
+                  alt="dismiss icon"
+                  onClick={() => handleDismiss(index)}
+                />
+              </div>
+            </div>}
           </div>
         ))}
-        
+
       {answers.length > 0 && (
         <Link to="/preview" state={{answers, questionId}} className="flex justify-center align-middle pt-[10px]">
           <button
