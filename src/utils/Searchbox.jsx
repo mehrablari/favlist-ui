@@ -21,10 +21,10 @@ export default function Highlights({handleFilter}) {
     };
      
     
-  
+
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full p-[60px] ">
-      <div className="mx-auto my-10 relative flex items-center justify-center">
+      <div className="w-[327px] mx-auto relative flex items-center justify-center align-middle">
         {inputValue.length === 0 && (
           <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
             <SearchIcon className="h-[15px] w-[15px] text-gray-lighter" aria-hidden="true" />

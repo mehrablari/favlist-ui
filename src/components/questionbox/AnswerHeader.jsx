@@ -6,6 +6,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 
 const AnswerHeader = ({handleToggle}) => {
+
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -17,8 +18,10 @@ const AnswerHeader = ({handleToggle}) => {
   const [checked, setChecked] = useState(true);
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
-    handleToggle(event.target.checked)
+    // setChecked(event.target.checked);
+    const isChecked = event.target.checked;
+    setChecked(isChecked);
+    handleToggle(isChecked);
   };
 
   return (

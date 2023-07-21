@@ -7,27 +7,10 @@ import { useState } from "react";
 
 
 
-
-
-
 const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
-  const [items, addItems] = useState([])
   
 
-  const location = useLocation();
-
-
-  // const handleItemClick = (item) => {
-  //   if (!selectedItems.includes(item) && selectedItems.length < 5) {
-  //     setSelectedItems((prevItems) => [...prevItems, item]);
-  //     handleClick(item);
-  //     playSoundEffect();
-  //   }
-  // };
-
- 
-
-  
+  const location = useLocation();  
 
   const renderSwiperSlides = () => {
     const totalItems = filteredOptions && filteredOptions.length > 0 ? filteredOptions.length : (suggestedOption && suggestedOption.length) ? suggestedOption.length : 0;
@@ -46,7 +29,6 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
         : suggestedOption && suggestedOption.length
         ? suggestedOption.slice(startIndex, endIndex)
         : [];
-
 
 
       slides.push(

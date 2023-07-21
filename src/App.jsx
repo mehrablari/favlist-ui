@@ -12,6 +12,7 @@ import Preview from "./components/Questionpreview/Preview";
 import  RankedAnswers from "./components/Submitted/RankedAnswers"
 import Submit from "./components/Submitted/Submit";
 import AnswerGraphics from "./components/AnswerGraphic/AnswerGraphic";
+// import Sortable from "./components/questionbox/Sortable";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/submit" element={<Submit />} />
       <Route path="/answergraphics" element={<AnswerGraphics />} />
       <Route path="/rankedanswers" element={<RankedAnswers />} />
+      {/* <Route path="/sortable" element={<Sortable />} /> */}
     </>
     
   )
