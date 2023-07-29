@@ -3,14 +3,17 @@ import { Link, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
-import { useState } from "react";
+import { LayoutContext } from "../components/Layout";
+import { useContext } from "react";
 
 
 
-const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
+const Suggestion = () => {
+  const {answers, suggestedOption, handleClick, filteredOptions} = useContext(LayoutContext)
+
+  const location = useLocation(); 
   
-
-  const location = useLocation();  
+  // console.log("suggested", suggestedOption)
 
   const renderSwiperSlides = () => {
     const totalItems = filteredOptions && filteredOptions.length > 0 ? filteredOptions.length : (suggestedOption && suggestedOption.length) ? suggestedOption.length : 0;
@@ -22,7 +25,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
     for (let i = 0; i < numSlides; i++) {
       const startIndex = i * 12;
       const endIndex = startIndex + 12;
-      //const items = filteredOptions && filteredOptions.length > 0 ? filteredOptions.slice(startIndex, endIndex) : (suggestedOption && suggestedOption.length) ? suggestedOption.slice(startIndex, endIndex) : []
+      
       const items =
       filteredOptions && filteredOptions.length > 0
         ? filteredOptions.slice(startIndex, endIndex)
@@ -39,7 +42,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
             return (
               <div key={index} className="w-1/3">
                 <div
-                  className="bg-gray-lighter bg-opacity-10 p-[10px] w-[100px] rounded-[16px] h-[32px] flex justify-evenly"
+                  className="bg-gray-lighter bg-opacity-10 p-[10px] w-[100px] sm:w-[80px] rounded-[16px] h-[32px] flex justify-evenly"
                   onClick={() => handleClick(suggestion)}
                 >
                   <h3
@@ -62,9 +65,9 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
 
   return (
     <main className="bg-neutral p-[10px] flex flex-col justify-center h-[260px] mx-auto">
-      <div className="flex flex-row justify-between bg-neutral w-[327px] mx-auto">
+      <div className="flex flex-row justify-between bg-neutral sm:w-[300px] w-[327px] mx-auto">
         <div className="text-grey-text text-[15px] font-[600]">Suggestions</div>
-        <Link to="/answers" state={suggestedOption}>
+        <Link to="/answers" state= {{suggestedOption, filteredOptions }}>
           <span className="text-primary hover:bg-sky-500 cursor-pointer text-[12px] font-[500]">
             See all Suggestions
           </span>
@@ -73,7 +76,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions }) => {
           />
         </Link>
       </div>
-      <div className="bg-neutral mx-auto w-[327px]">
+      <div className="bg-neutral mx-auto w-[327px] sm:[300px]">
         <Swiper
           pagination={{
             clickable: true,

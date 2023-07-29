@@ -1,9 +1,13 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { LayoutContext } from "../components/Layout";
 
 
 
-export default function Highlights({handleFilter}) {
+const Searchbox = () => {
+  const {handleFilter} = useContext(LayoutContext);
+  console.log("filter", handleFilter);
+
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputLength, setInputLength] = useState(0);
   const [inputValue, setInputValue] = useState("");
@@ -23,8 +27,8 @@ export default function Highlights({handleFilter}) {
     
 
   return (
-    <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full p-[60px] ">
-      <div className="w-[327px] mx-auto relative flex items-center justify-center align-middle">
+    <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[100px] pb-[20px] ">
+      <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center justify-center align-middle">
         {inputValue.length === 0 && (
           <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
             <SearchIcon className="h-[15px] w-[15px] text-gray-lighter" aria-hidden="true" />
@@ -39,13 +43,15 @@ export default function Highlights({handleFilter}) {
             disabled={selectedOption && selectedOption.length >= 5}
             type="search"
             placeholder="Start typing an answer..."
-            className="placeholder:w-[180px] placeholder:text-[13px] placeholder:h-[16px] placeholder:pl-[30px] placeholder:pt-[10px] border-2 border-primary p-[12px] text-sm outline-none w-[327px] rounded-[12px] h-[44px]"
+            className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[10px] placeholder:text-[13px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[10px] border-2 border-primary p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px]"
           />
         </div>
       </div>
     </div>
   );
 }
+
+export default Searchbox
 
 
 

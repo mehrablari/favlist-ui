@@ -14,7 +14,8 @@ const Preview = () => {
   const dataContainer = location.state;
   const questionText = dataContainer.questionName;
 
-  console.log("this is preview % id",dataContainer)
+
+  // console.log("this is preview % id",dataContainer)
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);
@@ -23,18 +24,10 @@ const Preview = () => {
 
   const handleSubmit = async () => {
     
+    
     setIsSubmitting(true);
 
-    // const formData = new FormData();
-    // formData.append("questionId", dataContainer.questionId);
-    // formData.append("ranked", "false");
-    // const file = "https://media.giphy.com/media/l4q8cJzGdR9J8w3hS/giphy.gif";
-    // formData.append("file", file);
-
-    // // // Append answers to form data
-    // dataContainer.answers.forEach((answer, index) => {
-    //   formData.append(`answers[${index}]`, answer);
-    // });
+   
     const file = "https://media.giphy.com/media/l4q8cJzGdR9J8w3hS/giphy.gif";
     
     const answerSubmit = {
@@ -44,7 +37,7 @@ const Preview = () => {
       graphicUrl:file
     };
 
-    fetch("https://35.209.30.214:443/api/v1/submissions", {
+    fetch("https://dev.pacerlabs.co/api/v1/submissions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,30 +51,34 @@ const Preview = () => {
         if (data && data.status) {
           if (data && typeof data.status === "string" && data.status.toLowerCase() === "success") {
             localStorage.removeItem("answers")
+            localStorage.removeItem("selectedQuestionIndex")
+           
+            // Use the DataContext to set the submittedData
             toast.success(data.message);
             setIsSuccessful(true);
-
-          } else {
-            toast.error(data.message);
+          }else {
+            toast.error(data.message)
+            navigate("/answered")
           }
         } 
-
 
       })
       .catch((error) => toast.error(error.message))
       // .catch((error) => console.log("error: ", error));
    
   };
+  
   useEffect(()=> {
     if(isSuccessful) {
-      navigate("/submit")
+      navigate("/submitted" )
     }
+
 
   }, [isSuccessful, navigate])
 
 
   return (
-    <div className="flex flex-col p-[40px] bg-primary  mx-auto w-[327px]">
+    <div className="flex flex-col p-[40px] bg-primary  mx-auto w-[327px] h-screen">
       <div className="mx-auto ">
         <h1 className="text-neutral font-[700] text-[13px] p-[20px]">
           PREVIEW YOUR ANSWERS
@@ -130,38 +127,19 @@ const Preview = () => {
 export default Preview;
 
 
+// if (data && data.status) {
+//   if (data && typeof data.status === "string" && data.status.toLowerCase() === "success") {
+//     localStorage.removeItem("answers");
 
+//     // Redirect to another route if submission is successful
+//     navigate("/submitted");
 
+//   } else if (data && typeof data.status === "string" && data.status.toLowerCase() === "already_answered") {
+//     // Redirect to another route if user has already answered the question
+//     navigate("/answered");
 
-    // try {
-    //   const response = await fetch(
-    //     "https://35.209.30.214:443/api/v1/submissions",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         questionId: dataContainer.questionId,
-    //         answersJson: dataContainer.answers,
-    //         ranked:false,
-    //         }),
-    //     }
-    //   );
-
-    //   if (response.ok) {
-    //     // Success
-    //     console.log("Answers submitted successfully");
-    //     toast.success("Answers submitted successfully");
-    //   } else {
-    //     // Error
-    //     console.log("Failed to submit answers");
-    //     toast.error("Failed to submit answers");
-    //   }
-    // } catch (error) {
-    //   console.log("Error:", error);
-    //   toast.error("Error: " + error.message);
-    // }
-
-
-    
+//   } else {
+//     // Show an error toast message if there was an error during submission
+//     toast.error(data.message);
+//   }
+// }

@@ -30,6 +30,7 @@ export default {
       'neutral': '#FFFFFF',
       'primary-border':"#F7F0F7",
       'grey-text':'#464E56',
+      'gray-list':'#312134',
       'gray-dark': '#212A34',
       'gray-light':'#464E56',
       'gray-lighter':'#909499',
@@ -37,13 +38,16 @@ export default {
       'gray-inactive':'#756B78',
       'gray-bg':'#B5B8BB',
       'overlay': '#F2F2F2',
+      'warning':'#BDD0F133',
+      'gray-four':'#534656'
 
     },
     
     screens: {
-      sm: { min: "360px", max: "767px" },
-      md: { min: "768px", max: "1023px" },
-      lg: { min: "1024" },
+      sm: {min:"320px", max:"399px"},
+      md: { min: "400px", max: "767px" },
+      lg: { min: "768px", max: "1023px" },
+      xl: { min: "1024" },
     },
   },
   plugins: [],

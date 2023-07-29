@@ -12,6 +12,10 @@
     font-weight: bold;
     color: #fff;
   }
+
+  .swiper-slide-inactive {
+    background-color: white;
+  }
   
   .sliderone {
     background-color: rgb(206, 17, 17);

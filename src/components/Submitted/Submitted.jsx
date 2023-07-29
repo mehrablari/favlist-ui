@@ -11,10 +11,16 @@ import { Link } from "react-router-dom";
 
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { RWebShare } from "react-web-share";
+import { useContext } from "react";
+
+// import { CardSwipeContainerContext } from "../Card/CardSwipeContainer";
 
 
 
 const Submit = () => {
+
+  // const value = useContext(CardSwipeContainerContext);
+  // console.log("submit", value);
   return (
     <div className="bg-primary pt-[80px] pb-[20px]">
       <div className="bg-neutral h-[600px] w-[327px] rounded-lg mx-auto p-[20px]">
@@ -67,17 +73,11 @@ const Submit = () => {
               alt="home"
               className="h-[20px] w-[20px] pr-[5px]"
             />
-            <div className="text-[14px] font-semibold text-primary h-[50px] pt-[10px]">
+            <button className="text-[14px] font-semibold text-primary h-[50px]">
               Go Home
-            </div>
+            </button>
           <Link />
 
-          {/* <Link to="/" className="flex flex-row align-middle justify-center mx-auto rounded-lg h-[40px] p-[10px]">
-            <img src={Home} alt="home" className="w-[20px] h-[20px] pr-[5px]" />
-            <span className="text-[14px] font-[500] text-primary h-[20px]">
-              Go Home
-            </span>
-          </Link> */}
         </Link>
       </div>
     </div>
