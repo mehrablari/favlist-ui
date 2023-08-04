@@ -53,12 +53,11 @@ const Preview = () => {
             localStorage.removeItem("answers")
             localStorage.removeItem("selectedQuestionIndex")
            
-            // Use the DataContext to set the submittedData
-            toast.success(data.message);
+        
             setIsSuccessful(true);
           }else {
-            toast.error(data.message)
-            navigate("/answered")
+          
+            navigate(`/answered/${dataContainer.questionId}`);
           }
         } 
 
@@ -78,29 +77,30 @@ const Preview = () => {
 
 
   return (
-    <div className="flex flex-col p-[40px] bg-primary  mx-auto w-[327px] h-screen">
+    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] h-screen">
       <div className="mx-auto ">
-        <h1 className="text-neutral font-[700] text-[13px] p-[20px]">
+        <h1 className="text-neutral font-[700] text-[13px] leading-5 p-[20px]">
           PREVIEW YOUR ANSWERS
         </h1>
       </div>
-      <div className="flex flex-col bg-neutral rounded-lg p-[20px] gap-[16px]">
+      <div className="flex flex-col bg-neutral rounded-lg px-[10px] py-[20px] gap-[16px]">
         <div className="flex flex-col">
-          <h1 className="font-[500] text-[13px] text-text-blue">Questions</h1>
-          <h1 className="font-[700] text-[18px] leading-[24px]">
+          <h1 className="font-[500] text-[13px] text-text-blue">Question</h1>
+          <h1 className="font-[700] text-[18px] leading-[24px] text-gray-list py-[10px]">
             {questionText}
           </h1>
-          <div className="flex flex-row flex-end pt-[20px]">
-            <img src={Video} alt="video" className="pr-[10px]" />
+          {/* <hr className="w-full text-primary pt-[20px]" /> */}
+          <div className="flex flex-row flex-end pt-[10px]">
+            <img src={Video} alt="video" className="pr-[5px]" />
 
             <h1 className="font-[500] text-[13px] text-text-blue">
               Your preview video
             </h1>
           </div>
         </div>
-        <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg"></div>
+        <div className="h-[144px] bg-gray-lighter py-0 rounded-lg"></div>
         
-        <form onClick={handleSubmit} className="flex justify-center align-middle max-w-[287px] bg-primary rounded-lg  m-[10px] ">
+        <form onClick={handleSubmit} className="flex justify-center align-middle max-w-[287px] w-[287px] sm:w-[220px] mx-auto px-[20px] bg-primary rounded-lg  m-[10px] ">
           <div className="">
             <button
               disabled={isSubmitting}
@@ -112,9 +112,9 @@ const Preview = () => {
           </div>
         </form>
 
-        <div className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] bg-button-inactive max-w-[193px]">
-          <img src={ArrowBack} alt="" className="h-full pr-[5px]" />
-          <Link to="/" className="text-[12px] font-semibold text-primary">
+        <div className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] bg-button-inactive w-[180px]">
+          <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
+          <Link to="/" className="text-[12px] font-semibold text-primary-light">
             Go back to edit answers
           </Link>
         </div>
@@ -125,21 +125,3 @@ const Preview = () => {
 }
 
 export default Preview;
-
-
-// if (data && data.status) {
-//   if (data && typeof data.status === "string" && data.status.toLowerCase() === "success") {
-//     localStorage.removeItem("answers");
-
-//     // Redirect to another route if submission is successful
-//     navigate("/submitted");
-
-//   } else if (data && typeof data.status === "string" && data.status.toLowerCase() === "already_answered") {
-//     // Redirect to another route if user has already answered the question
-//     navigate("/answered");
-
-//   } else {
-//     // Show an error toast message if there was an error during submission
-//     toast.error(data.message);
-//   }
-// }

@@ -25,6 +25,7 @@ export default {
       'primary-light':"#A13E97",
       'primary-lighter':"#D09ECB",
       'primary-bg':"#ECD8EA",
+      'bg-grey':'#F6F6F6',
       'text-blue':'#3973D4',
       'button-inactive':'#F7F0F7',
       'neutral': '#FFFFFF',
@@ -39,7 +40,8 @@ export default {
       'gray-bg':'#B5B8BB',
       'overlay': '#F2F2F2',
       'warning':'#BDD0F133',
-      'gray-four':'#534656'
+      'gray-four':'#534656',
+      'search':'#BAB5BB',
 
     },
     

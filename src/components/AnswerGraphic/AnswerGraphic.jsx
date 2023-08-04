@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const AnswerGraphics = () => {
   return (
-    <div className="bg-primary pt-[80px] pb-[20px] h-[600px]">
+    <div className="bg-primary pt-[80px] pb-[20px] h-screen">
       <div className="bg-neutral h-[372px] w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-row justify-center pt-[20px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />

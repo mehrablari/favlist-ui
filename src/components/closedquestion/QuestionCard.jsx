@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Calendar from "../../assets/images/Calendar.png";
 import { ClosedQuestionContext } from "./ClosedQuestion";
 import { Link } from "react-router-dom";
+import ArrowBack from "../../assets/images/back.png";
 
 const QuestionCard = () => {
   const { questions } = useContext(ClosedQuestionContext);
@@ -21,9 +22,9 @@ const QuestionCard = () => {
             </p>
           </Link>
 
-          <h1 className="font-[500] text-[14px] leading-[20px] text-gray-dark">
+          <Link to={`/closedinfo/${question.id}`} className="font-[500] text-[14px] leading-[20px] cursor-pointer text-gray-dark">
             {question.text}
-          </h1>
+          </Link>
         </div>
       ))}
     </div>

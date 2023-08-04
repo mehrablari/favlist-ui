@@ -2,29 +2,26 @@
 import AnsweredResponse from '../../utils/AnsweredResponse';
 
 import NavBar from '../Navbar';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Logo from '../../assets/images/logoAllWhite.png'
 import axios from 'axios';
 import AnsweredCard from './AnsweredCard';
 import AnswerProvided from './AnswerProvided';
-import { LayoutContext } from '../Layout';
+import { Link, useParams } from 'react-router-dom';
 
 
 const Answered = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [apiData, setApiData] = useState([]);
 	const [answers, setAnswers] = useState([]);
-
-
-  //const {setIsAnswered} = useContext(LayoutContext);
-  //console.log(333, setIsAnswered);
+  const { id } = useParams();
+ 
 
 	useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://dev.pacerlabs.co/api/v1/submissions/23",
-
+          `https://dev.pacerlabs.co/api/v1/submissions/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -45,7 +42,7 @@ const Answered = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   if (isLoading) {
     return (

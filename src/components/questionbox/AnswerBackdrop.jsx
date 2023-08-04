@@ -10,7 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 SwiperCore.use([Pagination]);
 
-const Answers = () => {
+const AnswerBackDrop = () => {
   // State to store the selected answers
   const [answeredList, setAnsweredList] = useState([]);
   const [answerSet, setAnswerSet] = useState(new Set());
@@ -158,4 +158,4 @@ const Answers = () => {
   );
 };
 
-export default Answers;
+export default AnswerBackDrop;

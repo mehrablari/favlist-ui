@@ -91,7 +91,7 @@ const Layout = () => {
       const suggestedOptions = [...suggestedOption];
       const options =
         suggestedOptions.filter((word) =>
-          word.toLowerCase().startsWith(inputValue.toLowerCase())
+          word.toLowerCase().includes(inputValue.toLowerCase())
         ) || [];
       setFilteredOptions(options);
     } else {

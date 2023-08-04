@@ -1,11 +1,16 @@
 
 import { Link } from "react-router-dom";
 import Video from "../../assets/images/video.png";
+import People from "../../assets/images/People.png"
 
 const AnswerProvided = ({ answerData }) => {
   return (
     <div className="p-[40px]">
-      <h1 className="flex mx-auto justify-start w-[327px]">All answers</h1>
+      <div className="flex flex-row justify-around w-[327px] mx-auto pb-[20px]">
+      <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4">All answers</h1>
+      <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4 pl-[20px]">Current global rank</h1>
+
+      </div>
       {answerData.map((question, index) => (
         <div
           className="bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden pb-[10px]"
@@ -16,10 +21,10 @@ const AnswerProvided = ({ answerData }) => {
               {index + 1}
             </span>
             <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[48px] mx-auto flex flex-row justify-between">
-              <span className="text-[13px] h-[16px] ">{question.text}</span>
-              <div>
-                <span>{question.voteCount}</span>
-                <span className="text-gray-dark">{question.rank}</span>
+              <span className="text-[13px] h-[16px] flex flex-wrap ">{question.text}</span>
+              <div className="flex flex-row">
+                <img src={People} alt="ranked" className="w-[16px] h-[16px] mt-[5px]" />
+                <span className="text-gray-dark font-[400] text-[12px] leading-4 pl-[5px] mt-[5px]">{question.rank}</span>
               </div>
             </div>
           </div>

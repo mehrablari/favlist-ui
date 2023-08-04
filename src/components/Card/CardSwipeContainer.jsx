@@ -54,25 +54,25 @@ const CardSwipeContainer = () => {
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className="sm:w-[300px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg"
+            className="sm:w-[310px] lg:w-[700px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg"
           >
             <div className="flex flex-col bg-neutral  rounded-lg gap-[5px]">
-              <p className="text-[12px] text-gray-light font-[400] ">
+              <p className="text-[12px] text-gray-light font-baloo2 font-[400] ">
                 Today's question
               </p>
 
               <div className="flex flex-row justify-center items-center h-[40px]">
-                <img src={Clock} alt="clock" className="w-[16px] h-[16px]" />
-                <h1 className="text-[12px] pl-[5px] text-primary-light font-[400]">
+                <img src={Clock} alt="clock" className="w-[15px] h-[15px]"/>
+                <h1 className="text-[12px] pl-[5px] text-primary-light font-[400] font-baloo2">
                 {remaining(question.daysToRemainOpen+1)}
                 </h1>
               </div>
 
-              <div className="text-gray-dark w-[287px] sm:text-[12px] md:text-[14px] md:w-[230px] sm:w-[220px] text-[18px] h-[72px]">
+              <div className="text-gray-dark w-[287px] sm:text-[14px] md:text-[16px] md:w-[240px] sm:w-[220px] text-[18px] h-[72px] font-baloo2">
                 {question.text}
               </div>
 
-              <div className="flex flex-col justify-center m-[3px] w-[42px] h-[56px] mx-auto">
+              <div className="flex flex-col justify-center m-[3px] w-[42px] h-[56px] mx-auto font-baloo2">
                 <h3 className="text-gray-lighter text-[12px] font-[400]">
                   affiliate
                 </h3>
@@ -89,7 +89,7 @@ const CardSwipeContainer = () => {
                   {question.sponsor.name}
                 </h3>
               </div>
-              <div className="absolute bottom-md right-md">
+              <div className="absolute bottom-md right-md font-baloo2">
                 <a
                   href="https://youtube.com"
                   className="hover:bg-primary-bg bg-grey-text w-[56px]"

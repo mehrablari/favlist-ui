@@ -38,7 +38,7 @@ const Submit = () => {
         <div className="flex flex-row justify-center pt-[20px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />
           <h1 className="font-[500] text-[13px] text-text-blue">
-            Your Answer graphics
+            Your Answer graphic
           </h1>
         </div>
         <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg m-[10px]"></div>
@@ -53,7 +53,7 @@ const Submit = () => {
                 data={{
                   text: "Like humans, flamingos make friends for life",
                   url: "https://on.natgeo.com/2zHaNup",
-                  title: "Flamingos",
+                  title: "Favlist",
                 }}
                 onClick={() => console.log("shared successfully!")}
               >

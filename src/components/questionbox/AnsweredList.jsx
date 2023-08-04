@@ -35,7 +35,7 @@ const AnsweredList = () => {
 
   return (
     <form
-      className="bg-neutral pt-[12px] pb-[30px] gap-[12px]"
+      className="bg-neutral pt-[12px] pb-[30px] gap-[12px] font-baloo2"
       onClick={handleSubmit}
     >
       <AnswerHeader handleToggle={handleChange} />
@@ -47,7 +47,7 @@ const AnsweredList = () => {
         !showIndex &&
         answers.map((answer, index) => (
           <div
-            className="bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden"
+            className="font-baloo2 bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden"
             key={index}
           >
             <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px] sm:w-[300px]">
