@@ -1,32 +1,51 @@
-import SearchIcon from "@mui/icons-material/Search";
-import TabContainers from "./Tabs/TabContainers";
+import "./TabContainer.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
+import { useNavigate } from "react-router-dom";
+
 import "react-datepicker/dist/react-datepicker.css";
+import CategoryChecker from "./CategoryChecker";
+import KeywordFilter from "./KeywordFilter";
+import FilterSubmission from "./FilterSubmission";
+import FilterDate from "./FilterDate";
 
 const FilterCategory = ({ filterData }) => {
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [filterPayload, setFilterPayload] = useState({});
-   const [fetchedData, setFetchedData] = useState([]);
-   const [isLoading, setIsLoading] = useState(false);
 
-   //daterange
-   const [selectedDate, setSelectedDate] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [exactDate, setExactDate] = useState(null);
+  const [activeTab, setActiveTab] = useState("tabone");
 
-   const handleDateChange = (date) => {
-     setSelectedDate(date);
-   };
+  const handleTabOne = () => {
+    setActiveTab("tabone");
+  };
+  const handleTabTwo = () => {
+    setActiveTab("tabtwo");
+  };
 
-   const navigate = useNavigate()
-   
+  //date range selection
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  //exactdate selection
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
+  const handleExactDateChange = (date) => {
+    setExactDate(date);
+  };
+
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setFilterPayload({
       ...filterPayload,
       searchText: event.target.value,
     });
-    // console.log(event.target.value);
   };
 
   const handleChange = (event) => {
@@ -40,106 +59,156 @@ const FilterCategory = ({ filterData }) => {
 
     const payload = {
       ...filterPayload,
-      categories: checkedCategories.join(",")
-    }
+      categories: checkedCategories.join(","),
+      startDate: startDate ? startDate.toISOString().split("T")[0] : null,
+      endDate: endDate ? endDate.toISOString().split("T")[0] : null,
+      exactDate: exactDate ? exactDate.toISOString().split("T")[0] : null,
+    };
 
     console.log(124, payload)
     let apiUrl;
     if (payload.searchText) {
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?searchText=${payload.searchText}`
-    } 
+      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?searchText=${payload.searchText}`;
+    }
     if (payload.categories) {
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?categories=${payload.categories}`
+      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?categories=${payload.categories}`;
+    }
 
+    if (payload.startDate) {
+      // apiUrl += `&startDate=${payload.startDate}`;
+      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?startDate=${payload.startDate}`;
+    }
+
+    if (payload.endDate) {
+      // apiUrl += `&endDate=${payload.endDate}`;
+      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?endDate=${payload.endDate}`;
+    }
+    if (payload.exactDate) {
+      // apiUrl += `&exactDate=${payload.exactDate}`;
+      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?exactDate=${payload.exactDate}`;
     }
 
     fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-      setIsLoading(false);
-      if (data && data.status && data.status.toLowerCase() === "success") {
-        const serializedData = JSON.stringify(data.data.content);
-        navigate(`/filterpage?filteredData=${encodeURIComponent(serializedData)}`);
-      }
-      console.log("Filtered data:", data);
-    })
-    .catch((error) => {
-      setIsLoading(false);
-      console.error("Error fetching filtered data:", error);
-    });
-  }
-
-
+      .then((res) => res.json())
+      .then((data) => {
+        setIsLoading(false);
+        if (data && data.status && data.status.toLowerCase() === "success") {
+          const serializedData = JSON.stringify(data.data.content);
+          navigate(
+            `/filterpage?filteredData=${encodeURIComponent(serializedData)}`
+          );
+        }
+        // console.log("Filtered data:", data);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error("Error fetching filtered data:", error);
+      });
+  };
 
   return (
     <div className="flex flex-col">
-      <div>
-        <h1 className="pl-[20px] font-[500] text-[12px] leading-4 bg-bg-grey h-[33px] px-[24px]  py-[8px]">
-          FILTER BY KEYWORD
-        </h1>
-        <div className="flex flex-col py-[10px] h-[116px] w-327px ">
-          <h1 className="font-[400] text-[13px] pr-[83px] pb-[5px]leading-4 w-[327px] flex justify-center align-middle">
-            Enter a search term
-          </h1>
-          <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center justify-center align-middle bg-neutral">
-            <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
-              <SearchIcon
-                className="h-[15px] w-[15px] text-gray-lighter"
-                aria-hidden="true"
-              />
-            </span>
-            <div className="flex-grow">
-              <input
-                onChange={handleInputChange}
-                type="search"
-                placeholder="search..."
-                className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[10px] placeholder:text-[13px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[10px] border border-search p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px]"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h1 className="font-[500] text-[12px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full h-[33px] ">
-          FILTER BY DATE
-        </h1>
-        <TabContainers />
-      </div>
-      <div className="pt-[180px] ">
-        <h1 className="font-[500] h-[32px] text-[12px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full ">
-          FILTER BY CATEGORY
-        </h1>
-        <div className="pl-[12px]">
-          {filterData.map((filter, index) => (
-            <div key={index} className="py-[10px] gap-[8px] h-[36px]">
-              <label>
-                <input
-                  type="checkbox"
-                  name={filter.category.name}
-                  onChange={handleChange}
-                />
-                <span className="pl-[10px] font-[400] text-[16px] leading-4 text-gray-list">
-                  {filter.category.name.charAt(0).toUpperCase() +
-                    filter.category.name.slice(1).toLowerCase()}
-                </span>
-              </label>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div>
-        <Link to="#" className="flex justify-center align-middle p-[20px]">
-          <button
-            onClick={handleSubmission}
-            className="h-[52px] text-center rounded-lg font-[600] text-[14px] sm:w-[280px] w-[310px] mx-auto bg-primary cursor-not-allowed text-neutral"
-            type="submit"
-          >
-            {isLoading ? "Applying..." : "Apply Filters"}
-          </button>
-        </Link>
-      </div>
+      <KeywordFilter handleInputChange={handleInputChange} />
+      <FilterDate
+        handleTabOne={handleTabOne}
+        handleTabTwo={handleTabTwo}
+        activeTab={activeTab}
+        exactDate={exactDate}
+        handleStartDateChange={handleStartDateChange}
+        handleExactDateChange={handleExactDateChange}
+        handleEndDateChange={handleEndDateChange}
+        startDate={startDate}
+        endDate={endDate}
+      />
+
+      <CategoryChecker
+        filterCategory={filterData}
+        handleChange={handleChange}
+      />
+      <FilterSubmission handleSubmit={handleSubmission} isLoading={isLoading} />
     </div>
   );
 };
 
 export default FilterCategory;
+
+{
+  /* <div>
+        <h1 className="font-[500] text-[12px] pl-[20px] pb-[10px]leading-4 flex bg-bg-grey w-full h-[33px] ">
+          FILTER BY DATE
+        </h1>
+        <div className="tab-ul h-[30px] flex flex-col gap-[20px]">
+          <ul className="flex flex-row list-none text-center cursor-pointer justify-around border rounded-[12px] font-[400] text-[13px] leading-4 w-[327px] mx-auto">
+            <li
+              onClick={handleTabOne}
+              className={`cursor-pointer ${
+                activeTab === "tabone"
+                  ? "active text-white bg-primary-light"
+                  : "text-gray-dark"
+              } `}
+            >
+              Exact Date
+            </li>
+            <li
+              onClick={handleTabTwo}
+              className={`cursor-pointer ${
+                activeTab === "tabtwo"
+                  ? "active text-white bg-primary-light"
+                  : "text-gray-dark"
+              } `}
+            >
+              Date Range
+            </li>
+          </ul>
+          <div>
+            {activeTab === "tabone" ? (
+              <div className="flex flex-row h-[44px] border rounded-[12px] mt-[20px] pl-[12px] mx-auto w-[327px] ">
+                <img
+                  src={Calendar}
+                  alt="calendar"
+                  className="mt-[10px] w-[20px] h-[20px]"
+                />
+                <DatePicker
+                  className="pt-[13px] pl-[15px] font-[400] text-[13px] leading-4 pr-[10px] "
+                  selected={exactDate}
+                  onChange={handleExactDateChange}
+                  placeholderText="Select exact date"
+                  dateFormat="dd/MM/yyyy"
+                />
+              </div>
+            ) : (
+              <div>
+                <div className="flex flex-row h-[44px] border rounded-[12px] mt-[20px] pl-[12px] mx-auto w-[327px]">
+                  <img
+                    src={Calendar}
+                    alt="calendar"
+                    className="mt-[10px] w-[20px] h-[20px] "
+                  />
+                  <DatePicker
+                    className="pt-[13px] pl-[15px] font-[400] text-[13px] leading-4"
+                    selected={startDate}
+                    onChange={handleStartDateChange}
+                    placeholderText="Select start date"
+                    dateFormat="dd/MM/yyyy"
+                  />
+                </div>
+                <div className="flex flex-row h-[44px] border rounded-[12px] mt-[20px] pl-[12px] mx-auto w-[327px] ">
+                  <img
+                    src={Calendar}
+                    alt="calendar"
+                    className="mt-[10px] w-[20px] h-[20px]"
+                  />
+                  <DatePicker
+                    className="pt-[13px] pl-[15px] font-[400] text-[13px] leading-4 pr-[10px] "
+                    selected={endDate}
+                    onChange={handleEndDateChange}
+                    placeholderText="Select end date"
+                    dateFormat="dd/MM/yyyy"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+  </div> */
+}

@@ -7,7 +7,6 @@ import ArrowBack from "../../assets/images/back.png";
 const QuestionCard = () => {
   const { questions } = useContext(ClosedQuestionContext);
 
- 
   return (
     <div className="bg-neutral py-[20px]">
       {questions.map((question, index) => (
@@ -22,7 +21,10 @@ const QuestionCard = () => {
             </p>
           </Link>
 
-          <Link to={`/closedinfo/${question.id}`} className="font-[500] text-[14px] leading-[20px] cursor-pointer text-gray-dark">
+          <Link
+            to={`/closedinfo/${question.id}`}
+            className="font-[500] text-[14px] leading-[20px] cursor-pointer text-gray-dark"
+          >
             {question.text}
           </Link>
         </div>

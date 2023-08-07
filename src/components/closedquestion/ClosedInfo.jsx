@@ -29,7 +29,7 @@ const ClosedInfo = () => {
           }
         );
         response.data;
-       
+
         setInfoData(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -77,7 +77,7 @@ const ClosedInfo = () => {
                 affiliate
               </h3>
               <div className="flex justify-center p-[5px] ">
-                <a href={sponsor.url}>
+                <a href={`https://${sponsor.url}`}>
                   <img
                     src={path14}
                     alt="netflix"
@@ -91,7 +91,7 @@ const ClosedInfo = () => {
             </div>
             <div className="absolute bottom-md right-md">
               <a
-                href="https://youtube.com"
+                href={`https://${sponsor.adsS3Url}`}
                 className="hover:bg-primary-bg bg-grey-text w-[56px]"
               >
                 <img

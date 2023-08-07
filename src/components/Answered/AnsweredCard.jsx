@@ -3,9 +3,8 @@ import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
 
 const AnsweredCard = ({ cardData }) => {
-
   const { dateToPost, text, sponsor } = cardData;
- 
+
   return (
     <div className="pt-[120px]">
       <div className="sm:w-[280px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] max-w-[320px] h-[240px] drop-shadow-lg">
@@ -23,7 +22,7 @@ const AnsweredCard = ({ cardData }) => {
               affiliate
             </h3>
             <div className="flex justify-center p-[5px] ">
-              <a href={sponsor.url}>
+              <a href={`https://${sponsor.url}`}>
                 <img src={path14} alt="netflix" className="w-[24px] h-[24px]" />
               </a>
             </div>
@@ -33,8 +32,10 @@ const AnsweredCard = ({ cardData }) => {
           </div>
           <div className="absolute bottom-md right-md">
             <a
-              href="https://youtube.com"
+              href={`https://${sponsor.adsS3Url}`}
               className="hover:bg-primary-bg bg-grey-text w-[56px]"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src={youtubeIcon}

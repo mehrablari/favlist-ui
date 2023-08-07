@@ -12,10 +12,10 @@ import { LayoutContext } from "../Layout";
 // export const CardSwipeContainerContext = createContext();
 
 const CardSwipeContainer = () => {
-  const {apiData, handleSwipe} = useContext(LayoutContext)
+  const { apiData, handleSwipe } = useContext(LayoutContext);
 
   // console.log(112,apiData)
-    
+
   const storedQuestionIndex =
     localStorage.getItem("selectedQuestionIndex") || 0;
   const [question, setQuestion] = useState(storedQuestionIndex);
@@ -36,13 +36,12 @@ const CardSwipeContainer = () => {
     } else if (days >= 2 && days <= 7) {
       return `${days} days to expiry`;
     } else {
-      return null
+      return null;
     }
   };
-  
+
   return (
-    <div
-    >
+    <div>
       <Swiper
         initialSlide={question}
         effect={"cards"}
@@ -62,9 +61,9 @@ const CardSwipeContainer = () => {
               </p>
 
               <div className="flex flex-row justify-center items-center h-[40px]">
-                <img src={Clock} alt="clock" className="w-[15px] h-[15px]"/>
+                <img src={Clock} alt="clock" className="w-[15px] h-[15px]" />
                 <h1 className="text-[12px] pl-[5px] text-primary-light font-[400] font-baloo2">
-                {remaining(question.daysToRemainOpen+1)}
+                  {remaining(question.daysToRemainOpen + 1)}
                 </h1>
               </div>
 
@@ -77,7 +76,7 @@ const CardSwipeContainer = () => {
                   affiliate
                 </h3>
                 <div className="flex justify-center p-[5px] ">
-                  <a href={question.sponsor.url}>
+                  <a href={`https://${question.sponsor.url}`}>
                     <img
                       src={path14}
                       alt="netflix"
@@ -85,13 +84,13 @@ const CardSwipeContainer = () => {
                     />
                   </a>
                 </div>
-                <h3 className="text-gray-dark text-[12px] font-[600] pb-[20px]">
+                <h3 className="text-gray-dark text-[12px]  font-[600] pb-[20px]">
                   {question.sponsor.name}
                 </h3>
               </div>
               <div className="absolute bottom-md right-md font-baloo2">
                 <a
-                  href="https://youtube.com"
+                    href={`https://${question.sponsor.adsS3Url}`}
                   className="hover:bg-primary-bg bg-grey-text w-[56px]"
                 >
                   <img

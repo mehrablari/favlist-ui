@@ -32,10 +32,7 @@ const Answered = () => {
         setIsLoading(false);
 		setApiData(response.data.data)
 		setAnswers(response.data.data.answers)
-    // setIsAnswered(!isAnswered)
-		// console.log(1243,response.data.data[0]?.answers)
-		
-       
+      
       } catch (error) {
         console.error("Error fetching API data:", error);
       }
@@ -47,7 +44,7 @@ const Answered = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[70px]" />
+        <img src={Logo} alt="loading logo" className=" h-[40px] w-[80px]" />
       </div>
     );
   }
