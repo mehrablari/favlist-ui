@@ -6,6 +6,12 @@ import ArrowBack from "../../assets/images/back.png";
 
 const QuestionCard = () => {
   const { questions } = useContext(ClosedQuestionContext);
+  
+  const formatDate = (inputDate) => {
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate = new Date(inputDate).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
 
   return (
     <div className="bg-neutral py-[20px]">
@@ -17,7 +23,8 @@ const QuestionCard = () => {
           >
             <img src={Calendar} alt="" className="h-[18px] pr-[5px]" />
             <p className="text-[12px] leading-4 font-[400] text-gray-dark">
-              {question.dateToPost}
+              
+              Question on {formatDate(question.dateToPost)}
             </p>
           </Link>
 

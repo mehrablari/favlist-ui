@@ -168,7 +168,7 @@ const Layout = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center align-middle mx-auto pt-[300px] sm:w-[300px] bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[70px]" />
+        <img src={Logo} alt="loading logo" className=" h-[70px] sm:h-[60px] w-[80px]" />
       </div>
     );
   }

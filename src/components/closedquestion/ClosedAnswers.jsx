@@ -15,7 +15,7 @@ const ClosedAnswers = ({ answerData }) => {
             {index + 1}
           </p>
           <div className="py-[10px] px-[14px] sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light mx-auto flex flex-row justify-between">
-            <span className="text-[13px] flex flex-wrap ">{answer.text}</span>
+            <span className="text-[13px] flex flex-wrap " style={{ wordWrap: 'break-word', overflow: 'hidden' }}>{answer.text}</span>
             <div className="flex flex-row">
               <img src={People} alt="dismiss icon" className="w-[20px] h-[20px] pt-[5px]"/>
               <span className="text-[13px] pb-[15px] pl-[5px]">{answer.voteCount}</span>

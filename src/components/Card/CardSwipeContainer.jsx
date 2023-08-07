@@ -53,9 +53,9 @@ const CardSwipeContainer = () => {
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className="sm:w-[310px] lg:w-[700px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3.5rem] max-w-[380px] h-[260px] drop-shadow-lg"
+            className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] ite p-[20px] m-[2.5rem] max-w-[380px] h-[260px] drop-shadow-lg"
           >
-            <div className="flex flex-col bg-neutral  rounded-lg gap-[5px]">
+            <div className="flex flex-col bg-neutral  rounded-lg gap-[8px]">
               <p className="text-[12px] text-gray-light font-baloo2 font-[400] ">
                 Today's question
               </p>
@@ -67,11 +67,11 @@ const CardSwipeContainer = () => {
                 </h1>
               </div>
 
-              <div className="text-gray-dark pb-[15px] flex flex-wrap max-w-[300px] mx-auto text-[16px] h-[68px] font-baloo2 leading-5">
+              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 leading-2 mx-auto">
                 {question.text}
               </div>
 
-              <div className="flex flex-col justify-center w-[42px] h-[56px] mx-auto font-baloo2 pt-[10px]">
+              <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
                 <h3 className="text-gray-lighter text-[12px] font-[400] pt-[10px]">
                   affiliate
                 </h3>
@@ -84,12 +84,15 @@ const CardSwipeContainer = () => {
                     />
                   </a>
                 </div>
-                <h3 className="text-gray-dark text-[12px] w-[120px] flex flex-wrap mx-auto font-[600] pb-[10px]">
-                  {question.sponsor.name} 
-                </h3>
+                <div className="flex justify-center">
+                  <h3 className="text-gray-dark text-[12px] font-[600] pb-[10px] text-center w-[200px]">
+                    {question.sponsor.name}
+                  </h3>
+                </div>
+
                 <div className="absolute bottom-md right-md font-baloo2">
                   <a
-                      href={`https://${question.sponsor.adsS3Url}`}
+                    href={`https://${question.sponsor.adsS3Url}`}
                     className="hover:bg-primary-bg bg-grey-text w-[56px]"
                   >
                     <img

@@ -50,6 +50,12 @@ const ClosedInfo = () => {
 
   const { text, dateToPost, sponsor, answers, answerGraphicLink } = infoData;
 
+  const formatDate = (inputDate) => {
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate = new Date(inputDate).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
+
   return (
     <>
       <NavBar />
@@ -66,7 +72,7 @@ const ClosedInfo = () => {
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
             <p className="text-[12px] text-gray-light font-[400] ">
-              Question on {dateToPost}
+            Question on {formatDate(dateToPost)}
             </p>
             <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
               {text}
