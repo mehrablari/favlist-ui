@@ -83,7 +83,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
 
       slides.push(
         <SwiperSlide key={i} >
-          <div className="flex flex-wrap py-[10px]">
+          <div className="flex flex-wrap py-[10px] h-[800px] ">
             {items.map((answer, index) => (
               <div key={index} className="w-1/2">
                 <div className="bg-gray-lighter bg-opacity-10 p-[10px] rounded-[16px] m-[14px]">

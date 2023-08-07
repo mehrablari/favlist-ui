@@ -53,29 +53,29 @@ const CardSwipeContainer = () => {
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className="sm:w-[310px] lg:w-[700px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg"
+            className="sm:w-[310px] lg:w-[700px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3.5rem] max-w-[380px] h-[260px] drop-shadow-lg"
           >
             <div className="flex flex-col bg-neutral  rounded-lg gap-[5px]">
               <p className="text-[12px] text-gray-light font-baloo2 font-[400] ">
                 Today's question
               </p>
 
-              <div className="flex flex-row justify-center items-center h-[40px]">
+              <div className="flex flex-row justify-center items-center h-[40px] pb-[10px]">
                 <img src={Clock} alt="clock" className="w-[15px] h-[15px]" />
                 <h1 className="text-[12px] pl-[5px] text-primary-light font-[400] font-baloo2">
                   {remaining(question.daysToRemainOpen + 1)}
                 </h1>
               </div>
 
-              <div className="text-gray-dark w-[287px] sm:text-[14px] md:text-[16px] md:w-[240px] sm:w-[220px] text-[18px] h-[72px] font-baloo2">
+              <div className="text-gray-dark pb-[15px] flex flex-wrap max-w-[300px] mx-auto text-[16px] h-[68px] font-baloo2 leading-5">
                 {question.text}
               </div>
 
-              <div className="flex flex-col justify-center m-[3px] w-[42px] h-[56px] mx-auto font-baloo2">
-                <h3 className="text-gray-lighter text-[12px] font-[400]">
+              <div className="flex flex-col justify-center w-[42px] h-[56px] mx-auto font-baloo2 pt-[10px]">
+                <h3 className="text-gray-lighter text-[12px] font-[400] pt-[10px]">
                   affiliate
                 </h3>
-                <div className="flex justify-center p-[5px] ">
+                <div className="flex justify-center ">
                   <a href={`https://${question.sponsor.url}`}>
                     <img
                       src={path14}
@@ -84,21 +84,21 @@ const CardSwipeContainer = () => {
                     />
                   </a>
                 </div>
-                <h3 className="text-gray-dark text-[12px]  font-[600] pb-[20px]">
-                  {question.sponsor.name}
+                <h3 className="text-gray-dark text-[12px] w-[120px] flex flex-wrap mx-auto font-[600] pb-[10px]">
+                  {question.sponsor.name} 
                 </h3>
-              </div>
-              <div className="absolute bottom-md right-md font-baloo2">
-                <a
-                    href={`https://${question.sponsor.adsS3Url}`}
-                  className="hover:bg-primary-bg bg-grey-text w-[56px]"
-                >
-                  <img
-                    src={youtubeIcon}
-                    alt="youtube icon"
-                    className="w-[24px] h-[17px]"
-                  />
-                </a>
+                <div className="absolute bottom-md right-md font-baloo2">
+                  <a
+                      href={`https://${question.sponsor.adsS3Url}`}
+                    className="hover:bg-primary-bg bg-grey-text w-[56px]"
+                  >
+                    <img
+                      src={youtubeIcon}
+                      alt="youtube icon"
+                      className="w-[24px] h-[17px]"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </SwiperSlide>

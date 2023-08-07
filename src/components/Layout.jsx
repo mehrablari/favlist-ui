@@ -34,6 +34,9 @@ const Layout = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [minAnswer, setMinAnswer] = useState([])
+  const [maxAnswer, setMaxAnswer] = useState([])
+
 
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
@@ -64,6 +67,10 @@ const Layout = () => {
     setSuggestedOption(activeQuestion?.answersJson);
     setQuestionId(activeQuestion?.id);
     setQuestionName(activeQuestion?.text);
+    setMinAnswer(activeQuestion?.minAnswerCount);
+    setMaxAnswer(activeQuestion?.maxAnswerCount);
+
+
     const storedAnswers = localStorage.getItem("answers");
     let count = 1;
     if (storedAnswers) {
@@ -133,6 +140,10 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
+        // const questionContainer = response.data;
+
+
+        console.log(2323,response.data);
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
@@ -141,6 +152,10 @@ const Layout = () => {
         setQuestionId(response.data[0]?.id);
         setQuestionName(response.data[0]?.text);
         setSwiperClear(response.data[0]?.answersJson[""]);
+        setMinAnswer(response.data[0]?.minAnswerCount);
+        setMaxAnswer(response.data[0]?.maxAnswerCount);
+
+
 
       } catch (error) {
         console.error("Error fetching API data:", error);
@@ -152,14 +167,14 @@ const Layout = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen">
+      <div className="flex justify-center align-middle mx-auto pt-[300px] sm:w-[300px] bg-neutral h-screen">
         <img src={Logo} alt="loading logo" className=" h-[70px]" />
       </div>
     );
   }
 
   return (
-    <LayoutContext.Provider value={{apiData, handleSwipe, activeAnswerJson, handleSubmission, handleFilter, suggestedOption,setSuggestedOption, handleClick, filteredOptions, answers, handleDismiss, questionId, questionName, clickedValue, setIsAnswered, isAnswered}} >
+    <LayoutContext.Provider value={{apiData, handleSwipe, minAnswer,maxAnswer, activeAnswerJson, handleSubmission, handleFilter, suggestedOption,setSuggestedOption, handleClick, filteredOptions, answers, handleDismiss, questionId, questionName, clickedValue, setIsAnswered, isAnswered}} >
       <NavBar />
       <CardSwipeContainer
         // questionData={apiData}
@@ -187,7 +202,7 @@ const Layout = () => {
             // answers={answers}
           />
           <DndProvider backend={HTML5Backend}>
-            <AnsweredList
+            <AnsweredList apiData={apiData}
               // answers={answers}
               // questionData={apiData}
               // handleDismiss={handleDismiss}
