@@ -5,7 +5,7 @@ import Switch from "@mui/material/Switch";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 
-const AnswerHeader = ({handleToggle}) => {
+const AnswerHeader = ({handleToggle, minAnswer, maxAnswer}) => {
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -28,7 +28,7 @@ const AnswerHeader = ({handleToggle}) => {
     <div className="bg-neutral pt-[10px] flex flex-row justify-between sm:w-[300px] mx-auto w-[327px]">
       <div className="text-grey-text">
         <p className="text-[15px] font-[600]">Your Answers</p>
-        <p className="text-[12px] font-[400]">Minimum 3, maximum 5 answers</p>
+        <p className="text-[12px] font-[400]">Minimum {minAnswer}, maximum {maxAnswer} answers</p>
       </div>
       <div className="text-primary-light cursor-pointer">
         <span

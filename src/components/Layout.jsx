@@ -111,7 +111,7 @@ const Layout = () => {
     if (
       selectedOption &&
       !answers.some((answer) => answer === selectedOption) &&
-      answers.length < 5
+      answers.length <= maxAnswer
     ) {
       setAnswers((prevAnswers) => [...prevAnswers, selectedOption]);
     }
