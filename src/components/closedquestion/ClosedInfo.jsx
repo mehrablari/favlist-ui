@@ -51,7 +51,7 @@ const ClosedInfo = () => {
   const { text, dateToPost, sponsor, answers, answerGraphicLink } = infoData;
 
   const formatDate = (inputDate) => {
-    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
     const formattedDate = new Date(inputDate).toLocaleDateString(undefined, options);
     return formattedDate;
   };
@@ -68,7 +68,7 @@ const ClosedInfo = () => {
       <div className="bg-neutral pt-[30px]">
         <div
           key={id}
-          className="sm:w-[300px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg"
+          className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
             <p className="text-[12px] text-gray-light font-[400] ">
@@ -78,11 +78,11 @@ const ClosedInfo = () => {
               {text}
             </div>
 
-            <div className="flex flex-col justify-center m-[3px] w-[42px] h-[56px] mx-auto">
+            <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
               <h3 className="text-gray-lighter text-[12px] font-[400]">
                 affiliate
               </h3>
-              <div className="flex justify-center p-[5px] ">
+              <div className="flex justify-center">
                 <a href={`https://${sponsor.url}`}>
                   <img
                     src={path14}
@@ -91,9 +91,11 @@ const ClosedInfo = () => {
                   />
                 </a>
               </div>
-              <h3 className="text-gray-dark text-[12px] font-[600] pb-[20px]">
-                {sponsor.name}
-              </h3>
+              <div className="flex justify-center">
+                  <h3 className="text-gray-dark text-[12px] font-[600] pb-[10px] text-center w-[200px]">
+                    {sponsor.name}
+                  </h3>
+                </div>
             </div>
             <div className="absolute bottom-md right-md">
               <a

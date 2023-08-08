@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { LayoutContext } from "../Layout";
 
-
 const AnsweredList = () => {
-
-  const {answers,
+  const {
+    answers,
     handleDismiss,
     questionId,
     questionName,
     minAnswer,
     maxAnswer,
-    apiData} = useContext(LayoutContext);
+    apiData,
+  } = useContext(LayoutContext);
   const [updatedAnswers, setUpdatedAnswers] = useState(answers);
 
   const [showIndex, setShowIndex] = useState(false);
@@ -25,7 +25,7 @@ const AnsweredList = () => {
     localStorage.setItem("selectedQuestionIndex", index);
   };
 
-  console.log("answers",apiData)
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -35,19 +35,19 @@ const AnsweredList = () => {
     setUpdatedAnswers(answers);
   };
 
-
-  
-
   return (
     <form
       className="bg-neutral pt-[12px] pb-[30px] gap-[12px] font-baloo2"
       onClick={handleSubmit}
     >
-      <AnswerHeader maxAnswer={maxAnswer} minAnswer={minAnswer} handleToggle={handleChange} />
+      <AnswerHeader
+        maxAnswer={maxAnswer}
+        minAnswer={minAnswer}
+        handleToggle={handleChange}
+      />
 
       {answers.length === 0 && <AnswerSettings />}
 
-      
       {answers.length > 0 &&
         !showIndex &&
         answers.map((answer, index) => (
@@ -71,23 +71,23 @@ const AnsweredList = () => {
       {showIndex &&
         updatedAnswers.map((answer, index) => (
           <div
-          className="bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden"
-          key={index}
-        >
-          
-          <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px] sm:w-[300px]">
-          <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">{index +1}</span>
-            <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between">
-              <span className="text-[13px] h-[16px] ">{answer}</span>
-              <img
-                src={DismissIcon}
-                alt="dismiss icon"
-                onClick={() => handleDismiss(index)}
-              />
+            className="bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden"
+            key={index}
+          >
+            <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px] sm:w-[300px]">
+              <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">
+                {index + 1}
+              </span>
+              <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between">
+                <span className="text-[13px] h-[16px] ">{answer}</span>
+                <img
+                  src={DismissIcon}
+                  alt="dismiss icon"
+                  onClick={() => handleDismiss(index)}
+                />
+              </div>
             </div>
           </div>
-        </div>
-
         ))}
 
       {answers.length > 0 && (
@@ -216,5 +216,3 @@ export default AnsweredList;
 // // };
 
 // // export default AnsweredList;
-
-

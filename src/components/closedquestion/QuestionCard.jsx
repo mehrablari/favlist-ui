@@ -8,7 +8,7 @@ const QuestionCard = () => {
   const { questions } = useContext(ClosedQuestionContext);
   
   const formatDate = (inputDate) => {
-    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
     const formattedDate = new Date(inputDate).toLocaleDateString(undefined, options);
     return formattedDate;
   };

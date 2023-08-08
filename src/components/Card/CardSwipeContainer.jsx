@@ -47,15 +47,15 @@ const CardSwipeContainer = () => {
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className="mySwiper h-[280px] sm:px-[35px] md:px-[40px] md:py-[40px] flex justify-center sm:w-[280px] w-[325px] align-middle pt-[40px] pb-[30px] mx-auto"
+        className="mySwiper h-[280px] sm:px-[50px] sm:py-[20px] md:px-[30px] md:py-[30px] flex justify-center sm:w-[280px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] ite p-[20px] m-[2.5rem] max-w-[380px] h-[260px] drop-shadow-lg"
+            className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] ite p-[20px] m-[3rem] max-w-[380px] h-[260px] drop-shadow-lg"
           >
-            <div className="flex flex-col bg-neutral  rounded-lg gap-[8px]">
+            <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] w-[320px]">
               <p className="text-[12px] text-gray-light font-baloo2 font-[400] ">
                 Today's question
               </p>
@@ -67,7 +67,7 @@ const CardSwipeContainer = () => {
                 </h1>
               </div>
 
-              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 leading-2 mx-auto">
+              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 leading-2 mx-auto md:w-[300px] md:px-[16px] md:text-[14px]">
                 {question.text}
               </div>
 

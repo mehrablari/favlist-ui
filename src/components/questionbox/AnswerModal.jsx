@@ -82,11 +82,11 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
           : suggestedOption.slice(startIndex, endIndex);
 
       slides.push(
-        <SwiperSlide key={i} >
-          <div className="flex flex-wrap py-[10px] h-[800px] ">
+        <SwiperSlide key={i} className="w-[327px] h-[40vh]">
+          <div className="flex flex-wrap py-[15px] ">
             {items.map((answer, index) => (
               <div key={index} className="w-1/2">
-                <div className="bg-gray-lighter bg-opacity-10 p-[10px] rounded-[16px] m-[14px]">
+                <div className="bg-gray-lighter bg-opacity-10 p-[10px] rounded-[16px] m-[4px]">
                   <h3
                     className="text-[12px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 cursor-pointer"
                     onClick={() => handleAnswerClick(answer)}
@@ -97,9 +97,9 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
               </div>
             ))}
           </div>
-          {i < totalSlides - 1 && (
+          {/* {i < totalSlides - 1 && (
             <hr className="mx-auto w-[10px] h-[5px] text-gray-dark" />
-          )}
+          )} */}
         </SwiperSlide>
       );
     }
@@ -109,14 +109,14 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
 
   return (
     <div className="flex flex-col bg-neutral h-screen p-[10px] w-[100vw]">
-      <div className="flex flex-row justify-between p-[10px] text-gray-dark">
+      <div className="flex flex-row justify-between pb-[10px] text-gray-dark w-[327px] mx-auto">
         <h2>Suggestions</h2>
         <div  >
 
         </div>
-        <CancelIcon onClick={closeBackdrop}  />
+        <CancelIcon onClick={closeBackdrop}  className="cursor-pointer"/>
       </div>
-      <h2 className="font-[400] text-[13px] p-[10px] text-gray-lighter">
+      <h2 className="font-[400] text-[13px] pb-[10px] text-gray-lighter mx-auto w-[327px]">
         Select from this pool of suggestions to answer the question.
       </h2>
       <Swiper
@@ -125,11 +125,19 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
         grabCursor={true}
         loop={true}
         pagination={{ clickable: true }}
-        className="mySwiper h-full sm:px-[10px] md:px-[10px] py-[10px] md:py-[20px] flex justify-center sm:w-[280px] w-[325px] align-middle pt-[20px] pb-[30px] mx-auto"
+        style={{
+          "--swiper-pagination-color": "#632A7E",
+          "--swiper-pagination-bullet-inactive-color": "#999999",
+          "--swiper-pagination-bullet-inactive-opacity": "1",
+          "--swiper-pagination-bullet-size": "10px",
+          "--swiper-pagination-bullet": "10px",
+          "--swiper-pagination-bullet-horizontal-gap": "4px",
+        }}
+        className="mySwiper h-screen sm:px-[10px] md:px-[10px] pt-[80px] md:py-[20px] flex justify-center sm:w-[280px] w-[325px] align-middle mx-auto"
       >
         {renderSwiperSlides()}
       </Swiper>
-      <div className="flex flex-col  h-[50px] justify-center mx-auto bg-neutral w-full pt-[20px] pb-[10px] ">
+      <div className="flex flex-col justify-center mx-auto bg-neutral w-full pt-[20px] pb-[20px] h-[8vh]">
         <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center justify-center align-middle">
           {inputValue.length === 0 && (
             <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">

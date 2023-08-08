@@ -4,7 +4,7 @@ import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
 import NavBar from "./NavBar";
 import soundEffect from "../assets/audio/software.wav";
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, createContext} from "react";
 import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -14,8 +14,6 @@ import Answered from "./Answered/Answered";
 
 
 export const LayoutContext = createContext();
-
-// console.log(123,LayoutContext)
 
 
 const Layout = () => {
@@ -122,7 +120,6 @@ const Layout = () => {
     setAnswers((prevAnswers) => prevAnswers.filter((_, i) => i !== index));
   };
 
-  // console.log(333, setIsAnswered);
 
   // manage api request
   useEffect(() => {
@@ -140,10 +137,7 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
-        // const questionContainer = response.data;
-
-
-        console.log(2323,response.data);
+    
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
