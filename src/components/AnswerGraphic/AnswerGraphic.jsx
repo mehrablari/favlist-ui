@@ -14,8 +14,8 @@ const AnswerGraphics = () => {
   console.log(imgUrl);
 
   return (
-    <div className="bg-primary pt-[80px] pb-[20px] h-screen">
-      <div className="bg-neutral h-[372px] w-[327px] rounded-lg mx-auto p-[20px]">
+    <div className="bg-primary pt-[100px] pb-[20px] h-screen">
+      <div className="bg-neutral h-[360px] w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-row justify-center pt-[20px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />
           <h1 className="font-[500] text-[13px] text-text-blue">
@@ -33,7 +33,7 @@ const AnswerGraphics = () => {
             </h1>
             <RWebShare
               data={{
-                text: "My answers",
+                text: "My Answers",
                 url: imgUrl,
                 title: "Favlist",
               }}

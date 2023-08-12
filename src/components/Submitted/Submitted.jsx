@@ -39,7 +39,7 @@ const Submit = () => {
             Your Answer graphic
           </h1>
         </div>
-        <div className="h-[200px] bg-gray-lighter p-[20px] rounded-lg m-[10px]">
+        <div className="h-[300px] bg-gray-lighter p-[20px] rounded-lg m-[10px]">
         {graphicUrl && <img src={graphicUrl} alt="Your Answer Graphic" className="bg-primary " />}
         </div>
         <hr className="pt-[10px]" />
