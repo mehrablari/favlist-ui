@@ -94,11 +94,16 @@ const FilterCategory = ({ filterData }) => {
         setIsLoading(false);
         if (data && data.status && data.status.toLowerCase() === "success") {
           const serializedData = JSON.stringify(data.data.content);
+          // Navigate to FilterPage and pass filtered data as state
+          // navigate("/filterpage", { state: { filteredData: serializedData } });
+
           navigate(
             `/filterpage?filteredData=${encodeURIComponent(serializedData)}`
           );
         }
-        // console.log("Filtered data:", data);
+
+        console.log("data",data);
+     
       })
       .catch((error) => {
         setIsLoading(false);
@@ -107,7 +112,7 @@ const FilterCategory = ({ filterData }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col font-sans">
       <KeywordFilter handleInputChange={handleInputChange} />
       <FilterDate
         handleTabOne={handleTabOne}

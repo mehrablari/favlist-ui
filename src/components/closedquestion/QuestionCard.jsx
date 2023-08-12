@@ -14,7 +14,7 @@ const QuestionCard = () => {
   };
 
   return (
-    <div className="bg-neutral py-[20px]">
+    <div className="bg-neutral py-[20px] font-sans">
       {questions.map((question, index) => (
         <div key={index} className="shadow-sm px-[24px] h-[80px]">
           <Link

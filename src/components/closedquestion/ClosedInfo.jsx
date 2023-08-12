@@ -59,7 +59,7 @@ const ClosedInfo = () => {
   return (
     <>
       <NavBar />
-      <div className="flex flex-row items-center pt-[80px] bg-neutral pl-[10px]">
+      <div className="flex flex-row items-center pt-[80px] bg-neutral pl-[10px] font-sans">
         <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
         <Link to="/closedquestion" className="text-[18px] font-semibold">
           Back

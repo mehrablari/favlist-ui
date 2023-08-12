@@ -30,7 +30,7 @@ const Layout = () => {
   const [questionName, setQuestionName] = useState("");
   const [swiperClear, setSwiperClear] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+ 
   const [isAnswered, setIsAnswered] = useState(false);
   const [minAnswer, setMinAnswer] = useState([])
   const [maxAnswer, setMaxAnswer] = useState([])
@@ -44,7 +44,7 @@ const Layout = () => {
 
   //manage when a suggestion is clicked
   const handleClick = (option) => {
-    if (!answers.includes(option) && answers.length < 5) {
+    if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
       playSoundEffect();
     }
@@ -161,15 +161,18 @@ const Layout = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center align-middle mx-auto pt-[300px] sm:w-[300px] bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[70px] sm:h-[60px] w-[80px]" />
+      <div className="flex justify-center w-full align-middle mx-auto pt-[300px]  bg-neutral h-screen">
+        <img src={Logo} alt="loading logo" className=" h-[70px]  w-[200px]" />
       </div>
     );
   }
 
   return (
     <LayoutContext.Provider value={{apiData, handleSwipe, minAnswer,maxAnswer, activeAnswerJson, handleSubmission, handleFilter, suggestedOption,setSuggestedOption, handleClick, filteredOptions, answers, handleDismiss, questionId, questionName, clickedValue, setIsAnswered, isAnswered}} >
-      <NavBar />
+      <div className="overflow-hidden">
+
+        <NavBar />
+      </div>
       <CardSwipeContainer
         // questionData={apiData}
         // handleSwipe={handleSwipe}

@@ -10,7 +10,7 @@ const TruncateAnswers = () => {
   };
 
   return (
-    <div className="mx-auto flex flex-col pt-[30px]">
+    <div className="mx-auto flex flex-col pt-[30px] font-sans">
       <div className="font-[600] flex justify-start text-[13px] leading-4 mx-auto pb-[10px]">
         Truncate answers
       </div>

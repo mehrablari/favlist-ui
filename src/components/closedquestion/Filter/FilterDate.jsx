@@ -16,16 +16,16 @@ const FilterDate = ({
 }) => {
   return (
     <div>
-      <h1 className="font-[500] text-[12px] pl-[20px] pb-[10px]leading-4 flex bg-bg-grey w-full h-[33px] ">
+      <h1 className="font-[500] text-[12px] pl-[20px] pb-[10px]leading-4 flex bg-bg-grey w-full h-[33px] font-sans ">
         FILTER BY DATE
       </h1>
       <div className="tab-ul h-[30px] flex flex-col gap-[20px]">
-        <ul className="flex flex-row list-none text-center cursor-pointer justify-around border rounded-[12px] font-[400] text-[13px] leading-4 w-[327px] mx-auto">
+        <ul className="flex flex-row list-none text-center cursor-pointer justify-around border rounded-[12px] font-[400] text-[13px]  leading-4 w-[327px] mx-auto">
           <li
             onClick={handleTabOne}
             className={`cursor-pointer ${
               activeTab === "tabone"
-                ? "active text-white bg-primary-light"
+                ? "active text-neutral bg-primary-light rounded-l-[11px]"
                 : "text-gray-dark"
             } `}
           >
@@ -35,7 +35,7 @@ const FilterDate = ({
             onClick={handleTabTwo}
             className={`cursor-pointer ${
               activeTab === "tabtwo"
-                ? "active text-white bg-primary-light"
+                ? "active text-neutral bg-primary-light rounded-r-[11px]"
                 : "text-gray-dark"
             } `}
           >

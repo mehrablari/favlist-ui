@@ -12,7 +12,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 
 
 const Suggestion = () => {
-  // Step 2: Create a new state variable to control the backdrop's open/close state
+  
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
   // Step 3: Define functions to open and close the backdrop
@@ -77,7 +77,7 @@ const Suggestion = () => {
   };
 
   return (
-    <main className="bg-neutral p-[10px] font-baloo2 flex flex-col justify-center h-[260px] mx-auto">
+    <main className="bg-neutral p-[10px] font-baloo2 flex flex-col justify-center h-[260px] mx-auto font-sans">
       <div className="flex flex-row justify-between bg-neutral sm:w-[300px] w-[327px] mx-auto">
         <div className="text-grey-text text-[15px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>

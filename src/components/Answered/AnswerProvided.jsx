@@ -1,9 +1,14 @@
-
-import { Link } from "react-router-dom";
 import Video from "../../assets/images/video.png";
 import People from "../../assets/images/People.png"
+import { Link } from "react-router-dom";
+import { toPng } from "html-to-image";
+import { useRef } from "react";
 
-const AnswerProvided = ({ answerData }) => {
+
+const AnswerProvided = ({ answerData, apiData }) => {
+  const imgUrl = apiData.answerGraphicLink
+
+  console.log(imgUrl);
   return (
     <div className="p-[40px]">
       <div className="flex flex-row justify-around w-[327px] mx-auto pb-[20px]">
@@ -31,13 +36,12 @@ const AnswerProvided = ({ answerData }) => {
         </div>
       ))}
       <Link
-        to="/answergraphics"
-        className="flex justify-center align-middle py-[16px] h-[52px] px-[24px] text-center rounded-lg font-[600] text-[14px] sm:w-[280px] w-[310px] mx-auto gap-[8px]
+        to="/answergraphics" state={imgUrl} 
+        className="flex justify-center align-middle py-[16px] h-[46px] px-[24px] text-center rounded-lg font-[600] text-[14px] sm:w-[280px] w-[310px] mx-auto gap-[8px]
           bg-primary text-neutral"
       >
-        {" "}
         <div className="p-[4px]">
-          <img src={Video} alt="video" className="w-[18px] h-[13px]" />
+          <img src={Video} alt="video" className="w-[20px] h-[16px]" />
         </div>
         <span className="font-[600] text-[14px] leading-[20px]">
           View Answer Graphics

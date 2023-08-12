@@ -21,6 +21,7 @@ const FilterContainer = () => {
           }
         );
         response.data;
+        console.log(response.data);
 
         setFilterData(response.data.data.content);
       } catch (error) {

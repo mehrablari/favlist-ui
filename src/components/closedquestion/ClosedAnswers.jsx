@@ -5,7 +5,7 @@ const ClosedAnswers = ({ answerData }) => {
   const [answers, setAnswers] = useState(answerData);
 
   return (
-    <div className="p-[20px]">
+    <div className="p-[20px] font-sans">
       {answers.map((answer, index) => (
         <div
           key={index}

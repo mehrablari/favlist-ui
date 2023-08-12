@@ -7,7 +7,7 @@ import Logo from '../../assets/images/logoAllWhite.png'
 import axios from 'axios';
 import AnsweredCard from './AnsweredCard';
 import AnswerProvided from './AnswerProvided';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 const Answered = () => {
@@ -43,8 +43,8 @@ const Answered = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[40px] w-[80px]" />
+      <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen w-full">
+        <img src={Logo} alt="loading logo" className=" h-[40px] w-[100px]" />
       </div>
     );
   }
@@ -53,14 +53,12 @@ const Answered = () => {
   return (
 	<>
 	<NavBar />
-	<div className='bg-neutral'>
+	<div className='bg-neutral font-sans'>
 		
 		<AnsweredCard cardData={apiData} />
 		<AnsweredResponse />
 		
-		<AnswerProvided answerData={answers}/>
-		
-		{/* <AggregateAnswers aggreggateAnswers={answered} /> */}
+		<AnswerProvided answerData={answers} apiData={apiData}/>
 	</div>
 	</>
   )

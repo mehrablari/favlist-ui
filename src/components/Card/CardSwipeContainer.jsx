@@ -6,7 +6,7 @@ import { EffectCards } from "swiper";
 import path14 from "../../assets/images/path14.png";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { LayoutContext } from "../Layout";
 
 // export const CardSwipeContainerContext = createContext();
@@ -40,24 +40,31 @@ const CardSwipeContainer = () => {
     }
   };
 
+  const formatDate = (inputDate) => {
+    const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+    const formattedDate = new Date(inputDate).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
+
   return (
-    <div>
+    <div className="w-screen">
       <Swiper
         initialSlide={question}
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className="mySwiper h-[280px] sm:px-[50px] sm:py-[20px] md:px-[30px] md:py-[30px] flex justify-center sm:w-[280px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto"
+        className="mySwiper h-[280px] sm:px-[63px] sm:py-[20px] md:px-[43px] md:py-[30px] flex justify-center sm:w-[310px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto font-sans"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] ite p-[20px] m-[3rem] max-w-[380px] h-[260px] drop-shadow-lg"
+            className="sm:w-[300px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] md:my-[3rem] sm:px-[40px] max-w-[380px] h-[260px] drop-shadow-lg"
           >
             <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] w-[320px]">
               <p className="text-[12px] text-gray-light font-baloo2 font-[400] ">
-                Today's question
+              {formatDate(question.dateToPost)}
+                
               </p>
 
               <div className="flex flex-row justify-center items-center h-[40px] pb-[10px]">
@@ -67,7 +74,7 @@ const CardSwipeContainer = () => {
                 </h1>
               </div>
 
-              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 leading-2 mx-auto md:w-[300px] md:px-[16px] md:text-[14px]">
+              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 sm:text-[13px] leading-2 mx-auto md:w-[270px] md:px-[16px] md:text-[13px] sm:w-[240px] sm:px-[20px]" style={{ wordWrap: 'break-word' }}>
                 {question.text}
               </div>
 

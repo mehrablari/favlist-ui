@@ -14,6 +14,10 @@ export default {
       'lg': '24px',
       'xl':'40px',
     },
+    fontFamily: {
+      'sans':['"Baloo 2"']
+
+    },
     spacing: {
       sm: "8px",
       md: "12px",
@@ -47,7 +51,8 @@ export default {
     
     screens: {
       sm: {min:"320px", max:"399px"},
-      md: { min: "400px", max: "767px" },
+      md: { min: "400px", max: "549px" },
+      mdx:{ min: "550px", max: "767px" },
       lg: { min: "768px", max: "1023px" },
       xl: { min: "1024" },
     },

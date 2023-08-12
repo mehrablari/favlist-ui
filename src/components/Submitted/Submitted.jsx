@@ -7,23 +7,21 @@ import Tiktok from "../../assets/icons/tiktok.svg";
 import Instagram from "../../assets/icons/instagram.svg";
 import Share from "../../assets/icons/share.svg";
 import highFive from "../../assets/gif/highfivegif.gif"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { RWebShare } from "react-web-share";
-import { useContext } from "react";
-
-// import { CardSwipeContainerContext } from "../Card/CardSwipeContainer";
-
 
 
 const Submit = () => {
+  const location = useLocation();
+  const graphicUrl = location.state?.graphicUrl;
 
-  // const value = useContext(CardSwipeContainerContext);
-  // console.log("submit", value);
+  console.log("graphic url",graphicUrl);
+
   return (
     <div className="bg-primary pt-[80px] pb-[20px]">
-      <div className="bg-neutral h-[600px] w-[327px] rounded-lg mx-auto p-[20px]">
+      <div className="bg-neutral w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-col justify-center align-middle">
           <img
             src={highFive}
@@ -41,7 +39,9 @@ const Submit = () => {
             Your Answer graphic
           </h1>
         </div>
-        <div className="h-[144px] bg-gray-lighter p-[20px] rounded-lg m-[10px]"></div>
+        <div className="h-[200px] bg-gray-lighter p-[20px] rounded-lg m-[10px]">
+        {graphicUrl && <img src={graphicUrl} alt="Your Answer Graphic" className="bg-primary " />}
+        </div>
         <hr className="pt-[10px]" />
         <div className="flex flex-col pb-[10px]">
           <div className="flex flex-col justify-center align-middle p-[15px]">
@@ -51,8 +51,8 @@ const Submit = () => {
             <div className="h-[20px] p-[10px]">
               <RWebShare
                 data={{
-                  text: "Like humans, flamingos make friends for life",
-                  url: "https://on.natgeo.com/2zHaNup",
+                  text:"My answers",
+                  url: graphicUrl,
                   title: "Favlist",
                 }}
                 onClick={() => console.log("shared successfully!")}

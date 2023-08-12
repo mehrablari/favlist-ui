@@ -5,9 +5,9 @@ import './index.css'
 // import { registerSW } from "virtual:pwa-register";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  // </React.StrictMode>,
     <App />
-  </React.StrictMode>,
 )
 
 if ('serviceWorker' in navigator) {
