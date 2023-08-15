@@ -59,7 +59,7 @@ const AnsweredList = () => {
             key={index}
           >
             <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px] sm:w-[300px]">
-              <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between">
+              <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row cursor-pointer justify-between hover:bg-primary-bg">
                 <span className="text-[13px] h-[22px] text-ellipsis truncate w-[200px]" >{answer}</span>
                 <img
                   src={DismissIcon}
@@ -104,7 +104,7 @@ const AnsweredList = () => {
                       <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">
                         {index + 1}
                       </span>
-                      <div className="sm:w-[300px] max-w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between">
+                      <div className="sm:w-[300px] max-w-[327px] cursor-pointer bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between hover:bg-primary-bg">
                         <div className="flex">
         
                           <img src={Drag} alt="drag" className="pr-[10px]" />
@@ -137,7 +137,7 @@ const AnsweredList = () => {
           <button
             className={`h-[40px] text-center rounded-lg font-[600] text-[14px] sm:w-[280px] w-[310px] mx-auto font-sans ${
               answers.length >= minAnswer && answers.length <= maxAnswer
-                ? "bg-primary text-neutral"
+                ? "bg-primary text-neutral hover:bg-button-hover"
                 : "bg-gray-purple cursor-not-allowed text-neutral"
             }`}
             type="submit"

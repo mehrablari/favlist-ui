@@ -47,19 +47,19 @@ const CardSwipeContainer = () => {
   };
 
   return (
-    <div className="w-screen">
+    <div className="">
       <Swiper
         initialSlide={question}
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className="mySwiper h-[280px] sm:px-[63px] sm:py-[20px] md:px-[43px] md:py-[30px] flex justify-center sm:w-[310px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto font-sans"
+        className="mySwiper h-[280px] sm:px-[33px] sm:py-[20px] md:px-[30px] md:py-[30px] flex justify-center sm:w-[310px] md:w-[320px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto font-sans"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className="sm:w-[300px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] md:my-[3rem] sm:px-[40px] max-w-[380px] h-[260px] drop-shadow-lg"
+            className="sm:w-[310px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] md:my-[3rem] sm:px-[40px] max-w-[380px] h-[260px] drop-shadow-lg"
           >
             <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] w-[320px]">
               <p className="text-[12px] text-gray-light font-baloo2 font-[400] ">
@@ -74,7 +74,7 @@ const CardSwipeContainer = () => {
                 </h1>
               </div>
 
-              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 sm:text-[13px] leading-2 mx-auto md:w-[270px] md:px-[16px] md:text-[13px] sm:w-[240px] sm:px-[20px]" style={{ wordWrap: 'break-word' }}>
+              <div className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[16px] h-[68px] font-baloo2 font-[600] sm:text-[13px] leading-2 mx-auto md:w-[280px] md:px-[16px] md:text-[15px] sm:w-[240px] sm:px-[30px]" style={{ wordWrap: 'break-word' }}>
                 {question.text}
               </div>
 
@@ -83,7 +83,7 @@ const CardSwipeContainer = () => {
                   affiliate
                 </h3>
                 <div className="flex justify-center ">
-                  <a href={`https://${question.sponsor.url}`}>
+                  <a href={`${question.sponsor.url}`}>
                     <img
                       src={path14}
                       alt="netflix"
@@ -99,7 +99,7 @@ const CardSwipeContainer = () => {
 
                 <div className="absolute bottom-md right-md font-baloo2">
                   <a
-                    href={`https://${question.sponsor.adsS3Url}`}
+                    href={`${question.sponsor.adsS3Url}`}
                     className="hover:bg-primary-bg bg-grey-text w-[56px]"
                   >
                     <img

@@ -32,6 +32,7 @@ export default {
       'bg-grey':'#F6F6F6',
       'text-blue':'#3973D4',
       'button-inactive':'#F7F0F7',
+      'button-hover':'#280E3B',
       'neutral': '#FFFFFF',
       'primary-border':"#F7F0F7",
       'grey-text':'#464E56',
@@ -46,6 +47,7 @@ export default {
       'warning':'#BDD0F133',
       'gray-four':'#534656',
       'search':'#BAB5BB',
+      'type-active':'#B15EA8',
 
     },
     

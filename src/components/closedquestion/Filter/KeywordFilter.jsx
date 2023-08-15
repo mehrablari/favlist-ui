@@ -32,7 +32,7 @@ const KeywordFilter = ({ handleInputChange }) => {
               onChange={handleInput}
               type="search"
               placeholder="search..."
-              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[10px] placeholder:text-[13px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[10px] border border-search p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px]"
+              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[10px] placeholder:text-[13px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[10px] border w-[327px] border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[280px] rounded-[12px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
             />
           </div>
         </div>

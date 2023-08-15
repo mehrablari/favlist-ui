@@ -6,7 +6,7 @@ const CategoryChecker = ({filterCategory, handleChange}) => {
         <h1 className="font-[500] h-[32px] text-[12px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full ">
           FILTER BY CATEGORY
         </h1>
-        <div className="pl-[12px]">
+        <div className="pl-[20px]">
           {filterCategory.map((filter, index) => (
             <div key={index} className="py-[10px] gap-[8px] h-[36px]">
               <label>

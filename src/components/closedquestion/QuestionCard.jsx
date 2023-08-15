@@ -13,6 +13,7 @@ const QuestionCard = () => {
     return formattedDate;
   };
 
+
   return (
     <div className="bg-neutral py-[20px] font-sans">
       {questions.map((question, index) => (
@@ -30,7 +31,7 @@ const QuestionCard = () => {
 
           <Link
             to={`/closedinfo/${question.id}`}
-            className="font-[500] text-[14px] leading-[20px] cursor-pointer text-gray-dark"
+            className="font-[500] text-[14px] flex flex-wrap leading-[20px] cursor-pointer text-gray-dark"
           >
             {question.text}
           </Link>

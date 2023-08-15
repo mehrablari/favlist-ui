@@ -7,17 +7,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
 
-let img;
 let imageState;
 
 const Preview = () => {
-  const [imageUrl, setImageUrl] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);
 
   const location = useLocation();
   const dataContainer = location.state;
   const questionText = dataContainer.questionName;
+  // console.log("text", questionText);
 
   const containerRef = useRef(null);
 
@@ -28,14 +28,10 @@ const Preview = () => {
       toPng(containerRef.current)
         .then((data) => {
           imageState = data.split(",")[1];
-          img = imageState;
         })
         .catch((error) => console.error("Error generating image:", error));
     }
-
   }, []);
-
-
 
   const navigate = useNavigate();
 
@@ -48,10 +44,9 @@ const Preview = () => {
         questionId: dataContainer.questionId,
         answersJson: dataContainer.answers,
         ranked: false,
-        graphicUrl: img,
+        graphicUrl: imageState,
       };
-      console.log(22, JSON.stringify(answerSubmit));
-
+  
       fetch("https://dev.pacerlabs.co/api/v1/submissions", {
         method: "POST",
         headers: {
@@ -71,9 +66,12 @@ const Preview = () => {
             ) {
               localStorage.removeItem("answers");
               localStorage.removeItem("selectedQuestionIndex");
-              setImageUrl(data.answerGraphicLink);
+
               setIsSuccessful(true);
-              console.log(data);
+
+              navigate("/submitted", {
+                state: { graphicUrl: data.data.answerGraphicLink },
+              });
             } else {
               navigate(`/answered/${dataContainer.questionId}`);
             }
@@ -83,14 +81,14 @@ const Preview = () => {
     }, 1500);
   };
 
-  useEffect(() => {
-    if (isSuccessful) {
-      navigate("/submitted", { state: { graphicUrl:imageUrl }});
-    }
-  }, [imageUrl, isSuccessful, navigate]);
+  // useEffect(() => {
+  //   if (isSuccessful) {
+  //     navigate("/submitted", { state: {graphicUrl: img }});
+  //   }
+  // }, [isSuccessful, navigate]);
 
   return (
-    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px]">
+    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-screen h-screen lg:h-[100%] xl:h-screen">
       <div className="mx-auto ">
         <h1 className="text-neutral font-[700] text-[13px] leading-5 p-[20px]">
           PREVIEW YOUR ANSWERS
@@ -106,11 +104,11 @@ const Preview = () => {
             <img src={Video} alt="video" className="pr-[5px]" />
 
             <h1 className="font-[500] text-[13px] text-text-blue">
-              Your preview video
+              Your preview image
             </h1>
           </div>
         </div>
-        <div className="h-[240px] bg-primary py-0 rounded-lg p-[10px]">
+        <div className="min-h-[200px] bg-primary py-0 rounded-lg p-[10px]">
           <div ref={containerRef}>
             <div className="text-neutral text-center text-[18px] font-[700]">
               {questionText}
@@ -128,13 +126,13 @@ const Preview = () => {
 
         <form
           onClick={handleSubmit}
-          className="flex justify-center align-middle max-w-[287px] w-[287px] sm:w-[220px] mx-auto px-[20px] bg-primary rounded-lg  m-[10px] "
+          className="hover:bg-button-hover flex justify-center align-middle max-w-[287px] w-[287px] sm:w-[220px] mx-auto px-[20px] bg-primary rounded-lg  m-[10px] "
         >
           <div className="">
             <button
               disabled={isSubmitting}
               type="submit"
-              className="h-[40px] text-center  font-[600] flex-grow flex-shrink text-[14px] text-neutral"
+              className="h-[40px] text-center  font-[600] flex-grow flex-shrink text-[14px] text-neutral "
             >
               {isSubmitting ? "Submitting..." : "Submit Answers"}
             </button>

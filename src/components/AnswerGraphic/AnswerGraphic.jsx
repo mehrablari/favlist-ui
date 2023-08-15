@@ -10,19 +10,18 @@ import ArrowBack from "../../assets/icons/arrowback.svg";
 
 const AnswerGraphics = () => {
   const location = useLocation();
-  const imgUrl = location.state; // Assuming you've passed the imageDataUrl from the previous component
-  console.log(imgUrl);
+  const imgUrl = location.state;
 
   return (
-    <div className="bg-primary pt-[100px] pb-[20px] h-screen">
-      <div className="bg-neutral h-[360px] w-[327px] rounded-lg mx-auto p-[20px]">
+    <div className="bg-primary pt-[100px] pb-[20px] h-screen mx-auto">
+      <div className="bg-neutral h-[420px] w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-row justify-center pt-[20px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />
           <h1 className="font-[500] text-[13px] text-text-blue">
             Your Answer graphics
           </h1>
         </div>
-        <div className="h-[144px] bg-gray-lighter max-w-[287px] p-[20px] rounded-lg m-[10px]">
+        <div className="h-[200px] max-w-[300px] p-[20px] rounded-lg m-[10px]">
         <img src={imgUrl} alt="Your Answer Graphic" className="bg-primary" />
         </div>
         <hr className="pt-[10px] border-t-1 border-[#B5B8BB] mx-auto" />
@@ -33,7 +32,7 @@ const AnswerGraphics = () => {
             </h1>
             <RWebShare
               data={{
-                text: "My Answers",
+                text:"https://www.favlist.com",
                 url: imgUrl,
                 title: "Favlist",
               }}

@@ -13,6 +13,9 @@
 #root {
   font-family: Baloo 2;
   overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .font-link {

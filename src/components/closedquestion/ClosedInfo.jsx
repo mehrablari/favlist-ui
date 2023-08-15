@@ -111,7 +111,8 @@ const ClosedInfo = () => {
             </div>
           </div>
         </div>
-        <ClosedQuestionFlag answerGraphic={answerGraphicLink} />
+       
+        {/* <ClosedQuestionFlag answerGraphic={answerGraphicLink} /> */}
         {/* <TruncateAnswers /> */}
         <ClosedAnswers answerData={answers} answerId={id} />
       </div>

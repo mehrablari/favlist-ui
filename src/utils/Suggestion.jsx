@@ -50,14 +50,14 @@ const Suggestion = () => {
           : [];
 
       slides.push(
-        <SwiperSlide key={i} className="flex flex-wrap p-[10px] font-baloo2 ">
+        <SwiperSlide key={i} className="flex flex-wrap p-[10px] font-baloo2 w-[327px]">
           {items.map((suggestion, index) => {
             const itemIndex = startIndex + index; // Calculate the correct index value
 
             return (
               <div key={index} className="w-1/3">
                 <div
-                  className="bg-gray-lighter bg-opacity-10 p-[10px] w-[95px] sm:w-[90px]  rounded-[16px] h-[32px] flex justify-evenly overflow-hidden "
+                  className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 p-[10px] w-[95px] sm:w-[90px]  rounded-[16px] h-[32px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
                   <h3 className="text-[12px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-3 cursor-pointer">
@@ -81,7 +81,7 @@ const Suggestion = () => {
       <div className="flex flex-row justify-between bg-neutral sm:w-[300px] w-[327px] mx-auto">
         <div className="text-grey-text text-[15px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
-          <span className="text-primary hover:bg-sky-500 cursor-pointer text-[12px] font-[500]">
+          <span className="text-primary cursor-pointer text-[12px] font-[500]">
             See all Suggestions
           </span>
           <ArrowCircleRightOutlinedIcon
