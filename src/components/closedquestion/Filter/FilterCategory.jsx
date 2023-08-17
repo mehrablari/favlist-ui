@@ -101,8 +101,6 @@ const FilterCategory = ({ filterData }) => {
             `/filterpage?filteredData=${encodeURIComponent(serializedData)}`
           );
         }
-
-        console.log("data",data);
      
       })
       .catch((error) => {

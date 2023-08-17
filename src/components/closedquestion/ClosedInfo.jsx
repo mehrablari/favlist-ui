@@ -83,7 +83,7 @@ const ClosedInfo = () => {
                 affiliate
               </h3>
               <div className="flex justify-center">
-                <a href={`https://${sponsor.url}`}>
+                <a href={`${sponsor.url}`}>
                   <img
                     src={path14}
                     alt="netflix"
@@ -99,7 +99,7 @@ const ClosedInfo = () => {
             </div>
             <div className="absolute bottom-md right-md">
               <a
-                href={`https://${sponsor.adsS3Url}`}
+                href={`${sponsor.adsS3Url}`}
                 className="hover:bg-primary-bg bg-grey-text w-[56px]"
               >
                 <img

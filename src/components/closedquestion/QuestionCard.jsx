@@ -3,6 +3,7 @@ import Calendar from "../../assets/images/Calendar.png";
 import { ClosedQuestionContext } from "./ClosedQuestion";
 import { Link } from "react-router-dom";
 import ArrowBack from "../../assets/images/back.png";
+import { Helmet } from 'react-helmet-async';
 
 const QuestionCard = () => {
   const { questions } = useContext(ClosedQuestionContext);
@@ -16,6 +17,10 @@ const QuestionCard = () => {
 
   return (
     <div className="bg-neutral py-[20px] font-sans">
+      <Helmet>
+        <title>Closed Question page</title>
+        <meta name="description" content="Description for Closed Question"/>
+      </Helmet>
       {questions.map((question, index) => (
         <div key={index} className="shadow-sm px-[24px] h-[80px]">
           <Link

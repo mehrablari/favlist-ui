@@ -15,7 +15,7 @@ function makeHash(length) {
 
 const makeScript = () => {
   const version = makeHash(10);
-  const swScript = fs.readFileSync('./public/service-worker.js', 'utf-8');
+  const swScript = fs.readFileSync('./sw.js', 'utf-8');
 
   function makeFile() {
     console.log(`generated ${cacheArray.length} files to cache in ${version}`);
@@ -24,7 +24,7 @@ const makeScript = () => {
       .replace("['/', '/styles/styles.css', '/script/webpack-bundle.js']", JSON.stringify(cacheArray, null, 2))
       .replace('@cacheName', version);
 
-    fs.writeFileSync('./build/service-worker.js', modSwScript);
+    fs.writeFileSync('/sw.js', modSwScript);
   }
 
   if (glob) {

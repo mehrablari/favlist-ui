@@ -5,8 +5,7 @@ import Switch from "@mui/material/Switch";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 
-const AnswerHeader = ({handleToggle, minAnswer, maxAnswer}) => {
-
+const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -22,13 +21,15 @@ const AnswerHeader = ({handleToggle, minAnswer, maxAnswer}) => {
     setChecked(isChecked);
     handleToggle(isChecked);
   };
-//mui
+  //mui
 
   return (
     <div className="bg-neutral pt-[10px] flex flex-row justify-between sm:w-[300px] mx-auto w-[327px]">
       <div className="text-grey-text">
         <p className="text-[15px] font-[600]">Your Answers</p>
-        <p className="text-[12px] font-[400]">Minimum {minAnswer}, maximum {maxAnswer} answers</p>
+        <p className="text-[12px] font-[400]">
+          Minimum {minAnswer}, maximum {maxAnswer} answers
+        </p>
       </div>
       <div className="text-primary-light cursor-pointer">
         <span
@@ -46,7 +47,6 @@ const AnswerHeader = ({handleToggle, minAnswer, maxAnswer}) => {
           display: "flex",
           alignItems: "flex-end",
           justifyContent: "center",
-          
         }}
         open={open}
       >
@@ -71,12 +71,14 @@ const AnswerHeader = ({handleToggle, minAnswer, maxAnswer}) => {
             </div>
 
             <div className="">
-              <Switch
-                checked={checked}
-                onClick={handleChange}
-                inputProps={{ "aria-label": "controlled" }}
-              />
-            
+              <Switch checked={checked} onClick={handleChange} />
+              <div className="w-[60px] h-[34px]">
+                <input
+                  type="checkbox"
+                  id="toggle"
+                />
+                <label htmlFor="toggle" className="" />
+              </div>
             </div>
           </div>
         </div>

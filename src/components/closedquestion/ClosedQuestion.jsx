@@ -52,7 +52,6 @@ const ClosedQuestion = () => {
       <CloseQuestionHeader />
 
       <QuestionCard />
-      <div></div>
     </ClosedQuestionContext.Provider>
   );
 };

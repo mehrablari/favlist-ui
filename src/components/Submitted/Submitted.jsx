@@ -8,6 +8,7 @@ import Instagram from "../../assets/icons/instagram.svg";
 import Share from "../../assets/icons/share.svg";
 import highFive from "../../assets/gif/highfivegif.gif";
 import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { RWebShare } from "react-web-share";
@@ -20,6 +21,25 @@ const Submit = () => {
 
   return (
     <div className="bg-primary pt-[80px] pb-[20px] h-screen mx-auto">
+      <Helmet defer={false}>
+        <title>FavList </title>
+        <meta property="og:title" content="Favlist" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={graphicUrl} />
+        <meta name="description" content="helmet" />
+        <meta
+          property="og:url"
+          content="https://favlist-user-app.netlify.app"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta
+          property="og:description"
+          content="Give answers to your favourite things"
+        />
+        <meta property="og:site_name" content="Favlist" />
+        <meta name="twitter:image:alt" content="favourite answers" />
+      </Helmet>
       <div className="bg-neutral w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-col justify-center align-middle">
           <img
@@ -45,17 +65,18 @@ const Submit = () => {
             className="bg-primary p-[10px]"
           />
         </div>
-        <hr className="border-t-2 border-[#B5B8BB] mx-auto" />
+        <hr className="mt-[20px] border-t-2 border-[#B5B8BB] mx-auto" />
         <div className="flex flex-col pb-[10px]">
           <div className="flex flex-col justify-center align-middle p-[15px]">
             <h1 className="font-[500] text-[13px] text-text-blue text-center">
               Share to social media
             </h1>
+
             <div className="p-[10px]">
               <RWebShare
                 data={{
                   text: "My answers",
-                  url: graphicUrl,
+                  url:"https://favllist-user-app.netlify.app",
                   title: "Favlist",
                 }}
                 onClick={() => console.log("shared successfully!")}

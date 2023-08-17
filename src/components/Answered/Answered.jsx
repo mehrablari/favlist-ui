@@ -1,7 +1,8 @@
 
 import AnsweredResponse from '../../utils/AnsweredResponse';
 
-import NavBar from '../Navbar';
+// import NavBar from '../NavBar';
+import NavBar from '../../components/NavBar';
 import { useState, useEffect } from 'react';
 import Logo from '../../assets/images/logoAllWhite.png'
 import axios from 'axios';
