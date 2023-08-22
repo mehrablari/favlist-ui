@@ -1,5 +1,4 @@
 import soundEffect from "../../assets/audio/software.wav";
-import CancelIcon from "@mui/icons-material/Cancel";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
@@ -10,7 +9,7 @@ import cancelIcon from "../../assets/images/cancelicon.png";
 
 SwiperCore.use([Pagination]);
 
-const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
+const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer }) => {
   // State to store the selected answers
   const [answeredList, setAnsweredList] = useState([]);
   const [answerSet, setAnswerSet] = useState(new Set());
@@ -51,7 +50,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
     handleClick(answer);
     console.log("click me");
 
-    if (!answerSet.has(answer) && answerSet.size < 5) {
+    if (!answerSet.has(answer) && answerSet.size < maxAnswer) {
       // Add the new answer to the set
       const newAnswerSet = new Set(answerSet);
       newAnswerSet.add(answer);
@@ -156,7 +155,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick }) => {
           <div className="flex-grow">
             <input
               onChange={handleInputChange}
-              disabled={selectedOption && selectedOption.length >= 5}
+              disabled={selectedOption && selectedOption.length >= maxAnswer}
               type="search"
               placeholder="Start typing an answer..."
               className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[10px] placeholder:text-[13px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"

@@ -48,9 +48,7 @@ const Answers = () => {
       setSelectedOption(null);
     }
   };
-//  const handleClicked = () => {
-//   setSelectedOption(answer)
-//  }
+
 
   const handleAnswerClick = (answer) => {
     // Sound when a suggestion is clicked
@@ -69,7 +67,7 @@ const Answers = () => {
     // Store the updated answeredList in local storage
     localStorage.setItem("answers", JSON.stringify(answeredList));
 
-    // console.log("Clicked answer:", answer);
+
   };
 
   const totalSlides = Math.ceil(filteredOptions.length / 20);
@@ -94,7 +92,7 @@ const Answers = () => {
                   <h3
                     className="text-[12px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 cursor-pointer"
                     onClick={() => handleAnswerClick(answer)}
-                    // onClick={handleClicked}
+                
                   >
                     {answer.length > 12 ? `${answer.slice(0, 20)}...` : answer}
                   </h3>

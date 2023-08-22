@@ -1,13 +1,15 @@
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
+import { Helmet } from "react-helmet-async";
 
 let imageState;
+let imgUrl;
 
 const Preview = () => {
   // const [imageUrl, setImageUrl] = useState(null);
@@ -46,7 +48,7 @@ const Preview = () => {
         ranked: false,
         graphicUrl: imageState,
       };
-  
+
       fetch("https://dev.pacerlabs.co/api/v1/submissions", {
         method: "POST",
         headers: {
@@ -66,7 +68,7 @@ const Preview = () => {
             ) {
               localStorage.removeItem("answers");
               localStorage.removeItem("selectedQuestionIndex");
-
+              imgUrl = data.data.answerGraphicLink;
               setIsSuccessful(true);
 
               navigate("/submitted", {
@@ -81,14 +83,27 @@ const Preview = () => {
     }, 1500);
   };
 
-  // useEffect(() => {
-  //   if (isSuccessful) {
-  //     navigate("/submitted", { state: {graphicUrl: img }});
-  //   }
-  // }, [isSuccessful, navigate]);
-
   return (
     <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-screen h-screen lg:h-[100%] xl:h-screen">
+      <Helmet defer={false}>
+        <title>FavList </title>
+        <meta property="og:title" content="Favlist" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={imgUrl} />
+        <meta name="description" content="helmet" />
+        <meta
+          property="og:url"
+          content="https://favlist-user-app.netlify.app"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta
+          property="og:description"
+          content="Give answers to your favourite things"
+        />
+        <meta property="og:site_name" content="Favlist" />
+        <meta name="twitter:image:alt" content="favourite answers" />
+      </Helmet>
       <div className="mx-auto ">
         <h1 className="text-neutral font-[700] text-[13px] leading-5 p-[20px]">
           PREVIEW YOUR ANSWERS

@@ -1,14 +1,13 @@
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
-import { Link, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { LayoutContext } from "../components/Layout";
 import { useContext, useState } from "react";
-import Answers from "../components/questionbox/Answers";
+
 import AnswerModal from "../components/questionbox/AnswerModal";
 import Backdrop from "@mui/material/Backdrop";
-import CancelIcon from "@mui/icons-material/Cancel";
+
 
 
 const Suggestion = () => {
@@ -23,7 +22,7 @@ const Suggestion = () => {
   const handleCloseBackdrop = () => {
     setOpenBackdrop(false);
   };
-  const { suggestedOption, handleClick, filteredOptions } =
+  const { suggestedOption, handleClick, filteredOptions, maxAnswer } =
     useContext(LayoutContext);
 
 
@@ -105,6 +104,7 @@ const Suggestion = () => {
           {openBackdrop && (
             <AnswerModal
               suggestedOption={suggestedOption}
+              maxAnswer={maxAnswer}
               closeBackdrop={handleCloseBackdrop}
               handleClick={handleClick}
 

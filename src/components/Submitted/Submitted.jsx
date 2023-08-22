@@ -10,7 +10,6 @@ import highFive from "../../assets/gif/highfivegif.gif";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
-// import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { RWebShare } from "react-web-share";
 
 const Submit = () => {
@@ -21,7 +20,7 @@ const Submit = () => {
 
   return (
     <div className="bg-primary pt-[80px] pb-[20px] h-screen mx-auto">
-      <Helmet defer={false}>
+      {/* <Helmet defer={false}>
         <title>FavList </title>
         <meta property="og:title" content="Favlist" />
         <meta property="og:type" content="article" />
@@ -39,7 +38,7 @@ const Submit = () => {
         />
         <meta property="og:site_name" content="Favlist" />
         <meta name="twitter:image:alt" content="favourite answers" />
-      </Helmet>
+      </Helmet> */}
       <div className="bg-neutral w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-col justify-center align-middle">
           <img
