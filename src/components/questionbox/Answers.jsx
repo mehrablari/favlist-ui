@@ -1,4 +1,4 @@
-import soundEffect from "../../assets/audio/software.wav";
+import soundEffect from "../../assets/audio/softwave.mp3";
 import { Link, useLocation } from "react-router-dom";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -52,9 +52,9 @@ const Answers = () => {
 
   const handleAnswerClick = (answer) => {
     // Sound when a suggestion is clicked
-    const audio = new Audio(soundEffect);
-    audio.play();
-    console.log("22333");
+    // const audio = new Audio(soundEffect);
+    // audio.play();
+   
     if (!answerSet.has(answer) && answerSet.size < 5) {
       // Add the new answer to the set
       const newAnswerSet = new Set(answerSet);

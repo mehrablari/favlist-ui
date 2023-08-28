@@ -3,20 +3,11 @@ import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Drag from "../../assets/images/Drag.png";
 
-const DraggableAnswers = ({answers, handleDismiss, maxAnswer}) => {
-// 	const [answerSet, setAnswerSet] = useState(new Set());
-//   const handleDragEnd = (result) => {
-//     if (!result.destination) return;
+const DraggableAnswers = ({answers, handleDismiss, maxAnswer, handleDragEnd}) => {
 
-//     const reorderedAnswers = Array.from(updatedAnswers);
-//     const [movedAnswer] = reorderedAnswers.splice(result.source.index, 1);
-//     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
-
-//     setUpdatedAnswers(reorderedAnswers);
-//   };
-//onDragEnd={handleDragEnd}
+ 
   return (
-    <DragDropContext >
+    <DragDropContext onDragEnd={handleDragEnd} >
       <Droppable droppableId="updatedAnswers" direction="vertical">
         {(provided) => (
           <div
@@ -66,3 +57,16 @@ const DraggableAnswers = ({answers, handleDismiss, maxAnswer}) => {
 };
 
 export default DraggableAnswers;
+
+
+// const [answerSet, setAnswerSet] = useState(new Set());
+//   const handleDragEnd = (result) => {
+//     if (!result.destination) return;
+
+//     const reorderedAnswers = Array.from(updatedAnswers);
+//     const [movedAnswer] = reorderedAnswers.splice(result.source.index, 1);
+//     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
+
+//     setUpdatedAnswers(reorderedAnswers);
+//   };
+// onDragEnd={handleDragEnd}

@@ -16,7 +16,7 @@ const QuestionCard = () => {
 
 
   return (
-    <div className="bg-neutral py-[20px] font-sans">
+    <div className="bg-neutral pt-[190px] pb-[30px] font-sans">
       <Helmet>
         <title>Closed Question page</title>
         <meta name="description" content="Description for Closed Question"/>
@@ -27,8 +27,8 @@ const QuestionCard = () => {
             to={`/closedinfo/${question.id}`}
             className="flex flex-row justify-start  py-[10px]"
           >
-            <img src={Calendar} alt="" className="h-[18px] pr-[5px]" />
-            <p className="text-[12px] leading-4 font-[400] text-gray-dark">
+            <img src={Calendar} alt="" className="h-[20px] pr-[5px]" />
+            <p className="text-[14px] leading-4 font-[400] text-gray-dark">
               
               Question on {formatDate(question.dateToPost)}
             </p>
@@ -36,7 +36,7 @@ const QuestionCard = () => {
 
           <Link
             to={`/closedinfo/${question.id}`}
-            className="font-[500] text-[14px] flex flex-wrap leading-[20px] cursor-pointer text-gray-dark"
+            className="font-[500] text-[16px] flex flex-wrap leading-[20px] cursor-pointer text-gray-dark"
           >
             {question.text}
           </Link>

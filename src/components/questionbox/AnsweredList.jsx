@@ -13,6 +13,7 @@ const AnsweredList = () => {
     questionId,
     questionName,
     minAnswer,
+    handleDragEnd,
     maxAnswer,
     apiData,
   } = useContext(LayoutContext);
@@ -71,7 +72,7 @@ const AnsweredList = () => {
         ))}
 
       {showIndex && (
-        <DraggableAnswers answers={answers} handleDismiss={handleDismiss} maxAnswer={maxAnswer}/>
+        <DraggableAnswers answers={answers} handleDismiss={handleDismiss} maxAnswer={maxAnswer} handleDragEnd={handleDragEnd}/>
       )}
 
       {answers.length > 0 && (
@@ -83,7 +84,7 @@ const AnsweredList = () => {
           <button
             className={`h-[40px] text-center rounded-lg font-[600] text-[14px] sm:w-[280px] w-[310px] mx-auto font-sans ${
               answers.length >= minAnswer && answers.length <= maxAnswer
-                ? "bg-primary text-neutral hover:bg-button-hover"
+                ? "bg-primary text-neutral hover:bg-opacity-75"
                 : "bg-gray-purple cursor-not-allowed text-neutral"
             }`}
             type="submit"

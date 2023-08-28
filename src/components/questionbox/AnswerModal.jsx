@@ -1,4 +1,4 @@
-import soundEffect from "../../assets/audio/software.wav";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
@@ -43,9 +43,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   const handleAnswerClick = (answer) => {
-    // Sound when a suggestion is clicked
-    const audio = new Audio(soundEffect);
-    audio.play();
+  
 
     handleClick(answer);
     console.log("click me");
@@ -92,7 +90,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
               <div key={index} className="w-1/2">
                 <div className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 p-[10px] sm:p-[4px] rounded-[16px] mx-[2px] sm:mx-[8px] md:mx-[3px] my-[5px] sm:my-[8px] md:my-[8px] ">
                   <h3
-                    className="text-[12px] md:text-[12px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 sm:leading-4 cursor-pointer sm:text-[11px]"
+                    className="text-[14px] md:text-[14px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 sm:leading-4 cursor-pointer sm:text-[12px]"
                     onClick={() => handleAnswerClick(answer)}
                   >
                     {answer.length > 12 ? `${answer.slice(0, 20)}...` : answer}
@@ -120,7 +118,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
             className="cursor-pointer sm:w-[15px] sm:h-[15px] w-[20px] h-[20px]"
           />
         </div>
-        <h2 className="font-[400] flex flex-wrap text-[14px] tracking-tight sm:text-[11px] text-gray-lighter mx-auto text-center sm:w-[327px] md:w-[327px] w-[340px] md:flex justify-center align-middle md:tracking-tighter">
+        <h2 className="font-[500] flex flex-wrap text-[14px] tracking-tight sm:text-[12px] text-gray-lighter mx-auto text-center sm:w-[327px] md:w-[327px] w-[340px] md:flex justify-center align-middle md:tracking-tighter">
           Select from this pool of suggestions to answer the question.
         </h2>
       </div>
@@ -138,14 +136,14 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           "--swiper-pagination-bullet": "10px",
           "--swiper-pagination-bullet-horizontal-gap": "4px",
         }}
-        className="mySwiper h-[600px] pb-[20px] sm:px-[10px] sm:py-[10px] sm:pt-[100px] xl:pt-[50px]  md:h-[740px] md:pt-[90px] flex justify-center sm:w-[280px] w-[325px] align-middle mx-auto mdx:pt-[70px] lg:pt-[50px] pt-[60px]"
+        className="mySwiper h-[600px] pb-[10px] sm:px-[10px] sm:py-[10px] sm:pt-[100px] xl:pt-[50px]  md:h-[740px] md:pt-[90px] flex justify-center sm:w-[280px] w-[325px] align-middle mx-auto mdx:pt-[70px] lg:pt-[50px] pt-[60px]"
       >
         {renderSwiperSlides()}
       </Swiper>
       <div className="flex flex-col justify-center mx-auto bg-neutral w-full pt-[30px] h-[130px] md:h-[180px] pb-[20px] md:pb-[10px] md:pt-[50px] sm:pt-[5px] sm:h-[20vh] ">
         <div className="w-[327px] sm:w-[300px] mx-auto relative flex items-center sm:pt-[10px] justify-center align-middle ">
           {inputValue.length === 0 && (
-            <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
+            <span className="absolute left-[10px] top-[5px] h-full flex items-center">
               <SearchIcon
                 className="h-[15px] w-[15px] text-gray-lighter"
                 aria-hidden="true"
@@ -158,7 +156,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
               disabled={selectedOption && selectedOption.length >= maxAnswer}
               type="search"
               placeholder="Start typing an answer..."
-              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[10px] placeholder:text-[13px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
+              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[12px] placeholder:text-[14px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
             />
           </div>
         </div>

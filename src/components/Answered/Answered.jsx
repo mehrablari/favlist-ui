@@ -1,24 +1,24 @@
-
-import AnsweredResponse from '../../utils/AnsweredResponse';
+import AnsweredResponse from "../../utils/AnsweredResponse";
 
 // import NavBar from '../NavBar';
-import NavBar from '../../components/NavBar';
-import { useState, useEffect } from 'react';
-import Logo from '../../assets/images/logoAllWhite.png'
-import axios from 'axios';
-import AnsweredCard from './AnsweredCard';
-import AnswerProvided from './AnswerProvided';
-import { useParams } from 'react-router-dom';
-
+import NavBar from "../../components/NavBar";
+import { useState, useEffect } from "react";
+import Logo from "../../assets/images/logoblack.png";
+import axios from "axios";
+import AnsweredCard from "./AnsweredCard";
+import AnswerProvided from "./AnswerProvided";
+import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Answered = () => {
-	const [isLoading, setIsLoading] = useState(true);
-	const [apiData, setApiData] = useState([]);
-	const [answers, setAnswers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [apiData, setApiData] = useState([]);
+  const [answers, setAnswers] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
- 
 
-	useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -30,12 +30,17 @@ const Answered = () => {
             method: "GET",
           }
         );
+        if (response.status === "FAILED") {
+          toast.error(response.message);
+        }
         setIsLoading(false);
-		setApiData(response.data.data)
-		setAnswers(response.data.data.answers)
-      
+        setApiData(response.data.data);
+        setAnswers(response.data.data.answers);
       } catch (error) {
-        console.error("Error fetching API data:", error);
+        console.error(error);
+        
+        setIsError(true);
+        setErrorMessage(error.message);
       }
     };
 
@@ -49,20 +54,27 @@ const Answered = () => {
       </div>
     );
   }
-	
 
   return (
-	<>
-	<NavBar />
-	<div className='bg-neutral font-sans'>
-		
-		<AnsweredCard cardData={apiData} />
-		<AnsweredResponse />
-		
-		<AnswerProvided answerData={answers} apiData={apiData}/>
-	</div>
-	</>
-  )
-}
+    <div>
+      {isError ? (
+        <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen w-full text-center text-gray-dark">
+          {errorMessage}
+        </div>
+      ) : (
+        <>
+          <NavBar />
+          <div className="bg-neutral font-sans">
+            <AnsweredCard cardData={apiData} />
+            <AnsweredResponse />
 
-export default Answered
+            <AnswerProvided answerData={answers} apiData={apiData} />
+          </div>
+          <ToastContainer />
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Answered;

@@ -8,7 +8,7 @@ import NavBar from "../NavBar";
 import ClosedQuestionFlag from "./ClosedQuestionFlag";
 import ClosedAnswers from "./ClosedAnswers";
 import TruncateAnswers from "./TruncateAnswers";
-import Logo from "../../assets/images/logoAllWhite.png";
+import Logo from "../../assets/images/logoblack.png";
 import ArrowBack from "../../assets/images/back.png";
 
 const ClosedInfo = () => {
@@ -68,15 +68,16 @@ const ClosedInfo = () => {
       <div className="bg-neutral pt-[30px]">
         <div
           key={id}
-          className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg"
+          className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
+          <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
+              {text}
+            </div>
             <p className="text-[12px] text-gray-light font-[400] ">
             Question on {formatDate(dateToPost)}
             </p>
-            <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
-              {text}
-            </div>
+            
 
             <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
               <h3 className="text-gray-lighter text-[12px] font-[400]">

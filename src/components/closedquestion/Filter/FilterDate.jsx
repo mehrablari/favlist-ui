@@ -16,11 +16,11 @@ const FilterDate = ({
 }) => {
   return (
     <div>
-      <h1 className="font-[500] text-[12px] pl-[20px] pb-[10px]leading-4 flex bg-bg-grey w-full h-[33px] font-sans ">
+      <h1 className="font-[500] text-[14px] pl-[20px] pb-[10px]leading-4 flex bg-bg-grey w-full h-[33px] font-sans">
         FILTER BY DATE
       </h1>
-      <div className="tab-ul h-[30px] flex flex-col gap-[20px]">
-        <ul className="flex flex-row list-none text-center cursor-pointer justify-around border rounded-[12px] font-[400] text-[13px]  leading-4 w-[327px] mx-auto">
+      <div className="tab-ul h-[30px] flex flex-col gap-[20px] p-[10px]">
+        <ul className="flex flex-row list-none text-center cursor-pointer justify-around border rounded-[14px] font-[400] text-[13px]  leading-4 w-[327px] mx-auto">
           <li
             onClick={handleTabOne}
             className={`cursor-pointer ${
@@ -51,7 +51,7 @@ const FilterDate = ({
                 className="mt-[10px] w-[20px] h-[20px]"
               />
               <DatePicker
-                className="pt-[13px] pl-[15px] font-[400] text-[13px] leading-4 pr-[10px] "
+                className="pt-[13px] pl-[15px] font-[400] text-[14px] leading-4 pr-[10px] "
                 selected={exactDate}
                 onChange={handleExactDateChange}
                 placeholderText="Select exact date"
@@ -67,7 +67,7 @@ const FilterDate = ({
                   className="mt-[10px] w-[20px] h-[20px] "
                 />
                 <DatePicker
-                  className="pt-[13px] pl-[15px] font-[400] text-[13px] leading-4"
+                  className="pt-[13px] pl-[15px] font-[400] text-[14px] leading-4"
                   selected={startDate}
                   onChange={handleStartDateChange}
                   placeholderText="Select start date"
@@ -81,7 +81,7 @@ const FilterDate = ({
                   className="mt-[10px] w-[20px] h-[20px]"
                 />
                 <DatePicker
-                  className="pt-[13px] pl-[15px] font-[400] text-[13px] leading-4 pr-[10px] "
+                  className="pt-[13px] pl-[15px] font-[400] text-[14px] leading-4 pr-[10px] "
                   selected={endDate}
                   onChange={handleEndDateChange}
                   placeholderText="Select end date"

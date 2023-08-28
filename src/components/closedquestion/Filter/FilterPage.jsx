@@ -43,12 +43,12 @@ const FilterPage = () => {
               className="flex flex-row justify-start  py-[10px]"
             >
               <img src={Calendar} alt="" className="h-[18px] pr-[5px]" />
-              <p className="text-[12px] leading-4 font-[400] text-gray-dark">
+              <p className="text-[14px] leading-4 font-[400] text-gray-dark">
               {formatDate(question.dateToPost)}
               </p>
             </Link>
 
-            <h1 className="font-[500] text-[14px] leading-[20px] cursor-pointer text-gray-dark">
+            <h1 className="font-[500] text-[16px] leading-[20px] cursor-pointer text-gray-dark">
               {question.text}
             </h1>
           </div>

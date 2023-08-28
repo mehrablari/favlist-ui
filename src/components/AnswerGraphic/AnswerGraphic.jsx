@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import Video from "../../assets/icons/video.svg";
-import Facebook from "../../assets/icons/facebook.svg";
-import Twitter from "../../assets/icons/twitter.svg";
-import Tiktok from "../../assets/icons/tiktok.svg";
-import Instagram from "../../assets/icons/instagram.svg";
-import Share from "../../assets/icons/share.svg";
+// import Facebook from "../../assets/icons/facebook.svg";
+// import Twitter from "../../assets/icons/twitter.svg";
+// import Tiktok from "../../assets/icons/tiktok.svg";
+// import Instagram from "../../assets/icons/instagram.svg";
+// import Share from "../../assets/icons/share.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
 
 const AnswerGraphics = () => {
@@ -22,7 +22,7 @@ const AnswerGraphics = () => {
           </h1>
         </div>
         <div className="h-[200px] max-w-[300px] p-[20px] rounded-lg m-[10px]">
-        <img src={imgUrl} alt="Your Answer Graphic" className="bg-primary" />
+          <img src={imgUrl} alt="Your Answer Graphic" className="bg-primary" />
         </div>
         <hr className="pt-[10px] border-t-1 border-[#B5B8BB] mx-auto" />
         <div className="flex flex-col">
@@ -30,7 +30,7 @@ const AnswerGraphics = () => {
             <h1 className="font-[500] text-[13px] text-text-blue text-center">
               Share to social media
             </h1>
-            <RWebShare
+            {/* <RWebShare
               data={{
                 text:"https://www.favlist.com",
                 url: imgUrl,
@@ -65,6 +65,18 @@ const AnswerGraphics = () => {
                   className="w-[48] h-[24px] py-[4px] px-[16px] bg-button-inactive rounded-lg"
                 />
               </button>
+            </RWebShare> */}
+            <RWebShare
+              data={{
+                text: "My answers",
+                url: imgUrl,
+                title: "Favlist",
+              }}
+              onClick={() => console.log("shared successfully!")}
+            >
+              <button className="h-[40px] w-[250px] hover:bg-opacity-75 text-center mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary ">
+                Share to social media
+              </button>
             </RWebShare>
           </div>
 
@@ -88,4 +100,3 @@ const AnswerGraphics = () => {
 };
 
 export default AnswerGraphics;
-

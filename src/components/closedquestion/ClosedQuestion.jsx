@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 import QuestionCard from "./QuestionCard";
 import CloseQuestionHeader from "./CloseQuestionHeader";
-import Logo from "../../assets/images/logoAllWhite.png"
+import Logo from "../../assets/images/logoblack.png"
 
 
 export const ClosedQuestionContext = createContext()
@@ -34,7 +34,7 @@ const ClosedQuestion = () => {
       }
     };
 
-    fetchData();
+    fetchData(); 
   }, []);
 
   if (isLoading) {
@@ -49,7 +49,10 @@ const ClosedQuestion = () => {
   return (
     <ClosedQuestionContext.Provider value={{questions}}>
       <NavBar />
-      <CloseQuestionHeader />
+      <div className=" w-full bg-neutral shadow-lg">
+
+        <CloseQuestionHeader />
+      </div>
 
       <QuestionCard />
     </ClosedQuestionContext.Provider>

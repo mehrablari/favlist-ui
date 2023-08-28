@@ -78,9 +78,9 @@ const Suggestion = () => {
   return (
     <main className="bg-neutral p-[10px] font-baloo2 flex flex-col justify-center h-[260px] mx-auto font-sans">
       <div className="flex flex-row justify-between bg-neutral sm:w-[300px] w-[327px] mx-auto">
-        <div className="text-grey-text text-[15px] font-[600]">Suggestions</div>
+        <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
-          <span className="text-primary cursor-pointer text-[12px] font-[500]">
+          <span className="text-primary cursor-pointer text-[13px] font-[500]">
             See all Suggestions
           </span>
           <ArrowCircleRightOutlinedIcon

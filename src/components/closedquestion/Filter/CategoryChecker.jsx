@@ -3,7 +3,7 @@
 const CategoryChecker = ({filterCategory, handleChange}) => {
   return (
 	<div className="pt-[180px] ">
-        <h1 className="font-[500] h-[32px] text-[12px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full ">
+        <h1 className="font-[500] h-[32px] text-[14px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full ">
           FILTER BY CATEGORY
         </h1>
         <div className="pl-[20px]">
@@ -14,6 +14,7 @@ const CategoryChecker = ({filterCategory, handleChange}) => {
                   type="checkbox"
                   name={filter.category.name}
                   onChange={handleChange}
+                  className=" text-primary transition bg-primary duration-150 ease-in-out"
                 />
                 <span className="pl-[10px] font-[400] text-[16px] leading-4 text-gray-list">
                   {filter.category.name.charAt(0).toUpperCase() +
