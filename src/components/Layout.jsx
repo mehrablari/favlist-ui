@@ -4,7 +4,7 @@ import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
 import NavBar from "./NavBar";
-import soundEffect from "../assets/audio/software.wav";
+import soundEffect from "../assets/audio/softwave.mp3";
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { DndProvider } from "react-dnd";
@@ -55,6 +55,19 @@ const Layout = () => {
     setAnswers(updated);
   };
 
+  const handleDragEnd = (result) => {
+    if (!result.destination) {
+      return; // Item was dropped outside a valid droppable area
+    }
+
+    const reorderedAnswers = Array.from(answers);
+    const [movedAnswer] = reorderedAnswers.splice(result.source.index, 1);
+    console.log("manswer",movedAnswer);
+    reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
+
+    setAnswers(reorderedAnswers);
+  };
+
   //manage when a suggestion is clicked
   const handleClick = (option) => {
     if (!answers.includes(option) && answers.length < maxAnswer) {
@@ -63,15 +76,7 @@ const Layout = () => {
     }
   };
 
-  const handleDragEnd = (result) => {
-    if (!result.destination) return;
 
-    const reorderedAnswers = Array.from(updatedAnswers);
-    const [movedAnswer] = reorderedAnswers.splice(result.source.index, 1);
-    reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
-
-    setUpdatedAnswers(reorderedAnswers);
-  };
 
   //manage the swiping card of question container
   const handleSwipe = (activeQuestion) => {
@@ -79,7 +84,7 @@ const Layout = () => {
     setSelectedOption(activeQuestion?.answersJson[0]);
     setSuggestedOption(activeQuestion?.answersJson);
     setQuestionId(activeQuestion?.id);
-    setQuestionName(activeQuestion?.text);
+    setQuestionName(activeQuestion?.graphicTitle);
     setMinAnswer(activeQuestion?.minAnswerCount);
     setMaxAnswer(activeQuestion?.maxAnswerCount);
 
@@ -147,13 +152,14 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
+        console.log(response.data);
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
         setSuggestedOption(response.data[0]?.answersJson);
         setClickedValue(response.data[0]?.answersJson);
         setQuestionId(response.data[0]?.id);
-        setQuestionName(response.data[0]?.text);
+        setQuestionName(response.data[0]?.graphicTitle);
         setMinAnswer(response.data[0]?.minAnswerCount);
         setMaxAnswer(response.data[0]?.maxAnswerCount);
       } catch (error) {
