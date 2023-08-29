@@ -84,7 +84,7 @@ const Preview = () => {
   };
 
   return (
-    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-screen h-[100%] lg:h-[100%] xl:h-screen">
+    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-[100%] h-[100%] lg:h-[100%] xl:h-screen">
       <Helmet defer={false}>
         <title>FavList </title>
         <meta property="og:title" content="Favlist" />
@@ -123,15 +123,15 @@ const Preview = () => {
             </h1>
           </div>
         </div>
-        <div className="min-h-[200px] bg-primary py-0 rounded-lg p-[10px]">
-          <div ref={containerRef}>
+        <div className="min-h-[200px] bg-primary py-0 rounded-[12px] p-[10px]">
+          <div ref={containerRef} className="">
             <div className="text-neutral text-center text-[18px] font-[700]">
               {questionText}
             </div>
             {dataContainer.answers.map((answer, index) => (
               <div
                 key={index}
-                className="bg-center text-center text-neutral text-[16px] transition-all duration-300 hover:bg-primary"
+                className="bg-center text-center text-neutral text-lg transition-all duration-300 hover:bg-primary"
               >
                 {answer}
               </div>
@@ -154,9 +154,9 @@ const Preview = () => {
           </div>
         </form>
 
-        <div className="flex flex-row items-center justify-between mx-auto rounded-lg h-[40px] p-[10px] bg-button-inactive w-[200px]">
+        <div className="flex flex-row items-center justify-around mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive w-[180px]">
           <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
-          <Link to="/" className="text-[15px] font-semibold text-primary-light">
+          <Link to="/" className="text-[14px] font-semibold text-primary-light">
             Go back to edit answers
           </Link>
         </div>

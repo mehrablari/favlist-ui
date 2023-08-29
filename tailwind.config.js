@@ -19,8 +19,8 @@ export default {
 
     },
     spacing: {
-      sm: "8px",
-      md: "12px",
+      sm: "10px",
+      md: "13px",
       lg: "16px",
       xl: "24px",
     },

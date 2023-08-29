@@ -46,6 +46,13 @@ const Layout = () => {
     audio.play();
   };
 
+  const handleVibration = () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(1000); // Vibrate for 1000 milliseconds (1 second)
+    }
+  };
+ 
+
   const handleRemoveAnswer = (index) => {
     handleDismiss(index);
 
@@ -53,6 +60,7 @@ const Layout = () => {
     const updated = [...answers];
     updated.splice(index, 1);
     setAnswers(updated);
+    handleVibration()
   };
 
   const handleDragEnd = (result) => {
@@ -62,7 +70,6 @@ const Layout = () => {
 
     const reorderedAnswers = Array.from(answers);
     const [movedAnswer] = reorderedAnswers.splice(result.source.index, 1);
-    console.log("manswer",movedAnswer);
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
@@ -73,6 +80,7 @@ const Layout = () => {
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
       playSoundEffect();
+      handleVibration()
     }
   };
 
@@ -99,7 +107,7 @@ const Layout = () => {
         setTimeout(() => {
           localStorage.removeItem("answers");
           localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
+        }, 4000);
       }
     } else {
       setAnswers([]);
@@ -152,7 +160,6 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
-        console.log(response.data);
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
@@ -206,8 +213,8 @@ const Layout = () => {
       <NavBar />
 
       <CardSwipeContainer
-      // questionData={apiData}
-      // handleSwipe={handleSwipe}
+      apiData={apiData}
+      handleSwipe={handleSwipe}
       // onSwipe={handleSwiperClear}
       // selectedCardIndex={selectedCardIndex}
       />

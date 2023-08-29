@@ -20,7 +20,6 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
 
   const handleChange = (e) => {
     const isChecked = e.target.checked;
-    console.log('isChecked:', isChecked);
     setChecked(isChecked);
     handleToggle(isChecked);
   };

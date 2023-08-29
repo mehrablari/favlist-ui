@@ -10,6 +10,14 @@ import cancelIcon from "../../assets/images/cancelicon.png";
 SwiperCore.use([Pagination]);
 
 const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer }) => {
+
+  const handleVibration = () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(1000); // Vibrate for 1000 milliseconds (1 second)
+    }
+  };
+ 
+
   // State to store the selected answers
   const [answeredList, setAnsweredList] = useState([]);
   const [answerSet, setAnswerSet] = useState(new Set());
@@ -43,10 +51,11 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   const handleAnswerClick = (answer) => {
-  
+    handleVibration();
+
 
     handleClick(answer);
-    console.log("click me");
+
 
     if (!answerSet.has(answer) && answerSet.size < maxAnswer) {
       // Add the new answer to the set
@@ -83,12 +92,12 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
       slides.push(
         <SwiperSlide
           key={i}
-          className="w-[327px] sm:w-[300px] sm:h-[32vh] h-[40vh] pb-[10px] md:h-[38vh] font-baloo2"
+          className="w-[327px] sm:w-[300px] sm:h-[32vh] h-[45vh] pb-[10px] md:h-[38vh] font-baloo2"
         >
           <div className="flex flex-wrap py-[15px] px-[2px] md:px-[4px] sm:py-[20px] overflow-hidden">
             {items.map((answer, index) => (
               <div key={index} className="w-1/2">
-                <div className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 p-[10px] sm:p-[4px] rounded-[16px] mx-[2px] sm:mx-[8px] md:mx-[3px] my-[5px] sm:my-[8px] md:my-[8px] ">
+                <div className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 p-[5px] sm:p-[4px] rounded-[16px] mx-[2px] sm:mx-[8px] md:mx-[3px] my-[5px] sm:my-[8px] md:my-[8px] ">
                   <h3
                     className="text-[14px] md:text-[14px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 sm:leading-4 cursor-pointer sm:text-[12px]"
                     onClick={() => handleAnswerClick(answer)}
@@ -136,7 +145,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           "--swiper-pagination-bullet": "10px",
           "--swiper-pagination-bullet-horizontal-gap": "4px",
         }}
-        className="mySwiper h-[600px] pb-[10px] sm:px-[10px] sm:py-[10px] sm:pt-[100px] xl:pt-[50px]  md:h-[740px] md:pt-[90px] flex justify-center sm:w-[280px] w-[325px] align-middle mx-auto mdx:pt-[70px] lg:pt-[50px] pt-[60px]"
+        className="mySwiper h-[820px] pb-[10px] sm:px-[10px] sm:py-[10px] sm:pt-[100px] xl:pt-[50px]  md:h-[740px] md:pt-[90px] flex justify-center sm:w-[280px] w-[325px] align-middle mx-auto mdx:pt-[70px] lg:pt-[50px] pt-[40px]"
       >
         {renderSwiperSlides()}
       </Swiper>

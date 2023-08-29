@@ -34,6 +34,7 @@ const Answered = () => {
           toast.error(response.message);
         }
         setIsLoading(false);
+        console.log("value in answered",response.data);
         setApiData(response.data.data);
         setAnswers(response.data.data.answers);
       } catch (error) {

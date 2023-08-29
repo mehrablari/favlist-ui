@@ -7,12 +7,12 @@ import path14 from "../../assets/images/path14.png";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
 import { useContext, useState, useEffect } from "react";
-import { LayoutContext } from "../Layout";
+// import { LayoutContext } from "../Layout";
 
 // export const CardSwipeContainerContext = createContext();
 
-const CardSwipeContainer = () => {
-  const { apiData, handleSwipe } = useContext(LayoutContext);
+const CardSwipeContainer = ({ apiData, handleSwipe }) => {
+  // const { apiData, handleSwipe } = useContext(LayoutContext);
 
   // console.log(112,apiData)
 
@@ -26,6 +26,7 @@ const CardSwipeContainer = () => {
     // localStorage.setItem("questionIndex", activeIndex);
     // handleSwipe(questionData[activeIndex]);
     handleSwipe(apiData[activeIndex], activeIndex);
+    console.log(112,activeIndex)
   };
 
   const remaining = (days) => {
@@ -79,13 +80,8 @@ const CardSwipeContainer = () => {
               // style={{ border: `2px solid ${borderColorForId(id)}` }}
               
           >
-            {/* <div
-              className="text-gray-dark pb-[15px] flex max-w-[300px] justify-center items-center text-center align-middle text-[18px] h-[68px] font-baloo2 font-[600] sm:text-[14px] leading-2 mx-auto md:w-[280px] md:px-[16px] md:text-[16px] sm:w-[240px] sm:px-[30px]"
-              // style={{ wordWrap: "break-word" }}
-            >
-              {question.text}
-            </div> */}
-            <p className="text-gray-dark text-[18px] max-w-[310px] items-center font-baloo2 sm:text-[14px] md:text-[16px] leading-2 font-[600]">
+           
+            <p className="text-gray-dark text-[18px] max-w-[340px] items-center font-baloo2 sm:text-lg md:text-lg leading-2 font-[600]">
               {question.text}
             </p>
             <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] w-[320px]">
@@ -141,17 +137,3 @@ const CardSwipeContainer = () => {
 };
 
 export default CardSwipeContainer;
-
-
-{/* <div className="absolute bottom-md right-md font-baloo2" style={{backgroundColor:"#A13E97"}}>
-<a
-  href={`${question.sponsor.adsS3Url}`}
-  className="w-[56px]"
->
-  <img
-    src={youtubeIcon}
-    alt="youtube icon"
-    className="w-[24px] h-[17px] "
-  />
-</a>
-</div> */}

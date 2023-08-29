@@ -36,3 +36,9 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+if (navigator.vibrate) {
+	// vibration API supported
+    navigator.vibrate(100);
+}

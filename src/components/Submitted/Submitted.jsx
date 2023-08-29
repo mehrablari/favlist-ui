@@ -20,25 +20,6 @@ const Submit = () => {
 
   return (
     <div className="bg-primary pt-[80px] pb-[10px] h-[100%] md:h-[100%] mx-auto">
-      {/* <Helmet defer={false}>
-        <title>FavList </title>
-        <meta property="og:title" content="Favlist" />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={graphicUrl} />
-        <meta name="description" content="helmet" />
-        <meta
-          property="og:url"
-          content="https://favlist-user-app.netlify.app"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-
-        <meta
-          property="og:description"
-          content="Give answers to your favourite things"
-        />
-        <meta property="og:site_name" content="Favlist" />
-        <meta name="twitter:image:alt" content="favourite answers" />
-      </Helmet> */}
       <div className="bg-neutral w-[327px] rounded-lg mx-auto p-[20px]">
         <div className="flex flex-col justify-center align-middle">
           <img
