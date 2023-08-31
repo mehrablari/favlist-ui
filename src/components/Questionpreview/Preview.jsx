@@ -18,7 +18,8 @@ const Preview = () => {
 
   const location = useLocation();
   const dataContainer = location.state;
-  const questionText = dataContainer.questionName;
+  const graphicTitle = dataContainer.graphicTitle;
+  const questionName = dataContainer.questionName;
   // console.log("text", questionText);
 
   const containerRef = useRef(null);
@@ -74,9 +75,7 @@ const Preview = () => {
               navigate("/submitted", {
                 state: { graphicUrl: data.data.answerGraphicLink },
               });
-            } else {
-              navigate(`/answered/${dataContainer.questionId}`);
-            }
+            } 
           }
         })
         .catch((error) => toast.error(error.message));
@@ -84,7 +83,7 @@ const Preview = () => {
   };
 
   return (
-    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-[100%] h-[100%] lg:h-[100%] xl:h-screen">
+    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-screen h-screen lg:h-[100%] xl:h-screen">
       <Helmet defer={false}>
         <title>FavList </title>
         <meta property="og:title" content="Favlist" />
@@ -113,7 +112,7 @@ const Preview = () => {
         <div className="flex flex-col">
           <h1 className="font-[500] text-[14px] text-text-blue">Question</h1>
           <h1 className="font-[700] text-[18px] leading-[24px] text-gray-list py-[10px]">
-            {questionText}
+            {questionName}
           </h1>
           <div className="flex flex-row flex-end pt-[10px]">
             <img src={Video} alt="video" className="pr-[5px]" />
@@ -123,10 +122,10 @@ const Preview = () => {
             </h1>
           </div>
         </div>
-        <div className="min-h-[200px] bg-primary py-0 rounded-[12px] p-[10px]">
+        <div className="min-h-[100px] bg-primary py-0 rounded-[12px] p-[10px]">
           <div ref={containerRef} className="">
             <div className="text-neutral text-center text-[18px] font-[700]">
-              {questionText}
+              {graphicTitle}
             </div>
             {dataContainer.answers.map((answer, index) => (
               <div

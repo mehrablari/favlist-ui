@@ -14,6 +14,7 @@ const AnsweredList = () => {
     questionName,
     minAnswer,
     handleDragEnd,
+    graphicTitle,
     maxAnswer,
     apiData,
   } = useContext(LayoutContext);
@@ -35,6 +36,7 @@ const AnsweredList = () => {
   const handleChange = (isChecked) => {
     setShowIndex(isChecked);
   };
+
 
   return (
     <form
@@ -78,7 +80,7 @@ const AnsweredList = () => {
       {answers.length > 0 && (
         <Link
           to="/preview"
-          state={{ answers, questionId, questionName }}
+          state={{ answers, questionId, questionName, graphicTitle }}
           className="flex justify-center align-middle pt-[10px] font-sans"
         >
           <button

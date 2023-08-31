@@ -33,7 +33,7 @@ const NavBar = () => {
               />
             )}
             {open && (
-              <ul className="z-10 shadow-xl flex flex-col font-[500]  w-[200px] h-[220px] justify-center align-middle rounded-[12px] bg-neutral gap-[8px] text-gray-list py-[16px] text-[14px] absolute top-[25px] right-[1px] font-baloo2">
+              <ul className="z-10 shadow-xl flex flex-col font-[700] sm:font-[500] md:font-[600]  w-[200px] h-[220px] justify-center align-middle rounded-[12px] bg-neutral gap-[8px] text-gray-list py-[16px] text-[14px] absolute top-[25px] right-[1px] font-baloo2">
                 <li className="cursor-pointer pl-[16px]">
                   <Link to="/closedquestion" className="font-baloo2">Closed Questions</Link>
                 </li>

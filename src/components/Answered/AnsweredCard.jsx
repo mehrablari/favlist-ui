@@ -51,7 +51,8 @@ const AnsweredCard = ({ cardData }) => {
           </div>
           <div className="absolute bottom-md right-md">
             <a
-              href={`${sponsor.adsS3Url}`}
+              href={`${sponsor.logoS3Url
+              }`}
               className="hover:bg-primary-bg bg-grey-text w-[56px]"
               target="_blank"
               rel="noopener noreferrer"

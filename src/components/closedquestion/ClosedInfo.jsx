@@ -42,42 +42,56 @@ const ClosedInfo = () => {
 
   if (!infoData) {
     return (
-      <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[70px]" />
+      <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
+      <div className="animate-bounce animate-infinite">
+        <img
+          src={Logo}
+          alt="loading logo"
+          className="h-[70px] w-[280px] pb-[20px]"
+        />
+        <p className="text-center">Please Wait ...</p>
       </div>
+    </div>
     );
   }
 
   const { text, dateToPost, sponsor, answers, answerGraphicLink } = infoData;
 
   const formatDate = (inputDate) => {
-    const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
-    const formattedDate = new Date(inputDate).toLocaleDateString(undefined, options);
+    const options = {
+      weekday: "long",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    };
+    const formattedDate = new Date(inputDate).toLocaleDateString(
+      undefined,
+      options
+    );
     return formattedDate;
   };
 
   return (
     <>
       <NavBar />
-      <div className="flex flex-row items-center pt-[80px] bg-neutral pl-[10px] font-sans">
+      <div className="flex flex-row items-center py-[80px] bg-neutral pl-[10px] font-sans fixed">
         <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
         <Link to="/closedquestion" className="text-[18px] font-semibold">
           Back
         </Link>
       </div>
-      <div className="bg-neutral pt-[30px]">
+      <div className="bg-neutral pt-[90px]">
         <div
           key={id}
           className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
-          <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
+            <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
               {text}
             </div>
             <p className="text-[12px] text-gray-light font-[400] ">
-            Question on {formatDate(dateToPost)}
+              Question on {formatDate(dateToPost)}
             </p>
-            
 
             <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
               <h3 className="text-gray-lighter text-[12px] font-[400]">
@@ -86,17 +100,17 @@ const ClosedInfo = () => {
               <div className="flex justify-center">
                 <a href={`${sponsor.url}`}>
                   <img
-                    src={path14}
+                    src={sponsor.logoS3Url}
                     alt="netflix"
-                    className="w-[24px] h-[24px]"
+                    className="w-[30px] h-[30px]"
                   />
                 </a>
               </div>
               <div className="flex justify-center">
-                  <h3 className="text-gray-dark text-[12px] font-[600] pb-[10px] text-center w-[200px]">
-                    {sponsor.name}
-                  </h3>
-                </div>
+                <h3 className="text-gray-dark text-[12px] font-[600] pb-[10px] text-center w-[200px]">
+                  {sponsor.name}
+                </h3>
+              </div>
             </div>
             <div className="absolute bottom-md right-md">
               <a
@@ -112,7 +126,7 @@ const ClosedInfo = () => {
             </div>
           </div>
         </div>
-       
+
         {/* <ClosedQuestionFlag answerGraphic={answerGraphicLink} /> */}
         {/* <TruncateAnswers /> */}
         <ClosedAnswers answerData={answers} answerId={id} />

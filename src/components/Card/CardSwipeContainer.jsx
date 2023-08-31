@@ -3,18 +3,13 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import "./tindercards.css";
 import { EffectCards } from "swiper";
-import path14 from "../../assets/images/path14.png";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
-import { useContext, useState, useEffect } from "react";
-// import { LayoutContext } from "../Layout";
+import { useState } from "react";
 
-// export const CardSwipeContainerContext = createContext();
 
-const CardSwipeContainer = ({ apiData, handleSwipe }) => {
-  // const { apiData, handleSwipe } = useContext(LayoutContext);
-
-  // console.log(112,apiData)
+const CardSwipeContainer = ({ apiData, handleSwipe,questionId }) => {
+ 
 
   const storedQuestionIndex =
     localStorage.getItem("selectedQuestionIndex") || 0;
@@ -23,10 +18,13 @@ const CardSwipeContainer = ({ apiData, handleSwipe }) => {
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.activeIndex;
     setQuestion(activeIndex);
+    console.log("index", activeIndex);
+
+    
     // localStorage.setItem("questionIndex", activeIndex);
     // handleSwipe(questionData[activeIndex]);
     handleSwipe(apiData[activeIndex], activeIndex);
-    console.log(112,activeIndex)
+    
   };
 
   const remaining = (days) => {
@@ -55,33 +53,26 @@ const CardSwipeContainer = ({ apiData, handleSwipe }) => {
     return formattedDate;
   };
 
-  // function borderColorForId(id) {
-  //   // Example logic to generate unique colors based on id
-  //   const colors = ["#632A7E", "#F6F6F6", "#F2F2F2", "#BDD0F133"];
-  //   const colorIndex = id % colors.length; // Cycle through the colors
-  //   return colors[colorIndex];
-  // }
-
   return (
-    <div className="">
+    <div className="bg-primary w-full pb-[30px]">
       <Swiper
         initialSlide={question}
         effect={"cards"}
         grabCursor={true}
         loop={true}
         modules={[EffectCards]}
-        className="mySwiper h-[280px] sm:px-[33px] sm:py-[20px] md:px-[30px] md:py-[30px] flex justify-center sm:w-[310px] md:w-[320px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto font-sans"
+        className="mySwiper h-[280px] sm:px-[10px] sm:py-[20px] md:px-[34px] md:py-[30px] flex justify-center sm:w-[220px] md:w-[300px] w-[327px] align-middle pt-[40px] pb-[30px] mx-auto font-sans"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[310px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[10px] p-[20px] m-[3rem] md:my-[3rem] sm:px-[40px] max-w-[380px] h-[270px] drop-shadow-lg border-2 border-primary`}
+            className={`sm:w-[320px]   lg:w-[340px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[10px] p-[20px] my-[3rem] sm:px-[40px] max-w-[327px] h-[270px] drop-shadow-lg border-2 border-primary overflow-hidden`}
               // style={{ border: `2px solid ${borderColorForId(id)}` }}
               
           >
            
-            <p className="text-gray-dark text-[18px] max-w-[340px] items-center font-baloo2 sm:text-lg md:text-lg leading-2 font-[600]">
+            <p className="text-gray-dark text-lg items-center font-baloo2 sm:text-[16px] md:text-[16px] px-[20px] py-[5px] max-w-[340px] sm:w-[230px] md:leading-2 sm:leading-4 leading-2 font-[700] sm:font-[600] tracking-tighter">
               {question.text}
             </p>
             <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] w-[320px]">
@@ -97,15 +88,15 @@ const CardSwipeContainer = ({ apiData, handleSwipe }) => {
               </div>
 
               <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
-                <h3 className="text-gray-lighter text-[13px] font-[400] pt-[10px]">
+                <h3 className="text-gray-light text-[13px] font-[400]">
                   affiliate
                 </h3>
                 <div className="flex justify-center ">
-                  <a href={`${question.sponsor.url}`}>
-                    <img
-                      src={path14}
+                  <a href={`${question.sponsor.url}`} className="rounded-full">
+                     <img
+                      src={question.sponsor.logoS3Url}
                       alt="netflix"
-                      className="w-[24px] h-[24px]"
+                      className="rounded-md h-[30px] w-[40px] "
                     />
                   </a>
                 </div>
@@ -117,7 +108,8 @@ const CardSwipeContainer = ({ apiData, handleSwipe }) => {
 
                 <div className="absolute bottom-md right-md font-baloo2 border-2 bg-primary" style={{backgroundColor:"#A13E97"}}>
                   <a
-                    href={`${question.sponsor.adsS3Url}`}
+                    href={`${question.sponsor.adsS3Url
+                    }`}
                     className="w-[56px]"
                   >
                     <img

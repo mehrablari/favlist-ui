@@ -4,7 +4,7 @@ import filterIcon from "../../assets/images/filter.png";
 
 const CloseQuestionHeader = () => {
   return (
-    <div className="shadow-sm fixed z-3 top-[5px]  flex flex-col pt-[120px] px-[20px] pb-[30px] h-[100px] w-full justify-center ">
+    <div className="shadow-sm fixed flex flex-col pt-[130px] px-[20px] pb-[30px] h-[100px] w-full justify-center bg-neutral ">
       <Link to="/" className="flex flex-row items-center bg-neutral ">
         <div className="text-[18px]  flex flex-row justify-around font-semibold text-primary">
           <img src={ArrowBack} alt="" className="h-[20px] pr-[5px]" />

@@ -2,10 +2,14 @@
   "name": "favlist-mobile-app",
   "private": true,
   "version": "0.0.0",
+  "jest": {
+    "verbose": true
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test": "jest --coverage",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "postbuild": "node post-build.js"
@@ -54,6 +58,8 @@
     "vite-pwa": "^1.0.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.2",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
@@ -62,6 +68,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "jest": "^29.6.4",
+    "jsdom": "^22.1.0",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.9",

@@ -3,8 +3,8 @@
   "id":"/",
 "start_url": "/",
   "short_name": "Favlist",
-  "theme_color": "#632A7E",
-  "background_color": "#632A7E",
+  "theme_color": "#fffff",
+  "background_color": "#ffff",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [

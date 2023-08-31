@@ -5,17 +5,19 @@ import { toPng } from "html-to-image";
 import { useRef } from "react";
 
 
-const AnswerProvided = ({ answerData, apiData }) => {
-  const imgUrl = apiData.answerGraphicLink
+const AnswerProvided = ({ answerData }) => {
+  const {answerGraphicLink, answers, questionId} = answerData;
+  // const imgUrl = apiData.answerGraphicLink
 
   return (
     <div className="p-[40px]">
       <div className="flex flex-row justify-around w-[327px] mx-auto pb-[20px]">
-      <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4">All answers</h1>
+      <h1 className="flex justify-start w-[327px] sm:w-[320px] font-[600] text-[15px] leading-4">All answers</h1>
       <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4 pl-[20px]">Current global rank</h1>
 
       </div>
-      {answerData.map((question, index) => (
+
+      {answers.map((question, index) => (
         <div
           className="bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden pb-[10px]"
           key={index}
@@ -35,8 +37,8 @@ const AnswerProvided = ({ answerData, apiData }) => {
         </div>
       ))}
       <Link
-        to="/answergraphics" state={imgUrl} 
-        className="flex justify-center align-middle py-[16px] h-[46px] px-[24px] text-center rounded-lg font-[600] text-[14px] sm:w-[280px] w-[310px] mx-auto gap-[8px]
+        to="/answergraphics" state={answerGraphicLink} 
+        className="flex justify-center align-middle py-[14px] h-[46px] px-[24px] text-center rounded-lg font-[600] text-[14px] sm:w-[290px] pl-[10px] w-[320px] mx-auto gap-[8px]
           bg-primary text-neutral hover:bg-button-hover"
       >
         <div className="p-[1px]">

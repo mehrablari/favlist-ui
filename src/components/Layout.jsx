@@ -1,6 +1,5 @@
 import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
-// import { useParams } from "react-router-dom";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
 import NavBar from "./NavBar";
@@ -10,9 +9,8 @@ import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Logo from "../assets/images/logoblack.png";
-import Answered from "./Answered/Answered";
+import AnsweredContainer from "./Answered/AnsweredContainer";
 import { Helmet } from "react-helmet-async";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const LayoutContext = createContext();
 
@@ -27,18 +25,15 @@ const Layout = () => {
   const [clickedValue, setClickedValue] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState();
   const [questionId, setQuestionId] = useState("");
+  const [graphicTitle, setGraphicTitle] = useState("");
   const [questionName, setQuestionName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  const [isAnswered, setIsAnswered] = useState(false);
+  const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState([]);
 
   const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
-
-  // const { id } = useParams();
-  //check if user already answered
-  // const [userAnswered, setUserAnswered] = useState(false);
 
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
@@ -47,11 +42,10 @@ const Layout = () => {
   };
 
   const handleVibration = () => {
-    if ('vibrate' in navigator) {
-      navigator.vibrate(1000); // Vibrate for 1000 milliseconds (1 second)
+    if ("vibrate" in navigator) {
+      navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
     }
   };
- 
 
   const handleRemoveAnswer = (index) => {
     handleDismiss(index);
@@ -60,7 +54,7 @@ const Layout = () => {
     const updated = [...answers];
     updated.splice(index, 1);
     setAnswers(updated);
-    handleVibration()
+    handleVibration();
   };
 
   const handleDragEnd = (result) => {
@@ -80,11 +74,9 @@ const Layout = () => {
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
       playSoundEffect();
-      handleVibration()
+      handleVibration();
     }
   };
-
-
 
   //manage the swiping card of question container
   const handleSwipe = (activeQuestion) => {
@@ -92,7 +84,9 @@ const Layout = () => {
     setSelectedOption(activeQuestion?.answersJson[0]);
     setSuggestedOption(activeQuestion?.answersJson);
     setQuestionId(activeQuestion?.id);
-    setQuestionName(activeQuestion?.graphicTitle);
+    setGraphicTitle(activeQuestion?.graphicTitle);
+    setQuestionName(activeQuestion?.text);
+    setIsAnswered(activeQuestion?.userSubmission);
     setMinAnswer(activeQuestion?.minAnswerCount);
     setMaxAnswer(activeQuestion?.maxAnswerCount);
 
@@ -107,7 +101,7 @@ const Layout = () => {
         setTimeout(() => {
           localStorage.removeItem("answers");
           localStorage.removeItem("selectedQuestionIndex");
-        }, 4000);
+        }, 3000);
       }
     } else {
       setAnswers([]);
@@ -160,13 +154,16 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
+        console.log("data", response.data);
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
         setSuggestedOption(response.data[0]?.answersJson);
         setClickedValue(response.data[0]?.answersJson);
         setQuestionId(response.data[0]?.id);
-        setQuestionName(response.data[0]?.graphicTitle);
+        setIsAnswered(response.data[0]?.userSubmission);
+        setGraphicTitle(response.data[0]?.graphicTitle);
+        setQuestionName(response.data[0]?.text);
         setMinAnswer(response.data[0]?.minAnswerCount);
         setMaxAnswer(response.data[0]?.maxAnswerCount);
       } catch (error) {
@@ -179,8 +176,15 @@ const Layout = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center w-full align-middle mx-auto pt-[300px]  bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[70px]  w-[200px]" />
+      <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
+        <div className="animate-bounce animate-infinite">
+          <img
+            src={Logo}
+            alt="loading logo"
+            className="h-[70px] w-[280px] pb-[20px]"
+          />
+          <p className="text-center">Please Wait ...</p>
+        </div>
       </div>
     );
   }
@@ -204,6 +208,7 @@ const Layout = () => {
         answers,
         handleDismiss,
         questionId,
+        graphicTitle,
         questionName,
         clickedValue,
         setIsAnswered,
@@ -213,17 +218,18 @@ const Layout = () => {
       <NavBar />
 
       <CardSwipeContainer
-      apiData={apiData}
-      handleSwipe={handleSwipe}
-      // onSwipe={handleSwiperClear}
-      // selectedCardIndex={selectedCardIndex}
+        apiData={apiData}
+        handleSwipe={handleSwipe}
+        questionId={questionId}
+        // onSwipe={handleSwiperClear}
+        // selectedCardIndex={selectedCardIndex}
       />
       <Helmet>
         <title>Favlist Homepage</title>
         <meta name="description" content="Description for Home Page" />
       </Helmet>
       {isAnswered ? (
-        <Answered />
+        <AnsweredContainer isAnswered={isAnswered} />
       ) : (
         <>
           <Searchbox
@@ -234,12 +240,11 @@ const Layout = () => {
           />
           <Suggestion
             className="bg-neutral"
-            // suggestedOption={suggestedOption}
-            // setSuggestedOption={setSuggestedOption}
-            // handleAnswers={handleSubmission}
-            // handleClick={handleClick}
-            // filteredOptions={filteredOptions}
-            // answers={answers}
+            questionId={questionId}
+            maxAnswer={maxAnswer}
+            suggestedOption={suggestedOption}
+            handleClick={handleClick}
+            filteredOptions={filteredOptions}
           />
           <DndProvider backend={HTML5Backend}>
             <AnsweredList

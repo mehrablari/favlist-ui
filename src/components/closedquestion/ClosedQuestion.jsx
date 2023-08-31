@@ -3,10 +3,9 @@ import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 import QuestionCard from "./QuestionCard";
 import CloseQuestionHeader from "./CloseQuestionHeader";
-import Logo from "../../assets/images/logoblack.png"
+import Logo from "../../assets/images/logoblack.png";
 
-
-export const ClosedQuestionContext = createContext()
+export const ClosedQuestionContext = createContext();
 
 const ClosedQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -26,7 +25,6 @@ const ClosedQuestion = () => {
         );
         response.data;
         setIsLoading(false);
-        
 
         setQuestions(response.data.data.content);
       } catch (error) {
@@ -34,25 +32,30 @@ const ClosedQuestion = () => {
       }
     };
 
-    fetchData(); 
+    fetchData();
   }, []);
 
   if (isLoading) {
     return (
-      <div className="flex justify-center align-middle mx-auto pt-[300px] bg-neutral h-screen">
-        <img src={Logo} alt="loading logo" className=" h-[70px] w-[100px]" />
+      <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
+        <div className="animate-bounce animate-infinite">
+          <img
+            src={Logo}
+            alt="loading logo"
+            className="h-[70px] w-[280px] pb-[20px]"
+          />
+          <p className="text-center">Please Wait ...</p>
+        </div>
       </div>
     );
   }
 
-
   return (
-    <ClosedQuestionContext.Provider value={{questions}}>
-      <NavBar />
-      <div className=" w-full bg-neutral shadow-lg">
-
+    <ClosedQuestionContext.Provider value={{ questions }}>
+      {/* <NavBar /> */}
+      {/* <div className="">
         <CloseQuestionHeader />
-      </div>
+      </div> */}
 
       <QuestionCard />
     </ClosedQuestionContext.Provider>

@@ -20,7 +20,7 @@ const FilterPage = () => {
   return (
     <>
       <NavBar />
-      <div className=" pt-[70px] bg-neutral pl-[20px]">
+      <div className=" pt-[70px] bg-neutral pl-[20px] fixed flex flex-col w-full">
         <Link to="/closedquestion" className="flex flex-row items-center pb-[10px]text-[18px] font-semibold text-primary">
         <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
          <span>Back</span> 
@@ -35,7 +35,7 @@ const FilterPage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-neutral pt-[30px]">
+      <div className="bg-neutral pt-[180px]">
         {filteredData.map((question, index) => (
           <div key={index} className="shadow-sm px-[24px] h-[80px]">
             <Link
