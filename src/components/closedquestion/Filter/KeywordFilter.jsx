@@ -4,10 +4,10 @@ import { useState } from "react";
 const KeywordFilter = ({ handleInputChange }) => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleInput = (e) => {
-    const value = e.target.value;
+  const handleInput = (event) => {
+    const value = event;
     setInputValue(value);
-    handleInputChange(value);
+    handleInputChange(event);
   };
   return (
     <div>
@@ -15,7 +15,7 @@ const KeywordFilter = ({ handleInputChange }) => {
         FILTER BY KEYWORD
       </h1>
       <div className="flex flex-col py-[10px] h-[116px] w-327px ">
-        <h1 className="font-[400] text-[14px] pr-[83px] pb-[5px]leading-4 w-[327px] flex justify-center align-middle">
+        <h1 className="font-[400] text-[14px] px-[24px] pb-[5px]leading-4 mx-auto w-[327px] flex justify-center align-middle">
           Enter a search term
         </h1>
         <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center justify-center align-middle bg-neutral">
@@ -32,7 +32,7 @@ const KeywordFilter = ({ handleInputChange }) => {
               onChange={handleInput}
               type="search"
               placeholder="search..."
-              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[12px] placeholder:text-[14px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[10px] border w-[327px] border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[280px] rounded-[12px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
+              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[14px] placeholder:text-[14px] placeholder:h-[16px] sm:placeholder:pl-[40px] placeholder:pl-[30px] placeholder:pt-[10px] border w-[327px] border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[327px] rounded-[12px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
             />
           </div>
         </div>
