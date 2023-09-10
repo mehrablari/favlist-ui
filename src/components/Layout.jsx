@@ -27,6 +27,7 @@ const Layout = () => {
   const [questionId, setQuestionId] = useState("");
   const [graphicTitle, setGraphicTitle] = useState("");
   const [questionName, setQuestionName] = useState("");
+  const [daysRemaining, setDaysRemaining] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const [isAnswered, setIsAnswered] = useState(null);
@@ -89,6 +90,7 @@ const Layout = () => {
     setIsAnswered(activeQuestion?.userSubmission);
     setMinAnswer(activeQuestion?.minAnswerCount);
     setMaxAnswer(activeQuestion?.maxAnswerCount);
+    setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
     const storedAnswers = localStorage.getItem("answers");
     let count = 1;
@@ -154,13 +156,13 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
-        console.log("data", response.data);
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
         setSuggestedOption(response.data[0]?.answersJson);
         setClickedValue(response.data[0]?.answersJson);
         setQuestionId(response.data[0]?.id);
+        setDaysRemaining(response.data[0]?.daysToRemainOpen);
         setIsAnswered(response.data[0]?.userSubmission);
         setGraphicTitle(response.data[0]?.graphicTitle);
         setQuestionName(response.data[0]?.text);
@@ -221,6 +223,7 @@ const Layout = () => {
         apiData={apiData}
         handleSwipe={handleSwipe}
         questionId={questionId}
+        daysRemaining={daysRemaining}
         // onSwipe={handleSwiperClear}
         // selectedCardIndex={selectedCardIndex}
       />
@@ -231,7 +234,19 @@ const Layout = () => {
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
-        <>
+        <div className="">
+          
+           <DndProvider backend={HTML5Backend}>
+            <AnsweredList
+              apiData={apiData}
+              // answers={answers}
+              // questionData={apiData}
+              // handleDismiss={handleDismiss}
+              // questionId={questionId}
+              // questionName={questionName}
+              // clickedValue={clickedValue}
+            />
+          </DndProvider>
           <Searchbox
           // answerData={apiData}
           // activeAnswerJson={activeAnswerJson}
@@ -246,18 +261,8 @@ const Layout = () => {
             handleClick={handleClick}
             filteredOptions={filteredOptions}
           />
-          <DndProvider backend={HTML5Backend}>
-            <AnsweredList
-              apiData={apiData}
-              // answers={answers}
-              // questionData={apiData}
-              // handleDismiss={handleDismiss}
-              // questionId={questionId}
-              // questionName={questionName}
-              // clickedValue={clickedValue}
-            />
-          </DndProvider>
-        </>
+         
+        </div>
       )}
     </LayoutContext.Provider>
   );
