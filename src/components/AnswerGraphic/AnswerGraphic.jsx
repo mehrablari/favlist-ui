@@ -2,22 +2,25 @@ import { Link, useLocation } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
+import congrats from "../../assets/gif/congrats.gif"
 
 const AnswerGraphics = () => {
   const location = useLocation();
   const imgUrl = location.state;
 
+  console.log("img link", imgUrl);
+
   return (
-    <div className="bg-primary pt-[100px] pb-[20px] h-screen md:h-[100%] mdx:h-[100%] mx-auto">
+    <div className="pt-[100px] pb-[20px] h-screen md:h-screen sm:h-screen mdx:h-screen mx-auto" style={{backgroundImage:`url(${congrats})`, backgroundPosition:"center",backgroundRepeat:"no-repeat", backgroundSize:"cover"}}>
       <div className="bg-neutral min-h-[300px] w-[327px] rounded-lg mx-auto p-[20px]">
-        <div className="flex flex-row justify-center pt-[20px] mx-auto">
+        <div className="flex flex-row justify-center pt-[10px] mx-auto">
           <img src={Video} alt="video" className="pr-[10px]" />
           <h1 className="font-[600] text-md text-text-blue">
             Your Answer graphics
           </h1>
         </div>
-        <div className="min-h-[100px] max-w-[300px] p-[20px] rounded-lg m-[10px]">
-          <img src={imgUrl} alt="Your Answer Graphic" className="bg-primary" />
+        <div className="min-h-[100px] max-w-[400px] p-[20px] rounded-lg m-[10px]">
+          <img src={imgUrl} alt="Your Answer Graphic" className="bg-primary w-[300px] h-[200px]" />
         </div>
         <div className="flex flex-col pt-[10px]">
           <div className="flex flex-col justify-center align-middle p-[10px]">

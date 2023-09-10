@@ -10,11 +10,12 @@ import ClosedAnswers from "./ClosedAnswers";
 import TruncateAnswers from "./TruncateAnswers";
 import Logo from "../../assets/images/logoblack.png";
 import ArrowBack from "../../assets/images/back.png";
+import "./closeinfo.css"
 
 const ClosedInfo = () => {
   const { id } = useParams();
   const [infoData, setInfoData] = useState(null);
-  // console.log(123, id);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,15 +44,15 @@ const ClosedInfo = () => {
   if (!infoData) {
     return (
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
-      <div className="animate-bounce animate-infinite">
-        <img
-          src={Logo}
-          alt="loading logo"
-          className="h-[70px] w-[280px] pb-[20px]"
-        />
-        <p className="text-center">Please Wait ...</p>
+        <div className="animate-bounce animate-infinite">
+          <img
+            src={Logo}
+            alt="loading logo"
+            className="h-[70px] w-[280px] pb-[20px]"
+          />
+          <p className="text-center">Please Wait ...</p>
+        </div>
       </div>
-    </div>
     );
   }
 
@@ -74,7 +75,7 @@ const ClosedInfo = () => {
   return (
     <>
       <NavBar />
-      <div className="flex flex-row items-center py-[80px] bg-neutral pl-[10px] font-sans fixed">
+      <div className="flex flex-row items-center pb-[10px] pt-[80px] pl-[10px] font-sans fixed h-[50px] w-full bg-neutral">
         <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
         <Link to="/closedquestion" className="text-[18px] font-semibold">
           Back
@@ -83,7 +84,7 @@ const ClosedInfo = () => {
       <div className="bg-neutral pt-[90px]">
         <div
           key={id}
-          className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary"
+          className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[340px] h-[240px] drop-shadow-lg border-2 border-primary"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
             <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
@@ -100,7 +101,7 @@ const ClosedInfo = () => {
               <div className="flex justify-center">
                 <a href={`${sponsor.url}`}>
                   <img
-                    src={sponsor.logoS3Url}
+                    src={sponsor.logoUrl}
                     alt="netflix"
                     className="w-[30px] h-[30px]"
                   />
@@ -112,9 +113,9 @@ const ClosedInfo = () => {
                 </h3>
               </div>
             </div>
-            <div className="absolute bottom-md right-md">
+            <div className="youtube absolute bottom-md right-[0px] top-[205px]">
               <a
-                href={`${sponsor.adsS3Url}`}
+                href={`${sponsor.youTubeLink}`}
                 className="hover:bg-primary-bg bg-grey-text w-[56px]"
               >
                 <img

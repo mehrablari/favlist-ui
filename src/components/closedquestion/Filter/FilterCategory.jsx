@@ -10,14 +10,24 @@ import FilterDate from "./FilterDate";
 
 const FilterCategory = ({ filterData }) => {
   const [checkedCategories, setCheckedCategories] = useState([]);
-  const [filterPayload, setFilterPayload] = useState({});
+  // const [filterPayload, setFilterPayload] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [exactDate, setExactDate] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [exactDate, setExactDate] = useState("");
   const [activeTab, setActiveTab] = useState("tabone");
+  const [filterPayload, setFilterPayload] = useState({ searchText: "" });
 
+  const handleInputChange = (event) => {
+    
+    setFilterPayload({
+      ...filterPayload,
+      searchText: event.target.value,
+      
+    });
+    
+  };
   const handleTabOne = () => {
     setActiveTab("tabone");
   };
@@ -27,26 +37,30 @@ const FilterCategory = ({ filterData }) => {
 
   //date range selection
   const handleStartDateChange = (date) => {
+    console.log("Start Date Selected:", date);
     setStartDate(date);
   };
 
   //exactdate selection
   const handleEndDateChange = (date) => {
+    console.log("end Date Selected:", date);
     setEndDate(date);
   };
 
   const handleExactDateChange = (date) => {
+    console.log("exact Date Selected:", date);
     setExactDate(date);
   };
 
   const navigate = useNavigate();
 
-  const handleInputChange = (event) => {
-    setFilterPayload({
-      ...filterPayload,
-      searchText: event.target.value,
-    });
-  };
+  // const handleInputChange = (event) => {
+  //   setFilterPayload({
+  //     ...filterPayload,
+  //     searchText: event.target.value,
+  //   });
+  // };
+  
 
   const handleChange = (event) => {
     if (event.target.checked === true) {
@@ -88,6 +102,28 @@ const FilterCategory = ({ filterData }) => {
       apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?exactDate=${payload.exactDate}`;
     }
 
+    // let apiUrl = "https://dev.pacerlabs.co/api/v1/search-archive/filter";
+
+    // if (payload.searchText) {
+    //   apiUrl += `?searchText=${payload.searchText}`;
+    // }
+
+    // if (payload.categories) {
+    //   apiUrl += `&categories=${payload.categories}`;
+    // }
+
+    // if (payload.startDate) {
+    //   apiUrl += `&startDate=${payload.startDate}`;
+    // }
+
+    // if (payload.endDate) {
+    //   apiUrl += `&endDate=${payload.endDate}`;
+    // }
+
+    // if (payload.exactDate) {
+    //   apiUrl += `&exactDate=${payload.exactDate}`;
+    // }
+
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
@@ -100,8 +136,7 @@ const FilterCategory = ({ filterData }) => {
           navigate(
             `/filterpage?filteredData=${encodeURIComponent(serializedData)}`
           );
-        }
-     
+        } 
       })
       .catch((error) => {
         setIsLoading(false);
@@ -117,11 +152,12 @@ const FilterCategory = ({ filterData }) => {
         handleTabTwo={handleTabTwo}
         activeTab={activeTab}
         exactDate={exactDate}
+        startDate={startDate}
+        endDate={endDate}
         handleStartDateChange={handleStartDateChange}
         handleExactDateChange={handleExactDateChange}
         handleEndDateChange={handleEndDateChange}
-        startDate={startDate}
-        endDate={endDate}
+      
       />
 
       <CategoryChecker

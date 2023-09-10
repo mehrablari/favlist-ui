@@ -12,7 +12,7 @@ const QuestionCard = () => {
 
   const formatDate = (inputDate) => {
     const options = {
-      weekday: "long",
+      // weekday: "short",
       month: "short",
       day: "numeric",
       year: "numeric",
@@ -34,20 +34,20 @@ const QuestionCard = () => {
           <meta name="description" content="Description for Closed Question" />
         </Helmet>
         {questions.map((question, index) => (
-          <div key={index} className="shadow-sm px-[24px] h-[80px]">
+          <div key={index} className="shadow-sm px-[24px] min-h-[50px] pb-[10px]">
             <Link
               to={`/closedinfo/${question.id}`}
               className="flex flex-row justify-start  py-[10px]"
             >
-              <img src={Calendar} alt="" className="h-[20px] pr-[5px]" />
-              <p className="text-[14px] leading-4 font-[400] text-gray-dark">
-                Question on {formatDate(question.dateToPost)}
+              <img src={Calendar} alt="" className="h-[18px] pr-[5px]" />
+              <p className="text-[13px] leading-4 font-[400] text-gray-dark">
+                {formatDate(question.dateToPost)}
               </p>
             </Link>
 
             <Link
               to={`/closedinfo/${question.id}`}
-              className="font-[500] text-[16px] flex flex-wrap leading-[20px] cursor-pointer text-gray-dark"
+              className="font-[600] text-[16px] flex flex-wrap leading-[20px] cursor-pointer text-gray-dark"
             >
               {question.text}
             </Link>

@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
 import { Helmet } from "react-helmet-async";
+import BgImage from "../../assets/images/favh.jpg";
 
 let imageState;
 let imgUrl;
@@ -75,7 +76,7 @@ const Preview = () => {
               navigate("/submitted", {
                 state: { graphicUrl: data.data.answerGraphicLink },
               });
-            } 
+            }
           }
         })
         .catch((error) => toast.error(error.message));
@@ -83,7 +84,15 @@ const Preview = () => {
   };
 
   return (
-    <div className="flex flex-col p-[40px] bg-primary  mx-auto md:w-[400px] w-[500px] sm:w-[340px] sm:h-screen mdx:h-[100%] md:h-screen h-screen lg:h-[100%] xl:h-screen">
+    <div className="flex flex-col p-[40px] mx-auto sm:h-screen mdx:h-screen md:h-screen max-h-screen lg:h-screen xl:h-screen" style={{
+      backgroundImage: `url(${BgImage})`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      width: "100%",
+      padding: "10px",
+      borderRadius: "16px",
+    }}>
       <Helmet defer={false}>
         <title>FavList </title>
         <meta property="og:title" content="Favlist" />
@@ -103,35 +112,48 @@ const Preview = () => {
         <meta property="og:site_name" content="Favlist" />
         <meta name="twitter:image:alt" content="favourite answers" />
       </Helmet>
-      <div className="mx-auto ">
+      <div className="mx-auto pt-[50px]">
         <h1 className="text-neutral font-[700] text-[16px] leading-5 p-[20px]">
           PREVIEW YOUR ANSWERS
         </h1>
       </div>
-      <div className="flex flex-col bg-neutral rounded-lg px-[10px] py-[20px] gap-[16px]">
+      <div className="flex flex-col bg-neutral rounded-lg px-[10px] py-[20px] gap-[16px] w-[327px] mx-auto">
         <div className="flex flex-col">
           <h1 className="font-[500] text-[14px] text-text-blue">Question</h1>
           <h1 className="font-[700] text-[18px] leading-[24px] text-gray-list py-[10px]">
             {questionName}
           </h1>
-          <div className="flex flex-row flex-end pt-[10px]">
-            <img src={Video} alt="video" className="pr-[5px]" />
-
+          <div className="flex pt-[10px]">
+            <img src={Video} alt="video" className="pr-[10px]" />
             <h1 className="font-[500] text-[14px] text-text-blue">
               Your preview image
             </h1>
           </div>
+          
         </div>
-        <div className="min-h-[100px] bg-primary py-0 rounded-[12px] p-[10px]">
-          <div ref={containerRef} className="">
+        <div className="rounded-[12px]">
+          <div
+            ref={containerRef}
+            className=""
+            style={{
+              backgroundImage: `url(${BgImage})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              height: "100%",
+              padding: "10px",
+              borderRadius: "16px",
+            }}
+          >
             <div className="text-neutral text-center text-[18px] font-[700]">
               {graphicTitle}
             </div>
             {dataContainer.answers.map((answer, index) => (
               <div
                 key={index}
-                className="bg-center text-center text-neutral text-lg transition-all duration-300 hover:bg-primary"
+                className="bg-center text-neutral text-center text-lg text-[16px] font-sans font-[500]"
               >
+                <span>{index + 1}.  </span>
                 {answer}
               </div>
             ))}
@@ -155,7 +177,10 @@ const Preview = () => {
 
         <div className="flex flex-row items-center justify-around mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive w-[180px]">
           <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
-          <Link to="/" className="text-[14px] font-semibold text-primary-light">
+          <Link
+            to="/"
+            className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light"
+          >
             Go back to edit answers
           </Link>
         </div>

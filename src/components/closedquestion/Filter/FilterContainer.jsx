@@ -21,12 +21,12 @@ const FilterContainer = () => {
           }
         );
         response.data;
-       
 
         setFilterData(response.data.data.content);
+        
       } catch (error) {
         console.error("Error fetching data:", error);
-        setFilterData(null); 
+        setFilterData(null);
       }
     };
 

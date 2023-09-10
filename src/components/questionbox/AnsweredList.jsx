@@ -40,7 +40,7 @@ const AnsweredList = () => {
 
   return (
     <form
-      className="bg-neutral pt-[12px] pb-[30px] gap-[12px] font-sans"
+      className="bg-neutral pt-[60px] gap-[12px] font-sans min-h-[150px]"
       onClick={handleSubmit}
     >
       <AnswerHeader
@@ -59,7 +59,7 @@ const AnsweredList = () => {
             key={index}
           >
             <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px] sm:w-[300px]">
-              <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row cursor-pointer justify-between hover:bg-primary-bg">
+              <div className="sm:w-[327px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row cursor-pointer justify-between hover:bg-primary-bg">
                 <span className="text-[13px] h-[22px] text-ellipsis truncate w-[200px]">
                   {answer}
                 </span>

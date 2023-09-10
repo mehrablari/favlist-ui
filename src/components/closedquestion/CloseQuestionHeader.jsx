@@ -7,22 +7,22 @@ const CloseQuestionHeader = () => {
     <div className="shadow-sm fixed flex flex-col pt-[130px] px-[20px] pb-[30px] h-[100px] w-full justify-center bg-neutral ">
       <Link to="/" className="flex flex-row items-center bg-neutral ">
         <div className="text-[18px]  flex flex-row justify-around font-semibold text-primary">
-          <img src={ArrowBack} alt="" className="h-[20px] pr-[5px]" />
-          <span className="">Back</span>
+          <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
+          <h2 className="">Back</h2>
         </div>
       </Link>
       
       <div className="flex justify-between flex-row py-[30px] bg-neutral">
         <p className="font-[700] text-[18px] leading-5">Closed questions</p>
-        <div className="flex flex-row items-center rounded-sm bg-primary-border mt-[-10px] p-[8px]">
+        <Link to="/filtercontainer" className="flex flex-row items-center rounded-sm bg-primary-border mt-[-13px] p-[6px] cursor-pointer">
           <img src={filterIcon} alt="" className="h-[22px] pr-[5px]" />
-          <Link
-            to="/filtercontainer"
+          <p
+           
             className="text-[16px] font-semibold text-primary"
           >
             Filter
-          </Link>
-        </div>
+          </p>
+        </Link>
       </div>
     </div>
   );

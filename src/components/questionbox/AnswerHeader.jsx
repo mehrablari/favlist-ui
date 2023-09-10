@@ -25,7 +25,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
   };
   //mui
   return (
-    <div className="bg-neutral pt-[10px] flex flex-row justify-between sm:w-[300px] mx-auto w-[327px]">
+    <div className="bg-neutral flex flex-row justify-between sm:w-[300px] mx-auto w-[327px]">
       <div className="text-grey-text">
         <p className="text-[16px] font-[600]">Your Answers</p>
         <p className="text-[12px] font-[400]">
