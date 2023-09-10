@@ -6,6 +6,8 @@ import SwiperCore, { Pagination } from "swiper";
 import { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import cancelIcon from "../../assets/images/cancelicon.png";
+import "./style/answermodal.css"
+import { ToastContainer, toast } from "react-toastify";
 
 SwiperCore.use([Pagination]);
 
@@ -57,11 +59,49 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
     handleClick(answer);
 
 
-    if (!answerSet.has(answer) && answerSet.size < maxAnswer) {
+    // if (!answerSet.has(answer) && answerSet.size < maxAnswer) {
+    //   // Add the new answer to the set
+    //   const newAnswerSet = new Set(answerSet);
+    //   toast.error(`Answer "${answer}" is already added.`, {
+    //   position: "top-right",
+    //   autoClose: 1000,
+    // });
+    //   newAnswerSet.add(answer);
+    //   setAnswerSet(newAnswerSet);
+    //   toast.warning(`Maximum answers (${maxAnswer}) reached.`, {
+    //     position: "top-right",
+    //     autoClose: 1000,
+    //   });
+    // }
+    // toast.success(`${answer} has been added.`, {
+    //   closeOnClick: true,
+    //   position: "top-right",
+    //   toastId: answer <= maxAnswer,
+    //   autoClose: 1000, // You can adjust the duration of the notification
+    // });
+    if (answerSet.has(answer)) {
+      // If the answer is already in the set, show a toast indicating it's already added
+      toast.error(`${answer} is already added.`, {
+        position: "top-right",
+        autoClose: 1000,
+      });
+    } else if (answerSet.size >= maxAnswer) {
+      // If the maximum allowed answers have been reached, show a toast indicating it
+      toast.warning(`Maximum answers (${maxAnswer}) reached.`, {
+        position: "top-right",
+        autoClose: 1000,
+      });
+    } else {
       // Add the new answer to the set
       const newAnswerSet = new Set(answerSet);
       newAnswerSet.add(answer);
       setAnswerSet(newAnswerSet);
+  
+      // Show a success toast for a successfully added answer
+      toast.success(`${answer} has been added.`, {
+        position: "top-right",
+        autoClose: 1000,
+      });
     }
 
     const answeredList = Array.from(answerSet);
@@ -82,8 +122,8 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
     const slides = [];
 
     for (let i = 0; i < totalSlides; i++) {
-      const startIndex = i * 20;
-      const endIndex = startIndex + 20;
+      const startIndex = i * 24;
+      const endIndex = startIndex + 24;
       const items =
         filteredOption.length > 0
           ? filteredOption.slice(startIndex, endIndex)
@@ -92,22 +132,25 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
       slides.push(
         <SwiperSlide
           key={i}
-          className="w-[327px] sm:w-[300px] sm:h-[32vh] h-[45vh] pb-[10px] md:h-[38vh] font-baloo2"
+          className="answermodal w-[327px] mdx:h-[30vh] sm:h-[100px] h-[80vh] lg:h-[450px] pb-[10px] md:h-[38vh] font-baloo2 "
         >
-          <div className="flex flex-wrap py-[15px] px-[2px] md:px-[4px] sm:py-[20px] overflow-hidden">
+          <div className="flex flex-wrap py-[5px] px-[2px] md:px-[4px] sm:py-[5px]">
             {items.map((answer, index) => (
-              <div key={index} className="w-1/2">
-                <div className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 p-[5px] sm:p-[4px] rounded-[16px] mx-[2px] sm:mx-[8px] md:mx-[3px] my-[5px] sm:my-[8px] md:my-[8px] ">
+              <div key={index} className="w-1/2 py-[6px] sm:py-[6px] md:py-[0px] px-[2px]">
+                <div className={`bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[5px] py-[5px] rounded-[16px] mx-[2px] md:mx-[3px] my-[2px] sm:my-[0px] sm:px-[4px] md:my-[6px] sm:w-full ${
+                      answerSet.has(answer) ? 'bg-primary ' : ''
+                    }`}>
                   <h3
-                    className="text-[14px] md:text-[14px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-3 sm:leading-4 cursor-pointer sm:text-[12px]"
+                    className="text-[14px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-[10px] sm:leading-4 md:leading-4 mdx:leading-4 cursor-pointer sm:text-[12px]"
                     onClick={() => handleAnswerClick(answer)}
                   >
-                    {answer.length > 12 ? `${answer.slice(0, 20)}...` : answer}
+                    {answer.length > 12 ? `${answer.slice(0, 24)}...` : answer}
                   </h3>
                 </div>
               </div>
             ))}
           </div>
+          <ToastContainer />
         </SwiperSlide>
       );
     }
@@ -116,10 +159,10 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   return (
-    <div className="flex flex-col bg-neutral h-screen p-[20px] w-screen pb-[10px] sm:pt-[15px] md:pt-[15px]">
-      <div className="flex flex-col pt-[20px]">
-        <div className="flex flex-row justify-between pb-[10px] text-gray-dark w-[327px] sm:w-[280px] sm:pb-[5px]h-[80px] mx-auto font-sans">
-          <h2 className="sm:text-[14px]">Suggestions</h2>
+    <div className="flex flex-col h-[100vh] min-h-max sm:min-h-max md:min-h-max sm:h-[100vh] bg-neutral mdx:h-[100%] p-[20px] w-screen sm:pt-[20px] md:pt-[20px] mdx:pt-[20px]">
+      <div className="flex flex-col pt-[10px]">
+        <div className="flex flex-row justify-between overflow-hidden pb-[10px] text-gray-dark w-[327px] sm:ww-full sm:pb-[5px] h-[30px] mx-auto font-sans">
+          <h2 className="sm:text-[16px]">Suggestions</h2>
           <img
             src={cancelIcon}
             alt="cancel"
@@ -127,9 +170,30 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
             className="cursor-pointer sm:w-[15px] sm:h-[15px] w-[20px] h-[20px]"
           />
         </div>
-        <h2 className="font-[500] flex flex-wrap text-[14px] tracking-tight sm:text-[12px] text-gray-lighter mx-auto text-center sm:w-[327px] md:w-[327px] w-[340px] md:flex justify-center align-middle md:tracking-tighter">
+        <h2 className="font-[500] flex flex-wrap text-[14px] tracking-tight sm:text-[13px] text-gray-lighter mx-auto text-center sm:w-full md:w-[320px] w-[340px] md:flex justify-center align-middle md:tracking-tighter">
           Select from this pool of suggestions to answer the question.
         </h2>
+      </div>
+      <div className="flex flex-col justify-center align-middle mx-auto bg-neutral w-full pt-[10px] h-[110px] md:h-[100px] pb-[20px] sm:pt-[5px] sm:h-[60px] ">
+        <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center sm:pt-[10px] justify-center align-middle ">
+          {inputValue.length === 0 && (
+            <span className="absolute left-[10px] top-[5px] h-full flex items-center">
+              <SearchIcon
+                className="h-[15px] w-[15px] text-gray-lighter"
+                aria-hidden="true"
+              />
+            </span>
+          )}
+          <div className="flex-grow">
+            <input
+              onChange={handleInputChange}
+              disabled={selectedOption && selectedOption.length >= maxAnswer}
+              type="search"
+              placeholder="Start typing an answer..."
+              className="placeholder:w-[200px] sm:placeholder:w-[120px] sm:placeholder:text-[12px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-full w-[327px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
+            />
+          </div>
+        </div>
       </div>
       <Swiper
         slidesPerView={1}
@@ -145,31 +209,11 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           "--swiper-pagination-bullet": "10px",
           "--swiper-pagination-bullet-horizontal-gap": "4px",
         }}
-        className="mySwiper h-[820px] pb-[10px] sm:px-[10px] sm:py-[10px] sm:pt-[100px] xl:pt-[50px]  md:h-[740px] md:pt-[90px] flex justify-center sm:w-[280px] w-[325px] align-middle mx-auto mdx:pt-[70px] lg:pt-[50px] pt-[40px]"
+        className="mySwiper h-[800px] pb-[10px] sm:pt-[190px] lg:pt-[30px] xl:pt-[50px] sm:min-h-max mdx:min-h-max lg:h-[800px] md:min-h-max md:pt-[90px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[100px] pt-[10px]"
       >
         {renderSwiperSlides()}
       </Swiper>
-      <div className="flex flex-col justify-center mx-auto bg-neutral w-full pt-[30px] h-[130px] md:h-[180px] pb-[20px] md:pb-[10px] md:pt-[50px] sm:pt-[5px] sm:h-[20vh] ">
-        <div className="w-[327px] sm:w-[300px] mx-auto relative flex items-center sm:pt-[10px] justify-center align-middle ">
-          {inputValue.length === 0 && (
-            <span className="absolute left-[10px] top-[5px] h-full flex items-center">
-              <SearchIcon
-                className="h-[15px] w-[15px] text-gray-lighter"
-                aria-hidden="true"
-              />
-            </span>
-          )}
-          <div className="flex-grow">
-            <input
-              onChange={handleInputChange}
-              disabled={selectedOption && selectedOption.length >= maxAnswer}
-              type="search"
-              placeholder="Start typing an answer..."
-              className="placeholder:w-[180px] sm:placeholder:w-[120px] sm:placeholder:text-[12px] placeholder:text-[14px] placeholder:h-[16px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[280px] w-[327px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
-            />
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };
