@@ -64,7 +64,7 @@ const CardSwipeContainer = ({
   };
 
   return (
-    <div className="bg-primary w-full pb-[30px]">
+    <div className="bg-primary w-full overflow-hidden">
       <Swiper
         initialSlide={questionId}
         effect={"cards"}
@@ -72,62 +72,60 @@ const CardSwipeContainer = ({
         loop={true}
         modules={[EffectCards]}
         // slidesPerView={1}
-        className="mySwiper h-[280px] align-middle mx-auto font-sans pb-[30px] pt-[40px] sm:px-[50px] sm:max-w-auto sm:py-[25px] md:px-[20px] md:py-[30px] flex flex-wrap flex-auto justify-center s:w-[270px] md:max-w-[320px] md:w-[270px] w-[327px] max-w-[327px]"
+        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] md:pt-[30px] sm:pt-[30px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px]"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[260px] swiper-1 md:w-[310px] lg:w-[320px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[10px] p-[10px] md:px-[10px] my-[3rem] sm:px-[10px] max-w-[327px] h-[270px] drop-shadow-lg border-2 overflow-hidden`}
+            className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center mt-[2rem] mb-[10px] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-2 overflow-hidden`}
             style={{ borderColor: borderColors[id] }}
             // style={{ border: `2px solid ${borderColorForId(id)}` }}
           >
-            <p className="text-gray-dark text-lg items-center font-baloo2 sm:text-[16px] md:text-[17px] md:px-[20px] px-[20px] py-[5px] max-w-[340px] sm:w-[250px] md:w-[260px] md:leading-2 sm:leading-4 leading-2 font-[700] sm:font-[600] tracking-tighter">
+            <p className="text-gray-dark text-[20px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[600] tracking-tighter">
               {question.text}
             </p>
-            <div className="flex flex-col bg-neutral rounded-lg w-[320px] pt-[10px]">
-              <p className="text-[13px] text-gray-light font-baloo2 font-[400] ">
+            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[10px] mx-auto pb-[10px]">
+              <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px]">
                 {formatDate(question.dateToPost)}
               </p>
-
               <div className="flex flex-row justify-center items-center h-[40px] pb-[10px]">
                 <img src={Clock} alt="clock" className="w-[15px] h-[15px]" />
                 <h1 className="text-[13px] pl-[5px] text-primary-light font-[400] font-baloo2">
                   {remaining(question.daysToRemainOpen + 1)}
                 </h1>
               </div>
-
-              <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[20px]">
-                <h3 className="text-gray-light text-[13px] font-[400]">
-                  affiliate
+            </div>
+            <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
+              <h3 className="text-gray-light text-[13px] font-[400]">
+                affiliate
+              </h3>
+              <div className="flex justify-center ">
+                <a href={`${question.sponsor.url}`} className="rounded-full">
+                  <img
+                    src={question.sponsor.logoS3Url}
+                    alt="netflix"
+                    className="rounded-md h-[30px] w-[40px] "
+                  />
+                </a>
+              </div>
+              <div className="flex justify-center">
+                <h3 className="text-gray-dark text-[13px] font-[600] pb-[15px] text-center w-[200px]">
+                  {question.sponsor.name}
                 </h3>
-                <div className="flex justify-center ">
-                  <a href={`${question.sponsor.url}`} className="rounded-full">
-                    <img
-                      src={question.sponsor.logoS3Url}
-                      alt="netflix"
-                      className="rounded-md h-[30px] w-[40px] "
-                    />
-                  </a>
-                </div>
-                <div className="flex justify-center">
-                  <h3 className="text-gray-dark text-[13px] font-[600] pb-[15px] text-center w-[200px]">
-                    {question.sponsor.name}
-                  </h3>
-                </div>
+              </div>
 
-                <div
-                  className="youtube absolute bottom-md right-[0px] top-[235px] font-baloo2"
-                  // style={{ backgroundColor: "#A13E97" }}
-                >
-                  <a href={`${question.sponsor.adsS3Url}`} className="w-[56px]">
-                    <img
-                      src={youtubeIcon}
-                      alt="youtube icon"
-                      className="w-[24px] h-[17px] "
-                    />
-                  </a>
-                </div>
+              <div
+                className="youtube absolute bottom-md right-[0px] top-[210px] font-baloo2"
+                // style={{ backgroundColor: "#A13E97" }}
+              >
+                <a href={`${question.sponsor.adsS3Url}`} className="w-[56px]">
+                  <img
+                    src={youtubeIcon}
+                    alt="youtube icon"
+                    className="w-[24px] h-[17px] "
+                  />
+                </a>
               </div>
             </div>
           </SwiperSlide>
