@@ -235,18 +235,6 @@ const Layout = () => {
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
         <div className="">
-          
-           <DndProvider backend={HTML5Backend}>
-            <AnsweredList
-              apiData={apiData}
-              // answers={answers}
-              // questionData={apiData}
-              // handleDismiss={handleDismiss}
-              // questionId={questionId}
-              // questionName={questionName}
-              // clickedValue={clickedValue}
-            />
-          </DndProvider>
           <Searchbox
           // answerData={apiData}
           // activeAnswerJson={activeAnswerJson}
@@ -261,6 +249,20 @@ const Layout = () => {
             handleClick={handleClick}
             filteredOptions={filteredOptions}
           />
+          
+           <DndProvider backend={HTML5Backend}>
+            <AnsweredList
+              apiData={apiData}
+              // answers={answers}
+              // questionData={apiData}
+              // handleDismiss={handleDismiss}
+              // questionId={questionId}
+              // questionName={questionName}
+              // clickedValue={clickedValue}
+            />
+          </DndProvider>
+          
+          
          
         </div>
       )}

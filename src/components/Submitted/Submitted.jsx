@@ -19,9 +19,9 @@ const Submit = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="bg-neutral w-[327px] rounded-lg mx-auto py-[10px]">
+      <div className="bg-neutral w-[327px] sm:w-[350px] md:w-[350px] rounded-lg mx-auto py-[10px]">
         <div className="flex flex-col">
-          <h2 className="w-[300px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
+          <h2 className="w-[327px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
             Yaayy! Your answers have been submitted!
           </h2>
           {/* < hr className="border-t-2 border-[#B5B8BB] mx-auto" /> */}

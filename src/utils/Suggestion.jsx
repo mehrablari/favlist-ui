@@ -90,7 +90,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             color: "#fff",
             zIndex: (theme) => theme.zIndex.drawer + 1,
             display: "flex",
-            padding:"20px",
+            padding:"10px",
             
             flexDirection: "column",
             

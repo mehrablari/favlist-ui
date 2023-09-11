@@ -40,7 +40,7 @@ const AnsweredList = () => {
 
   return (
     <form
-      className="bg-neutral pt-[60px] gap-[12px] font-sans min-h-[150px]"
+      className="bg-neutral gap-[12px] pb-[10px] font-sans min-h-[150px]"
       onClick={handleSubmit}
     >
       <AnswerHeader

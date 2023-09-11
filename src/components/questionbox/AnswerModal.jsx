@@ -116,14 +116,14 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   //const totalSlides = Math.ceil(filteredOption.length / 20);
-  const totalSlides = Math.min(Math.ceil(filteredOption.length / 20), 5);
+  const totalSlides = Math.min(Math.ceil(filteredOption.length / 20), 8);
 
   const renderSwiperSlides = () => {
     const slides = [];
 
     for (let i = 0; i < totalSlides; i++) {
-      const startIndex = i * 24;
-      const endIndex = startIndex + 24;
+      const startIndex = i * 14;
+      const endIndex = startIndex + 14;
       const items =
         filteredOption.length > 0
           ? filteredOption.slice(startIndex, endIndex)
@@ -132,7 +132,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
       slides.push(
         <SwiperSlide
           key={i}
-          className="answermodal w-[327px] mdx:h-[30vh] sm:h-[100px] h-[80vh] lg:h-[450px] pb-[10px] md:h-[38vh] font-baloo2 "
+          className="answermodal w-[327px] h-[100px] pb-[10px]  font-baloo2 "
         >
           <div className="flex flex-wrap py-[5px] px-[2px] md:px-[4px] sm:py-[5px]">
             {items.map((answer, index) => (
@@ -159,7 +159,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   return (
-    <div className="flex flex-col h-[100vh] min-h-max sm:min-h-max md:min-h-max sm:h-[100vh] bg-neutral mdx:h-[100%] p-[20px] w-screen sm:pt-[20px] md:pt-[20px] mdx:pt-[20px]">
+    <div className="fixed mb-[230px] sm:mb-[40px] md:mb-[230px] flex flex-col h-[90vh] sm:min-h-max md:h-[500px] sm:h-[100vh] bg-neutral mdx:h-[100%] p-[20px] w-[400px] mx-auto sm:pt-[20px] md:pt-[20px] mdx:pt-[20px]">
       <div className="flex flex-col pt-[10px]">
         <div className="flex flex-row justify-between overflow-hidden pb-[10px] text-gray-dark w-[327px] sm:ww-full sm:pb-[5px] h-[30px] mx-auto font-sans">
           <h2 className="sm:text-[16px]">Suggestions</h2>
@@ -209,7 +209,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           "--swiper-pagination-bullet": "10px",
           "--swiper-pagination-bullet-horizontal-gap": "4px",
         }}
-        className="mySwiper h-[800px] pb-[10px] sm:pt-[190px] lg:pt-[30px] xl:pt-[50px] sm:min-h-max mdx:min-h-max lg:h-[800px] md:min-h-max md:pt-[90px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[100px] pt-[10px]"
+        className="mySwiper h-[600px] pb-[10px] sm:pt-[70px] lg:pt-[30px] xl:pt-[50px] sm:min-h-max mdx:min-h-max lg:h-[800px] md:min-h-max md:pt-[90px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[100px] pt-[10px]"
       >
         {renderSwiperSlides()}
       </Swiper>
