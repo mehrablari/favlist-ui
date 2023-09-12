@@ -67,10 +67,12 @@ const FilterPage = () => {
                   {formatDate(question.dateToPost)}
                 </p>
               </Link>
-
+              <Link to={`/closedinfo/${question.id}`}>
               <h1 className="font-[600] text-[16px] flex flex-wrap leading-[20px] cursor-pointer  text-gray-dark">
                 {question.text}
               </h1>
+              </Link>
+
             </div>
           ))
         )}
