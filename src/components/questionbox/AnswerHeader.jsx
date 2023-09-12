@@ -28,13 +28,13 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
     <div className="bg-neutral flex flex-row justify-between sm:w-[300px] mx-auto w-[327px]">
       <div className="text-grey-text">
         <p className="text-[16px] font-[600]">Your Answers</p>
-        <p className="text-[12px] font-[400]">
+        <p className="text-[13px] font-[400]">
           Minimum {minAnswer}, maximum {maxAnswer} answers
         </p>
       </div>
       <div className="text-primary-light cursor-pointer">
         <span
-          className="text-primary text-[13px] font-[500]"
+          className="text-primary text-[14px] font-[500]"
           onClick={handleOpen}
         >
           Answer settings
