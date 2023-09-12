@@ -132,12 +132,12 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
       slides.push(
         <SwiperSlide
           key={i}
-          className="answermodal w-[327px] h-[100px] pb-[10px]  font-baloo2 "
+          className="answermodal w-[380px] sm:w-[340px] md:w-[360px] h-[100px] pb-[10px] font-baloo2 "
         >
-          <div className="flex flex-wrap py-[5px] px-[2px] md:px-[4px] sm:py-[5px]">
+          <div className="flex flex-wrap py-[5px] px-[15px] md:px-[4px]">
             {items.map((answer, index) => (
-              <div key={index} className="w-1/2 py-[6px] sm:py-[6px] md:py-[0px] px-[2px]">
-                <div className={`bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[5px] py-[5px] rounded-[16px] mx-[2px] md:mx-[3px] my-[2px] sm:my-[0px] sm:px-[4px] md:my-[6px] sm:w-full ${
+              <div key={index} className="w-1/2 py-[4px] sm:py-[6px] md:py-[0px] px-[4px]">
+                <div className={`bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[10px] py-[5px] rounded-[16px] mx-[2px] md:mx-[3px] my-[2px] sm:my-[0px] sm:px-[4px] md:my-[6px] sm:w-full ${
                       answerSet.has(answer) ? 'bg-primary ' : ''
                     }`}>
                   <h3
@@ -159,9 +159,9 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   return (
-    <div className="fixed mb-[230px] sm:mb-[40px] md:mb-[230px] flex flex-col h-[90vh] sm:min-h-max md:h-[500px] sm:h-[100vh] bg-neutral mdx:h-[100%] p-[20px] w-[400px] mx-auto sm:pt-[20px] md:pt-[20px] mdx:pt-[20px]">
-      <div className="flex flex-col pt-[10px]">
-        <div className="flex flex-row justify-between overflow-hidden pb-[10px] text-gray-dark w-[327px] sm:ww-full sm:pb-[5px] h-[30px] mx-auto font-sans">
+    <div className="fixed mb-[130px] rounded-[16px] sm:mb-[300px] mdx:mb-[340px] mdx:rounded-[16px] md:mb-[270px] flex flex-col h-[420px] sm:min-h-max md:h-[450px]  mdx:h-[450px] sm:h-[480px] bg-neutral p-[10px] w-[380px] md:w-full sm:w-full mx-auto sm:pt-[20px] md:pt-[20px] mdx:pt-[20px]">
+      <div className="flex flex-col pt-[4px]">
+        <div className="flex flex-row justify-between overflow-hidden pb-[10px] text-gray-dark w-[360px] sm:w-[340px] sm:pb-[5px] h-[30px] mx-auto font-sans">
           <h2 className="sm:text-[16px]">Suggestions</h2>
           <img
             src={cancelIcon}
@@ -174,10 +174,10 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           Select from this pool of suggestions to answer the question.
         </h2>
       </div>
-      <div className="flex flex-col justify-center align-middle mx-auto bg-neutral w-full pt-[10px] h-[110px] md:h-[100px] pb-[20px] sm:pt-[5px] sm:h-[60px] ">
+      <div className="flex flex-col justify-center align-middle mx-auto bg-neutral w-full pt-[10px] h-[110px] md:h-[50px] pb-[10px] sm:pt-[5px] sm:h-[60px] ">
         <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center sm:pt-[10px] justify-center align-middle ">
           {inputValue.length === 0 && (
-            <span className="absolute left-[10px] top-[5px] h-full flex items-center">
+            <span className="absolute left-[4px] top-[3px] sm:top-[5px] h-full flex items-center">
               <SearchIcon
                 className="h-[15px] w-[15px] text-gray-lighter"
                 aria-hidden="true"
@@ -190,7 +190,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
               disabled={selectedOption && selectedOption.length >= maxAnswer}
               type="search"
               placeholder="Start typing an answer..."
-              className="placeholder:w-[200px] sm:placeholder:w-[120px] sm:placeholder:text-[12px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[20px] placeholder:pl-[30px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-full w-[327px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
+              className="placeholder:w-[170px] sm:placeholder:w-[180px] md:placeholder:w-[150px] sm:placeholder:text-[13px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[50px] placeholder:pl-[40px] md:placeholder:pl-[40px] placeholder:pt-[20px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none w-[350px] sm:w-[340px] rounded-[12px] h-[44px] text-gray-dark hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
             />
           </div>
         </div>
@@ -209,7 +209,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           "--swiper-pagination-bullet": "10px",
           "--swiper-pagination-bullet-horizontal-gap": "4px",
         }}
-        className="mySwiper h-[600px] pb-[10px] sm:pt-[70px] lg:pt-[30px] xl:pt-[50px] sm:min-h-max mdx:min-h-max lg:h-[800px] md:min-h-max md:pt-[90px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[100px] pt-[10px]"
+        className="mySwiper h-[500px] md:h-[310px] mdx:h-[450px] pb-[10px] sm:pt-[90px] lg:pt-[30px] xl:pt-[50px] sm:min-h-max lg:h-[800px] md:min-h-max md:pt-[90px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[85px] pt-[70px]"
       >
         {renderSwiperSlides()}
       </Swiper>
