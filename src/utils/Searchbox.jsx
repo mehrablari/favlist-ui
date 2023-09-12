@@ -27,7 +27,7 @@ const Searchbox = () => {
     
 
   return (
-    <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[5px] font-baloo2">
+    <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[10px] font-baloo2">
       <div className="w-[327px] sm:w-[290px] mx-auto relative flex items-center justify-center align-middle">
         {inputValue.length === 0 && (
           <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
@@ -43,7 +43,7 @@ const Searchbox = () => {
             disabled={selectedOption && selectedOption.length >= 5}
             type="search"
             placeholder="Start typing an answer..."
-            className="placeholder:w-[200px] sm:placeholder:w-[150px] sm:placeholder:text-[14px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[35px] placeholder:pl-[30px] placeholder:pt-[10px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[320px] w-[340px] rounded-[12px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
+            className="placeholder:w-[200px] sm:placeholder:w-[150px] sm:placeholder:text-[14px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[40px] md:placeholder:pl-[35px] placeholder:pl-[30px] placeholder:pt-[10px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[340px] w-[360px] rounded-[12px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
           />
         </div>
       </div>

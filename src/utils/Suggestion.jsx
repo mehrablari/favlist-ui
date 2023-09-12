@@ -47,19 +47,19 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
           : [];
 
       slides.push(
-        <SwiperSlide key={i} className="suggestion flex flex-wrap p-[10px] font-baloo2 w-[327px]">
+        <SwiperSlide key={i} className="suggestion flex flex-wrap font-baloo2 w-[360px]">
           {items.map((suggestion, index) => {
             const itemIndex = startIndex + index; // Calculate the correct index value
 
             return (
-              <div key={index} className="w-1/3 min-h-[50px] mx-auto">
+              <div key={index} className="w-1/3 min-h-[50px] mx-auto flex justify-around">
                 <div
-                  className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 p-[10px] w-[95px] sm:w-[95px]  rounded-[16px] h-[32px] flex justify-evenly overflow-hidden "
+                  className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[10px] mx-[4px] w-full rounded-[16px] h-[32px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
-                  <h3 className="text-[12px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-3 cursor-pointer">
+                  <h3 className="text-[14px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
                     {suggestion.length > 14
-                      ? `${suggestion.slice(0, 20)}...`
+                      ? `${suggestion.slice(0, 18)}...`
                       : suggestion}
                   </h3>
                 </div>
@@ -74,11 +74,11 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
   };
 
   return (
-    <main className="bg-neutral p-[10px] font-baloo2 flex flex-col justify-center min-h-[100px] mx-auto font-sans">
-      <div className="flex flex-row justify-between bg-neutral sm:w-[300px] w-[327px] mx-auto">
+    <main className="bg-neutral py-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans">
+      <div className="flex flex-row justify-between bg-neutral sm:w-[340px] w-[360px] mx-auto">
         <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
-          <span className="text-primary cursor-pointer text-[13px] font-[500]">
+          <span className="text-primary cursor-pointer text-[14px] font-[500]">
             See all Suggestions
           </span>
           <ArrowCircleRightOutlinedIcon
@@ -110,7 +110,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
           )}
         </Backdrop>
       </div>
-      <div className="bg-neutral mx-auto w-[327px] sm:w-[327px]">
+      <div className="bg-neutral mx-auto w-[360px] sm:w-[340px]">
         <Swiper
           pagination={{
             clickable: true,
@@ -124,7 +124,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             "--swiper-pagination-bullet": "10px",
             "--swiper-pagination-bullet-horizontal-gap": "5px",
           }}
-          className="mySwiper w-[327px] md:w-full min-h-[150px] bg-neutral py-[10px] mx-auto"
+          className="mySwiper w-[360px] sm:w-full md:w-full min-h-[100px] bg-neutral py-[10px] mx-auto"
         >
           {renderSwiperSlides()}
         </Swiper>

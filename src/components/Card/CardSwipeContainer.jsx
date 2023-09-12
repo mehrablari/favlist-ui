@@ -82,7 +82,7 @@ const CardSwipeContainer = ({
             style={{ borderColor: borderColors[id] }}
             // style={{ border: `2px solid ${borderColorForId(id)}` }}
           >
-            <p className="text-gray-dark text-[20px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[600] tracking-tighter">
+            <p className="text-gray-dark text-[18px] items-center font-baloo2 sm:text-[18px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[600] tracking-tighter">
               {question.text}
             </p>
             <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[10px] mx-auto pb-[10px]">
@@ -97,7 +97,7 @@ const CardSwipeContainer = ({
               </div>
             </div>
             <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
-              <h3 className="text-gray-light text-[13px] font-[400]">
+              <h3 className="text-gray-light text-[14px] font-[400]">
                 affiliate
               </h3>
               <div className="flex justify-center ">

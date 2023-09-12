@@ -245,6 +245,7 @@ const Layout = () => {
             className="bg-neutral"
             questionId={questionId}
             maxAnswer={maxAnswer}
+            handleSwipe={handleSwipe}
             suggestedOption={suggestedOption}
             handleClick={handleClick}
             filteredOptions={filteredOptions}
