@@ -25,10 +25,10 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
   };
   //mui
   return (
-    <div className="bg-neutral flex flex-row justify-between sm:w-[300px] mx-auto w-[327px]">
+    <div className="bg-neutral flex flex-row justify-between sm:w-[340px] mx-auto w-[360px]">
       <div className="text-grey-text">
         <p className="text-[16px] font-[600]">Your Answers</p>
-        <p className="text-[13px] font-[400]">
+        <p className="text-[14px] font-[400]">
           Minimum {minAnswer}, maximum {maxAnswer} answers
         </p>
       </div>
@@ -39,7 +39,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
         >
           Answer settings
         </span>
-        <SettingsIcon sx={{ color: "#A13E97", height: "12px" }} />
+        <SettingsIcon sx={{ color: "#A13E97", height: "14px" }} />
       </div>
       <Backdrop
         sx={{

@@ -141,7 +141,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
                       answerSet.has(answer) ? 'bg-primary ' : ''
                     }`}>
                   <h3
-                    className="text-[14px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-[10px] sm:leading-4 md:leading-4 mdx:leading-4 cursor-pointer sm:text-[12px]"
+                    className="text-[14px] text-center text-gray-dark text-opacity-90 font-medium  overflow-hidden whitespace-nowrap leading-[10px] sm:leading-4 md:leading-4 mdx:leading-4 cursor-pointer sm:text-[14px]"
                     onClick={() => handleAnswerClick(answer)}
                   >
                     {answer.length > 12 ? `${answer.slice(0, 24)}...` : answer}

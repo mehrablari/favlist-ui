@@ -40,7 +40,7 @@ const AnsweredList = () => {
 
   return (
     <form
-      className="bg-neutral gap-[12px] pb-[10px] font-sans min-h-[150px]"
+      className="bg-neutral pb-[10px] font-sans min-h-[150px]"
       onClick={handleSubmit}
     >
       <AnswerHeader
@@ -84,7 +84,7 @@ const AnsweredList = () => {
           className="flex justify-center align-middle pt-[10px] font-sans"
         >
           <button
-            className={`h-[40px] text-center rounded-lg font-[600] text-[14px] sm:w-[300px] w-[340px] mx-auto font-sans ${
+            className={`h-[40px] text-center rounded-lg font-[600] text-[14px] sm:w-[320px] w-[340px] mx-auto font-sans ${
               answers.length >= minAnswer && answers.length <= maxAnswer
                 ? "bg-primary text-neutral hover:bg-opacity-75"
                 : "bg-gray-purple cursor-not-allowed text-neutral"

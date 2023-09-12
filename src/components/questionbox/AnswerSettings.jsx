@@ -9,8 +9,8 @@ const AnswerSettings = () => {
         <div className=" flex justify-center align-middle">
           <img src={NoAnswer} alt="this a placeholder " className='w-[80px] h-[80px]'  />
         </div>
-        <p className="text-gray-lighter text-center h-[30px] w-[200px] mx-auto text-[13px] leading-3">
-          Select answers from the bubbles below to fill up your answers
+        <p className="text-gray-lighter text-center h-[30px] w-[200px] mx-auto text-[14px] leading-3">
+          Select answers from the bubbles above to fill up your answers
         </p>
       </div>
     </div>

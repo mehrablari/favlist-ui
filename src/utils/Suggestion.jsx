@@ -74,7 +74,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
   };
 
   return (
-    <main className="bg-neutral py-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans">
+    <main className="bg-neutral pt-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans">
       <div className="flex flex-row justify-between bg-neutral sm:w-[340px] w-[360px] mx-auto">
         <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
@@ -82,7 +82,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             See all Suggestions
           </span>
           <ArrowCircleRightOutlinedIcon
-            sx={{ color: "#A13E97", height: "12px" }}
+            sx={{ color: "#A13E97", height: "14px" }}
           />
         </div>
         <Backdrop
@@ -110,7 +110,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
           )}
         </Backdrop>
       </div>
-      <div className="bg-neutral mx-auto w-[360px] sm:w-[340px]">
+      <div className="bg-neutral pt-[10px] mx-auto w-[360px] sm:w-[340px]">
         <Swiper
           pagination={{
             clickable: true,
@@ -120,11 +120,11 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             "--swiper-pagination-color": "#632A7E",
             "--swiper-pagination-bullet-inactive-color": "#999999",
             "--swiper-pagination-bullet-inactive-opacity": "1",
-            "--swiper-pagination-bullet-size": "5px",
+            "--swiper-pagination-bullet-size": "8px",
             "--swiper-pagination-bullet": "10px",
-            "--swiper-pagination-bullet-horizontal-gap": "5px",
+            "--swiper-pagination-bullet-horizontal-gap": "4px",
           }}
-          className="mySwiper w-[360px] sm:w-full md:w-full min-h-[100px] bg-neutral py-[10px] mx-auto"
+          className="mySwiper w-[360px] sm:w-full md:w-full min-h-[100px] bg-neutral pb-[10px] mx-auto"
         >
           {renderSwiperSlides()}
         </Swiper>
