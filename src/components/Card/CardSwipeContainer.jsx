@@ -64,7 +64,7 @@ const CardSwipeContainer = ({
   };
 
   return (
-    <div className="bg-primary w-full overflow-hidden">
+    <div className="bg-primary w-full overflow-hidden ">
       <Swiper
         initialSlide={questionId}
         effect={"cards"}
@@ -72,7 +72,7 @@ const CardSwipeContainer = ({
         loop={true}
         modules={[EffectCards]}
         // slidesPerView={1}
-        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] md:pt-[30px] sm:pt-[30px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px]"
+        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] md:pt-[30px] sm:pt-[30px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] bottom-[200px] left-[0px] right-[0px] z-30"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
