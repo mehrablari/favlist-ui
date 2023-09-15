@@ -8,22 +8,22 @@ const AnswerGraphics = () => {
   const location = useLocation();
   const imgUrl = location.state;
 
-  console.log("img link", imgUrl);
+  // console.log("img link", imgUrl);
 
   return (
-    <div className="pt-[100px] pb-[20px] h-screen md:h-screen sm:h-screen mdx:h-screen mx-auto" style={{backgroundImage:`url(${congrats})`, backgroundPosition:"center",backgroundRepeat:"no-repeat", backgroundSize:"cover"}}>
-      <div className="bg-neutral min-h-[300px] w-[327px] rounded-lg mx-auto p-[20px]">
-        <div className="flex flex-row justify-center pt-[10px] mx-auto">
-          <img src={Video} alt="video" className="pr-[10px]" />
+    <div className="pt-[100px] pb-[10px] sm:h-full h-screen md:full mdx:h-screen mx-auto" style={{backgroundImage:`url(${congrats})`, height:"100vh", backgroundPosition:"center",backgroundRepeat:"no-repeat", backgroundSize:"cover"}}>
+      <div className="bg-neutral min-h-[300px] w-[400px]  sm:w-[340px] md:w-[360px] mx-auto rounded-[24px]">
+        <div className="flex flex-row justify-center align-middle mx-auto">
+          <img src={Video} alt="video" className="h-full pt-[8px] pr-[10px]" />
           <h1 className="font-[600] text-md text-text-blue">
             Your Answer graphics
           </h1>
         </div>
-        <div className="min-h-[100px] max-w-[400px] p-[20px] rounded-lg m-[10px]">
-          <img src={imgUrl} alt="Your Answer Graphic" className="bg-primary w-[300px] h-[200px]" />
+        <div className="min-h-[100px] max-w-[400px] p-[10px]">
+          <img src={imgUrl} alt="Your Answer Graphic" className=" w-[400px] sm:w-[340px] md:w-[360px] h-[340px] sm:h-[300px]" />
         </div>
-        <div className="flex flex-col pt-[10px]">
-          <div className="flex flex-col justify-center align-middle p-[10px]">
+        <div className="flex flex-col pb-[10px]">
+          <div className="flex flex-col justify-center align-middle pb-[5px]">
             <RWebShare
               data={{
                 text: "My answers",
@@ -37,7 +37,7 @@ const AnswerGraphics = () => {
               </button>
             </RWebShare>
           </div>
-          <div className="flex flex-row items-center justify-around mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive w-[180px]">
+          <div className="flex flex-row items-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[250px]">
           <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
           <Link to="/" className="text-[14px] font-semibold text-primary-light">
             Go back to question
