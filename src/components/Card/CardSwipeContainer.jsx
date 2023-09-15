@@ -72,13 +72,13 @@ const CardSwipeContainer = ({
         loop={true}
         modules={[EffectCards]}
         // slidesPerView={1}
-        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] md:pt-[30px] sm:pt-[30px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px]"
+        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] md:pt-[30px] sm:pt-[30px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] right-[0] left-[0] z-20"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center mt-[2rem] mb-[10px] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-2 overflow-hidden`}
+            className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center mt-[2rem] mb-[10px] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-2`}
             style={{ borderColor: borderColors[id] }}
             // style={{ border: `2px solid ${borderColorForId(id)}` }}
           >
