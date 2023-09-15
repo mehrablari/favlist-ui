@@ -21,10 +21,10 @@ const AnswerProvided = ({ answerData }) => {
 
       {answers.map((question, index) => (
         <div
-          className="bg-neutral w-[327px] mx-auto sm:w-[300px] sm:overflow-hidden"
+          className="bg-neutral w-[380px] md:w-[360px]  mx-auto sm:w-[340px] sm:overflow-hidden"
           key={index}
         >
-          <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[327px] sm:w-[300px]">
+          <div className="bg-neutral p-[4px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]">
             <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">
               {index + 1}
             </span>
@@ -49,8 +49,8 @@ const AnswerProvided = ({ answerData }) => {
       <Link
         to="/answergraphics"
         state={answerGraphicLink}
-        className="flex justify-center align-middle py-[5px] h-[42px] px-[14px] text-center rounded-lg font-[600] text-[14px] sm:w-[290px] pl-[10px] w-[320px] mx-auto gap-[8px]
-          bg-primary text-neutral hover:bg-button-hover"
+        className="flex justify-center align-middle py-[5px] h-[42px] px-[14px] text-center rounded-lg font-[600] text-[14px] sm:w-[340px] pl-[10px] w-[360px]  mx-auto gap-[8px]
+          bg-primary text-neutral mt-[10px] hover:bg-button-hover"
       >
         <div className="p-[7px]">
           <img src={Video} alt="video" className="w-[20px] h-[18px]" />

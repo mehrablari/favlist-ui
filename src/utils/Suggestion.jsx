@@ -11,12 +11,13 @@ import Backdrop from "@mui/material/Backdrop";
 
 
 
-const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }) => {
+const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer, questionId }) => {
   
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
   // Step 3: Define functions to open and close the backdrop
   const handleOpenBackdrop = () => {
+    console.log("handleOpenBackdrop called");
     setOpenBackdrop(true);
   };
 
@@ -52,12 +53,12 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             const itemIndex = startIndex + index; // Calculate the correct index value
 
             return (
-              <div key={index} className="w-1/3 min-h-[50px] mx-auto flex justify-around">
+              <div key={index} className="w-1/3 min-h-[40px] mx-auto flex justify-around">
                 <div
-                  className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[10px] mx-[4px] w-full rounded-[16px] h-[32px] flex justify-evenly overflow-hidden "
+                  className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[4px] mb-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
-                  <h3 className="text-[14px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
+                  <h3 className="text-[15px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
                     {suggestion.length > 14
                       ? `${suggestion.slice(0, 18)}...`
                       : suggestion}
@@ -74,7 +75,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
   };
 
   return (
-    <main className="bg-neutral pt-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans">
+    <main className="bg-neutral pt-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans z-20">
       <div className="flex flex-row justify-between bg-neutral sm:w-[340px] w-[360px] mx-auto">
         <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
@@ -112,6 +113,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
       </div>
       <div className="bg-neutral pt-[10px] mx-auto w-[360px] sm:w-[340px]">
         <Swiper
+         initialSlide={questionId}
           pagination={{
             clickable: true,
           }}
@@ -124,7 +126,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             "--swiper-pagination-bullet": "10px",
             "--swiper-pagination-bullet-horizontal-gap": "4px",
           }}
-          className="mySwiper w-[360px] sm:w-full md:w-full min-h-[100px] bg-neutral pb-[10px] mx-auto"
+          className="mySwiper w-[360px] sm:w-full md:w-full min-h-[100px] bg-neutral pb-[25px] mx-auto"
         >
           {renderSwiperSlides()}
         </Swiper>

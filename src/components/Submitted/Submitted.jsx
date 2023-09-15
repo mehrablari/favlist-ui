@@ -11,15 +11,16 @@ const Submit = () => {
 
   return (
     <div
-      className="pt-[100px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto"
+      className="pt-[100px] sm:pt-[120px] md:pt-[130px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto"
       style={{
         backgroundImage: `url(${congrats})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        height:"auto"
       }}
     >
-      <div className="bg-neutral w-[327px] sm:w-[350px] md:w-[350px] rounded-lg mx-auto py-[10px]">
+      <div className="bg-neutral w-[360px] sm:w-[340px] md:w-[360px] rounded-lg mx-auto py-[10px]">
         <div className="flex flex-col">
           <h2 className="w-[327px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
             Yaayy! Your answers have been submitted!
@@ -49,14 +50,14 @@ const Submit = () => {
               }}
               onClick={() => console.log("shared successfully!")}
             >
-              <button className="h-[40px] hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral bg-primary ">
+              <button className="h-[40px] hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral ">
                 Share to social media
               </button>
             </RWebShare>
           </div>
           <Link
             to="/"
-            className="flex flex-row items-center justify-between mx-auto rounded-lg h-[28px] hover:bg-primary-lighter px-[10px] max-w-[193px]"
+            className="flex flex-row items-center justify-around mx-auto rounded-lg h-[28px] hover:bg-primary-lighter px-[10px] w-[250px]"
           >
             <img src={Home} alt="home" className="h-[20px] w-[20px] pr-[5px]" />
             <button className="text-[14px]  font-semibold text-primary h-[26px]">

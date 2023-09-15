@@ -12,6 +12,7 @@ import Logo from "../assets/images/logoblack.png";
 import AnsweredContainer from "./Answered/AnsweredContainer";
 import { Helmet } from "react-helmet-async";
 
+
 export const LayoutContext = createContext();
 
 const Layout = () => {
@@ -218,15 +219,16 @@ const Layout = () => {
       }}
     >
       <NavBar />
-
-      <CardSwipeContainer
-        apiData={apiData}
-        handleSwipe={handleSwipe}
-        questionId={questionId}
-        daysRemaining={daysRemaining}
-        // onSwipe={handleSwiperClear}
-        // selectedCardIndex={selectedCardIndex}
-      />
+      <div className="bg-primary">
+        <CardSwipeContainer
+          apiData={apiData}
+          handleSwipe={handleSwipe}
+          questionId={questionId}
+          daysRemaining={daysRemaining}
+          // onSwipe={handleSwiperClear}
+          // selectedCardIndex={selectedCardIndex}
+        />
+      </div>
       <Helmet>
         <title>Favlist Homepage</title>
         <meta name="description" content="Description for Home Page" />
@@ -234,7 +236,7 @@ const Layout = () => {
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
-        <div className="">
+        <div className="pt-[320px] z-10">
           <Searchbox
           // answerData={apiData}
           // activeAnswerJson={activeAnswerJson}
@@ -242,7 +244,7 @@ const Layout = () => {
           // handleFilter={handleFilter}
           />
           <Suggestion
-            className="bg-neutral"
+           
             questionId={questionId}
             maxAnswer={maxAnswer}
             handleSwipe={handleSwipe}
