@@ -58,7 +58,7 @@ const AnsweredList = () => {
             className="font-sans bg-neutral w-[360px] mx-auto sm:w-[340px] sm:overflow-hidden"
             key={index}
           >
-            <div className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]">
+            <div className="bg-neutral p-[4px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]">
               <div className="sm:w-[340px] w-[360px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row cursor-pointer justify-between hover:bg-primary-bg">
                 <span className="text-[14px] h-[22px] text-ellipsis truncate w-[200px]">
                   {answer}
@@ -84,7 +84,7 @@ const AnsweredList = () => {
           className="flex justify-center align-middle pt-[10px] font-sans"
         >
           <button
-            className={`h-[40px] text-center rounded-lg font-[600] text-[14px] sm:w-[320px] w-[340px] mx-auto font-sans ${
+            className={`h-[40px] text-center rounded-lg font-[600] text-[14px] sm:w-[340px] w-[360px] mx-auto font-sans ${
               answers.length >= minAnswer && answers.length <= maxAnswer
                 ? "bg-primary text-neutral hover:bg-opacity-75"
                 : "bg-gray-purple cursor-not-allowed text-neutral"
