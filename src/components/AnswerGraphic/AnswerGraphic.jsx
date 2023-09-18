@@ -11,7 +11,7 @@ const AnswerGraphics = () => {
   // console.log("img link", imgUrl);
 
   return (
-    <div className="pt-[100px] pb-[10px] sm:h-full h-screen md:full mdx:h-screen mx-auto" style={{backgroundImage:`url(${congrats})`, height:"100vh", backgroundPosition:"center",backgroundRepeat:"no-repeat", backgroundSize:"cover"}}>
+    <div className="pt-[100px] sm:pt-[130px] md:pt-[130px]  pb-[10px] sm:h-screen h-screen md:full mdx:h-screen mx-auto" style={{backgroundImage:`url(${congrats})`,height:"100vh", backgroundPosition:"center",backgroundRepeat:"no-repeat", width:"100%", backgroundSize:"cover"}}>
       <div className="bg-neutral min-h-[300px] w-[400px]  sm:w-[340px] md:w-[360px] mx-auto rounded-[24px]">
         <div className="flex flex-row justify-center align-middle mx-auto">
           <img src={Video} alt="video" className="h-full pt-[8px] pr-[10px]" />
@@ -37,7 +37,7 @@ const AnswerGraphics = () => {
               </button>
             </RWebShare>
           </div>
-          <div className="flex flex-row items-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[250px]">
+          <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[250px]">
           <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
           <Link to="/" className="text-[14px] font-semibold text-primary-light">
             Go back to question
