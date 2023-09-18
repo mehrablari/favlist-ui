@@ -85,7 +85,7 @@ const Preview = () => {
   };
 
   return (
-    <div className="flex flex-col py-[40px] sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden" style={{
+    <div className="flex flex-col py-[10px] sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[100px] sm:pt-[130px] md:pt-[130px]" style={{
       backgroundImage: `url(${BgImage})`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
@@ -112,15 +112,15 @@ const Preview = () => {
         <meta property="og:site_name" content="Favlist" />
         <meta name="twitter:image:alt" content="favourite answers" />
       </Helmet>
-      <div className="mx-auto pt-[40px] sm:pt-[10px]">
-        <h1 className="text-neutral font-[700] text-[16px] leading-5 p-[10px]">
+      <div className="mx-auto pt-[10px] sm:pt-[10px]">
+        <h1 className="text-neutral font-[700] text-[16px] leading-3 pb-[5px]">
           PREVIEW YOUR ANSWERS
         </h1>
       </div>
-      <div className="flex flex-col bg-neutral rounded-lg px-[10px] py-[20px] gap-[16px] w-[327px] mx-auto">
+      <div className="flex flex-col bg-neutral rounded-lg px-[10px] py-[5px] w-[360px] mx-auto">
         <div className="flex flex-col">
           <h1 className="font-[500] text-[14px] text-text-blue">Question</h1>
-          <h1 className="font-[700] text-[18px] leading-[24px] text-gray-list py-[10px]">
+          <h1 className="font-[700] text-[18px] leading-[20px] text-gray-list py-[4px]">
             {questionName}
           </h1>
           <div className="flex">
@@ -141,7 +141,7 @@ const Preview = () => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
               height: "100%",
-              borderRadius: "16px",
+              
             }}
           >
             <div className="text-neutral flex flex-wrap align-middle justify-center text-center text-[16px] font-[600] pb-[10px]">
@@ -160,7 +160,7 @@ const Preview = () => {
 
         <form
           onClick={handleSubmit}
-          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[287px] w-[287px] sm:w-[220px] mx-auto px-[20px] bg-primary rounded-lg  m-[10px] "
+          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[287px] w-[260px] sm:w-[240px] mx-auto px-[20px] bg-primary rounded-lg  m-[10px] "
         >
           <div className="">
             <button
@@ -173,8 +173,8 @@ const Preview = () => {
           </div>
         </form>
 
-        <div className="flex flex-row items-center justify-around mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive w-[200px]">
-          <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
+        <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
+          <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
           <Link
             to="/"
             className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light"
