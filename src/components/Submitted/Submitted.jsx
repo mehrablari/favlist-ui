@@ -11,13 +11,14 @@ const Submit = () => {
 
   return (
     <div
-      className="pt-[100px] sm:pt-[120px] md:pt-[130px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto"
+      className="pt-[50px] sm:pt-[120px] md:pt-[120px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto sm:h-screen"
       style={{
         backgroundImage: `url(${congrats})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        height:"auto"
+        height:"100vh",
+        width:"100%"
       }}
     >
       <div className="bg-neutral w-[360px] sm:w-[340px] md:w-[360px] rounded-lg mx-auto py-[10px]">
@@ -50,17 +51,17 @@ const Submit = () => {
               }}
               onClick={() => console.log("shared successfully!")}
             >
-              <button className="h-[40px] hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral ">
+              <button className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral ">
                 Share to social media
               </button>
             </RWebShare>
           </div>
           <Link
             to="/"
-            className="flex flex-row items-center justify-around mx-auto rounded-lg h-[28px] hover:bg-primary-lighter px-[10px] w-[250px]"
+            className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"
           >
             <img src={Home} alt="home" className="h-[20px] w-[20px] pr-[5px]" />
-            <button className="text-[14px]  font-semibold text-primary h-[26px]">
+            <button className="text-[14px] text-neutral  font-semibold h-[26px]">
               Go Home
             </button>
           </Link>
