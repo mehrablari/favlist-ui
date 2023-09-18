@@ -2,6 +2,7 @@ import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
+
 import NavBar from "./NavBar";
 import soundEffect from "../assets/audio/softwave.mp3";
 import { useState, useEffect, createContext } from "react";
@@ -11,7 +12,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Logo from "../assets/images/logoblack.png";
 import AnsweredContainer from "./Answered/AnsweredContainer";
 import { Helmet } from "react-helmet-async";
-
 
 export const LayoutContext = createContext();
 
@@ -81,7 +81,7 @@ const Layout = () => {
   };
 
   //manage the swiping card of question container
-  const handleSwipe = (activeQuestion) => {
+  const handleSwipe = (activeQuestion, index) => {
     setActiveAnswerJson(activeQuestion?.answersJson);
     setSelectedOption(activeQuestion?.answersJson[0]);
     setSuggestedOption(activeQuestion?.answersJson);
@@ -92,6 +92,8 @@ const Layout = () => {
     setMinAnswer(activeQuestion?.minAnswerCount);
     setMaxAnswer(activeQuestion?.maxAnswerCount);
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
+
+    // console.log("question", activeQuestion, "index", index);
 
     const storedAnswers = localStorage.getItem("answers");
     let count = 1;
@@ -104,7 +106,7 @@ const Layout = () => {
         setTimeout(() => {
           localStorage.removeItem("answers");
           localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
+        }, 4000);
       }
     } else {
       setAnswers([]);
@@ -157,6 +159,7 @@ const Layout = () => {
         );
         setIsLoading(false);
         setApiData(response.data);
+        // console.log("data",response.data);
 
         setActiveAnswerJson(response.data[0]?.answersJson);
         setSelectedOption(response.data[0]?.answersJson[0]);
@@ -225,6 +228,7 @@ const Layout = () => {
           handleSwipe={handleSwipe}
           questionId={questionId}
           daysRemaining={daysRemaining}
+
           // onSwipe={handleSwiperClear}
           // selectedCardIndex={selectedCardIndex}
         />
@@ -245,15 +249,13 @@ const Layout = () => {
           />
           <Suggestion
            
-            questionId={questionId}
             maxAnswer={maxAnswer}
-            handleSwipe={handleSwipe}
             suggestedOption={suggestedOption}
             handleClick={handleClick}
             filteredOptions={filteredOptions}
           />
-          
-           <DndProvider backend={HTML5Backend}>
+
+          <DndProvider backend={HTML5Backend}>
             <AnsweredList
               apiData={apiData}
               // answers={answers}
@@ -264,9 +266,6 @@ const Layout = () => {
               // clickedValue={clickedValue}
             />
           </DndProvider>
-          
-          
-         
         </div>
       )}
     </LayoutContext.Provider>

@@ -11,7 +11,7 @@ import Backdrop from "@mui/material/Backdrop";
 
 
 
-const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer, questionId }) => {
+const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }) => {
   
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
@@ -24,6 +24,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer, 
   const handleCloseBackdrop = () => {
     setOpenBackdrop(false);
   };
+  
 
   const renderSwiperSlides = () => {
     const totalItems =
@@ -58,7 +59,7 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer, 
                   className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[4px] mb-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
-                  <h3 className="text-[15px] text-center font-[400] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
+                  <h3 className="text-[15px] text-center font-[500] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
                     {suggestion.length > 14
                       ? `${suggestion.slice(0, 18)}...`
                       : suggestion}
@@ -113,7 +114,8 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer, 
       </div>
       <div className="bg-neutral pt-[10px] mx-auto w-[360px] sm:w-[340px]">
         <Swiper
-         initialSlide={questionId}
+        //  initialSlide={questionId}
+         loop={true}
           pagination={{
             clickable: true,
           }}

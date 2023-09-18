@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-cards";
+import { useState, useCallback } from "react";
 import "./tindercards.css";
-import { EffectCards } from "swiper";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
-import { useState } from "react";
 
 const CardSwipeContainer = ({
   apiData,
@@ -13,18 +13,50 @@ const CardSwipeContainer = ({
   questionId,
   daysRemaining,
 }) => {
+
+  const [indexCurrent, setIndexCurrent] = useState(0)
+  //local storage
   const storedQuestionIndex =
     localStorage.getItem("selectedQuestionIndex") || 0;
   const [question, setQuestion] = useState(storedQuestionIndex);
 
-  const handleSwipeChange = (swiper) => {
-    const activeIndex = swiper.activeIndex;
-    setQuestion(activeIndex);
+  // useCallback(()=> {
 
-    // localStorage.setItem("questionIndex", activeIndex);
-    // handleSwipe(questionData[activeIndex]);
-    handleSwipe(apiData[activeIndex], activeIndex);
-  };
+  // }, [])
+  const handleSwipeChange = useCallback((swiper) => {
+    const activeIndex = swiper.activeIndex;
+
+    if (activeIndex === apiData.length - 1) {
+        // If the user swiped to the last item, go back to the beginning
+        setIndexCurrent(0);
+    } else if (activeIndex === 0 && swiper.progress < 0) {
+        // If the user swiped back from the first item, go to the last item
+        setIndexCurrent(apiData.length - 1);
+    } else {
+        setIndexCurrent(activeIndex);
+    }
+
+    console.log("index current", indexCurrent);
+
+    setQuestion(apiData[indexCurrent]);
+
+    handleSwipe(apiData[indexCurrent]);
+}, [apiData, handleSwipe, indexCurrent]);
+
+  // const handleSwipeChange = (swiper) => {
+  //   const activeIndex = swiper.activeIndex;
+  //   console.log("swiper", swiper);
+
+  //   // if(activeIndex === 5){
+  //   //   console.log("is working");
+  //   // }
+
+  //   setQuestion(activeIndex);
+
+  //   // localStorage.setItem("questionIndex", activeIndex);
+  //   // handleSwipe(questionData[activeIndex]);
+  //   handleSwipe(apiData[activeIndex], activeIndex);
+  // };
   const generateRandomColors = (count) => {
     const colors = [];
     for (let i = 0; i < count; i++) {
@@ -72,13 +104,13 @@ const CardSwipeContainer = ({
         loop={true}
         modules={[EffectCards]}
         // slidesPerView={1}
-        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] md:pt-[30px] sm:pt-[30px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] right-[0] left-[0] z-20"
+        className="mySwiper px-[14px] align-middle mx-auto pt-[35px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] right-[0] left-[0] z-20"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center mt-[2rem] mb-[10px] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-2`}
+            className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center mt-[2rem] mb-[12px] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-2`}
             style={{ borderColor: borderColors[id] }}
             // style={{ border: `2px solid ${borderColorForId(id)}` }}
           >

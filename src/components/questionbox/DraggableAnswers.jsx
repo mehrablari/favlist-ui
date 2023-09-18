@@ -26,7 +26,7 @@ const DraggableAnswers = ({answers, handleDismiss, maxAnswer, handleDragEnd}) =>
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className="bg-neutral p-[8px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]"
+                    className="bg-neutral p-[4px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]"
                   >
                     <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">
                       {index + 1}
