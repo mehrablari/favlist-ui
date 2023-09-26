@@ -14,39 +14,24 @@ const CardSwipeContainer = ({
   daysRemaining,
 }) => {
 
-  // const [swiper, setSwiper] = useState(null);
+  const reversedApiData = [...apiData].reverse();
 
-  // const handleSwiperInit = (swiper) => {
-  //   setSwiper(swiper);
-  // };
   //local storage
   const storedQuestionIndex =
     localStorage.getItem("selectedQuestionIndex") || 0;
   const [question, setQuestion] = useState(storedQuestionIndex);
 
   const handleSwipeChange = (swiper) => {
-    const activeIndex = swiper.activeIndex;
-      console.log("index number:", activeIndex);
+    const activeIndex = swiper.realIndex;
+
+    
+      console.log("index number:", swiper.realIndex);
       console.log("swiper:", swiper);
-  
 
-    setQuestion(apiData[activeIndex]);
+    setQuestion(reversedApiData[activeIndex]);
 
-    handleSwipe(apiData[activeIndex]);
+    handleSwipe(reversedApiData[activeIndex]);
   }
-
-//  const handleReachEnd = () => {
-//     if (swiper) {
-//       // Check if swiper exists
-//       const isEnd = swiper.isEnd;
-//       const isBeginning = swiper.isBeginning;
-
-//       if (isEnd || isBeginning) {
-//         // If at the beginning or end, reset to the first slide
-//         swiper.slideTo(0, 0);
-//       }
-//     }
-//   };
 
 
 
@@ -60,7 +45,7 @@ const CardSwipeContainer = ({
     }
     return colors;
   };
-  const borderColors = generateRandomColors(apiData.length);
+  const borderColors = generateRandomColors(reversedApiData.length);
 
   const remaining = (days) => {
     if (days === 0) {
@@ -91,7 +76,7 @@ const CardSwipeContainer = ({
   return (
     <div className="bg-primary w-full overflow-hidden">
       <Swiper
-        initialSlide={questionId}
+        slidesPerView={1}
         effect={"cards"}
         grabCursor={true}
         loop={true}
@@ -99,18 +84,11 @@ const CardSwipeContainer = ({
         modules={[EffectCards]}
         // slidesPerView={1}
         className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] right-[0] left-[0] z-20"
-        //onSlideChange={(swiper) => handleSwipeChange(swiper)}
-        onSlideChange={(swiper) => {
-          handleSwipeChange(swiper);
-           // Store the swiper instance
-        }}
-        // onReachEnd={() => {
-        //   if (swiperInstance) {
-        //     swiperInstance.slideTo(0, 0); // Reset to the first slide
-        //   }
-        // }}
+        onSlideChange={(swiper) => handleSwipeChange(swiper)}
+  
+      
       >
-        {apiData.map((question, id) => (
+        {reversedApiData.map((question, id) => (
           <SwiperSlide
             key={id}
             className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-2`}
@@ -152,7 +130,7 @@ const CardSwipeContainer = ({
 
               <div
                 className="youtube absolute bottom-md right-[0px] top-[210px] font-baloo2"
-                // style={{ backgroundColor: "#A13E97" }}
+               
               >
                 <a href={`${question.sponsor.adsS3Url}`} className="w-[56px]">
                   <img
@@ -172,6 +150,19 @@ const CardSwipeContainer = ({
 
 export default CardSwipeContainer;
 
+
+//  const handleReachEnd = () => {
+//     if (swiper) {
+//       // Check if swiper exists
+//       const isEnd = swiper.isEnd;
+//       const isBeginning = swiper.isBeginning;
+
+//       if (isEnd || isBeginning) {
+//         // If at the beginning or end, reset to the first slide
+//         swiper.slideTo(0, 0);
+//       }
+//     }
+//   };
 
 // import { useState } from "react";
 // import "./tindercards.css";
