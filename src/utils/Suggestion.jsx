@@ -56,10 +56,10 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             return (
               <div key={index} className="w-1/3 min-h-[40px] mx-auto flex justify-around">
                 <div
-                  className="bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[4px] mb-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
+                  className="bg-gray-four hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[4px] mb-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
-                  <h3 className="text-[15px] text-center font-[500] text-gray-dark text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
+                  <h3 className="text-[15px] text-center font-[500] text-gray-darker text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
                     {suggestion.length > 14
                       ? `${suggestion.slice(0, 18)}...`
                       : suggestion}
@@ -81,10 +81,10 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
         <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
           <span className="text-primary cursor-pointer text-[14px] font-[500]">
-            See all Suggestions
+            See All
           </span>
           <ArrowCircleRightOutlinedIcon
-            sx={{ color: "#A13E97", height: "14px" }}
+            sx={{ color: "#A13E97", height: "18px" }}
           />
         </div>
         <Backdrop
