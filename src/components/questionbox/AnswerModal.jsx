@@ -116,14 +116,14 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   //const totalSlides = Math.ceil(filteredOption.length / 20);
-  const totalSlides = Math.min(Math.ceil(filteredOption.length / 14), 8);
+  const totalSlides = Math.min(Math.ceil(filteredOption.length / 14), 6);
 
   const renderSwiperSlides = () => {
     const slides = [];
 
     for (let i = 0; i < totalSlides; i++) {
-      const startIndex = i * 14;
-      const endIndex = startIndex + 14;
+      const startIndex = i * 20;
+      const endIndex = startIndex + 20;
       const items =
         filteredOption.length > 0
           ? filteredOption.slice(startIndex, endIndex)
@@ -132,16 +132,16 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
       slides.push(
         <SwiperSlide
           key={i}
-          className="answermodal w-[380px] sm:w-[340px] md:w-[360px] h-[100px] pb-[10px] font-baloo2 "
+          className="answermodal w-[380px] sm:w-[340px] md:w-[360px] h-[100px] pb-[20px] font-baloo2 "
         >
-          <div className="flex flex-wrap py-[5px] px-[15px] md:px-[4px] sm:px-[3px] sm:py-[2px]">
+          <div className="flex flex-wrap py-[3px] px-[15px] md:px-[4px] sm:px-[3px] sm:py-[2px] md:py-[4px]">
             {items.map((answer, index) => (
-              <div key={index} className="w-1/2 py-[4px] sm:py-[6px] md:py-[0px] px-[4px]">
-                <div className={`bg-gray-bg hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[4px] py-[5px] rounded-[16px] mx-[2px] md:mx-[3px] my-[2px] sm:my-[0px] sm:px-[2px] w-full md:my-[6px] sm:w-full ${
+              <div key={index} className="w-1/2 py-[1px] sm:py-[1px] md:py-[1px] px-[4px] md:px-[2px]">
+                <div className={`bg-gray-four  mx-auto hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[4px] py-[2px] rounded-[16px] md:mx-[1px] my-[1px]  sm:my-[0px] sm:px-[2px] w-full md:my-[1px] sm:w-full ${
                       answerSet.has(answer) ? 'bg-primary ' : ''
                     }`}>
                   <h3
-                    className="text-[15px] leading-3 text-center text-gray-dark text-opacity-90 font-[500]  overflow-hidden whitespace-nowrap sm:leading-4 md:leading-4 w-full mdx:leading-4 cursor-pointer sm:text-[14px]"
+                    className="text-[16px] h-[19px] sm:h-[18px] md:h-[18px] leading-3 text-center text-gray-dark text-opacity-90 font-[500] mx-auto overflow-hidden whitespace-nowrap sm:leading-4 md:leading-4 w-full mdx:leading-4 cursor-pointer sm:text-[14px]"
                     onClick={() => handleAnswerClick(answer)}
                   >
                     {answer.length > 12 ? `${answer.slice(0, 24)}...` : answer}
@@ -209,7 +209,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           "--swiper-pagination-bullet": "10px",
           "--swiper-pagination-bullet-horizontal-gap": "4px",
         }}
-        className="mySwiper h-[500px] md:h-[300px] mdx:h-[450px] pb-[4px] sm:pt-[90px] lg:pt-[70px] xl:pt-[50px] sm:min-h-max lg:h-[800px] md:min-h-max md:pt-[85px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[85px] pt-[70px]"
+        className="mySwiper h-[500px] md:h-[300px] mdx:h-[450px] pb-[4px] sm:pt-[90px] lg:pt-[70px] xl:pt-[50px] sm:h-[300px] lg:h-[800px] md:pt-[95px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[85px] pt-[94px]"
       >
         {renderSwiperSlides()}
       </Swiper>
