@@ -60,7 +60,7 @@ const AnsweredList = () => {
           >
             <div className="bg-neutral p-[4px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]">
               <div className="sm:w-[340px] w-[360px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row cursor-pointer justify-between hover:bg-primary-bg">
-                <span className="text-[14px] h-[22px] text-ellipsis truncate w-[200px]">
+                <span className="text-[16px] h-[22px] text-ellipsis truncate w-[200px]">
                   {answer}
                 </span>
                 <img
