@@ -59,26 +59,6 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
     handleClick(answer);
 
 
-    // if (!answerSet.has(answer) && answerSet.size < maxAnswer) {
-    //   // Add the new answer to the set
-    //   const newAnswerSet = new Set(answerSet);
-    //   toast.error(`Answer "${answer}" is already added.`, {
-    //   position: "top-right",
-    //   autoClose: 1000,
-    // });
-    //   newAnswerSet.add(answer);
-    //   setAnswerSet(newAnswerSet);
-    //   toast.warning(`Maximum answers (${maxAnswer}) reached.`, {
-    //     position: "top-right",
-    //     autoClose: 1000,
-    //   });
-    // }
-    // toast.success(`${answer} has been added.`, {
-    //   closeOnClick: true,
-    //   position: "top-right",
-    //   toastId: answer <= maxAnswer,
-    //   autoClose: 1000, // You can adjust the duration of the notification
-    // });
     if (answerSet.has(answer)) {
       // If the answer is already in the set, show a toast indicating it's already added
       toast.error(`${answer} is already added.`, {
@@ -137,11 +117,11 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
           <div className="flex flex-wrap py-[3px] px-[15px] md:px-[4px] sm:px-[3px] sm:py-[2px] md:py-[4px]">
             {items.map((answer, index) => (
               <div key={index} className="w-1/2 py-[1px] sm:py-[1px] md:py-[1px] px-[4px] md:px-[2px]">
-                <div className={`bg-gray-four  mx-auto hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[4px] py-[2px] rounded-[16px] md:mx-[1px] my-[1px]  sm:my-[0px] sm:px-[2px] w-full md:my-[1px] sm:w-full ${
+                <div className={`bg-gray-four  mx-auto hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[4px] py-[1px] rounded-[16px] md:mx-[1px] my-[1px]  sm:my-[0px] sm:px-[2px] w-full md:my-[1px] sm:w-full ${
                       answerSet.has(answer) ? 'bg-primary ' : ''
                     }`}>
                   <h3
-                    className="text-[16px] h-[19px] sm:h-[18px] md:h-[18px] leading-3 text-center text-gray-dark text-opacity-90 font-[500] mx-auto overflow-hidden whitespace-nowrap sm:leading-4 md:leading-4 w-full mdx:leading-4 cursor-pointer sm:text-[14px]"
+                    className="text-[16px] h-[19px] sm:h-[18px] md:h-[18px] leading-[20px] text-center text-gray-dark text-opacity-90 font-[500] mx-auto overflow-hidden whitespace-nowrap sm:leading-[20px] md:leading-[20px] w-full mdx:leading-4 cursor-pointer sm:text-[14px]"
                     onClick={() => handleAnswerClick(answer)}
                   >
                     {answer.length > 12 ? `${answer.slice(0, 24)}...` : answer}
