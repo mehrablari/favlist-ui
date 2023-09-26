@@ -92,8 +92,9 @@ const Layout = () => {
     setMinAnswer(activeQuestion?.minAnswerCount);
     setMaxAnswer(activeQuestion?.maxAnswerCount);
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
+  
 
-    // console.log("question", activeQuestion, "index", index);
+    console.log("question", activeQuestion);
 
     const storedAnswers = localStorage.getItem("answers");
     let count = 1;
@@ -222,7 +223,7 @@ const Layout = () => {
       }}
     >
       <NavBar />
-      <div className="bg-primary">
+      <div className="bg-primary w-full">
         <CardSwipeContainer
           apiData={apiData}
           handleSwipe={handleSwipe}
