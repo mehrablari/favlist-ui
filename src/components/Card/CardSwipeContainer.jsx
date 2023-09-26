@@ -91,7 +91,7 @@ const CardSwipeContainer = ({
   return (
     <div className="bg-primary w-full overflow-hidden">
       <Swiper
-        initialSlide={question}
+        initialSlide={questionId}
         effect={"cards"}
         grabCursor={true}
         loop={true}
