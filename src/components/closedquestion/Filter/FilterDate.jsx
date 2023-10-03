@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./TabContainer.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

@@ -29,7 +29,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
       <div className="text-grey-text">
         <p className="text-[16px] font-[600]">Your Answers</p>
         <p className="text-[15px] font-[400] leading-3">
-          Min {minAnswer}/max {maxAnswer}
+          Submit {minAnswer} to {maxAnswer}
         </p>
       </div>
       <div className="text-primary-light cursor-pointer">

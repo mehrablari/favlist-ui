@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
@@ -9,10 +10,12 @@ import { useState } from "react";
 import AnswerModal from "../components/questionbox/AnswerModal";
 import Backdrop from "@mui/material/Backdrop";
 
-
-
-const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }) => {
-  
+const Suggestion = ({
+  suggestedOption,
+  handleClick,
+  filteredOptions,
+  maxAnswer,
+}) => {
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
   // Step 3: Define functions to open and close the backdrop
@@ -24,7 +27,6 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
   const handleCloseBackdrop = () => {
     setOpenBackdrop(false);
   };
-  
 
   const renderSwiperSlides = () => {
     const totalItems =
@@ -49,12 +51,16 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
           : [];
 
       slides.push(
-        <SwiperSlide key={i} className="suggestion flex flex-wrap font-baloo2 w-[360px]">
+        <SwiperSlide
+          key={i}
+          className="suggestion flex flex-wrap font-baloo2 w-[360px]"
+        >
           {items.map((suggestion, index) => {
-            const itemIndex = startIndex + index; // Calculate the correct index value
-
             return (
-              <div key={index} className="w-1/3 min-h-[40px] mx-auto flex justify-around">
+              <div
+                key={index}
+                className="w-1/3 min-h-[40px] mx-auto flex justify-around"
+              >
                 <div
                   className="bg-gray-four hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[4px] mb-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
@@ -92,14 +98,11 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
             color: "#fff",
             zIndex: (theme) => theme.zIndex.drawer + 1,
             display: "flex",
-            padding:"10px",
-            
+            padding: "10px",
+
             flexDirection: "column",
-            
-           
           }}
           open={openBackdrop}
-          
         >
           {openBackdrop && (
             <AnswerModal
@@ -107,15 +110,14 @@ const Suggestion = ({ suggestedOption, handleClick, filteredOptions, maxAnswer }
               maxAnswer={maxAnswer}
               closeBackdrop={handleCloseBackdrop}
               handleClick={handleClick}
-
             />
           )}
         </Backdrop>
       </div>
       <div className="bg-neutral pt-[10px] mx-auto w-[360px] sm:w-[340px]">
         <Swiper
-        //  initialSlide={questionId}
-         loop={true}
+          //  initialSlide={questionId}
+          loop={true}
           pagination={{
             clickable: true,
           }}

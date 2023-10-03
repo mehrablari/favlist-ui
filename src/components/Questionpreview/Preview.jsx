@@ -94,15 +94,18 @@ const Preview = () => {
       width: "100%",
       borderRadius: "16px",
     }}>
-      <Helmet defer={false}>
-        <title>FavList </title>
-        <meta property="og:title" content="Favlist" />
+      <Helmet>
+        <title>{questionName} </title>
+        {/* <meta property="og:title" content="preview favlist" /> */}
+
         <meta property="og:type" content="article" />
+        <meta property="og:title" content={questionName} />
         <meta property="og:image" content={imgUrl} />
+        
         <meta name="description" content="helmet" />
         <meta
           property="og:url"
-          content="https://favuserapp.netlify.app"
+          content="http://favlist.surge.sh/"
         />
         <meta name="twitter:card" content="summary_large_image" />
 
@@ -112,6 +115,7 @@ const Preview = () => {
         />
         <meta property="og:site_name" content="Favlist" />
         <meta name="twitter:image:alt" content="favourite answers" />
+        
       </Helmet>
       <div className="mx-auto pt-[2px] sm:pt-[10px]">
         <h1 className="text-neutral font-[700] text-[16px] leading-3 pb-[5px]">
@@ -137,15 +141,15 @@ const Preview = () => {
             ref={containerRef}
             className="w-full bg-neutral"
           >
-            <div className="text-neutral flex flex-wrap align-middle justify-center text-center text-[16px] font-[600] pb-[10px]">
+            <div className="text-gray-list flex flex-wrap align-middle justify-center text-center text-[18px] font-[600] pb-[10px]">
               {graphicTitle}
             </div>
             {dataContainer.answers.map((answer, index) => (
               <div
               key={index}
-              className="bg-center text-neutral text-[14px] font-sans "
+              className="bg-center text-neutral text-[14px] font-sans flex pl-[4px]"
             >
-              <h2 className="font-[400] rounded-[8px] bg-primary mb-[10px] pl-[8px] max-w-content">
+              <h2 className="font-[400] rounded-[8px] bg-primary mb-[10px] px-[10px] ">
 
               {answer}
               </h2>
