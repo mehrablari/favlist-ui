@@ -1,16 +1,20 @@
+//dependent component
 import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
 import CardSwipeContainer from "./Card/CardSwipeContainer";
-
 import NavBar from "./NavBar";
+import AnsweredContainer from "./Answered/AnsweredContainer";
+
+//assets
 import soundEffect from "../assets/audio/softwave.mp3";
+import Logo from "../assets/images/logoblack.png";
+
+//effect and packages
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Logo from "../assets/images/logoblack.png";
-import AnsweredContainer from "./Answered/AnsweredContainer";
 import { Helmet } from "react-helmet-async";
 
 export const LayoutContext = createContext();
@@ -30,12 +34,10 @@ const Layout = () => {
   const [questionName, setQuestionName] = useState("");
   const [daysRemaining, setDaysRemaining] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState([]);
-
-  const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
+  // const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
 
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
@@ -43,12 +45,14 @@ const Layout = () => {
     audio.play();
   };
 
+//vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
       navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
     }
   };
 
+  //answer removal
   const handleRemoveAnswer = (index) => {
     handleDismiss(index);
 
@@ -81,11 +85,11 @@ const Layout = () => {
   };
 
   //manage the swiping card of question container
-  const handleSwipe = (activeQuestion, index) => {
+  const handleSwipe = (activeQuestion) => {
     setActiveAnswerJson(activeQuestion?.answersJson);
     setSelectedOption(activeQuestion?.answersJson[0]);
     setSuggestedOption(activeQuestion?.answersJson);
-    setQuestionId(activeQuestion?.id);
+    setQuestionId(activeQuestion?.id[0]);
     setGraphicTitle(activeQuestion?.graphicTitle);
     setQuestionName(activeQuestion?.text);
     setIsAnswered(activeQuestion?.userSubmission);
@@ -94,7 +98,7 @@ const Layout = () => {
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
   
 
-    console.log("question", activeQuestion);
+    // console.log("question", activeQuestion);
 
     const storedAnswers = localStorage.getItem("answers");
     let count = 1;
@@ -229,9 +233,6 @@ const Layout = () => {
           handleSwipe={handleSwipe}
           questionId={questionId}
           daysRemaining={daysRemaining}
-
-          // onSwipe={handleSwiperClear}
-          // selectedCardIndex={selectedCardIndex}
         />
       </div>
       <Helmet>
@@ -241,7 +242,7 @@ const Layout = () => {
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
-        <div className="pt-[320px] z-10">
+        <div className="pt-[250px] z-10">
           <Searchbox
           // answerData={apiData}
           // activeAnswerJson={activeAnswerJson}
