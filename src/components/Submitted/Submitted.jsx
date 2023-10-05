@@ -12,14 +12,18 @@ const Submit = () => {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false} prioritizeSeoTags>
+        <title>Give answers to your favourite things</title>
         <meta property="og:type" content="article" />
         <meta property="og:title" content="question image" />
-        <meta property="og:image" content={graphicUrl} />
-        <meta name="description" content="helmet" />
-        <meta property="og:url" content="http://favlist.surge.sh/" />
-        <meta name="twitter:card" content="summary_large_image" />
 
+        <meta name="description" content="helmet" />
+        <meta property="og:url" content="https://favlist.net/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          property="og:image"
+          content={graphicUrl}
+        />
         <meta
           property="og:description"
           content="Give answers to your favourite things"
