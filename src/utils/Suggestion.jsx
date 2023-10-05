@@ -20,7 +20,7 @@ const Suggestion = ({
 
   // Step 3: Define functions to open and close the backdrop
   const handleOpenBackdrop = () => {
-    console.log("handleOpenBackdrop called");
+    
     setOpenBackdrop(true);
   };
 

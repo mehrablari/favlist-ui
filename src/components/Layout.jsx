@@ -89,13 +89,15 @@ const Layout = () => {
     setActiveAnswerJson(activeQuestion?.answersJson);
     setSelectedOption(activeQuestion?.answersJson[0]);
     setSuggestedOption(activeQuestion?.answersJson);
-    setQuestionId(activeQuestion?.id[0]);
+    setQuestionId(activeQuestion?.id);
     setGraphicTitle(activeQuestion?.graphicTitle);
     setQuestionName(activeQuestion?.text);
     setIsAnswered(activeQuestion?.userSubmission);
     setMinAnswer(activeQuestion?.minAnswerCount);
     setMaxAnswer(activeQuestion?.maxAnswerCount);
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
+
+    
   
 
     // console.log("question", activeQuestion);
@@ -163,20 +165,21 @@ const Layout = () => {
           }
         );
         setIsLoading(false);
-        setApiData(response.data);
-        // console.log("data",response.data);
+        const data = response.data.sort((a, b) => b.id - a.id);
+        setApiData(data);
+        console.log("question id",response.data[0].id);
 
-        setActiveAnswerJson(response.data[0]?.answersJson);
-        setSelectedOption(response.data[0]?.answersJson[0]);
-        setSuggestedOption(response.data[0]?.answersJson);
-        setClickedValue(response.data[0]?.answersJson);
+        setActiveAnswerJson(data[0]?.answersJson);
+        setSelectedOption(data[0]?.answersJson[0]);
+        setSuggestedOption(data[0]?.answersJson);
+        setClickedValue(data[0]?.answersJson);
         setQuestionId(response.data[0]?.id);
-        setDaysRemaining(response.data[0]?.daysToRemainOpen);
-        setIsAnswered(response.data[0]?.userSubmission);
-        setGraphicTitle(response.data[0]?.graphicTitle);
-        setQuestionName(response.data[0]?.text);
-        setMinAnswer(response.data[0]?.minAnswerCount);
-        setMaxAnswer(response.data[0]?.maxAnswerCount);
+        setDaysRemaining(data[0]?.daysToRemainOpen);
+        setIsAnswered(data[0]?.userSubmission);
+        setGraphicTitle(data[0]?.graphicTitle);
+        setQuestionName(data[0]?.text);
+        setMinAnswer(data[0]?.minAnswerCount);
+        setMaxAnswer(data[0]?.maxAnswerCount);
       } catch (error) {
         console.error("Error fetching API data:", error);
       }
@@ -275,3 +278,19 @@ const Layout = () => {
 };
 
 export default Layout;
+
+
+
+//// Save selected question's data in local storage
+// localStorage.setItem("selectedQuestionData", JSON.stringify(activeQuestion));
+
+
+//preview
+//const [questionData, setQuestionData] = useState(null);
+// useEffect(() => {
+//   // Retrieve saved question data from local storage
+//   const savedQuestionData = localStorage.getItem("selectedQuestionData");
+//   if (savedQuestionData) {
+//     setQuestionData(JSON.parse(savedQuestionData));
+//   }
+// }, []);

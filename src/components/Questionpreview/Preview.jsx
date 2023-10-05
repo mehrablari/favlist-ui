@@ -94,29 +94,7 @@ const Preview = () => {
       width: "100%",
       borderRadius: "16px",
     }}>
-      <Helmet>
-        <title>{questionName} </title>
-        {/* <meta property="og:title" content="preview favlist" /> */}
-
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={questionName} />
-        <meta property="og:image" content={imgUrl} />
-        
-        <meta name="description" content="helmet" />
-        <meta
-          property="og:url"
-          content="http://favlist.surge.sh/"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-
-        <meta
-          property="og:description"
-          content="Give answers to your favourite things"
-        />
-        <meta property="og:site_name" content="Favlist" />
-        <meta name="twitter:image:alt" content="favourite answers" />
-        
-      </Helmet>
+     
       <div className="mx-auto pt-[2px] sm:pt-[10px]">
         <h1 className="text-neutral font-[700] text-[16px] leading-3 pb-[5px]">
           PREVIEW YOUR ANSWERS
@@ -195,3 +173,29 @@ const Preview = () => {
 };
 
 export default Preview;
+
+
+
+ {/* <Helmet>
+        <title>{questionName} </title>
+        {/* <meta property="og:title" content="preview favlist" /> */}
+
+      //   <meta property="og:type" content="article" />
+      //   <meta property="og:title" content={questionName} />
+      //   <meta property="og:image" content={imgUrl} />
+        
+      //   <meta name="description" content="helmet" />
+      //   <meta
+      //     property="og:url"
+      //     content="http://favlist.surge.sh/"
+      //   />
+      //   <meta name="twitter:card" content="summary_large_image" />
+
+      //   <meta
+      //     property="og:description"
+      //     content="Give answers to your favourite things"
+      //   />
+      //   <meta property="og:site_name" content="Favlist" />
+      //   <meta name="twitter:image:alt" content="favourite answers" />
+        
+      // </Helmet> */}

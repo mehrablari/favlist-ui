@@ -12,19 +12,21 @@ const CardSwipeContainer = ({
   apiData,
   handleSwipe,
 }) => {
-  const reversedApiData = [...apiData].reverse();
+  // const apiData = [...apiData].reverse();
+  // // const apiData = apiData
+
 
   //local storage
   const storedQuestionIndex =
-    localStorage.getItem("selectedQuestionIndex") || 0;
+    localStorage.getItem("selectedQuestionIndex")
   const [question, setQuestion] = useState(storedQuestionIndex);
 
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
 
-    setQuestion(reversedApiData[activeIndex]);
+    setQuestion(apiData[activeIndex]);
 
-    handleSwipe(reversedApiData[activeIndex]);
+    handleSwipe(apiData[activeIndex]);
   };
 
   const generateRandomColors = (count) => {
@@ -37,7 +39,7 @@ const CardSwipeContainer = ({
     }
     return colors;
   };
-  const borderColors = generateRandomColors(reversedApiData.length);
+  const borderColors = generateRandomColors(apiData.length);
 
   const remaining = (days) => {
     if (days === 0) {
@@ -68,16 +70,17 @@ const CardSwipeContainer = ({
   return (
     <div className="bg-primary w-full overflow-hidden">
       <Swiper
-        slidesPerView={1}
+        // slidesPerView={1}
         effect={"cards"}
         grabCursor={true}
+        initialSlide={question}
         loop={true}
         modules={[EffectCards]}
         // slidesPerView={1}
         className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] right-[0] left-[0] z-20"
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
-        {reversedApiData.map((question, id) => (
+        {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
             className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-4`}

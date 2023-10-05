@@ -23,10 +23,13 @@ const AnsweredList = () => {
 
   const [showIndex, setShowIndex] = useState(false);
   const handlePreviewAnswers = () => {
-    var index = apiData.findIndex((x) => x.id === questionId);
+    console.log("apiData:", apiData);
+  console.log("questionId:", questionId);
+    // var index = apiData.findIndex((x) => x.id === questionId);
+    // console.log("index:",index)
 
     localStorage.setItem("answers", JSON.stringify(answers));
-    localStorage.setItem("selectedQuestionIndex", index);
+    localStorage.setItem("selectedQuestionIndex", questionId);
   };
 
   const handleSubmit = (event) => {
