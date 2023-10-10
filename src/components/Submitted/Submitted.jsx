@@ -13,23 +13,40 @@ const Submit = () => {
   return (
     <>
       <Helmet defer={false} prioritizeSeoTags>
+        {/* Regular meta */}
         <title>Give answers to your favourite things</title>
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="question image" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="favlist answers" />
+        <meta property="og:url" content="https://favlist.surge.sh" />
 
-        <meta name="description" content="helmet" />
-        <meta property="og:url" content="https://favlist.net/" />
-        <meta name="twitter:card" content="summary_large_image" />
         <meta
-          property="og:image"
-          content={graphicUrl}
+          name="description"
+          content="Give Answers to your favorite things"
         />
         <meta
           property="og:description"
-          content="Give answers to your favourite things"
+          content="Give answers to your favorite things"
         />
-        <meta property="og:site_name" content="Favlist" />
-        <meta name="twitter:image:alt" content="favourite answers" />
+        {/* Image meta */}
+        <meta property="og:image" itemProp="image" content={graphicUrl} />
+        <meta property="og:image:secure_url" content={graphicUrl} />
+        
+
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:site_name" content="favlist" />
+        {/* twitter  */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image:alt" content="favorite answers" />
+        <meta name="twitter:image" itemProp="image" content={graphicUrl+"/"} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://favlist.surge.sh" />
+        <meta property="twitter:title" content="favlist" />
+        <meta
+          property="twitter:description"
+          content="Give answers to your favorite things"
+        />
       </Helmet>
       <div
         className="pt-[50px] sm:pt-[120px] md:pt-[120px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto sm:h-screen"
@@ -66,9 +83,9 @@ const Submit = () => {
             <div className="p-[5px] mx-auto">
               <RWebShare
                 data={{
-                  text: "My answers",
+                  text: "https://favlist.net",
                   url: graphicUrl,
-                  title: "Favlist",
+                  title: "Give answers to your favorite things",
                 }}
                 onClick={() => console.log("shared successfully!")}
               >
