@@ -53,7 +53,7 @@ const Suggestion = ({
       slides.push(
         <SwiperSlide
           key={i}
-          className="suggestion flex flex-wrap font-baloo2 w-[360px]"
+          className="flex flex-wrap font-baloo2 w-[360px]"
         >
           {items.map((suggestion, index) => {
             return (
@@ -62,10 +62,10 @@ const Suggestion = ({
                 className="w-1/3 min-h-[40px] mx-auto flex justify-around"
               >
                 <div
-                  className="bg-gray-four hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[4px] mb-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
+                  className="bg-gray-four hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
-                  <h3 className="text-[15px] text-center font-[500] text-gray-darker text-opacity-90 overflow-hidden whitespace-nowrap leading-4 sm:leading-4 cursor-pointer">
+                  <h3 className="text-[15px] text-center font-[500] text-gray-darker text-opacity-90 overflow-hidden whitespace-nowrap w-full leading-4 sm:leading-4 cursor-pointer">
                     {suggestion.length > 14
                       ? `${suggestion.slice(0, 18)}...`
                       : suggestion}
@@ -83,7 +83,7 @@ const Suggestion = ({
 
   return (
     <main className="bg-neutral pt-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans z-20">
-      <div className="flex flex-row justify-between bg-neutral sm:w-[340px] w-[360px] mx-auto">
+      <div className="flex flex-row justify-between bg-neutral sm:w-[350px] w-[380px] mx-auto">
         <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
           <span className="text-primary cursor-pointer text-[14px] font-[500]">
@@ -114,7 +114,7 @@ const Suggestion = ({
           )}
         </Backdrop>
       </div>
-      <div className="bg-neutral pt-[10px] mx-auto w-[360px] sm:w-[340px]">
+      <div className="bg-neutral pt-[10px] mx-auto w-[380px] sm:w-[350px]">
         <Swiper
           //  initialSlide={questionId}
           loop={true}
@@ -130,7 +130,7 @@ const Suggestion = ({
             "--swiper-pagination-bullet": "10px",
             "--swiper-pagination-bullet-horizontal-gap": "4px",
           }}
-          className="mySwiper w-[360px] sm:w-full md:w-full min-h-[100px] bg-neutral pb-[25px] mx-auto"
+          className="mySwiper w-[380px] sm:w-full md:w-full min-h-[100px] bg-neutral pb-[25px] mx-auto"
         >
           {renderSwiperSlides()}
         </Swiper>
