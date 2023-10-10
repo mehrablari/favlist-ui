@@ -3,17 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-cards";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./tindercards.css";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
+import { LayoutContext } from "../Layout";
 
-const CardSwipeContainer = ({
-  apiData,
-  handleSwipe,
-}) => {
-  // const apiData = [...apiData].reverse();
-  // // const apiData = apiData
+const CardSwipeContainer = () => {
+
+const {apiData, handleSwipe} = useContext(LayoutContext)
 
 
   //local storage
@@ -23,6 +21,7 @@ const CardSwipeContainer = ({
 
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
+    console.log("active card",activeIndex);
 
     setQuestion(apiData[activeIndex]);
 
@@ -68,7 +67,7 @@ const CardSwipeContainer = ({
   };
 
   return (
-    <div className="bg-primary w-full overflow-hidden">
+    <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 ">
       <Swiper
         // slidesPerView={1}
         effect={"cards"}
@@ -77,13 +76,13 @@ const CardSwipeContainer = ({
         loop={true}
         modules={[EffectCards]}
         // slidesPerView={1}
-        className="mySwiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] fixed top-[0] right-[0] left-[0] z-20"
+        className="myswiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] "
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
         {apiData.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[340px] swiper-1 md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-4`}
+            className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-4`}
             style={{ borderColor: borderColors[id] }}
           >
             <p className="text-gray-dark text-[21px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[700] tracking-tighter">
@@ -137,3 +136,4 @@ const CardSwipeContainer = ({
 };
 
 export default CardSwipeContainer;
+//style for swiper
