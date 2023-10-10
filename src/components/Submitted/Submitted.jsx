@@ -18,7 +18,6 @@ const Submit = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="favlist answers" />
         <meta property="og:url" content="https://favlist.surge.sh" />
-
         <meta
           name="description"
           content="Give Answers to your favorite things"
@@ -30,8 +29,6 @@ const Submit = () => {
         {/* Image meta */}
         <meta property="og:image" itemProp="image" content={graphicUrl} />
         <meta property="og:image:secure_url" content={graphicUrl} />
-        
-
         <meta property="og:image:width" content="200" />
         <meta property="og:image:height" content="200" />
         <meta property="og:image:type" content="image/png" />
@@ -83,7 +80,7 @@ const Submit = () => {
             <div className="p-[5px] mx-auto">
               <RWebShare
                 data={{
-                  text: "https://favlist.net",
+                  text: "Favorite Answers",
                   url: graphicUrl,
                   title: "Give answers to your favorite things",
                 }}
