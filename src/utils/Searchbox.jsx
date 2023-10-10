@@ -28,7 +28,7 @@ const Searchbox = () => {
 
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[70px] font-baloo2">
-      <div className="w-[327px] sm:w-[300px] mx-auto relative flex items-center justify-center align-middle">
+      <div className="w-[360px] sm:w-[340px] mx-auto relative flex items-center justify-center align-middle">
         {inputValue.length === 0 && (
           <span className="absolute left-[10px] top-[2.5px] h-full flex items-center">
             <SearchIcon className="h-[15px] w-[15px] text-gray-lighter" aria-hidden="true" />
