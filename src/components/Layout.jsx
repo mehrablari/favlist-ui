@@ -97,10 +97,33 @@ const Layout = () => {
     setMaxAnswer(activeQuestion?.maxAnswerCount);
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-    
-  
+    const storedAnswers = localStorage.getItem("answers");
+    let count = 1;
+    if (storedAnswers) {
+      if (count === 1) {
+        setAnswers(JSON.parse(storedAnswers));
+        count++;
+      }
+      if (count === 2) {
+        setTimeout(() => {
+          localStorage.removeItem("answers");
+          localStorage.removeItem("selectedQuestionIndex");
+        }, 3000);
+      }
+    } else {
+      setAnswers([]);
+    }
+  };
 
-    // console.log("question", activeQuestion);
+  // const storedAnswers = localStorage.getItem("answers");
+  // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
+  
+  // console.log(storedAnswers)
+  // console.log(storedQuestion)
+
+
+
+  useEffect(()=> {
 
     const storedAnswers = localStorage.getItem("answers");
     let count = 1;
@@ -113,12 +136,12 @@ const Layout = () => {
         setTimeout(() => {
           localStorage.removeItem("answers");
           localStorage.removeItem("selectedQuestionIndex");
-        }, 4000);
+        }, 3000);
       }
     } else {
       setAnswers([]);
     }
-  };
+  }, [])
 
   //handle filtering when user search via searchbar
   const handleFilter = (inputValue) => {
@@ -167,7 +190,16 @@ const Layout = () => {
         setIsLoading(false);
         const data = response.data.sort((a, b) => b.id - a.id);
         setApiData(data);
-        console.log("question id",response.data[0].id);
+        // console.log("data",data);
+
+        const storedQuestion = localStorage.getItem("selectedQuestionIndex");
+
+        const editAnswer = data.findIndex(item => item.id === storedQuestion ) 
+        // console.log("stored local:", storedQuestion)
+        // console.log("questioData:", editAnswer)
+        
+
+      
 
         setActiveAnswerJson(data[0]?.answersJson);
         setSelectedOption(data[0]?.answersJson[0]);
@@ -232,10 +264,6 @@ const Layout = () => {
       <NavBar />
       <div className="bg-primary w-full">
         <CardSwipeContainer
-          apiData={apiData}
-          handleSwipe={handleSwipe}
-          questionId={questionId}
-          daysRemaining={daysRemaining}
         />
       </div>
       <Helmet>
@@ -247,10 +275,7 @@ const Layout = () => {
       ) : (
         <div className="pt-[250px] z-10">
           <Searchbox
-          // answerData={apiData}
-          // activeAnswerJson={activeAnswerJson}
-          // handleSubmission={handleSubmission}
-          // handleFilter={handleFilter}
+         
           />
           <Suggestion
            
@@ -262,13 +287,6 @@ const Layout = () => {
 
           <DndProvider backend={HTML5Backend}>
             <AnsweredList
-              apiData={apiData}
-              // answers={answers}
-              // questionData={apiData}
-              // handleDismiss={handleDismiss}
-              // questionId={questionId}
-              // questionName={questionName}
-              // clickedValue={clickedValue}
             />
           </DndProvider>
         </div>

@@ -18,6 +18,7 @@ const Submit = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="favlist answers" />
         <meta property="og:url" content="https://favlist.surge.sh" />
+        <meta property="robots" content="index, follow" />
         <meta
           name="description"
           content="Give Answers to your favorite things"
@@ -29,19 +30,21 @@ const Submit = () => {
         {/* Image meta */}
         <meta property="og:image" itemProp="image" content={graphicUrl} />
         <meta property="og:image:secure_url" content={graphicUrl} />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="200" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="314" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:site_name" content="favlist" />
         {/* twitter  */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image:alt" content="favorite answers" />
-        <meta name="twitter:image" itemProp="image" content={graphicUrl+"/"} />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://favlist.surge.sh" />
-        <meta property="twitter:title" content="favlist" />
+        <meta name="x:image:alt" content="favorite answers" />
+        <meta name="x:image" itemProp="image" content={graphicUrl + "/"} />
+        <meta property="x:image:width" content="600" />
+        <meta property="x:image:height" content="314" />
+        <meta property="x:card" content="app" />
+        <meta property="x:url" content="https://favlist.surge.sh" />
+        <meta property="x:title" content="favlist" />
         <meta
-          property="twitter:description"
+          property="x:description"
           content="Give answers to your favorite things"
         />
       </Helmet>
@@ -61,7 +64,7 @@ const Submit = () => {
             <h2 className="w-[327px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
               Yaayy! Your answers have been submitted! 1{" "}
             </h2>
-            {/* < hr className="border-t-2 border-[#B5B8BB] mx-auto" /> */}
+
             <div className="flex flex-row justify-center">
               <img src={Video} alt="video" className="pr-[10px]" />
               <h1 className="font-[500] text-[13px] text-text-blue">
@@ -75,7 +78,7 @@ const Submit = () => {
             className=" mx-auto p-[10px]"
           />
           <div className=""></div>
-          {/* <hr className="mt-[20px] border-t-2 border-[#B5B8BB] mx-auto" /> */}
+
           <div className="flex flex-col pb-[10px] mx-auto">
             <div className="p-[5px] mx-auto">
               <RWebShare

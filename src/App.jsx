@@ -9,7 +9,6 @@ import {
 import Layout from "./components/Layout";
 
 import Preview from "./components/Questionpreview/Preview";
-// import  RankedAnswers from "./components/Submitted/RankedAnswers"
 import Submitted from "./components/Submitted/Submitted";
 import AnswerGraphics from "./components/AnswerGraphic/AnswerGraphic";
 import ClosedQuestion from "./components/closedquestion/ClosedQuestion";
@@ -34,7 +33,7 @@ const router = createBrowserRouter(
       <Route path="/filtercontainer" element={<FilterContainer />} />
       <Route path="/filterpage" element={<FilterPage />} />
       <Route path="/closedinfo/:id" element={<ClosedInfo />} />
-      <Route path="*" element={<NoMatch />} />
+      <Route path="/*" element={<NoMatch />} />
       
     </>
     

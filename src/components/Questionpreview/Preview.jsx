@@ -8,8 +8,10 @@ import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
 import { Helmet } from "react-helmet-async";
 import Bg from "../../assets/images/fav.jpg";
+import imgPreview from "../../assets/images/bgimage.png";
 import BgImage from "../../assets/images/favbg.jpg";
-import Logo from "../../assets/images/logoAllwhite.png"
+
+import Logo from "../../assets/images/logoAllwhite.png";
 
 let imageState;
 let imgUrl;
@@ -23,7 +25,7 @@ const Preview = () => {
   const dataContainer = location.state;
   const graphicTitle = dataContainer.graphicTitle;
   const questionName = dataContainer.questionName;
-  // console.log("text", questionText);
+ 
 
   const containerRef = useRef(null);
 
@@ -86,24 +88,26 @@ const Preview = () => {
   };
 
   return (
-    <div className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[50px] sm:pt-[130px] md:pt-[130px]" style={{
-      backgroundImage: `url(${BgImage})`,
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      width: "100%",
-      borderRadius: "16px",
-    }}>
-     
-      <div className="mx-auto pt-[2px] sm:pt-[10px]">
+    <div
+      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px]"
+      style={{
+        backgroundImage: `url(${BgImage})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        width: "100%",
+        borderRadius: "16px",
+      }}
+    >
+      <div className="mx-auto pt-[2px] sm:pt-[5px]">
         <h1 className="text-neutral font-[700] text-[16px] leading-3 pb-[5px]">
           PREVIEW YOUR ANSWERS
         </h1>
       </div>
-      <div className="flex flex-col bg-neutral rounded-lg py-[5px] w-[360px] mx-auto">
+      <div className="flex flex-col bg-neutral rounded-lg py-[30px] w-[380px] mx-auto">
         <div className="flex flex-col px-[10px]">
           <h1 className="font-[500] text-[14px] text-text-blue">Question</h1>
-          <h1 className="font-[700] text-[18px] leading-[20px] text-gray-list py-[4px]">
+          <h1 className="font-[700] text-[18px] leading-[20px] text-gray-list py-[2px]">
             {questionName}
           </h1>
           <div className="flex">
@@ -112,52 +116,52 @@ const Preview = () => {
               Your preview image
             </h1>
           </div>
-          
         </div>
-        <div className="rounded-[12px] w-full">
-          <div
-            ref={containerRef}
-            className="w-full bg-neutral"
-          >
-            <div className="text-gray-list flex flex-wrap align-middle justify-center text-center text-[18px] font-[600] pb-[10px]">
+        <div
+          ref={containerRef}
+          className="w-full my-[10px] "
+          style={{
+            backgroundImage: `url(${imgPreview})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "100%",
+            height: "370px",
+          }}
+        >
+          <div className="pl-[20px] pt-[10px] pb-[5px] ">
+            <div className="text-gray-list flex flex-wrap align-middle text-[20px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
             </div>
             {dataContainer.answers.map((answer, index) => (
               <div
-              key={index}
-              className="bg-center text-neutral text-[14px] font-sans flex pl-[4px]"
-            >
-              <h2 className="font-[400] rounded-[8px] bg-primary mb-[10px] px-[10px] ">
-
-              {answer}
-              </h2>
-            </div>
-            ))}
-            <div className="flex flex-row justify-between bg-primary w-full px-[10px]">
-              <p className="text-neutral"><a href="www.favlist.net">www.favlist.net</a></p>
-              <div className="">
-
-              <img src={Logo} alt="favlist logo" className="w-[130px] h-[20px] mt-[4px]"/>
+                key={index}
+                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px]"
+              >
+                <h2 className="font-[700] rounded-[8px] mb-[5px] px-[10px] ">
+                {answer.length > 30 ? `${answer.substring(0, 30)}...` : answer}
+                </h2>
               </div>
-            </div>
+            ))}
           </div>
+
         </div>
 
         <form
           onClick={handleSubmit}
-          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[287px] w-[260px] sm:w-[240px] mx-auto px-[20px] bg-primary rounded-lg  m-[10px] "
+          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[287px] w-[260px] sm:w-[240px] mx-auto px-[20px] bg-primary rounded-lg  my-[5px] "
         >
           <div className="">
             <button
               disabled={isSubmitting}
               type="submit"
-              className="h-[40px] text-center  font-[600] flex-grow flex-shrink text-[15px] text-neutral "
+              className="h-[30px] text-center  font-[600] flex-grow flex-shrink text-[15px] text-neutral "
             >
               {isSubmitting ? "Submitting..." : "Submit Answers"}
             </button>
           </div>
         </form>
-        <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
+        <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
           <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
           <Link
             to="/"
@@ -173,29 +177,3 @@ const Preview = () => {
 };
 
 export default Preview;
-
-
-
- {/* <Helmet>
-        <title>{questionName} </title>
-        {/* <meta property="og:title" content="preview favlist" /> */}
-
-      //   <meta property="og:type" content="article" />
-      //   <meta property="og:title" content={questionName} />
-      //   <meta property="og:image" content={imgUrl} />
-        
-      //   <meta name="description" content="helmet" />
-      //   <meta
-      //     property="og:url"
-      //     content="http://favlist.surge.sh/"
-      //   />
-      //   <meta name="twitter:card" content="summary_large_image" />
-
-      //   <meta
-      //     property="og:description"
-      //     content="Give answers to your favourite things"
-      //   />
-      //   <meta property="og:site_name" content="Favlist" />
-      //   <meta name="twitter:image:alt" content="favourite answers" />
-        
-      // </Helmet> */}

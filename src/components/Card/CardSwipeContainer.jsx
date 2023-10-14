@@ -19,9 +19,13 @@ const {apiData, handleSwipe} = useContext(LayoutContext)
     localStorage.getItem("selectedQuestionIndex")
   const [question, setQuestion] = useState(storedQuestionIndex);
 
+  console.log("local str:",storedQuestionIndex);
+
+
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
-    console.log("active card",activeIndex);
+    console.log("card params:",swiper);
+
 
     setQuestion(apiData[activeIndex]);
 
@@ -75,7 +79,6 @@ const {apiData, handleSwipe} = useContext(LayoutContext)
         initialSlide={question}
         loop={true}
         modules={[EffectCards]}
-        // slidesPerView={1}
         className="myswiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] "
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
@@ -136,4 +139,3 @@ const {apiData, handleSwipe} = useContext(LayoutContext)
 };
 
 export default CardSwipeContainer;
-//style for swiper

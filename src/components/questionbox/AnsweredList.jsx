@@ -23,7 +23,7 @@ const AnsweredList = () => {
 
   const [showIndex, setShowIndex] = useState(false);
   const handlePreviewAnswers = () => {
-    console.log("apiData:", apiData);
+ 
   console.log("questionId:", questionId);
     // var index = apiData.findIndex((x) => x.id === questionId);
     // console.log("index:",index)
@@ -43,7 +43,7 @@ const AnsweredList = () => {
 
   return (
     <form
-      className="bg-neutral pb-[10px] font-sans min-h-[150px]"
+      className="bg-neutral pb-[10px] font-sans min-h-[150px] z-20"
       onClick={handleSubmit}
     >
       <AnswerHeader

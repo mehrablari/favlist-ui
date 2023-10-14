@@ -1,12 +1,9 @@
 import Video from "../../assets/images/video.png";
 import People from "../../assets/images/People.png";
 import { Link } from "react-router-dom";
-import { toPng } from "html-to-image";
-import { useRef } from "react";
 
 const AnswerProvided = ({ answerData }) => {
   const { answerGraphicLink, answers, questionId } = answerData;
-  // const imgUrl = apiData.answerGraphicLink
 
   return (
     <div className="p-[10px]">

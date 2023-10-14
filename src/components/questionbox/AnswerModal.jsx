@@ -125,7 +125,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
                     className="text-[17px] h-[19px] sm:h-[18px] md:h-[18px] leading-[20px] text-center text-gray-dark text-opacity-90 font-[500] mx-auto overflow-hidden sm:leading-[20px] md:leading-[20px] w-full mdx:leading-[20px] cursor-pointer sm:text-[16px]"
                     onClick={() => handleAnswerClick(answer)}
                   >
-                    {answer.length > 12 ? `${answer.slice(0, 16)}...` : answer}
+                    {answer.length > 20 ? `${answer.slice(0, 22)}...` : answer}
                   </h3>
                 </div>
               </div>
@@ -140,7 +140,7 @@ const AnswerModal = ({ suggestedOption, closeBackdrop, handleClick, maxAnswer })
   };
 
   return (
-    <div className="fixed mb-[130px] xl:mb-[0px] rounded-[16px] sm:mb-[270px] mdx:mb-[340px] mdx:rounded-[16px] lg:mb-[640px] md:mb-[300px] flex flex-col h-[420px] lg:h-[380px] md:h-[400px]  mdx:h-[450px] sm:h-[400px] bg-neutral p-[10px] w-[380px] md:w-full sm:w-full mx-auto sm:pt-[20px] md:pt-[20px] mdx:pt-[20px] ">
+    <div className="fixed mb-[130px] xl:mb-[0px] rounded-[16px] sm:mb-[270px] mdx:mb-[340px] mdx:rounded-[16px] lg:mb-[640px] md:mb-[300px] flex flex-col h-[420px] lg:h-[380px] md:h-[400px]  mdx:h-[450px] sm:h-[400px] bg-neutral p-[10px] w-[380px] md:w-full sm:w-full mx-auto sm:pt-[20px] md:pt-[20px] mdx:pt-[20px] z-10">
       <div className="flex flex-col pt-[2px]">
         <div className="flex flex-row justify-between overflow-hidden pb-[4px] text-gray-dark w-[360px] sm:w-[340px] sm:pb-[2px] h-[30px] mx-auto font-sans">
           <h2 className="sm:text-[16px]">Suggestions</h2>
