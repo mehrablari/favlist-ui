@@ -16,13 +16,20 @@ import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
+import { useContext } from 'react';
+import DataContext from "../context/DataContexts";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
+  const { questions, fetchError} = useContext(DataContext);
+
+  console.log('question',questions, fetchError, )
+ 
   //state management
 
   const [apiData, setApiData] = useState([]);
+  // const [question, setquestion] = useState([]);
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
@@ -45,6 +52,7 @@ const Layout = () => {
     audio.play();
   };
 
+    // console.log(apiData)
 //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
@@ -97,28 +105,31 @@ const Layout = () => {
     setMaxAnswer(activeQuestion?.maxAnswerCount);
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-    const storedAnswers = localStorage.getItem("answers");
-    let count = 1;
-    if (storedAnswers) {
-      if (count === 1) {
-        setAnswers(JSON.parse(storedAnswers));
-        count++;
-      }
-      if (count === 2) {
-        setTimeout(() => {
-          localStorage.removeItem("answers");
-          localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
-      }
-    } else {
-      setAnswers([]);
-    }
+
+    // setquestion(activeQuestion)
+
+    // const storedAnswers = localStorage.getItem("answers");
+    // let count = 1;
+    // if (storedAnswers) {
+    //   if (count === 1) {
+    //     setAnswers(JSON.parse(storedAnswers));
+    //     count++;
+    //   }
+    //   if (count === 2) {
+    //     setTimeout(() => {
+    //       localStorage.removeItem("answers");
+    //       localStorage.removeItem("selectedQuestionIndex");
+    //     }, 3000);
+    //   }
+    // } else {
+    //   setAnswers([]);
+    // }
   };
 
   // const storedAnswers = localStorage.getItem("answers");
   // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
   
-  // console.log(storedAnswers)
+  // console.log(question)
   // console.log(storedQuestion)
 
 
@@ -192,26 +203,26 @@ const Layout = () => {
         setApiData(data);
         // console.log("data",data);
 
-        const storedQuestion = localStorage.getItem("selectedQuestionIndex");
+        // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
 
-        const editAnswer = data.findIndex(item => item.id === storedQuestion ) 
+        // const editAnswer = data.findIndex(item => item.id === storedQuestion ) 
         // console.log("stored local:", storedQuestion)
         // console.log("questioData:", editAnswer)
         
 
       
 
-        setActiveAnswerJson(data[0]?.answersJson);
-        setSelectedOption(data[0]?.answersJson[0]);
-        setSuggestedOption(data[0]?.answersJson);
-        setClickedValue(data[0]?.answersJson);
-        setQuestionId(response.data[0]?.id);
-        setDaysRemaining(data[0]?.daysToRemainOpen);
-        setIsAnswered(data[0]?.userSubmission);
-        setGraphicTitle(data[0]?.graphicTitle);
-        setQuestionName(data[0]?.text);
-        setMinAnswer(data[0]?.minAnswerCount);
-        setMaxAnswer(data[0]?.maxAnswerCount);
+        // setActiveAnswerJson(data[0]?.answersJson);
+        // setSelectedOption(data[0]?.answersJson[0]);
+        // setSuggestedOption(data[0]?.answersJson);
+        // setClickedValue(data[0]?.answersJson);
+        // setQuestionId(response.data[0]?.id);
+        // setDaysRemaining(data[0]?.daysToRemainOpen);
+        // setIsAnswered(data[0]?.userSubmission);
+        // setGraphicTitle(data[0]?.graphicTitle);
+        // setQuestionName(data[0]?.text);
+        // setMinAnswer(data[0]?.minAnswerCount);
+        // setMaxAnswer(data[0]?.maxAnswerCount);
       } catch (error) {
         console.error("Error fetching API data:", error);
       }
@@ -235,11 +246,11 @@ const Layout = () => {
     );
   }
 
+
   return (
     <LayoutContext.Provider
       value={{
         apiData,
-        handleSwipe,
         minAnswer,
         maxAnswer,
         activeAnswerJson,
@@ -264,6 +275,7 @@ const Layout = () => {
       <NavBar />
       <div className="bg-primary w-full">
         <CardSwipeContainer
+        handleSwipe={handleSwipe}
         />
       </div>
       <Helmet>

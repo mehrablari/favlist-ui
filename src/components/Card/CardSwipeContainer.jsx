@@ -7,11 +7,13 @@ import { useContext, useState } from "react";
 import "./tindercards.css";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
-import { LayoutContext } from "../Layout";
+import DataContext from "../../context/DataContexts";
+// import { LayoutContext } from "../Layout";
 
-const CardSwipeContainer = () => {
+const CardSwipeContainer = ({handleSwipe}) => {
 
-const {apiData, handleSwipe} = useContext(LayoutContext)
+// const {apiData, handleSwipe} = useContext(LayoutContext)
+const { questions} = useContext(DataContext);
 
 
   //local storage
@@ -24,12 +26,12 @@ const {apiData, handleSwipe} = useContext(LayoutContext)
 
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
-    console.log("card params:",swiper);
+    // console.log("card params:",swiper);
 
 
-    setQuestion(apiData[activeIndex]);
+    setQuestion(questions[activeIndex]);
 
-    handleSwipe(apiData[activeIndex]);
+    handleSwipe(questions[activeIndex]);
   };
 
   const generateRandomColors = (count) => {
@@ -42,7 +44,7 @@ const {apiData, handleSwipe} = useContext(LayoutContext)
     }
     return colors;
   };
-  const borderColors = generateRandomColors(apiData.length);
+  const borderColors = generateRandomColors(questions.length);
 
   const remaining = (days) => {
     if (days === 0) {
@@ -82,7 +84,7 @@ const {apiData, handleSwipe} = useContext(LayoutContext)
         className="myswiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] "
         onSlideChange={(swiper) => handleSwipeChange(swiper)}
       >
-        {apiData.map((question, id) => (
+        {questions.map((question, id) => (
           <SwiperSlide
             key={id}
             className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-4`}
