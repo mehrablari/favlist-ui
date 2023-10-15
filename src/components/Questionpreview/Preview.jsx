@@ -1,7 +1,7 @@
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useContext } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -10,6 +10,9 @@ import { Helmet } from "react-helmet-async";
 import Bg from "../../assets/images/fav.jpg";
 import imgPreview from "../../assets/images/bgimage.png";
 import BgImage from "../../assets/images/favbg.jpg";
+import DataContext from '../../context/DataContexts';
+// import DataContext from '../../context/Da';
+// import { useContext } from 'react';
 
 import Logo from "../../assets/images/logoAllwhite.png";
 
@@ -20,6 +23,11 @@ const Preview = () => {
   // const [imageUrl, setImageUrl] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);
+
+
+  const { goBackToEditAnswers, setEdittAnswer } = useContext(DataContext);
+
+  // console.log(goBackToEditAnswers, "ques", questions)
 
   const location = useLocation();
   const dataContainer = location.state;
@@ -42,6 +50,17 @@ const Preview = () => {
   }, []);
 
   const navigate = useNavigate();
+
+
+  const handleEditQuestion = useCallback(() => {
+    const questionId = localStorage.getItem('selectedQuestionIndex');
+    const answers = localStorage.getItem('answers');
+   
+    questionId ?  goBackToEditAnswers(questionId) : null;
+    answers ? setEdittAnswer(answers) : null;
+    navigate('/');
+  }, [goBackToEditAnswers, setEdittAnswer]);
+
 
   const handleSubmit = async () => {
     await handleGenerateImage();
@@ -161,14 +180,14 @@ const Preview = () => {
             </button>
           </div>
         </form>
-        <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
+        <div  onClick={() => handleEditQuestion()} className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
           <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
-          <Link
-            to="/"
+          <span
+            
             className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light"
           >
             Go back to edit answers
-          </Link>
+          </span>
         </div>
       </div>
       <ToastContainer position="top-right" autoClose={3000} />

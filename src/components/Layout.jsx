@@ -12,7 +12,7 @@ import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
 import { useState, useEffect, createContext } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
@@ -22,13 +22,17 @@ import DataContext from "../context/DataContexts";
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  const { questions, fetchError} = useContext(DataContext);
+  // const { questions, fetchError, isLoading} = useContext(DataContext);
+  const { isLoading, questions, editQuestion, editAnswer} = useContext(DataContext);
 
-  console.log('question',questions, fetchError, )
+  // console.log('question',questions, fetchError, )
+  // console.log('question',isLoading, questions, )
+  console.log('question',editQuestion  )
+  console.log('anwer',editAnswer  )
  
   //state management
 
-  const [apiData, setApiData] = useState([]);
+  // const [apiData, setApiData] = useState([]);
   // const [question, setquestion] = useState([]);
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
@@ -40,7 +44,7 @@ const Layout = () => {
   const [graphicTitle, setGraphicTitle] = useState("");
   const [questionName, setQuestionName] = useState("");
   const [daysRemaining, setDaysRemaining] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState([]);
@@ -59,6 +63,26 @@ const Layout = () => {
       navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
     }
   };
+
+  function initializeQuestionState(questions) {
+    if (questions.length > 0) {
+      const initialQuestion = questions[0];
+      setActiveAnswerJson(initialQuestion.answersJson);
+      setSelectedOption(initialQuestion.answersJson[0]);
+      setSuggestedOption(initialQuestion.answersJson);
+      setQuestionId(initialQuestion.id);
+      setGraphicTitle(initialQuestion.graphicTitle);
+      setQuestionName(initialQuestion.text);
+      setIsAnswered(initialQuestion.userSubmission);
+      setMinAnswer(initialQuestion.minAnswerCount);
+      setMaxAnswer(initialQuestion.maxAnswerCount);
+      setDaysRemaining(initialQuestion.daysToRemainOpen);
+    }
+  }
+  
+  useEffect(() => {
+    initializeQuestionState(questions);
+  }, [questions]);
 
   //answer removal
   const handleRemoveAnswer = (index) => {
@@ -108,35 +132,8 @@ const Layout = () => {
 
     // setquestion(activeQuestion)
 
-    // const storedAnswers = localStorage.getItem("answers");
-    // let count = 1;
-    // if (storedAnswers) {
-    //   if (count === 1) {
-    //     setAnswers(JSON.parse(storedAnswers));
-    //     count++;
-    //   }
-    //   if (count === 2) {
-    //     setTimeout(() => {
-    //       localStorage.removeItem("answers");
-    //       localStorage.removeItem("selectedQuestionIndex");
-    //     }, 3000);
-    //   }
-    // } else {
-    //   setAnswers([]);
-    // }
-  };
-
-  // const storedAnswers = localStorage.getItem("answers");
-  // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
-  
-  // console.log(question)
-  // console.log(storedQuestion)
-
-
-
-  useEffect(()=> {
-
     const storedAnswers = localStorage.getItem("answers");
+    // console.log(storedAnswers)
     let count = 1;
     if (storedAnswers) {
       if (count === 1) {
@@ -152,7 +149,40 @@ const Layout = () => {
     } else {
       setAnswers([]);
     }
-  }, [])
+  };
+
+ 
+
+
+
+useEffect(() => {
+  if (editQuestion) {
+    setActiveAnswerJson(editQuestion.answersJson);
+    setSelectedOption(editQuestion.answersJson[0]);
+    setSuggestedOption(editQuestion.answersJson);
+    setQuestionId(editQuestion.id);
+    setGraphicTitle(editQuestion.graphicTitle);
+    setQuestionName(editQuestion.text);
+    setIsAnswered(editQuestion.userSubmission);
+    setMinAnswer(editQuestion.minAnswerCount);
+    setMaxAnswer(editQuestion.maxAnswerCount);
+    setDaysRemaining(editQuestion.daysToRemainOpen);
+  }
+
+  if (editAnswer) {
+    try {
+      const parsedEditAnswer = JSON.parse(editAnswer);
+      setAnswers(parsedEditAnswer);
+      // Use parsedData for further processing
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  } else {
+    // Handle the case where jsonData is empty
+    initializeQuestionState(questions);
+  }
+
+}, [editAnswer, editQuestion]);
 
   //handle filtering when user search via searchbar
   const handleFilter = (inputValue) => {
@@ -185,29 +215,29 @@ const Layout = () => {
 
   //api for get all questions
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://dev.pacerlabs.co/api/v1/questions",
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://dev.pacerlabs.co/api/v1/questions",
 
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "GET",
-          }
-        );
-        setIsLoading(false);
-        const data = response.data.sort((a, b) => b.id - a.id);
-        setApiData(data);
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           method: "GET",
+  //         }
+  //       );
+  //       setIsLoading(false);
+  //       const data = response.data.sort((a, b) => b.id - a.id);
+  //       setApiData(data);
         // console.log("data",data);
-
-        // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
-
-        // const editAnswer = data.findIndex(item => item.id === storedQuestion ) 
+// ditAnswer = data.findIndex(item => item.id === storedQuestion ) 
         // console.log("stored local:", storedQuestion)
         // console.log("questioData:", editAnswer)
+        // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
+
+        // const e
         
 
       
@@ -223,13 +253,13 @@ const Layout = () => {
         // setQuestionName(data[0]?.text);
         // setMinAnswer(data[0]?.minAnswerCount);
         // setMaxAnswer(data[0]?.maxAnswerCount);
-      } catch (error) {
-        console.error("Error fetching API data:", error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error("Error fetching API data:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   if (isLoading) {
     return (
@@ -250,7 +280,7 @@ const Layout = () => {
   return (
     <LayoutContext.Provider
       value={{
-        apiData,
+        // apiData,
         minAnswer,
         maxAnswer,
         activeAnswerJson,
@@ -299,6 +329,16 @@ const Layout = () => {
 
           <DndProvider backend={HTML5Backend}>
             <AnsweredList
+            // answers,
+            answers={answers}
+            handleDismiss={handleDismiss}
+            questionId={questionId}
+            questionName={questionName}
+            minAnswer={ minAnswer}
+            handleDragEnd={handleDragEnd}
+            graphicTitle={graphicTitle}
+            maxAnswer={maxAnswer}
+
             />
           </DndProvider>
         </div>
