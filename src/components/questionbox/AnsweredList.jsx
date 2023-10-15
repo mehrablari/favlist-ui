@@ -24,18 +24,17 @@ const AnsweredList = ({
 
     const [showIndex, setShowIndex] = useState(false);
     const handlePreviewAnswers = () => {
-      console.log("questionId:", questionId);
+      // console.log("questionId:", questionId);
       // var index = apiData.findIndex((x) => x.id === questionId);
       // console.log("index:",index)
 
-      localStorage.removeItem("answers" in localStorage ? "answers" : null);
-      localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : null);
+      localStorage.removeItem("answers" in localStorage ? "answers" : []);
+      localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : '');
     
       localStorage.setItem("answers", JSON.stringify(answers));
       localStorage.setItem("selectedQuestionIndex", questionId);
+      
 
-      // localStorage.setItem("answers", JSON.stringify(answers));
-      // localStorage.setItem("selectedQuestionIndex", questionId);
     };
 
     const handleSubmit = (event) => {
@@ -116,12 +115,12 @@ const AnsweredList = ({
 
 // Define prop types for validation
 AnsweredList.propTypes = {
-  maxAnswer: PropTypes.number.isRequired,
+  maxAnswer: PropTypes.number,
   graphicTitle: PropTypes.string.isRequired,
-  minAnswer: PropTypes.number.isRequired,
-  questionName: PropTypes.string.isRequired,
-  questionId: PropTypes.string.isRequired,
-  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  minAnswer: PropTypes.number,
+  questionName: PropTypes.string,
+  questionId: PropTypes.string,
+  answers: PropTypes.arrayOf(PropTypes.string),
   handleDismiss: PropTypes.func.isRequired,
   handleDragEnd: PropTypes.func.isRequired,
 };

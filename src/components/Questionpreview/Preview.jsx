@@ -33,20 +33,37 @@ const Preview = () => {
   const dataContainer = location.state;
   const graphicTitle = dataContainer.graphicTitle;
   const questionName = dataContainer.questionName;
+
+  // console.log(dataContainer)
  
 
   const containerRef = useRef(null);
 
   const handleGenerateImage = useCallback(async () => {
+
     if (containerRef.current === null) {
-      return;
-    } else {
-      toPng(containerRef.current)
-        .then((data) => {
-          imageState = data.split(",")[1];
-        })
-        .catch((error) => console.error("Error generating image:", error));
+      return null; // Return null when the container is not available
     }
+
+    try {
+      const data = await toPng(containerRef.current);
+      imageState = data.split(",")[1];
+      return imageState; // Return the image data
+    } catch (error) {
+      console.error("Error generating image:", error);
+      return null; // Return null on error
+    }
+
+
+    // if (containerRef.current === null) {
+    //   return;
+    // } else {
+    //   toPng(containerRef.current)
+    //     .then((data) => {
+    //       imageState = data.split(",")[1];
+    //     })
+    //     .catch((error) => console.error("Error generating image:", error));
+    // }
   }, []);
 
   const navigate = useNavigate();
@@ -63,16 +80,19 @@ const Preview = () => {
 
 
   const handleSubmit = async () => {
-    await handleGenerateImage();
+    const imageState = await handleGenerateImage();
+    if (imageState) {
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    // setTimeout(() => {
       const answerSubmit = {
         questionId: dataContainer.questionId,
         answersJson: dataContainer.answers,
         ranked: false,
         graphicUrl: imageState,
       };
+
+      
 
       fetch("https://dev.pacerlabs.co/api/v1/submissions", {
         method: "POST",
@@ -84,6 +104,7 @@ const Preview = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           setIsSubmitting(false);
           if (data && data.status) {
             if (
@@ -94,6 +115,7 @@ const Preview = () => {
               localStorage.removeItem("answers");
               localStorage.removeItem("selectedQuestionIndex");
               imgUrl = data.data.answerGraphicLink;
+              console.log(imgUrl)
               setIsSuccessful(true);
 
               navigate("/submitted", {
@@ -103,7 +125,8 @@ const Preview = () => {
           }
         })
         .catch((error) => toast.error(error.message));
-    }, 1500);
+    
+    }
   };
 
   return (

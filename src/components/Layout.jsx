@@ -26,9 +26,9 @@ const Layout = () => {
   const { isLoading, questions, editQuestion, editAnswer} = useContext(DataContext);
 
   // console.log('question',questions, fetchError, )
-  // console.log('question',isLoading, questions, )
-  console.log('question',editQuestion  )
-  console.log('anwer',editAnswer  )
+  console.log('question',isLoading, questions, )
+  // console.log('question',editQuestion  )
+  // console.log('anwer',editAnswer  )
  
   //state management
 
@@ -47,7 +47,7 @@ const Layout = () => {
   // const [isLoading, setIsLoading] = useState(true);
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
-  const [maxAnswer, setMaxAnswer] = useState([]);
+  const [maxAnswer, setMaxAnswer] = useState(null);
   // const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
 
   //sound when a suggestion is clicked
@@ -56,7 +56,7 @@ const Layout = () => {
     audio.play();
   };
 
-    // console.log(apiData)
+    // console.log(isAnswered)
 //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
@@ -133,22 +133,25 @@ const Layout = () => {
     // setquestion(activeQuestion)
 
     const storedAnswers = localStorage.getItem("answers");
-    // console.log(storedAnswers)
-    let count = 1;
     if (storedAnswers) {
-      if (count === 1) {
-        setAnswers(JSON.parse(storedAnswers));
-        count++;
-      }
-      if (count === 2) {
-        setTimeout(() => {
-          localStorage.removeItem("answers");
-          localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
-      }
-    } else {
       setAnswers([]);
     }
+    // console.log(storedAnswers)
+    // let count = 1;
+    // if (storedAnswers) {
+    //   if (count === 1) {
+    //     setAnswers(JSON.parse(storedAnswers));
+    //     count++;
+    //   }
+    //   if (count === 2) {
+    //     setTimeout(() => {
+    //       localStorage.removeItem("answers");
+    //       localStorage.removeItem("selectedQuestionIndex");
+    //     }, 3000);
+    //   }
+    // } else {
+    //   setAnswers([]);
+    // }
   };
 
  
@@ -213,53 +216,7 @@ useEffect(() => {
     setAnswers((prevAnswers) => prevAnswers.filter((_, i) => i !== index));
   };
 
-  //api for get all questions
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "https://dev.pacerlabs.co/api/v1/questions",
-
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           method: "GET",
-  //         }
-  //       );
-  //       setIsLoading(false);
-  //       const data = response.data.sort((a, b) => b.id - a.id);
-  //       setApiData(data);
-        // console.log("data",data);
-// ditAnswer = data.findIndex(item => item.id === storedQuestion ) 
-        // console.log("stored local:", storedQuestion)
-        // console.log("questioData:", editAnswer)
-        // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
-
-        // const e
-        
-
-      
-
-        // setActiveAnswerJson(data[0]?.answersJson);
-        // setSelectedOption(data[0]?.answersJson[0]);
-        // setSuggestedOption(data[0]?.answersJson);
-        // setClickedValue(data[0]?.answersJson);
-        // setQuestionId(response.data[0]?.id);
-        // setDaysRemaining(data[0]?.daysToRemainOpen);
-        // setIsAnswered(data[0]?.userSubmission);
-        // setGraphicTitle(data[0]?.graphicTitle);
-        // setQuestionName(data[0]?.text);
-        // setMinAnswer(data[0]?.minAnswerCount);
-        // setMaxAnswer(data[0]?.maxAnswerCount);
-  //     } catch (error) {
-  //       console.error("Error fetching API data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+ 
 
   if (isLoading) {
     return (
