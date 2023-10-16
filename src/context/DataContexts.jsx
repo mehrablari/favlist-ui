@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
-// import useAxiosFetch from "../hooks/useAxiosFetch";
 import useQuestions from "../hooks/useQuestions";
 
 const DataContext = createContext({});
@@ -31,9 +30,9 @@ export const DataProvider = ({ children }) => {
     const newquestion = questions.find((q) => q.id === questionId);
 
 
-    // if (newquestion) {
+    if (newquestion) {
       setEditQuestion(newquestion);
-    // }
+    }
   };
 
 
