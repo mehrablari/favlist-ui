@@ -11,28 +11,21 @@ import soundEffect from "../assets/audio/softwave.mp3";
 import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useCallback } from "react";
 // import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
-import { useContext } from 'react';
+import { useContext } from "react";
 import DataContext from "../context/DataContexts";
-import SwipeCard from "./Card/SwipeCard";
+// import SwipeCard from "./Card/SwipeCard";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  // const { questions, fetchError, isLoading} = useContext(DataContext);
-  const { isLoading, questions, editQuestion,  setEditQuestion, editAnswer} = useContext(DataContext);
+  const { isLoading, questions, editQuestion, editAnswer } =
+    useContext(DataContext);
 
-  // console.log('question',questions, fetchError, )
-  // console.log('question',isLoading, questions, )
-  console.log('editquestion',editQuestion  )
-  // console.log('anwer',editAnswer  )
-  // console.log('anwer', questions  )
-  
- 
   //state management
 
   // const [apiData, setApiData] = useState([]);
@@ -51,9 +44,7 @@ const Layout = () => {
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState(null);
-  // const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
-
-  console.log('check',questionId, " ", questionName   )
+ 
 
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
@@ -61,8 +52,8 @@ const Layout = () => {
     audio.play();
   };
 
-    // console.log(isAnswered)
-//vibration handler
+  // console.log(isAnswered)
+  //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
       navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
@@ -84,7 +75,7 @@ const Layout = () => {
       setDaysRemaining(initialQuestion.daysToRemainOpen);
     }
   }
-  
+
   useEffect(() => {
     initializeQuestionState(questions);
   }, [questions]);
@@ -122,76 +113,69 @@ const Layout = () => {
   };
 
   //manage the swiping card of question container
-  const handleSwipe = (activeQuestion) => {
-    console.log(activeQuestion)
-    if(activeQuestion) {
-      
-    setActiveAnswerJson(activeQuestion?.answersJson);
-    setSelectedOption(activeQuestion?.answersJson[0]);
-    setSuggestedOption(activeQuestion?.answersJson);
-    setQuestionId(activeQuestion?.id);
-    setGraphicTitle(activeQuestion?.graphicTitle);
-    setQuestionName(activeQuestion?.text);
-    setIsAnswered(activeQuestion?.userSubmission);
-    setMinAnswer(activeQuestion?.minAnswerCount);
-    setMaxAnswer(activeQuestion?.maxAnswerCount);
-    setDaysRemaining(activeQuestion?.daysToRemainOpen);
+  const handleSwipe = useCallback((activeQuestion) => {
+    if (activeQuestion) {
+      setActiveAnswerJson(activeQuestion?.answersJson);
+      setSelectedOption(activeQuestion?.answersJson[0]);
+      setSuggestedOption(activeQuestion?.answersJson);
+      setQuestionId(activeQuestion?.id);
+      setGraphicTitle(activeQuestion?.graphicTitle);
+      setQuestionName(activeQuestion?.text);
+      setIsAnswered(activeQuestion?.userSubmission);
+      setMinAnswer(activeQuestion?.minAnswerCount);
+      setMaxAnswer(activeQuestion?.maxAnswerCount);
+      setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-    // setEditQuestion(null)
- 
-    const storedAnswers = localStorage.getItem("answers");
-   
-    let count = 1;
-    if (storedAnswers) {
-      if (count === 1) {
-        setAnswers(JSON.parse(storedAnswers));
-        count++;
+      // setEditQuestion(null)
+
+      const storedAnswers = localStorage.getItem("answers");
+
+      let count = 1;
+      if (storedAnswers) {
+        if (count === 1) {
+          setAnswers(JSON.parse(storedAnswers));
+          count++;
+        }
+        if (count === 2) {
+          setTimeout(() => {
+            localStorage.removeItem("answers");
+            localStorage.removeItem("selectedQuestionIndex");
+          }, 3000);
+        }
+      } else {
+        setAnswers([]);
       }
-      if (count === 2) {
-        setTimeout(() => {
-          localStorage.removeItem("answers");
-          localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (editQuestion) {
+      // const editQuestion = questions[1];
+      setActiveAnswerJson(editQuestion.answersJson);
+      setSelectedOption(editQuestion.answersJson[0]);
+      setSuggestedOption(editQuestion.answersJson);
+      setQuestionId(editQuestion.id);
+      setGraphicTitle(editQuestion.graphicTitle);
+      setQuestionName(editQuestion.text);
+      setIsAnswered(editQuestion.userSubmission);
+      setMinAnswer(editQuestion.minAnswerCount);
+      setMaxAnswer(editQuestion.maxAnswerCount);
+      setDaysRemaining(editQuestion.daysToRemainOpen);
+    }
+
+    if (editAnswer) {
+      try {
+        const parsedEditAnswer = JSON.parse(editAnswer);
+        setAnswers(parsedEditAnswer);
+        // Use parsedData for further processing
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
       }
-    } else {
-      setAnswers([]);
     }
-  }
-  };
-
- 
-
-
-
-useEffect(() => {
-  if (editQuestion) {
-    // const editQuestion = questions[1];
-    setActiveAnswerJson(editQuestion.answersJson);
-    setSelectedOption(editQuestion.answersJson[0]);
-    setSuggestedOption(editQuestion.answersJson);
-    setQuestionId(editQuestion.id);
-    setGraphicTitle(editQuestion.graphicTitle);
-    setQuestionName(editQuestion.text);
-    setIsAnswered(editQuestion.userSubmission);
-    setMinAnswer(editQuestion.minAnswerCount);
-    setMaxAnswer(editQuestion.maxAnswerCount);
-    setDaysRemaining(editQuestion.daysToRemainOpen);
-  }
-
-  if (editAnswer) {
-    try {
-      const parsedEditAnswer = JSON.parse(editAnswer);
-      setAnswers(parsedEditAnswer);
-      // Use parsedData for further processing
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
-    }
-  } 
     // Handle the case where jsonData is empty
     // initializeQuestionState(questions);
-  // }
-
-}, [editAnswer, editQuestion]);
+    // }
+  }, [editAnswer, editQuestion]);
 
   //handle filtering when user search via searchbar
   const handleFilter = (inputValue) => {
@@ -222,8 +206,6 @@ useEffect(() => {
     setAnswers((prevAnswers) => prevAnswers.filter((_, i) => i !== index));
   };
 
- 
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
@@ -239,40 +221,26 @@ useEffect(() => {
     );
   }
 
-
   return (
     <LayoutContext.Provider
       value={{
-        // apiData,
-        // minAnswer,
-        // maxAnswer,
-        // activeAnswerJson,
         handleSubmission,
         handleRemoveAnswer,
         handleFilter,
-        // handleDragEnd,
         suggestedOption,
         setSuggestedOption,
-        // handleClick,
-        // filteredOptions,
-        // answers,
-        // handleDismiss,
-        // questionId,
-        // graphicTitle,
-        // questionName,
         clickedValue,
-        // setIsAnswered,
-        // isAnswered,
       }}
     >
       <NavBar />
       <div className="bg-primary w-full">
-      {editQuestion ? (
+        {/* {editQuestion ? (
           <SwipeCard question={editQuestion} handleSwipe={handleSwipe} />
         ) : (
           <CardSwipeContainer handleSwipe={handleSwipe} />
-        )}
-        
+        )} */}
+
+        <CardSwipeContainer handleSwipe={handleSwipe} />
       </div>
       <Helmet>
         <title>Favlist Homepage</title>
@@ -282,11 +250,8 @@ useEffect(() => {
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
         <div className="pt-[250px] z-10">
-          <Searchbox
-         
-          />
+          <Searchbox />
           <Suggestion
-           
             maxAnswer={maxAnswer}
             suggestedOption={suggestedOption}
             handleClick={handleClick}
@@ -295,16 +260,15 @@ useEffect(() => {
 
           <DndProvider backend={HTML5Backend}>
             <AnsweredList
-            // answers,
-            answers={answers}
-            handleDismiss={handleDismiss}
-            questionId={questionId}
-            questionName={questionName}
-            minAnswer={ minAnswer}
-            handleDragEnd={handleDragEnd}
-            graphicTitle={graphicTitle}
-            maxAnswer={maxAnswer}
-
+              // answers,
+              answers={answers}
+              handleDismiss={handleDismiss}
+              questionId={questionId}
+              questionName={questionName}
+              minAnswer={minAnswer}
+              handleDragEnd={handleDragEnd}
+              graphicTitle={graphicTitle}
+              maxAnswer={maxAnswer}
             />
           </DndProvider>
         </div>
@@ -314,19 +278,3 @@ useEffect(() => {
 };
 
 export default Layout;
-
-
-
-//// Save selected question's data in local storage
-// localStorage.setItem("selectedQuestionData", JSON.stringify(activeQuestion));
-
-
-//preview
-//const [questionData, setQuestionData] = useState(null);
-// useEffect(() => {
-//   // Retrieve saved question data from local storage
-//   const savedQuestionData = localStorage.getItem("selectedQuestionData");
-//   if (savedQuestionData) {
-//     setQuestionData(JSON.parse(savedQuestionData));
-//   }
-// }, []);

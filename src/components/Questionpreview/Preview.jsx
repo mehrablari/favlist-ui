@@ -17,7 +17,7 @@ import { useContext } from "react";
 const Preview = () => {
   const [imageState, setimageState] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [isSuccessful, setIsSuccessful] = useState(false);
+ 
 
   const { goBackToEditAnswers, setEdittAnswer } = useContext(DataContext);
 
@@ -85,8 +85,7 @@ const Preview = () => {
             ) {
               localStorage.removeItem("answers");
               localStorage.removeItem("selectedQuestionIndex");
-              // imgUrl = data.data.answerGraphicLink;
-              // setIsSuccessful(true);
+           
 
               navigate("/submitted", {
                 state: { graphicUrl: data.data.answerGraphicLink },

@@ -21,7 +21,7 @@ const { questions} = useContext(DataContext);
     localStorage.getItem("selectedQuestionIndex")
   const [question, setQuestion] = useState(storedQuestionIndex);
 
-  // console.log("local str:",storedQuestionIndex);
+
 
 
   const handleSwipeChange = (swiper) => {

@@ -19,14 +19,10 @@ const AnsweredList = ({
 }) =>
 
   {
-    // console.log(maxAnswer);
-    // console.log("anser", questionId);
+    
 
     const [showIndex, setShowIndex] = useState(false);
     const handlePreviewAnswers = () => {
-      // console.log("questionId:", questionId);
-      // var index = apiData.findIndex((x) => x.id === questionId);
-      // console.log("index:",index)
 
       localStorage.removeItem("answers" in localStorage ? "answers" : '');
       localStorage.removeItem("selectedQuestionId" in localStorage ? "selectedQuestionId" : '');

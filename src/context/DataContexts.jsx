@@ -8,15 +8,9 @@ const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]); // Change 'posts' to 'questions'
   const [search, setSearch] = useState("");
-  const [editQuestion, setEditQuestion] = useState(null);
+  const [editQuestion, setEditQuestion] = useState('');
 //   const [fetchError, setfetchError] = useState(null);
   const [editAnswer, setEdittAnswer] = useState([]);
-//   const [mounted, setMounted] = useState(false);
-  // const [searchResults, setSearchResults] = useState([]);
-
-//   const { data, fetchError, isLoading, } = useAxiosFetch(
-//     "https://dev.pacerlabs.co/api/v1/questions"
-//   );
 
   const { data, error, isLoading } = useQuestions()
 
@@ -29,16 +23,8 @@ export const DataProvider = ({ children }) => {
     }
 
    
-    // Set 'mounted' to true to indicate that the component has mounted
-    // setMounted(true);
-  }, [data, error, isLoading]);
 
-//   // Use 'mounted' to ensure that data is only accessed after the component mounts
-//   useEffect(() => {
-//     if (mounted) {
-//       // Access data or trigger any other actions after mounting
-//     }
-//   }, [mounted]);
+  }, [data, error, isLoading]);
 
 
   const goBackToEditAnswers = (questionId) => {
@@ -50,16 +36,7 @@ export const DataProvider = ({ children }) => {
     // }
   };
 
-  // console.log(questions)
-  // useEffect(() => {
-  //     const filteredResults = questions.filter((question) =>
-  //         // ((question.body).toLowerCase()).includes(search.toLowerCase()) ||
-  //         // ((question.title).toLowerCase()).includes(search.toLowerCase()));
 
-  //     setSearchResults(filteredResults.reverse());
-  // }, [questions, search])
-
-  // searchResults,
 
   return (
     <DataContext.Provider

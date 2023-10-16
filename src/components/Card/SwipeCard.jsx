@@ -9,20 +9,17 @@ import { useContext } from "react";
 
 function SwipeCard({question, handleSwipe }) {
 
-    const { questions} = useContext(DataContext);
+    const { questions } = useContext(DataContext);
 
     console.log(question)
 
     const handleSwipeChange = (swiper) => {
-        // const activeIndex = swiper.realIndex;
+       
         console.log("card params:",swiper);
-        // localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : '');
-        // localStorage.setItem("selectedQuestionIndex", activeIndex);
+       
 
         const activeIndex = localStorage.getItem('activeIndex');
     
-        
-        // setQuestion(questions[activeIndex]);
     
         handleSwipe(questions[activeIndex + 1]);
       };
