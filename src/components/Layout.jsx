@@ -18,17 +18,20 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
 import { useContext } from 'react';
 import DataContext from "../context/DataContexts";
+import SwipeCard from "./Card/SwipeCard";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
   // const { questions, fetchError, isLoading} = useContext(DataContext);
-  const { isLoading, questions, editQuestion, editAnswer} = useContext(DataContext);
+  const { isLoading, questions, editQuestion,  setEditQuestion, editAnswer} = useContext(DataContext);
 
   // console.log('question',questions, fetchError, )
-  console.log('question',isLoading, questions, )
-  // console.log('question',editQuestion  )
+  // console.log('question',isLoading, questions, )
+  console.log('editquestion',editQuestion  )
   // console.log('anwer',editAnswer  )
+  // console.log('anwer', questions  )
+  
  
   //state management
 
@@ -49,6 +52,8 @@ const Layout = () => {
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState(null);
   // const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
+
+  console.log('check',questionId, " ", questionName   )
 
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
@@ -118,6 +123,9 @@ const Layout = () => {
 
   //manage the swiping card of question container
   const handleSwipe = (activeQuestion) => {
+    console.log(activeQuestion)
+    if(activeQuestion) {
+      
     setActiveAnswerJson(activeQuestion?.answersJson);
     setSelectedOption(activeQuestion?.answersJson[0]);
     setSuggestedOption(activeQuestion?.answersJson);
@@ -129,29 +137,26 @@ const Layout = () => {
     setMaxAnswer(activeQuestion?.maxAnswerCount);
     setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-
-    // setquestion(activeQuestion)
-
+    // setEditQuestion(null)
+ 
     const storedAnswers = localStorage.getItem("answers");
+   
+    let count = 1;
     if (storedAnswers) {
+      if (count === 1) {
+        setAnswers(JSON.parse(storedAnswers));
+        count++;
+      }
+      if (count === 2) {
+        setTimeout(() => {
+          localStorage.removeItem("answers");
+          localStorage.removeItem("selectedQuestionIndex");
+        }, 3000);
+      }
+    } else {
       setAnswers([]);
     }
-    // console.log(storedAnswers)
-    // let count = 1;
-    // if (storedAnswers) {
-    //   if (count === 1) {
-    //     setAnswers(JSON.parse(storedAnswers));
-    //     count++;
-    //   }
-    //   if (count === 2) {
-    //     setTimeout(() => {
-    //       localStorage.removeItem("answers");
-    //       localStorage.removeItem("selectedQuestionIndex");
-    //     }, 3000);
-    //   }
-    // } else {
-    //   setAnswers([]);
-    // }
+  }
   };
 
  
@@ -160,6 +165,7 @@ const Layout = () => {
 
 useEffect(() => {
   if (editQuestion) {
+    // const editQuestion = questions[1];
     setActiveAnswerJson(editQuestion.answersJson);
     setSelectedOption(editQuestion.answersJson[0]);
     setSuggestedOption(editQuestion.answersJson);
@@ -180,10 +186,10 @@ useEffect(() => {
     } catch (error) {
       console.error("Error parsing JSON:", error);
     }
-  } else {
+  } 
     // Handle the case where jsonData is empty
-    initializeQuestionState(questions);
-  }
+    // initializeQuestionState(questions);
+  // }
 
 }, [editAnswer, editQuestion]);
 
@@ -238,32 +244,35 @@ useEffect(() => {
     <LayoutContext.Provider
       value={{
         // apiData,
-        minAnswer,
-        maxAnswer,
-        activeAnswerJson,
+        // minAnswer,
+        // maxAnswer,
+        // activeAnswerJson,
         handleSubmission,
         handleRemoveAnswer,
         handleFilter,
-        handleDragEnd,
+        // handleDragEnd,
         suggestedOption,
         setSuggestedOption,
-        handleClick,
-        filteredOptions,
-        answers,
-        handleDismiss,
-        questionId,
-        graphicTitle,
-        questionName,
+        // handleClick,
+        // filteredOptions,
+        // answers,
+        // handleDismiss,
+        // questionId,
+        // graphicTitle,
+        // questionName,
         clickedValue,
-        setIsAnswered,
-        isAnswered,
+        // setIsAnswered,
+        // isAnswered,
       }}
     >
       <NavBar />
       <div className="bg-primary w-full">
-        <CardSwipeContainer
-        handleSwipe={handleSwipe}
-        />
+      {editQuestion ? (
+          <SwipeCard question={editQuestion} handleSwipe={handleSwipe} />
+        ) : (
+          <CardSwipeContainer handleSwipe={handleSwipe} />
+        )}
+        
       </div>
       <Helmet>
         <title>Favlist Homepage</title>

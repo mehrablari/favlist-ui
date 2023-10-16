@@ -27,8 +27,10 @@ const { questions} = useContext(DataContext);
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
     // console.log("card params:",swiper);
+    localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : '');
+    localStorage.setItem("selectedQuestionIndex", activeIndex);
 
-
+    
     setQuestion(questions[activeIndex]);
 
     handleSwipe(questions[activeIndex]);
@@ -73,6 +75,7 @@ const { questions} = useContext(DataContext);
   };
 
   return (
+    
     <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 ">
       <Swiper
         // slidesPerView={1}

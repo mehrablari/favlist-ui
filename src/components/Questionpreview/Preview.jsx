@@ -1,98 +1,70 @@
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState, useRef, useCallback, useContext } from "react";
+import {  useLocation, useNavigate } from "react-router-dom";
+import { useState, useRef, useCallback } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
-import { Helmet } from "react-helmet-async";
-import Bg from "../../assets/images/fav.jpg";
 import imgPreview from "../../assets/images/bgimage.png";
 import BgImage from "../../assets/images/favbg.jpg";
-import DataContext from '../../context/DataContexts';
-// import DataContext from '../../context/Da';
-// import { useContext } from 'react';
+import DataContext from "../../context/DataContexts";
+import { useContext } from "react";
 
-import Logo from "../../assets/images/logoAllwhite.png";
-
-let imageState;
-let imgUrl;
+// let imageState;
+// let imgUrl;
 
 const Preview = () => {
-  // const [imageUrl, setImageUrl] = useState(null);
+  const [imageState, setimageState] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccessful, setIsSuccessful] = useState(false);
-
+  // const [isSuccessful, setIsSuccessful] = useState(false);
 
   const { goBackToEditAnswers, setEdittAnswer } = useContext(DataContext);
-
-  // console.log(goBackToEditAnswers, "ques", questions)
 
   const location = useLocation();
   const dataContainer = location.state;
   const graphicTitle = dataContainer.graphicTitle;
   const questionName = dataContainer.questionName;
 
-  // console.log(dataContainer)
- 
-
   const containerRef = useRef(null);
 
   const handleGenerateImage = useCallback(async () => {
-
     if (containerRef.current === null) {
-      return null; // Return null when the container is not available
+      return;
+    } else {
+      toPng(containerRef.current)
+        .then((data) => {
+          setimageState(data.split(",")[1]) 
+        })
+        .catch((error) => console.error("Error generating image:", error));
     }
-
-    try {
-      const data = await toPng(containerRef.current);
-      imageState = data.split(",")[1];
-      return imageState; // Return the image data
-    } catch (error) {
-      console.error("Error generating image:", error);
-      return null; // Return null on error
-    }
-
-
-    // if (containerRef.current === null) {
-    //   return;
-    // } else {
-    //   toPng(containerRef.current)
-    //     .then((data) => {
-    //       imageState = data.split(",")[1];
-    //     })
-    //     .catch((error) => console.error("Error generating image:", error));
-    // }
   }, []);
 
   const navigate = useNavigate();
 
-
   const handleEditQuestion = useCallback(() => {
-    const questionId = localStorage.getItem('selectedQuestionIndex');
+    const questionId = localStorage.getItem('selectedQuestionId');
     const answers = localStorage.getItem('answers');
+
+    console.log(questionId)
    
     questionId ?  goBackToEditAnswers(questionId) : null;
     answers ? setEdittAnswer(answers) : null;
     navigate('/');
-  }, [goBackToEditAnswers, setEdittAnswer]);
 
+  }, [goBackToEditAnswers, setEdittAnswer, navigate]);
 
   const handleSubmit = async () => {
-    const imageState = await handleGenerateImage();
-    if (imageState) {
+    await handleGenerateImage();
     setIsSubmitting(true);
 
-    // setTimeout(() => {
+    setTimeout(() => {
       const answerSubmit = {
         questionId: dataContainer.questionId,
         answersJson: dataContainer.answers,
         ranked: false,
         graphicUrl: imageState,
       };
-
-      
 
       fetch("https://dev.pacerlabs.co/api/v1/submissions", {
         method: "POST",
@@ -104,7 +76,6 @@ const Preview = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
           setIsSubmitting(false);
           if (data && data.status) {
             if (
@@ -114,9 +85,8 @@ const Preview = () => {
             ) {
               localStorage.removeItem("answers");
               localStorage.removeItem("selectedQuestionIndex");
-              imgUrl = data.data.answerGraphicLink;
-              console.log(imgUrl)
-              setIsSuccessful(true);
+              // imgUrl = data.data.answerGraphicLink;
+              // setIsSuccessful(true);
 
               navigate("/submitted", {
                 state: { graphicUrl: data.data.answerGraphicLink },
@@ -125,8 +95,7 @@ const Preview = () => {
           }
         })
         .catch((error) => toast.error(error.message));
-    
-    }
+    }, 1500);
   };
 
   return (
@@ -181,12 +150,13 @@ const Preview = () => {
                 className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px]"
               >
                 <h2 className="font-[700] rounded-[8px] mb-[5px] px-[10px] ">
-                {answer.length > 30 ? `${answer.substring(0, 30)}...` : answer}
+                  {answer.length > 30
+                    ? `${answer.substring(0, 30)}...`
+                    : answer}
                 </h2>
               </div>
             ))}
           </div>
-
         </div>
 
         <form
@@ -206,7 +176,7 @@ const Preview = () => {
         <div  onClick={() => handleEditQuestion()} className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
           <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
           <span
-            
+           
             className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light"
           >
             Go back to edit answers

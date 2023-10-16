@@ -1,14 +1,27 @@
 import Video from "../../assets/icons/video.svg";
 import Home from "../../assets/icons/Home.svg";
 import congrats from "../../assets/gif/congrats.gif";
-import { Link, useLocation } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 import { RWebShare } from "react-web-share";
+import useQuestions from "../../hooks/useQuestions";
 
 const Submit = () => {
   const location = useLocation();
   const graphicUrl = location.state.graphicUrl;
+
+  const navigate = useNavigate();
+
+  const { mutate: mutateQuestion} = useQuestions()
+
+
+  const handleSubmit =  () => {
+
+    mutateQuestion()
+    navigate('/');
+ 
+  };
 
   return (
     <>
@@ -94,8 +107,8 @@ const Submit = () => {
                 </button>
               </RWebShare>
             </div>
-            <Link
-              to="/"
+            <span
+             onClick={handleSubmit}
               className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"
             >
               <img
@@ -106,7 +119,7 @@ const Submit = () => {
               <button className="text-[14px] text-neutral  font-semibold h-[26px]">
                 Go Home
               </button>
-            </Link>
+            </span>
           </div>
         </div>
       </div>

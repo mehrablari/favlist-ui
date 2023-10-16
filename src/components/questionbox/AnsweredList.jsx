@@ -28,11 +28,11 @@ const AnsweredList = ({
       // var index = apiData.findIndex((x) => x.id === questionId);
       // console.log("index:",index)
 
-      localStorage.removeItem("answers" in localStorage ? "answers" : []);
-      localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : '');
+      localStorage.removeItem("answers" in localStorage ? "answers" : '');
+      localStorage.removeItem("selectedQuestionId" in localStorage ? "selectedQuestionId" : '');
     
       localStorage.setItem("answers", JSON.stringify(answers));
-      localStorage.setItem("selectedQuestionIndex", questionId);
+      localStorage.setItem("selectedQuestionId", questionId);
       
 
     };
