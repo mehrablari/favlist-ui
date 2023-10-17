@@ -47,12 +47,6 @@ const FilterCategory = ({ filterData }) => {
 
   const navigate = useNavigate();
 
-  // const handleInputChange = (event) => {
-  //   setFilterPayload({
-  //     ...filterPayload,
-  //     searchText: event.target.value,
-  //   });
-  // };
 
   const handleChange = (event) => {
     if (event.target.checked === true) {
@@ -83,8 +77,6 @@ const FilterCategory = ({ filterData }) => {
         : null,
 
     };
-
-    console.log("payload", payload);
     let apiUrl;
     if (payload.searchText) {
       apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?searchText=${payload.searchText}`;
@@ -106,37 +98,13 @@ const FilterCategory = ({ filterData }) => {
       // apiUrl += `&exactDate=${payload.exactDate}`;
       apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?exactDate=${payload.exactDate}`;
     }
-
-    // let apiUrl = "https://dev.pacerlabs.co/api/v1/search-archive/filter";
-
-    // if (payload.searchText) {
-    //   apiUrl += `?searchText=${payload.searchText}`;
-    // }
-
-    // if (payload.categories) {
-    //   apiUrl += `&categories=${payload.categories}`;
-    // }
-
-    // if (payload.startDate) {
-    //   apiUrl += `&startDate=${payload.startDate}`;
-    // }
-
-    // if (payload.endDate) {
-    //   apiUrl += `&endDate=${payload.endDate}`;
-    // }
-
-    // if (payload.exactDate) {
-    //   apiUrl += `&exactDate=${payload.exactDate}`;
-    // }
-
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
         if (data && data.status && data.status.toLowerCase() === "success") {
           const serializedData = JSON.stringify(data.data.content);
-          // Navigate to FilterPage and pass filtered data as state
-          // navigate("/filterpage", { state: { filteredData: serializedData } });
+          
 
           navigate(
             `/filterpage?filteredData=${encodeURIComponent(serializedData)}`

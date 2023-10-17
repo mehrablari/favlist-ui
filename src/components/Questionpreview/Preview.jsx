@@ -46,8 +46,6 @@ const Preview = () => {
     const questionId = localStorage.getItem('selectedQuestionId');
     const answers = localStorage.getItem('answers');
 
-    console.log(questionId)
-   
     questionId ?  goBackToEditAnswers(questionId) : null;
     answers ? setEdittAnswer(answers) : null;
     navigate('/');
@@ -99,7 +97,7 @@ const Preview = () => {
 
   return (
     <div
-      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px]"
+      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px]"
       style={{
         backgroundImage: `url(${BgImage})`,
         backgroundPosition: "center",

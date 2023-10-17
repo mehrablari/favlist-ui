@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const AnswerProvided = ({ answerData }) => {
   const { answerGraphicLink, answers, questionId } = answerData;
-  // console.log(answerData)
 
   return (
     <div className="p-[10px]">

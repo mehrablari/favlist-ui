@@ -18,9 +18,7 @@ const Suggestion = ({
 }) => {
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
-  // Step 3: Define functions to open and close the backdrop
   const handleOpenBackdrop = () => {
-    
     setOpenBackdrop(true);
   };
 
@@ -51,10 +49,7 @@ const Suggestion = ({
           : [];
 
       slides.push(
-        <SwiperSlide
-          key={i}
-          className="flex flex-wrap font-baloo2 w-[360px]"
-        >
+        <SwiperSlide key={i} className="flex flex-wrap font-baloo2 w-[360px]">
           {items.map((suggestion, index) => {
             return (
               <div

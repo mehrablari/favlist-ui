@@ -19,11 +19,12 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
+import { Link } from "react-router-dom";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  const { isLoading, questions, editQuestion, editAnswer } =
+  const { isLoading, questions, error, editQuestion, editAnswer } =
     useContext(DataContext);
 
   //state management
@@ -122,8 +123,6 @@ const Layout = () => {
       setMaxAnswer(activeQuestion?.maxAnswerCount);
       setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-      // setEditQuestion(null)
-
       const storedAnswers = localStorage.getItem("answers");
 
       let count = 1;
@@ -168,9 +167,7 @@ const Layout = () => {
         console.error("Error parsing JSON:", error);
       }
     }
-   
   }, [editAnswer, editQuestion]);
-
 
   const handleFilter = (inputValue) => {
     if (inputValue) {
@@ -180,17 +177,16 @@ const Layout = () => {
           word.toLowerCase().includes(inputValue.toLowerCase())
         ) || [];
 
-      
       if (options.length === 0) {
         setFilteredOptions([]);
         setNoResultsMessage("No matching items found.");
       } else {
         setFilteredOptions(options);
-        setNoResultsMessage(""); 
+        setNoResultsMessage("");
       }
     } else {
       setFilteredOptions(suggestedOption);
-      setNoResultsMessage(""); 
+      setNoResultsMessage("");
     }
   };
 
@@ -208,6 +204,22 @@ const Layout = () => {
   const handleDismiss = (index) => {
     setAnswers((prevAnswers) => prevAnswers.filter((_, i) => i !== index));
   };
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
+        <div className="animate-bounce animate-infinite flex-col text-center">
+          <h1 className="text-[30px]">An error exist</h1>
+          
+          <Link to="/" className="text-center">
+            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px]">
+             Refresh
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -257,7 +269,11 @@ const Layout = () => {
               handleClick={handleClick}
               filteredOptions={filteredOptions}
             />
-          ): <p className="bg-neutral text-center text-[16px] p-[20px]">{noResultsMessage}</p>}
+          ) : (
+            <p className="bg-neutral text-center text-[16px] p-[20px]">
+              {noResultsMessage}
+            </p>
+          )}
 
           <DndProvider backend={HTML5Backend}>
             <AnsweredList
