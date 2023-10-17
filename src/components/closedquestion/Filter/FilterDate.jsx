@@ -15,9 +15,7 @@ const FilterDate = ({
   startDate,
   endDate,
 }) => {
-
-  // Determine your local timezone's offset in minutes
-const localTimezoneOffsetMinutes = new Date().getTimezoneOffset();
+ 
   return (
     <div>
       <h1 className="font-[500] text-[14px] pl-[20px] pb-[10px]leading-4 flex bg-bg-grey w-full h-[33px] font-sans">
@@ -58,9 +56,8 @@ const localTimezoneOffsetMinutes = new Date().getTimezoneOffset();
                 className="pt-[13px] pl-[15px] font-[400] text-[14px] leading-4 pr-[10px] "
                 selected={exactDate}
                 onChange={handleExactDateChange}
-                utcOffset={localTimezoneOffsetMinutes}
                 placeholderText="Select exact date"
-                dateFormat="MM/dd/yyyy"
+                dateFormat="dd/MM/yyyy"
               />
             </div>
           ) : (
@@ -74,10 +71,9 @@ const localTimezoneOffsetMinutes = new Date().getTimezoneOffset();
                 <DatePicker
                   className="pt-[13px] pl-[15px] font-[400] text-[14px] leading-4"
                   selected={startDate}
-                  utcOffset={localTimezoneOffsetMinutes}
                   onChange={handleStartDateChange}
                   placeholderText="Select start date"
-                  dateFormat="MM/dd/yyyy"
+                  dateFormat="dd/MM/yyyy"
                 />
               </div>
               <div className="flex flex-row h-[44px] border rounded-[12px] mt-[20px] pl-[12px] mx-auto w-[327px] ">
@@ -89,10 +85,9 @@ const localTimezoneOffsetMinutes = new Date().getTimezoneOffset();
                 <DatePicker
                   className="pt-[13px] pl-[15px] font-[400] text-[14px] leading-4 pr-[10px] "
                   selected={endDate}
-                  utcOffset={localTimezoneOffsetMinutes}
                   onChange={handleEndDateChange}
                   placeholderText="Select end date"
-                  dateFormat="MM/dd/yyyy"
+                  dateFormat="dd/MM/yyyy"
                 />
               </div>
             </div>

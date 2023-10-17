@@ -11,18 +11,25 @@ import soundEffect from "../assets/audio/softwave.mp3";
 import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
-import { useState, useEffect, createContext } from "react";
-import axios from "axios";
+import { useState, useEffect, createContext, useCallback } from "react";
+// import axios from "axios";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import DataContext from "../context/DataContexts";
+// import SwipeCard from "./Card/SwipeCard";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
+  const { isLoading, questions, editQuestion, editAnswer } =
+    useContext(DataContext);
+
   //state management
 
-  const [apiData, setApiData] = useState([]);
+  // const [apiData, setApiData] = useState([]);
+  // const [question, setquestion] = useState([]);
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
@@ -33,11 +40,11 @@ const Layout = () => {
   const [graphicTitle, setGraphicTitle] = useState("");
   const [questionName, setQuestionName] = useState("");
   const [daysRemaining, setDaysRemaining] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
-  const [maxAnswer, setMaxAnswer] = useState([]);
-  // const [updatedAnswers, setUpdatedAnswers] = useState([answers]);
+  const [maxAnswer, setMaxAnswer] = useState(null);
+ 
 
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
@@ -45,12 +52,33 @@ const Layout = () => {
     audio.play();
   };
 
-//vibration handler
+  // console.log(isAnswered)
+  //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
       navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
     }
   };
+
+  function initializeQuestionState(questions) {
+    if (questions.length > 0) {
+      const initialQuestion = questions[0];
+      setActiveAnswerJson(initialQuestion.answersJson);
+      setSelectedOption(initialQuestion.answersJson[0]);
+      setSuggestedOption(initialQuestion.answersJson);
+      setQuestionId(initialQuestion.id);
+      setGraphicTitle(initialQuestion.graphicTitle);
+      setQuestionName(initialQuestion.text);
+      setIsAnswered(initialQuestion.userSubmission);
+      setMinAnswer(initialQuestion.minAnswerCount);
+      setMaxAnswer(initialQuestion.maxAnswerCount);
+      setDaysRemaining(initialQuestion.daysToRemainOpen);
+    }
+  }
+
+  useEffect(() => {
+    initializeQuestionState(questions);
+  }, [questions]);
 
   //answer removal
   const handleRemoveAnswer = (index) => {
@@ -85,63 +113,69 @@ const Layout = () => {
   };
 
   //manage the swiping card of question container
-  const handleSwipe = (activeQuestion) => {
-    setActiveAnswerJson(activeQuestion?.answersJson);
-    setSelectedOption(activeQuestion?.answersJson[0]);
-    setSuggestedOption(activeQuestion?.answersJson);
-    setQuestionId(activeQuestion?.id);
-    setGraphicTitle(activeQuestion?.graphicTitle);
-    setQuestionName(activeQuestion?.text);
-    setIsAnswered(activeQuestion?.userSubmission);
-    setMinAnswer(activeQuestion?.minAnswerCount);
-    setMaxAnswer(activeQuestion?.maxAnswerCount);
-    setDaysRemaining(activeQuestion?.daysToRemainOpen);
+  const handleSwipe = useCallback((activeQuestion) => {
+    if (activeQuestion) {
+      setActiveAnswerJson(activeQuestion?.answersJson);
+      setSelectedOption(activeQuestion?.answersJson[0]);
+      setSuggestedOption(activeQuestion?.answersJson);
+      setQuestionId(activeQuestion?.id);
+      setGraphicTitle(activeQuestion?.graphicTitle);
+      setQuestionName(activeQuestion?.text);
+      setIsAnswered(activeQuestion?.userSubmission);
+      setMinAnswer(activeQuestion?.minAnswerCount);
+      setMaxAnswer(activeQuestion?.maxAnswerCount);
+      setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-    const storedAnswers = localStorage.getItem("answers");
-    let count = 1;
-    if (storedAnswers) {
-      if (count === 1) {
-        setAnswers(JSON.parse(storedAnswers));
-        count++;
+      // setEditQuestion(null)
+
+      const storedAnswers = localStorage.getItem("answers");
+
+      let count = 1;
+      if (storedAnswers) {
+        if (count === 1) {
+          setAnswers(JSON.parse(storedAnswers));
+          count++;
+        }
+        if (count === 2) {
+          setTimeout(() => {
+            localStorage.removeItem("answers");
+            localStorage.removeItem("selectedQuestionIndex");
+          }, 3000);
+        }
+      } else {
+        setAnswers([]);
       }
-      if (count === 2) {
-        setTimeout(() => {
-          localStorage.removeItem("answers");
-          localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
-      }
-    } else {
-      setAnswers([]);
     }
-  };
+  }, []);
 
-  // const storedAnswers = localStorage.getItem("answers");
-  // const storedQuestion = localStorage.getItem("selectedQuestionIndex");
-  
-  // console.log(storedAnswers)
-  // console.log(storedQuestion)
-
-
-
-  useEffect(()=> {
-
-    const storedAnswers = localStorage.getItem("answers");
-    let count = 1;
-    if (storedAnswers) {
-      if (count === 1) {
-        setAnswers(JSON.parse(storedAnswers));
-        count++;
-      }
-      if (count === 2) {
-        setTimeout(() => {
-          localStorage.removeItem("answers");
-          localStorage.removeItem("selectedQuestionIndex");
-        }, 3000);
-      }
-    } else {
-      setAnswers([]);
+  useEffect(() => {
+    if (editQuestion) {
+      // const editQuestion = questions[1];
+      setActiveAnswerJson(editQuestion.answersJson);
+      setSelectedOption(editQuestion.answersJson[0]);
+      setSuggestedOption(editQuestion.answersJson);
+      setQuestionId(editQuestion.id);
+      setGraphicTitle(editQuestion.graphicTitle);
+      setQuestionName(editQuestion.text);
+      setIsAnswered(editQuestion.userSubmission);
+      setMinAnswer(editQuestion.minAnswerCount);
+      setMaxAnswer(editQuestion.maxAnswerCount);
+      setDaysRemaining(editQuestion.daysToRemainOpen);
     }
-  }, [])
+
+    if (editAnswer) {
+      try {
+        const parsedEditAnswer = JSON.parse(editAnswer);
+        setAnswers(parsedEditAnswer);
+        // Use parsedData for further processing
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    }
+    // Handle the case where jsonData is empty
+    // initializeQuestionState(questions);
+    // }
+  }, [editAnswer, editQuestion]);
 
   //handle filtering when user search via searchbar
   const handleFilter = (inputValue) => {
@@ -172,54 +206,6 @@ const Layout = () => {
     setAnswers((prevAnswers) => prevAnswers.filter((_, i) => i !== index));
   };
 
-  //api for get all questions
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://dev.pacerlabs.co/api/v1/questions",
-
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "GET",
-          }
-        );
-        setIsLoading(false);
-        const data = response.data.sort((a, b) => b.id - a.id);
-        setApiData(data);
-        // console.log("data",data);
-
-        const storedQuestion = localStorage.getItem("selectedQuestionIndex");
-
-        const editAnswer = data.findIndex(item => item.id === storedQuestion ) 
-        // console.log("stored local:", storedQuestion)
-        // console.log("questioData:", editAnswer)
-        
-
-      
-
-        setActiveAnswerJson(data[0]?.answersJson);
-        setSelectedOption(data[0]?.answersJson[0]);
-        setSuggestedOption(data[0]?.answersJson);
-        setClickedValue(data[0]?.answersJson);
-        setQuestionId(response.data[0]?.id);
-        setDaysRemaining(data[0]?.daysToRemainOpen);
-        setIsAnswered(data[0]?.userSubmission);
-        setGraphicTitle(data[0]?.graphicTitle);
-        setQuestionName(data[0]?.text);
-        setMinAnswer(data[0]?.minAnswerCount);
-        setMaxAnswer(data[0]?.maxAnswerCount);
-      } catch (error) {
-        console.error("Error fetching API data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
@@ -238,33 +224,23 @@ const Layout = () => {
   return (
     <LayoutContext.Provider
       value={{
-        apiData,
-        handleSwipe,
-        minAnswer,
-        maxAnswer,
-        activeAnswerJson,
         handleSubmission,
         handleRemoveAnswer,
         handleFilter,
-        handleDragEnd,
         suggestedOption,
         setSuggestedOption,
-        handleClick,
-        filteredOptions,
-        answers,
-        handleDismiss,
-        questionId,
-        graphicTitle,
-        questionName,
         clickedValue,
-        setIsAnswered,
-        isAnswered,
       }}
     >
       <NavBar />
       <div className="bg-primary w-full">
-        <CardSwipeContainer
-        />
+        {/* {editQuestion ? (
+          <SwipeCard question={editQuestion} handleSwipe={handleSwipe} />
+        ) : (
+          <CardSwipeContainer handleSwipe={handleSwipe} />
+        )} */}
+
+        <CardSwipeContainer handleSwipe={handleSwipe} />
       </div>
       <Helmet>
         <title>Favlist Homepage</title>
@@ -274,11 +250,8 @@ const Layout = () => {
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
         <div className="pt-[250px] z-10">
-          <Searchbox
-         
-          />
+          <Searchbox />
           <Suggestion
-           
             maxAnswer={maxAnswer}
             suggestedOption={suggestedOption}
             handleClick={handleClick}
@@ -287,6 +260,15 @@ const Layout = () => {
 
           <DndProvider backend={HTML5Backend}>
             <AnsweredList
+              // answers,
+              answers={answers}
+              handleDismiss={handleDismiss}
+              questionId={questionId}
+              questionName={questionName}
+              minAnswer={minAnswer}
+              handleDragEnd={handleDragEnd}
+              graphicTitle={graphicTitle}
+              maxAnswer={maxAnswer}
             />
           </DndProvider>
         </div>
@@ -296,19 +278,3 @@ const Layout = () => {
 };
 
 export default Layout;
-
-
-
-//// Save selected question's data in local storage
-// localStorage.setItem("selectedQuestionData", JSON.stringify(activeQuestion));
-
-
-//preview
-//const [questionData, setQuestionData] = useState(null);
-// useEffect(() => {
-//   // Retrieve saved question data from local storage
-//   const savedQuestionData = localStorage.getItem("selectedQuestionData");
-//   if (savedQuestionData) {
-//     setQuestionData(JSON.parse(savedQuestionData));
-//   }
-// }, []);

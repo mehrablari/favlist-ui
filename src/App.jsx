@@ -16,6 +16,7 @@ import ClosedInfo from "./components/closedquestion/ClosedInfo";
 import FilterContainer from "./components/closedquestion/Filter/FilterContainer";
 import NoMatch from "./NoMatch";
 import FilterPage from "./components/closedquestion/Filter/FilterPage";
+import { DataProvider } from "./context/DataContexts";
 
 
 const router = createBrowserRouter(
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
       <Route path="/filtercontainer" element={<FilterContainer />} />
       <Route path="/filterpage" element={<FilterPage />} />
       <Route path="/closedinfo/:id" element={<ClosedInfo />} />
-      <Route path="/*" element={<NoMatch />} />
+      <Route path="*" element={<NoMatch />} />
       
     </>
     
@@ -42,11 +43,13 @@ const router = createBrowserRouter(
 
 const App = () => {
   return (
+    <DataProvider>
     <div>
       <div className="bg-primary font-bold text-lg text-gray font-baloo">
         <RouterProvider router={router} />
       </div>
     </div>
+    </DataProvider>
   )
 }
 
