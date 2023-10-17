@@ -5,12 +5,14 @@ import { LayoutContext } from "../components/Layout";
 
 
 const Searchbox = () => {
-  const {handleFilter} = useContext(LayoutContext);
+  const {handleFilter, noResultsMessage} = useContext(LayoutContext);
  
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputLength, setInputLength] = useState(0);
   const [inputValue, setInputValue] = useState("");
+  
+  
 
 
     const handleInputChange = (event) => {
@@ -45,7 +47,9 @@ const Searchbox = () => {
             placeholder="Start typing an answer..."
             className="placeholder:w-[200px] sm:placeholder:w-[150px] sm:placeholder:text-[14px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[40px] md:placeholder:pl-[35px] placeholder:pl-[40px] placeholder:pt-[10px] border-2 border-primary-lighter active:border-type-active p-[12px] text-sm outline-none sm:w-[340px] w-[360px] rounded-[12px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
           />
+          {noResultsMessage && <p className="text-[14px] text-center">{noResultsMessage}</p>}
         </div>
+        
       </div>
     </div>
   );
