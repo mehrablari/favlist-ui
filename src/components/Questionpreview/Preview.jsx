@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
 import {  useLocation, useNavigate } from "react-router-dom";
@@ -19,8 +20,9 @@ const Preview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
  
 
-  const { goBackToEditAnswers, setEdittAnswer } = useContext(DataContext);
-
+  const { goBackToEditAnswers, setEdittAnswer, isDrag } = useContext(DataContext);
+ 
+  
   const location = useLocation();
   const dataContainer = location.state;
   const graphicTitle = dataContainer.graphicTitle;
@@ -142,16 +144,17 @@ const Preview = () => {
               {graphicTitle}
             </div>
             {dataContainer.answers.map((answer, index) => (
+              
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px]"
-              >
+              >{isDrag && (<span className="text-md">{index+1}</span>)}
                 <h2 className="font-[700] rounded-[8px] mb-[5px] px-[10px] ">
                   {answer.length > 30
                     ? `${answer.substring(0, 30)}...`
                     : answer}
                 </h2>
-              </div>
+              </div> 
             ))}
           </div>
         </div>

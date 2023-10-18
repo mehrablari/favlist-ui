@@ -5,37 +5,28 @@ import useQuestions from "../hooks/useQuestions";
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-  const [questions, setQuestions] = useState([]); // Change 'posts' to 'questions'
+  const [questions, setQuestions] = useState([]);
   const [search, setSearch] = useState("");
-  const [editQuestion, setEditQuestion] = useState('');
-//   const [fetchError, setfetchError] = useState(null);
+  const [editQuestion, setEditQuestion] = useState("");
+
   const [editAnswer, setEdittAnswer] = useState([]);
+  const [isDrag, setIsDrag] = useState(false);
 
-  const { data, error, isLoading } = useQuestions()
-
-//   console.log(data)
+  const { data, error, isLoading } = useQuestions();
 
   useEffect(() => {
-    // Check if the data has loaded and there is no error before updating state
     if (!isLoading && !error) {
       setQuestions(data.reverse());
     }
-
-   
-
   }, [data, error, isLoading]);
-
 
   const goBackToEditAnswers = (questionId) => {
     const newquestion = questions.find((q) => q.id === questionId);
-
 
     if (newquestion) {
       setEditQuestion(newquestion);
     }
   };
-
-
 
   return (
     <DataContext.Provider
@@ -43,7 +34,7 @@ export const DataProvider = ({ children }) => {
         search,
         setSearch,
         error,
-        // fetchError,
+
         isLoading,
         questions,
         setQuestions,
@@ -51,8 +42,9 @@ export const DataProvider = ({ children }) => {
         setEditQuestion,
         goBackToEditAnswers,
         setEdittAnswer,
-        editAnswer
-
+        editAnswer,
+        isDrag,
+        setIsDrag,
       }}
     >
       {children}
@@ -61,7 +53,7 @@ export const DataProvider = ({ children }) => {
 };
 
 DataProvider.propTypes = {
-  children: PropTypes.node, // Validate the 'children' prop
+  children: PropTypes.node,
 };
 
 export default DataContext;

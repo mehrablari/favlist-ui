@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 //react-beautiful-dnd
 import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Drag from "../../assets/images/Drag.png";
 
-const DraggableAnswers = ({answers, handleDismiss, maxAnswer, handleDragEnd}) => {
+const DraggableAnswers = ({answers, handleDismiss, handleDragEnd}) => {
 
  
   return (

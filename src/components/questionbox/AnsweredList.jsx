@@ -34,19 +34,19 @@ const AnsweredList = ({
 
     };
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-    };
+    // const handleSubmit = (event) => {
+    //   event.preventDefault();
+    // };
 
     const handleChange = (isChecked) => {
-      console.log("ischecked",isChecked);
+      // console.log("ischecked",isChecked);
       setShowIndex(!isChecked);
     };
 
     return (
       <form
         className="bg-neutral pb-[10px] font-sans min-h-[150px] z-20"
-        onClick={handleSubmit}
+        
       >
         <AnswerHeader
           maxAnswer={maxAnswer}

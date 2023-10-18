@@ -13,19 +13,19 @@ import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
 import { useState, useEffect, createContext, useCallback } from "react";
-
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
 import { Link } from "react-router-dom";
+// import Switch from "../utils/Switch";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  const { isLoading, questions, error, editQuestion, editAnswer } =
+  const { isLoading, questions, error, editQuestion, editAnswer, setIsDrag, isDrag } =
     useContext(DataContext);
+   
+
 
   //state management
 
@@ -98,6 +98,8 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
+    setIsDrag(true);
+    console.log("handledrag",setIsDrag);
   };
 
   //manage when a suggestion is clicked
@@ -135,7 +137,7 @@ const Layout = () => {
           setTimeout(() => {
             localStorage.removeItem("answers");
             localStorage.removeItem("selectedQuestionIndex");
-          }, 3000);
+          }, 1000);
         }
       } else {
         setAnswers([]);
@@ -210,10 +212,10 @@ const Layout = () => {
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
         <div className="animate-bounce animate-infinite flex-col text-center">
           <h1 className="text-[30px]">An error exist</h1>
-          
+
           <Link to="/" className="text-center">
             <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px]">
-             Refresh
+              Refresh
             </button>
           </Link>
         </div>
@@ -274,19 +276,17 @@ const Layout = () => {
               {noResultsMessage}
             </p>
           )}
-
-          <DndProvider backend={HTML5Backend}>
-            <AnsweredList
-              answers={answers}
-              handleDismiss={handleDismiss}
-              questionId={questionId}
-              questionName={questionName}
-              minAnswer={minAnswer}
-              handleDragEnd={handleDragEnd}
-              graphicTitle={graphicTitle}
-              maxAnswer={maxAnswer}
-            />
-          </DndProvider>
+          <AnsweredList
+            answers={answers}
+            handleDismiss={handleDismiss}
+            questionId={questionId}
+            questionName={questionName}
+            minAnswer={minAnswer}
+            handleDragEnd={handleDragEnd}
+            graphicTitle={graphicTitle}
+            maxAnswer={maxAnswer}
+          />
+          {/* <Switch /> */}
         </div>
       )}
     </LayoutContext.Provider>
