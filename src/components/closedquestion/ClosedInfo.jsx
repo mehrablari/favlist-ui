@@ -7,12 +7,11 @@ import ClosedAnswers from "./ClosedAnswers";
 
 import Logo from "../../assets/images/logoblack.png";
 import ArrowBack from "../../assets/images/back.png";
-import "./closeinfo.css"
+import "./closeinfo.css";
 
 const ClosedInfo = () => {
   const { id } = useParams();
   const [infoData, setInfoData] = useState(null);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,17 +71,17 @@ const ClosedInfo = () => {
   return (
     <>
       <NavBar />
-      <div className="flex flex-row items-center pb-[10px] pt-[80px] pl-[10px] font-sans fixed h-[50px] w-full bg-neutral">
-        <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
-        <Link to="/closedquestion" className="text-[18px] font-semibold">
-          Back
+      <div className="flex flex-col pb-[10px] pt-[50px] pl-[10px] font-sans fixed h-[50px] w-full bg-neutral z-30">
+        <Link to="/closedquestion" className="pt-[10px] flex justify-between w-[60px]">
+          <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
+          <h2 className="text-[18px] font-semibold">Back</h2>
         </Link>
-      <div
+        <div
           key={id}
-          className="sm:w-[340px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] mt-[14rem] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary z-50"
+          className="sm:w-[340px] md:w-[360px] mdx:w-[380px] pt-[30px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col items-center justify-center text-center align-middle gap-[10px] mt-[5px] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
-            <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
+            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[300px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
               {text}
             </div>
             <p className="text-[12px] text-gray-light font-[400] ">
@@ -94,7 +93,7 @@ const ClosedInfo = () => {
                 affiliate
               </h3>
               <div className="flex justify-center">
-                <a href={`${sponsor.url}`}>
+                <a href={`${sponsor.url}`} target="_blank" rel="noreferrer">
                   <img
                     src={sponsor.logoUrl}
                     alt="netflix"
@@ -111,6 +110,8 @@ const ClosedInfo = () => {
             <div className="youtube absolute bottom-md right-[0px] top-[205px]">
               <a
                 href={`${sponsor.youTubeLink}`}
+                target="_blank"
+                rel="noreferrer"
                 className="hover:bg-primary-bg bg-grey-text w-[56px]"
               >
                 <img
@@ -123,8 +124,7 @@ const ClosedInfo = () => {
           </div>
         </div>
       </div>
-      <div className="bg-neutral pt-[320px] z-30">
-        
+      <div className="bg-neutral pt-[320px] z-20">
         <ClosedAnswers answerData={answers} answerId={id} />
       </div>
     </>

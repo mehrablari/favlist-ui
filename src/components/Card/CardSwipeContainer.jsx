@@ -9,12 +9,6 @@ import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
 import DataContext from "../../context/DataContexts";
 
-
-const openNewTab = (url) => {
-  window.open(url, '_blank');
-}
-
-
 const CardSwipeContainer = ({ handleSwipe }) => {
   const { questions } = useContext(DataContext);
 
@@ -24,7 +18,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
-    console.log("card params:", swiper);
+
     localStorage.removeItem(
       "selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : ""
     );
@@ -73,12 +67,6 @@ const CardSwipeContainer = ({ handleSwipe }) => {
     return formattedDate;
   };
 
-  const handleOpenNewTab = (url) => {
-    openNewTab(url);
-  };
-
- 
-
   return (
     <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 ">
       <Swiper
@@ -116,7 +104,12 @@ const CardSwipeContainer = ({ handleSwipe }) => {
                 affiliate
               </h3>
               <div className="flex justify-center ">
-                <a href={`${question.sponsor.url}`} target="_blank" rel="noreferrer" className="rounded-full">
+                <a
+                  href={`${question.sponsor.url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full"
+                >
                   <img
                     src={question.sponsor.logoS3Url}
                     alt="netflix"
@@ -131,7 +124,12 @@ const CardSwipeContainer = ({ handleSwipe }) => {
               </div>
 
               <div className="youtube absolute bottom-md right-[0px] top-[210px] font-baloo2">
-                <a href={`${question.sponsor.adsS3Url}`} target="_blank" rel="noreferrer" className="w-[56px]">
+                <a
+                  href={`${question.sponsor.adsS3Url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[56px]"
+                >
                   <img
                     src={youtubeIcon}
                     alt="youtube icon"
