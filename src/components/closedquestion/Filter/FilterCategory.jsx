@@ -1,7 +1,6 @@
 import "./TabContainer.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import "react-datepicker/dist/react-datepicker.css";
 import CategoryChecker from "./CategoryChecker";
 import KeywordFilter from "./KeywordFilter";
@@ -20,13 +19,10 @@ const FilterCategory = ({ filterData }) => {
   const [filterPayload, setFilterPayload] = useState({ searchText: "" });
 
   const handleInputChange = (event) => {
-    
     setFilterPayload({
       ...filterPayload,
       searchText: event.target.value,
-      
     });
-    
   };
   const handleTabOne = () => {
     setActiveTab("tabone");
@@ -37,30 +33,20 @@ const FilterCategory = ({ filterData }) => {
 
   //date range selection
   const handleStartDateChange = (date) => {
-    console.log("Start Date Selected:", date);
     setStartDate(date);
   };
 
   //exactdate selection
   const handleEndDateChange = (date) => {
-    console.log("end Date Selected:", date);
     setEndDate(date);
   };
 
   const handleExactDateChange = (date) => {
-    console.log("exact Date Selected:", date);
     setExactDate(date);
   };
 
   const navigate = useNavigate();
 
-  // const handleInputChange = (event) => {
-  //   setFilterPayload({
-  //     ...filterPayload,
-  //     searchText: event.target.value,
-  //   });
-  // };
-  
 
   const handleChange = (event) => {
     if (event.target.checked === true) {
@@ -74,12 +60,23 @@ const FilterCategory = ({ filterData }) => {
     const payload = {
       ...filterPayload,
       categories: checkedCategories.join(","),
-      startDate: startDate ? startDate.toISOString().split("T")[0] : null,
-      endDate: endDate ? endDate.toISOString().split("T")[0] : null,
-      exactDate: exactDate ? exactDate.toISOString().split("T")[0] : null,
-    };
+      startDate: startDate
+        ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split("T")[0]
+        : null,
+      endDate: endDate
+        ? new Date(endDate.getTime() - endDate.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split("T")[0]
+        : null,
+      exactDate: exactDate
+        ? new Date(exactDate.getTime() - exactDate.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split("T")[0]
+        : null,
 
-    // console.log(124, payload)
+    };
     let apiUrl;
     if (payload.searchText) {
       apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?searchText=${payload.searchText}`;
@@ -101,42 +98,18 @@ const FilterCategory = ({ filterData }) => {
       // apiUrl += `&exactDate=${payload.exactDate}`;
       apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?exactDate=${payload.exactDate}`;
     }
-
-    // let apiUrl = "https://dev.pacerlabs.co/api/v1/search-archive/filter";
-
-    // if (payload.searchText) {
-    //   apiUrl += `?searchText=${payload.searchText}`;
-    // }
-
-    // if (payload.categories) {
-    //   apiUrl += `&categories=${payload.categories}`;
-    // }
-
-    // if (payload.startDate) {
-    //   apiUrl += `&startDate=${payload.startDate}`;
-    // }
-
-    // if (payload.endDate) {
-    //   apiUrl += `&endDate=${payload.endDate}`;
-    // }
-
-    // if (payload.exactDate) {
-    //   apiUrl += `&exactDate=${payload.exactDate}`;
-    // }
-
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
         if (data && data.status && data.status.toLowerCase() === "success") {
           const serializedData = JSON.stringify(data.data.content);
-          // Navigate to FilterPage and pass filtered data as state
-          // navigate("/filterpage", { state: { filteredData: serializedData } });
+          
 
           navigate(
             `/filterpage?filteredData=${encodeURIComponent(serializedData)}`
           );
-        } 
+        }
       })
       .catch((error) => {
         setIsLoading(false);
@@ -157,7 +130,6 @@ const FilterCategory = ({ filterData }) => {
         handleStartDateChange={handleStartDateChange}
         handleExactDateChange={handleExactDateChange}
         handleEndDateChange={handleEndDateChange}
-      
       />
 
       <CategoryChecker

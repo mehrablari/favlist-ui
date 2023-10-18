@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 //dependent component
 import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
@@ -12,24 +13,22 @@ import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
 import { useState, useEffect, createContext, useCallback } from "react";
-// import axios from "axios";
+
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
-// import SwipeCard from "./Card/SwipeCard";
+import { Link } from "react-router-dom";
 
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  const { isLoading, questions, editQuestion, editAnswer } =
+  const { isLoading, questions, error, editQuestion, editAnswer } =
     useContext(DataContext);
 
   //state management
 
-  // const [apiData, setApiData] = useState([]);
-  // const [question, setquestion] = useState([]);
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
@@ -40,19 +39,17 @@ const Layout = () => {
   const [graphicTitle, setGraphicTitle] = useState("");
   const [questionName, setQuestionName] = useState("");
   const [daysRemaining, setDaysRemaining] = useState("");
-  // const [isLoading, setIsLoading] = useState(true);
+
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState(null);
   const [maxAnswer, setMaxAnswer] = useState(null);
- 
-
+  const [noResultsMessage, setNoResultsMessage] = useState("");
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
   const playSoundEffect = () => {
     audio.play();
   };
 
-  // console.log(isAnswered)
   //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
@@ -126,8 +123,6 @@ const Layout = () => {
       setMaxAnswer(activeQuestion?.maxAnswerCount);
       setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-      // setEditQuestion(null)
-
       const storedAnswers = localStorage.getItem("answers");
     //  console.log(storedAnswers)
     //  if (storedAnswers) {
@@ -188,12 +183,8 @@ const Layout = () => {
         console.error("Error parsing JSON:", error);
       }
     }
-    // Handle the case where jsonData is empty
-    // initializeQuestionState(questions);
-    // }
   }, [editAnswer, editQuestion]);
 
-  //handle filtering when user search via searchbar
   const handleFilter = (inputValue) => {
     if (inputValue) {
       const suggestedOptions = [...suggestedOption];
@@ -201,9 +192,17 @@ const Layout = () => {
         suggestedOptions.filter((word) =>
           word.toLowerCase().includes(inputValue.toLowerCase())
         ) || [];
-      setFilteredOptions(options);
+
+      if (options.length === 0) {
+        setFilteredOptions([]);
+        setNoResultsMessage("No matching items found.");
+      } else {
+        setFilteredOptions(options);
+        setNoResultsMessage("");
+      }
     } else {
       setFilteredOptions(suggestedOption);
+      setNoResultsMessage("");
     }
   };
 
@@ -221,6 +220,22 @@ const Layout = () => {
   const handleDismiss = (index) => {
     setAnswers((prevAnswers) => prevAnswers.filter((_, i) => i !== index));
   };
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
+        <div className="animate-bounce animate-infinite flex-col text-center">
+          <h1 className="text-[30px]">An error exist</h1>
+          
+          <Link to="/" className="text-center">
+            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px]">
+             Refresh
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -246,16 +261,11 @@ const Layout = () => {
         suggestedOption,
         setSuggestedOption,
         clickedValue,
+        noResultsMessage,
       }}
     >
       <NavBar />
       <div className="bg-primary w-full">
-        {/* {editQuestion ? (
-          <SwipeCard question={editQuestion} handleSwipe={handleSwipe} />
-        ) : (
-          <CardSwipeContainer handleSwipe={handleSwipe} />
-        )} */}
-
         <CardSwipeContainer handleSwipe={handleSwipe} />
       </div>
       <Helmet>
@@ -267,16 +277,22 @@ const Layout = () => {
       ) : (
         <div className="pt-[250px] z-10">
           <Searchbox />
-          <Suggestion
-            maxAnswer={maxAnswer}
-            suggestedOption={suggestedOption}
-            handleClick={handleClick}
-            filteredOptions={filteredOptions}
-          />
+
+          {!noResultsMessage ? (
+            <Suggestion
+              maxAnswer={maxAnswer}
+              suggestedOption={suggestedOption}
+              handleClick={handleClick}
+              filteredOptions={filteredOptions}
+            />
+          ) : (
+            <p className="bg-neutral text-center text-[16px] p-[20px]">
+              {noResultsMessage}
+            </p>
+          )}
 
           <DndProvider backend={HTML5Backend}>
             <AnsweredList
-              // answers,
               answers={answers}
               handleDismiss={handleDismiss}
               questionId={questionId}

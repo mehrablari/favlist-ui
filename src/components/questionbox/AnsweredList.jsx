@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import AnswerHeader from "./AnswerHeader";
 import AnswerSettings from "./AnswerSettings";
 import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import PropTypes from "prop-types";
-// import { LayoutContext } from "../Layout";
+// import PropTypes from "prop-types";
+
 import DraggableAnswers from "./DraggableAnswers";
 
 const AnsweredList = ({
@@ -38,7 +39,8 @@ const AnsweredList = ({
     };
 
     const handleChange = (isChecked) => {
-      setShowIndex(isChecked);
+      console.log("ischecked",isChecked);
+      setShowIndex(!isChecked);
     };
 
     return (
@@ -110,15 +112,15 @@ const AnsweredList = ({
   };
 
 // Define prop types for validation
-AnsweredList.propTypes = {
-  maxAnswer: PropTypes.number,
-  graphicTitle: PropTypes.string.isRequired,
-  minAnswer: PropTypes.number,
-  questionName: PropTypes.string,
-  questionId: PropTypes.string,
-  answers: PropTypes.arrayOf(PropTypes.string),
-  handleDismiss: PropTypes.func.isRequired,
-  handleDragEnd: PropTypes.func.isRequired,
-};
+// AnsweredList.propTypes = {
+//   maxAnswer: PropTypes.number,
+//   graphicTitle: PropTypes.string.isRequired,
+//   minAnswer: PropTypes.number,
+//   questionName: PropTypes.string,
+//   questionId: PropTypes.string,
+//   answers: PropTypes.arrayOf(PropTypes.string),
+//   handleDismiss: PropTypes.func.isRequired,
+//   handleDragEnd: PropTypes.func.isRequired,
+// };
 
 export default AnsweredList;

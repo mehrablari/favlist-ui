@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import path14 from "../../assets/images/path14.png";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import NavBar from "../NavBar";
-
-import ClosedQuestionFlag from "./ClosedQuestionFlag";
 import ClosedAnswers from "./ClosedAnswers";
-import TruncateAnswers from "./TruncateAnswers";
+
 import Logo from "../../assets/images/logoblack.png";
 import ArrowBack from "../../assets/images/back.png";
 import "./closeinfo.css"
@@ -80,11 +77,9 @@ const ClosedInfo = () => {
         <Link to="/closedquestion" className="text-[18px] font-semibold">
           Back
         </Link>
-      </div>
-      <div className="bg-neutral pt-[90px]">
-        <div
+      <div
           key={id}
-          className="sm:w-[320px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] p-[20px] m-[3rem] max-w-[340px] h-[240px] drop-shadow-lg border-2 border-primary"
+          className="sm:w-[340px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col justify-center text-center gap-[16px] mt-[14rem] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary z-50"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
             <div className="text-gray-dark w-[287px] sm:text-[16px] md:w-[230px] sm:w-[220px] text-[18px] mx-auto h-[72px] leading-[24px] font-[700]">
@@ -127,9 +122,9 @@ const ClosedInfo = () => {
             </div>
           </div>
         </div>
-
-        {/* <ClosedQuestionFlag answerGraphic={answerGraphicLink} /> */}
-        {/* <TruncateAnswers /> */}
+      </div>
+      <div className="bg-neutral pt-[320px] z-30">
+        
         <ClosedAnswers answerData={answers} answerId={id} />
       </div>
     </>
