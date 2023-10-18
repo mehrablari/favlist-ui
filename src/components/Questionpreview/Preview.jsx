@@ -152,6 +152,7 @@ const Preview = () => {
                     ? `${answer.substring(0, 30)}...`
                     : answer}
                 </h2>
+                <span className="text-[14px] text-gray-400 pr-[5px]">{index + 1}</span>
               </div>
             ))}
           </div>
