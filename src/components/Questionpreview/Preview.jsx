@@ -45,8 +45,7 @@ const Preview = () => {
   const handleEditQuestion = useCallback(() => {
     const questionId = localStorage.getItem('selectedQuestionId');
     const answers = localStorage.getItem('answers');
-
-    console.log(questionId)
+  
    
     questionId ?  goBackToEditAnswers(questionId) : null;
     answers ? setEdittAnswer(answers) : null;

@@ -29,6 +29,7 @@ const { questions} = useContext(DataContext);
     // console.log("card params:",swiper);
     localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : '');
     localStorage.setItem("selectedQuestionIndex", activeIndex);
+  
 
     
     setQuestion(questions[activeIndex]);

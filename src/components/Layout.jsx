@@ -42,7 +42,7 @@ const Layout = () => {
   const [daysRemaining, setDaysRemaining] = useState("");
   // const [isLoading, setIsLoading] = useState(true);
   const [isAnswered, setIsAnswered] = useState(null);
-  const [minAnswer, setMinAnswer] = useState([]);
+  const [minAnswer, setMinAnswer] = useState(null);
   const [maxAnswer, setMaxAnswer] = useState(null);
  
 
@@ -129,20 +129,36 @@ const Layout = () => {
       // setEditQuestion(null)
 
       const storedAnswers = localStorage.getItem("answers");
-
+    //  console.log(storedAnswers)
+    //  if (storedAnswers) {
+    //   console.log("work remove")
+    //   setAnswers([]);
+    //       setTimeout(() => {
+    //         console.log("working 3")
+    //         localStorage.removeItem("answers");
+    //         // localStorage.removeItem("selectedQuestionIndex");
+    //       }, 3000);
+     
+    //  }
+    //  console.log(answers)
+    //  setAnswers(storedAnswers ? JSON.parse(storedAnswers) : []);
       let count = 1;
       if (storedAnswers) {
         if (count === 1) {
-          setAnswers(JSON.parse(storedAnswers));
+          // setAnswers(JSON.parse(storedAnswers));
+          console.log("working 1")
           count++;
         }
         if (count === 2) {
+          console.log("working 2")
           setTimeout(() => {
-            localStorage.removeItem("answers");
-            localStorage.removeItem("selectedQuestionIndex");
+            console.log("working 3")
+            // localStorage.removeItem("answers");
+            // localStorage.removeItem("selectedQuestionIndex");
           }, 3000);
         }
       } else {
+        console.log("working 4")
         setAnswers([]);
       }
     }

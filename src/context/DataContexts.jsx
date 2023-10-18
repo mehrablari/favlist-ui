@@ -7,7 +7,7 @@ const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]); // Change 'posts' to 'questions'
   const [search, setSearch] = useState("");
-  const [editQuestion, setEditQuestion] = useState('');
+  const [editQuestion, setEditQuestion] = useState(null);
 //   const [fetchError, setfetchError] = useState(null);
   const [editAnswer, setEdittAnswer] = useState([]);
 
