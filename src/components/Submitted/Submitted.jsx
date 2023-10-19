@@ -19,6 +19,9 @@ const Submit = () => {
   const handleSubmit =  () => {
 
     mutateQuestion()
+    localStorage.removeItem("answers");
+    localStorage.removeItem("selectedQuestionIndex");
+    localStorage.removeItem("selectedQuestionId");
     navigate('/');
  
   };

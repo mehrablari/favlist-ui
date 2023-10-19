@@ -29,6 +29,8 @@ const Layout = () => {
 
   //state management
 
+
+
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
@@ -57,19 +59,21 @@ const Layout = () => {
     }
   };
 
+
+
   function initializeQuestionState(questions) {
-    if (questions.length > 0) {
+    if (questions) {
       const initialQuestion = questions[0];
-      setActiveAnswerJson(initialQuestion.answersJson);
-      setSelectedOption(initialQuestion.answersJson[0]);
-      setSuggestedOption(initialQuestion.answersJson);
-      setQuestionId(initialQuestion.id);
-      setGraphicTitle(initialQuestion.graphicTitle);
-      setQuestionName(initialQuestion.text);
-      setIsAnswered(initialQuestion.userSubmission);
-      setMinAnswer(initialQuestion.minAnswerCount);
-      setMaxAnswer(initialQuestion.maxAnswerCount);
-      setDaysRemaining(initialQuestion.daysToRemainOpen);
+      setActiveAnswerJson(initialQuestion?.answersJson);
+      setSelectedOption(initialQuestion?.answersJson[0]);
+      setSuggestedOption(initialQuestion?.answersJson);
+      setQuestionId(initialQuestion?.id);
+      setGraphicTitle(initialQuestion?.graphicTitle);
+      setQuestionName(initialQuestion?.text);
+      setIsAnswered(initialQuestion?.userSubmission);
+      setMinAnswer(initialQuestion?.minAnswerCount);
+      setMaxAnswer(initialQuestion?.maxAnswerCount);
+      setDaysRemaining(initialQuestion?.daysToRemainOpen);
     }
   }
 
@@ -141,19 +145,18 @@ const Layout = () => {
       if (storedAnswers) {
         if (count === 1) {
           // setAnswers(JSON.parse(storedAnswers));
-          console.log("working 1")
+      
           count++;
         }
         if (count === 2) {
-          console.log("working 2")
+         
           setTimeout(() => {
-            console.log("working 3")
-            // localStorage.removeItem("answers");
-            // localStorage.removeItem("selectedQuestionIndex");
-          }, 3000);
+            localStorage.removeItem("answers");
+            localStorage.removeItem("selectedQuestionIndex");
+          }, 1000);
         }
       } else {
-        console.log("working 4")
+    
         setAnswers([]);
       }
     }

@@ -1,6 +1,6 @@
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef, useCallback } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,83 +15,105 @@ import { useContext } from "react";
 // let imgUrl;
 
 const Preview = () => {
-  const [imageState, setimageState] = useState(false);
+  // const [imageState, setimageState] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
- 
 
   const { goBackToEditAnswers, setEdittAnswer } = useContext(DataContext);
-
+  //  console.log(isSubmitting)
   const location = useLocation();
   const dataContainer = location.state;
-  const graphicTitle = dataContainer.graphicTitle;
-  const questionName = dataContainer.questionName;
+  const graphicTitle = dataContainer?.graphicTitle;
+  const questionName = dataContainer?.questionName;
 
   const containerRef = useRef(null);
 
+
   const handleGenerateImage = useCallback(async () => {
-    if (containerRef.current === null) {
-      return;
-    } else {
-      toPng(containerRef.current)
-        .then((data) => {
-          setimageState(data.split(",")[1]) 
-        })
-        .catch((error) => console.error("Error generating image:", error));
+    try {
+      if (containerRef.current === null) {
+        return null;
+      } else {
+        const dataUrl = await toPng(containerRef.current, { cacheBust: true });
+        return dataUrl.split(",")[1];
+      }
+    } catch (error) {
+      console.error("Error generating image:", error);
+      return null;
     }
-  }, []);
+  }, [containerRef]);
+
+ 
 
   const navigate = useNavigate();
 
   const handleEditQuestion = useCallback(() => {
-    const questionId = localStorage.getItem('selectedQuestionId');
-    const answers = localStorage.getItem('answers');
-    questionId ?  goBackToEditAnswers(questionId) : null;
+    const questionId = localStorage.getItem("selectedQuestionId");
+    const answers = localStorage.getItem("answers");
+    questionId ? goBackToEditAnswers(questionId) : null;
     answers ? setEdittAnswer(answers) : null;
-    navigate('/');
-
+    navigate("/");
   }, [goBackToEditAnswers, setEdittAnswer, navigate]);
 
+// console.log(handleGenerateImage())
   const handleSubmit = async () => {
-    await handleGenerateImage();
     setIsSubmitting(true);
+    const imageState = await handleGenerateImage();
 
-    setTimeout(() => {
-      const answerSubmit = {
-        questionId: dataContainer.questionId,
-        answersJson: dataContainer.answers,
-        ranked: false,
-        graphicUrl: imageState,
-      };
+ 
+    try {
+      if (imageState ) {
+        const answerSubmit = {
+          questionId: dataContainer.questionId,
+          answersJson: dataContainer.answers,
+          ranked: false,
+          graphicUrl: imageState,
+        };
 
-      fetch("https://dev.pacerlabs.co/api/v1/submissions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(answerSubmit),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setIsSubmitting(false);
-          if (data && data.status) {
-            if (
-              data &&
-              typeof data.status === "string" &&
-              data.status.toLowerCase() === "success"
-            ) {
-              localStorage.removeItem("answers");
-              localStorage.removeItem("selectedQuestionIndex");
-           
-
-              navigate("/submitted", {
-                state: { graphicUrl: data.data.answerGraphicLink },
-              });
-            }
+        const response = await fetch(
+          "https://dev.pacerlabs.co/api/v1/submissions",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(answerSubmit),
           }
-        })
-        .catch((error) => toast.error(error.message));
-    }, 1500);
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+
+          if (
+            data &&
+            data.status &&
+            typeof data.status === "string" &&
+            data.status.toLowerCase() === "success"
+          ) {
+            localStorage.removeItem("answers");
+            localStorage.removeItem("selectedQuestionIndex");
+            navigate("/submitted", {
+              state: { graphicUrl: data.data.answerGraphicLink },
+            });
+          } else {
+            // Handle error scenarios
+            console.error("Submission was not successful");
+          }
+        } else {
+          // Handle HTTP error scenarios
+          console.error("HTTP request to submission endpoint failed");
+        }
+      } else {
+        // Handle the case where image generation failed
+        console.error("Image generation failed");
+      }
+    } catch (error) {
+      // Handle any other errors
+      console.error("An error occurred:", error);
+      toast.error(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+
   };
 
   return (
@@ -140,7 +162,7 @@ const Preview = () => {
             <div className="text-gray-list flex flex-wrap align-middle text-[20px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
             </div>
-            {dataContainer.answers.map((answer, index) => (
+            {dataContainer?.answers.map((answer, index) => (
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px]"
@@ -150,7 +172,6 @@ const Preview = () => {
                     ? `${answer.substring(0, 30)}...`
                     : answer}
                 </h2>
-                <span className="text-[14px] text-gray-400 pr-[5px]">{index + 1}</span>
               </div>
             ))}
           </div>
@@ -170,12 +191,12 @@ const Preview = () => {
             </button>
           </div>
         </form>
-        <div  onClick={() => handleEditQuestion()} className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]">
+        <div
+          onClick={() => handleEditQuestion()}
+          className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]"
+        >
           <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
-          <span
-           
-            className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light"
-          >
+          <span className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light">
             Go back to edit answers
           </span>
         </div>
