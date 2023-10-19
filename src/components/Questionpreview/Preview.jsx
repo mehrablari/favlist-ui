@@ -93,7 +93,7 @@ const Preview = () => {
             localStorage.removeItem("selectedQuestionIndex");
             navigate("/submitted", {
               state: { graphicUrl: data.data.answerGraphicLink },
-            });
+            }, { replace: true });
           } else {
             // Handle error scenarios
             console.error("Submission was not successful");

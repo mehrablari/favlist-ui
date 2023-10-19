@@ -10,9 +10,9 @@ import Clock from "../../assets/images/clock.png";
 import DataContext from "../../context/DataContexts";
 
 
-const openNewTab = (url) => {
-  window.open(url, '_blank');
-}
+// const openNewTab = (url) => {
+//   window.open(url, '_blank');
+// }
 
 
 const CardSwipeContainer = ({ handleSwipe }) => {
@@ -28,7 +28,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
       "selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : ""
     );
     localStorage.setItem("selectedQuestionIndex", activeIndex);
-  
+
 
     setQuestion(questions[activeIndex]);
 
@@ -73,9 +73,9 @@ const CardSwipeContainer = ({ handleSwipe }) => {
     return formattedDate;
   };
 
-  const handleOpenNewTab = (url) => {
-    openNewTab(url);
-  };
+  // const handleOpenNewTab = (url) => {
+  //   openNewTab(url);
+  // };
 
  
 

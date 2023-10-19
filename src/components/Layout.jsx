@@ -29,7 +29,7 @@ const Layout = () => {
 
   //state management
 
-
+  console.log(questions)
 
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
@@ -62,8 +62,9 @@ const Layout = () => {
 
 
   function initializeQuestionState(questions) {
-    if (questions) {
-      const initialQuestion = questions[0];
+    const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
+    if (questions.length > 0) {
+      const initialQuestion = questions[storedQuestionIndex];
       setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);
       setSuggestedOption(initialQuestion?.answersJson);
@@ -115,6 +116,7 @@ const Layout = () => {
 
   //manage the swiping card of question container
   const handleSwipe = useCallback((activeQuestion) => {
+    console.log(activeQuestion)
     if (activeQuestion) {
       setActiveAnswerJson(activeQuestion?.answersJson);
       setSelectedOption(activeQuestion?.answersJson[0]);
