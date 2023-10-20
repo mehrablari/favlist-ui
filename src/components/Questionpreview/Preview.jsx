@@ -47,7 +47,8 @@ const Preview = () => {
   const handleEditQuestion = useCallback(() => {
     const questionId = localStorage.getItem('selectedQuestionId');
     const answers = localStorage.getItem('answers');
-
+  
+   
     questionId ?  goBackToEditAnswers(questionId) : null;
     answers ? setEdittAnswer(answers) : null;
     navigate('/');
@@ -154,7 +155,7 @@ const Preview = () => {
                     ? `${answer.substring(0, 30)}...`
                     : answer}
                 </h2>
-              </div> 
+              </div>
             ))}
           </div>
         </div>

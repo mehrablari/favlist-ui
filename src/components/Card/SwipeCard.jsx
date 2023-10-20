@@ -5,24 +5,46 @@ import { EffectCards } from "swiper";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
 import DataContext from "../../context/DataContexts";
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 
 function SwipeCard({question, handleSwipe }) {
 
-    const { questions } = useContext(DataContext);
+    const { questions, setEditQuestion } = useContext(DataContext);
 
     console.log(question)
+    // const activeIndex = localStorage.getItem("selectedQuestionIndex")
 
-    const handleSwipeChange = (swiper) => {
-       
-        console.log("card params:",swiper);
-       
 
-        const activeIndex = localStorage.getItem('activeIndex');
     
+    const handleSwipeChange = useCallback((swiper) => {
+        console.log("card params:", swiper);
+        const activeIndex = localStorage.getItem("selectedQuestionIndex");
+        console.log(activeIndex);
+        console.log("why workig");
+      
+        handleSwipe(questions[activeIndex]);
+        setEditQuestion(null)
+        console.log("why workig22");
+       
+      }, [question]);
+
+
+    // const handleSwipeChange = (swiper) => {
+    //     // const activeIndex = swiper.realIndex;
+    //     console.log("card params:",swiper);
+    //     // localStorage.removeItem("selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : '');
+    //     // localStorage.setItem("selectedQuestionIndex", activeIndex);
+
+    //     const activeIndex = localStorage.getItem("selectedQuestionIndex")
+    // //    if(editQuestion) {
+    // //     setEditQuestion('')
+
+    // //    }
+        
+    //     // setQuestion(questions[activeIndex]);
     
-        handleSwipe(questions[activeIndex + 1]);
-      };
+    //     handleSwipe(questions[activeIndex + 1]);
+    //   };
     
 
 
@@ -78,10 +100,11 @@ function SwipeCard({question, handleSwipe }) {
       loop={true}
       modules={[EffectCards]}
       className="myswiper px-[10px] align-middle mx-auto pt-[30px] font-sans sm:px-[20px] flex flex-wrap flex-auto justify-center s:w-[340px] md:w-[350px] w-[360px] max-w-[380px] "
-      onSlideChange={(swiper) => handleSwipeChange(swiper)}
+     
     >
       {/* {questions.map((question, id) => ( */}
         <SwiperSlide
+         onSlideChange={(swiper) => handleSwipeChange(swiper)}
         //   key={id}
           className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-4`}
           style={{ borderColor: borderColors[question?.id] }}

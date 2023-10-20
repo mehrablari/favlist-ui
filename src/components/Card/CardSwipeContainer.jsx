@@ -23,6 +23,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
       "selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : ""
     );
     localStorage.setItem("selectedQuestionIndex", activeIndex);
+  
 
     setQuestion(questions[activeIndex]);
 
