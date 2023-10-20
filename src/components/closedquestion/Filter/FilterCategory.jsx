@@ -47,7 +47,6 @@ const FilterCategory = ({ filterData }) => {
 
   const navigate = useNavigate();
 
-
   const handleChange = (event) => {
     if (event.target.checked === true) {
       setCheckedCategories((categories) => [...categories, event.target.name]);
@@ -75,28 +74,25 @@ const FilterCategory = ({ filterData }) => {
             .toISOString()
             .split("T")[0]
         : null,
-
     };
-    let apiUrl;
+
+    let apiUrl = "https://dev.pacerlabs.co/api/v1/search-archive/filter?";
+
+    // Add conditions to the URL based on the payload
     if (payload.searchText) {
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?searchText=${payload.searchText}`;
+      apiUrl += `searchText=${payload.searchText}`;
     }
     if (payload.categories) {
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?categories=${payload.categories}`;
+      apiUrl += `&categories=${payload.categories}`;
     }
-
     if (payload.startDate) {
-      // apiUrl += `&startDate=${payload.startDate}`;
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?startDate=${payload.startDate}`;
+      apiUrl += `&startDate=${payload.startDate}`;
     }
-
     if (payload.endDate) {
-      // apiUrl += `&endDate=${payload.endDate}`;
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?endDate=${payload.endDate}`;
+      apiUrl += `&endDate=${payload.endDate}`;
     }
     if (payload.exactDate) {
-      // apiUrl += `&exactDate=${payload.exactDate}`;
-      apiUrl = `https://dev.pacerlabs.co/api/v1/search-archive/filter?exactDate=${payload.exactDate}`;
+      apiUrl += `&exactDate=${payload.exactDate}`;
     }
     fetch(apiUrl)
       .then((res) => res.json())
@@ -104,7 +100,6 @@ const FilterCategory = ({ filterData }) => {
         setIsLoading(false);
         if (data && data.status && data.status.toLowerCase() === "success") {
           const serializedData = JSON.stringify(data.data.content);
-          
 
           navigate(
             `/filterpage?filteredData=${encodeURIComponent(serializedData)}`

@@ -4,7 +4,6 @@ import axios from "axios";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import NavBar from "../NavBar";
 import ClosedAnswers from "./ClosedAnswers";
-
 import Logo from "../../assets/images/logoblack.png";
 import ArrowBack from "../../assets/images/back.png";
 import "./closeinfo.css";

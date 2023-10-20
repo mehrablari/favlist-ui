@@ -25,7 +25,7 @@ const AnswerProvided = ({ answerData }) => {
             <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">
               {index + 1}
             </span>
-            <div className="sm:w-[300px] w-[327px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[48px] mx-auto flex flex-row justify-between hover:bg-primary-bg ">
+            <div className="sm:w-[320px] w-[340px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[48px] mx-auto flex flex-row justify-between hover:bg-primary-bg ">
               <span className="text-[13px] h-[22px] cursor-pointer text-ellipsis w-[200px] truncate">
                 {question.text}
               </span>
@@ -46,7 +46,7 @@ const AnswerProvided = ({ answerData }) => {
       <Link
         to="/answergraphics"
         state={answerGraphicLink}
-        className="flex justify-center align-middle py-[5px] h-[42px] px-[14px] text-center rounded-lg font-[600] text-[14px] sm:w-[340px] pl-[10px] w-[360px]  mx-auto gap-[8px]
+        className="flex justify-center align-middle py-[5px] h-[42px] px-[14px] text-center rounded-lg font-[600] text-[14px] sm:w-[320px] pl-[20px] w-[350px]  mx-auto gap-[8px]
           bg-primary text-neutral mt-[10px] hover:bg-button-hover"
       >
         <div className="p-[7px]">

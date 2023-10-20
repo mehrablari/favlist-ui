@@ -100,7 +100,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[40px]">
+            <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[30px]">
               <h3 className="text-gray-light text-[14px] font-[400]">
                 affiliate
               </h3>

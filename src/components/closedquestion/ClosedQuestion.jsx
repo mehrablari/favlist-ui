@@ -1,8 +1,6 @@
-import NavBar from "../NavBar";
 import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 import QuestionCard from "./QuestionCard";
-import CloseQuestionHeader from "./CloseQuestionHeader";
 import Logo from "../../assets/images/logoblack.png";
 
 export const ClosedQuestionContext = createContext();
@@ -52,11 +50,6 @@ const ClosedQuestion = () => {
 
   return (
     <ClosedQuestionContext.Provider value={{ questions }}>
-      {/* <NavBar /> */}
-      {/* <div className="">
-        <CloseQuestionHeader />
-      </div> */}
-
       <QuestionCard />
     </ClosedQuestionContext.Provider>
   );

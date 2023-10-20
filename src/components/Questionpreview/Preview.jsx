@@ -141,16 +141,16 @@ const Preview = () => {
           }}
         >
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
-            <div className="text-gray-list flex flex-wrap align-middle text-[20px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
+            <div className="text-gray-list flex flex-wrap align-middle text-[25px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
             </div>
             {dataContainer.answers.map((answer, index) => (
               
               <div
                 key={index}
-                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px]"
-              >{isDrag && (<span className="text-md">{index+1}</span>)}
-                <h2 className="font-[700] rounded-[8px] mb-[5px] px-[10px] ">
+                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px] pb-[5px]"
+              >{isDrag && (<span className="text-[16px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>)}
+                <h2 className="font-[700] rounded-[8px] px-[10px] ">
                   {answer.length > 30
                     ? `${answer.substring(0, 30)}...`
                     : answer}

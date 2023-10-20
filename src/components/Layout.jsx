@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-//dependent component
 import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
@@ -286,7 +285,6 @@ const Layout = () => {
             graphicTitle={graphicTitle}
             maxAnswer={maxAnswer}
           />
-          {/* <Switch /> */}
         </div>
       )}
     </LayoutContext.Provider>
