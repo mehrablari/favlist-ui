@@ -21,10 +21,15 @@ import { Link } from "react-router-dom";
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  const { isLoading, questions, error, editQuestion, editAnswer, setIsDrag, isDrag } =
-    useContext(DataContext);
-   
-
+  const {
+    isLoading,
+    questions,
+    error,
+    editQuestion,
+    editAnswer,
+    setIsDrag,
+    isDrag,
+  } = useContext(DataContext);
 
   //state management
 
@@ -57,18 +62,19 @@ const Layout = () => {
   };
 
   function initializeQuestionState(questions) {
+    const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
     if (questions.length > 0) {
-      const initialQuestion = questions[0];
-      setActiveAnswerJson(initialQuestion.answersJson);
-      setSelectedOption(initialQuestion.answersJson[0]);
-      setSuggestedOption(initialQuestion.answersJson);
-      setQuestionId(initialQuestion.id);
-      setGraphicTitle(initialQuestion.graphicTitle);
-      setQuestionName(initialQuestion.text);
-      setIsAnswered(initialQuestion.userSubmission);
-      setMinAnswer(initialQuestion.minAnswerCount);
-      setMaxAnswer(initialQuestion.maxAnswerCount);
-      setDaysRemaining(initialQuestion.daysToRemainOpen);
+      const initialQuestion = questions[storedQuestionIndex];
+      setActiveAnswerJson(initialQuestion?.answersJson);
+      setSelectedOption(initialQuestion?.answersJson[0]);
+      setSuggestedOption(initialQuestion?.answersJson);
+      setQuestionId(initialQuestion?.id);
+      setGraphicTitle(initialQuestion?.graphicTitle);
+      setQuestionName(initialQuestion?.text);
+      setIsAnswered(initialQuestion?.userSubmission);
+      setMinAnswer(initialQuestion?.minAnswerCount);
+      setMaxAnswer(initialQuestion?.maxAnswerCount);
+      setDaysRemaining(initialQuestion?.daysToRemainOpen);
     }
   }
 
@@ -98,7 +104,7 @@ const Layout = () => {
 
     setAnswers(reorderedAnswers);
     setIsDrag(true);
-    console.log("handledrag",setIsDrag);
+    console.log("handledrag", setIsDrag);
   };
 
   //manage when a suggestion is clicked
@@ -112,6 +118,7 @@ const Layout = () => {
 
   //manage the swiping card of question container
   const handleSwipe = useCallback((activeQuestion) => {
+    console.log(activeQuestion);
     if (activeQuestion) {
       setActiveAnswerJson(activeQuestion?.answersJson);
       setSelectedOption(activeQuestion?.answersJson[0]);
@@ -129,13 +136,11 @@ const Layout = () => {
       let count = 1;
       if (storedAnswers) {
         if (count === 1) {
-          setAnswers(JSON.parse(storedAnswers));
           count++;
         }
         if (count === 2) {
           setTimeout(() => {
             localStorage.removeItem("answers");
-            localStorage.removeItem("selectedQuestionIndex");
           }, 1000);
         }
       } else {
@@ -163,6 +168,7 @@ const Layout = () => {
       try {
         const parsedEditAnswer = JSON.parse(editAnswer);
         setAnswers(parsedEditAnswer);
+        // console.log("edit load 4", editAnswer)
         // Use parsedData for further processing
       } catch (error) {
         console.error("Error parsing JSON:", error);

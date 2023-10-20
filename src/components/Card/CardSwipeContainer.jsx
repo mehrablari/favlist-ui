@@ -18,12 +18,8 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
+      localStorage.setItem("selectedQuestionIndex", activeIndex);
 
-    localStorage.removeItem(
-      "selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : ""
-    );
-    localStorage.setItem("selectedQuestionIndex", activeIndex);
-  
 
     setQuestion(questions[activeIndex]);
 
@@ -67,11 +63,12 @@ const CardSwipeContainer = ({ handleSwipe }) => {
     );
     return formattedDate;
   };
+ 
 
   return (
     <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 ">
       <Swiper
-        // slidesPerView={1}
+      
         effect={"cards"}
         grabCursor={true}
         initialSlide={question}

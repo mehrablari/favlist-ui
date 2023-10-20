@@ -3,11 +3,18 @@ import Home from "../../assets/icons/Home.svg";
 import congrats from "../../assets/gif/congrats.gif";
 import {  useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
 
 import { RWebShare } from "react-web-share";
 import useQuestions from "../../hooks/useQuestions";
+import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
+
+  const {  setEditQuestion } =
+    useContext(DataContext);
+
+   
   const location = useLocation();
   const graphicUrl = location.state.graphicUrl;
 
@@ -19,7 +26,14 @@ const Submit = () => {
   const handleSubmit =  () => {
 
     mutateQuestion()
+    
+    localStorage.removeItem("answers");
+    // localStorage.removeItem("selectedQuestionIndex");
+    // localStorage.removeItem("selectedQuestionId");
+    setEditQuestion(null);
     navigate('/');
+     // Refresh the page
+  //  window.location.reload();
  
   };
 
