@@ -3,8 +3,9 @@ import AnswerHeader from "./AnswerHeader";
 import AnswerSettings from "./AnswerSettings";
 import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 // import PropTypes from "prop-types";
+import DataContext from "../../context/DataContexts";
 
 import DraggableAnswers from "./DraggableAnswers";
 
@@ -17,10 +18,11 @@ const AnsweredList = ({
   handleDismiss,
   handleDragEnd,
   answers,
+  
 }) =>
 
   {
-    
+    const { setIsDrag, isDrag } = useContext(DataContext);
 
     const [showIndex, setShowIndex] = useState(false);
     const handlePreviewAnswers = () => {
@@ -40,6 +42,7 @@ const AnsweredList = ({
 
     const handleChange = (isChecked) => {
       // console.log("ischecked",isChecked);
+      setIsDrag(!false)
       setShowIndex(!isChecked);
     };
 
@@ -52,6 +55,8 @@ const AnsweredList = ({
           maxAnswer={maxAnswer}
           minAnswer={minAnswer}
           handleToggle={handleChange}
+          isDrag={isDrag}
+          setIsDrag={setIsDrag}
         />
 
         {answers.length === 0 && <AnswerSettings />}
@@ -84,6 +89,7 @@ const AnsweredList = ({
             handleDismiss={handleDismiss}
             maxAnswer={maxAnswer}
             handleDragEnd={handleDragEnd}
+            
           />
         )}
 

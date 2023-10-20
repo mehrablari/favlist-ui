@@ -16,7 +16,6 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
 import { Link } from "react-router-dom";
-// import Switch from "../utils/Switch";
 
 export const LayoutContext = createContext();
 
@@ -27,8 +26,7 @@ const Layout = () => {
     error,
     editQuestion,
     editAnswer,
-    setIsDrag,
-    isDrag,
+    
   } = useContext(DataContext);
 
   //state management
@@ -95,7 +93,7 @@ const Layout = () => {
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
-      return; // Item was dropped outside a valid droppable area
+      return; 
     }
 
     const reorderedAnswers = Array.from(answers);
@@ -103,8 +101,7 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
-    setIsDrag(true);
-    console.log("handledrag", setIsDrag);
+   
   };
 
   //manage when a suggestion is clicked
@@ -151,7 +148,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (editQuestion) {
-      // const editQuestion = questions[1];
+      
       setActiveAnswerJson(editQuestion.answersJson);
       setSelectedOption(editQuestion.answersJson[0]);
       setSuggestedOption(editQuestion.answersJson);
@@ -168,8 +165,7 @@ const Layout = () => {
       try {
         const parsedEditAnswer = JSON.parse(editAnswer);
         setAnswers(parsedEditAnswer);
-        // console.log("edit load 4", editAnswer)
-        // Use parsedData for further processing
+    
       } catch (error) {
         console.error("Error parsing JSON:", error);
       }
@@ -219,7 +215,7 @@ const Layout = () => {
           <h1 className="text-[30px]">An error exist</h1>
 
           <Link to="/" className="text-center">
-            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px]">
+            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px] pb-[10px]">
               Refresh
             </button>
           </Link>

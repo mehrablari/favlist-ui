@@ -80,15 +80,15 @@ const ClosedInfo = () => {
           className="sm:w-[340px] md:w-[360px] mdx:w-[380px] pt-[30px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col items-center justify-center text-center align-middle gap-[10px] mt-[5px] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
-            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[300px] text-[18px] mx-auto h-[72px] leading-[24px] px-[10px] font-[700]">
+            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[300px] text-[20px] mx-auto h-[72px] leading-[24px] px-[10px] font-[700]">
               {text}
             </div>
-            <p className="text-[12px] text-gray-light font-[400] ">
+            <p className="text-[14px] text-gray-light font-[400] ">
               Question on {formatDate(dateToPost)}
             </p>
 
             <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[10px]">
-              <h3 className="text-gray-lighter text-[12px] font-[400]">
+              <h3 className="text-gray-lighter text-[14px] font-[400]">
                 affiliate
               </h3>
               <div className="flex justify-center">

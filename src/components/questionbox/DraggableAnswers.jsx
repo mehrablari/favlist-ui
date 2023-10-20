@@ -30,7 +30,7 @@ const DraggableAnswers = ({answers, handleDismiss, handleDragEnd}) => {
                     className="bg-neutral p-[4px] flex flex-row justify-between mx-auto w-[360px] sm:w-[340px]"
                   >
                     <span className="pr-[20px] pt-[8px] w-[20px] h-[20px] text-[15px] text-gray-four">
-                      {index + 1}
+                    {index + 1}
                     </span>
                     <div className="sm:w-[340px] max-w-[360px] cursor-pointer bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between hover:bg-primary-bg">
                       <div className="flex">
