@@ -3,10 +3,19 @@ import Logo from "../assets/images/logoAllWhite.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+// import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
+  // const navigate = useNavigate();
+
+  const handleRoute = () => {
+    localStorage.removeItem("selectedQuestionIndex");
+    localStorage.setItem("selectedQuestionIndex", 0);
+    window.location.reload();
+    // navigate("/")
+  };
   const handleToggle = () => {
     setOpen(!open);
   };
@@ -14,10 +23,10 @@ const NavBar = () => {
   return (
     <main className="flex flex-col fixed top-0 sm:w-min-[320px] w-full z-30 bg-primary shadow-md">
       <nav className="flex flex-row px-[24px] justify-between h-[56px] py-[20px]">
-        <header>
-          <Link to="/">
+        <header className="hover:cursor-pointer" onClick={() => handleRoute()}>
+          {/* <Link to="/"> */}
             <img src={Logo} alt="logo" className="max-h-[20px]" />
-          </Link>
+          {/* </Link> */}
         </header>
         <div className="relative">
           {!open && (
