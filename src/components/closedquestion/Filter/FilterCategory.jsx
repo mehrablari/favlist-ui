@@ -9,7 +9,7 @@ import FilterDate from "./FilterDate";
 
 const FilterCategory = ({ filterData }) => {
   const [checkedCategories, setCheckedCategories] = useState([]);
-  // const [filterPayload, setFilterPayload] = useState({});
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState("");
