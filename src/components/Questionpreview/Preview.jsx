@@ -10,6 +10,7 @@ import imgPreview from "../../assets/images/bgimage.png";
 import BgImage from "../../assets/images/favbg.jpg";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
+import useQuestions from "../../hooks/useQuestions";
 
 // let imageState;
 // let imgUrl;
@@ -19,6 +20,8 @@ const Preview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { goBackToEditAnswers, setEdittAnswer } = useContext(DataContext);
+
+  const { mutate: mutateQuestion} = useQuestions()
   //  console.log(isSubmitting)
   const location = useLocation();
   const dataContainer = location.state;
@@ -45,6 +48,7 @@ const Preview = () => {
  
 
   const navigate = useNavigate();
+
 
   const handleEditQuestion = useCallback(() => {
     const questionId = localStorage.getItem("selectedQuestionId");
@@ -90,10 +94,11 @@ const Preview = () => {
             data.status.toLowerCase() === "success"
           ) {
             localStorage.removeItem("answers");
-            localStorage.removeItem("selectedQuestionIndex");
+            // localStorage.removeItem("selectedQuestionIndex");
             navigate("/submitted", {
               state: { graphicUrl: data.data.answerGraphicLink },
             }, { replace: true });
+            mutateQuestion()
           } else {
             // Handle error scenarios
             console.error("Submission was not successful");
@@ -187,7 +192,7 @@ const Preview = () => {
               type="submit"
               className="h-[30px] text-center  font-[600] flex-grow flex-shrink text-[15px] text-neutral "
             >
-              {isSubmitting ? "Submitting..." : "Submit Answers"}
+              {isSubmitting ? "Submitting....." : "Submit Answers"}
             </button>
           </div>
         </form>

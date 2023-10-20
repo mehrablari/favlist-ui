@@ -29,7 +29,7 @@ const Layout = () => {
 
   //state management
 
-  console.log(questions)
+
 
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
@@ -80,6 +80,7 @@ const Layout = () => {
 
   useEffect(() => {
     initializeQuestionState(questions);
+   
   }, [questions]);
 
   //answer removal
@@ -154,7 +155,7 @@ const Layout = () => {
          
           setTimeout(() => {
             localStorage.removeItem("answers");
-            localStorage.removeItem("selectedQuestionIndex");
+            // localStorage.removeItem("selectedQuestionIndex");
           }, 1000);
         }
       } else {
@@ -165,7 +166,9 @@ const Layout = () => {
   }, []);
 
   useEffect(() => {
+  
     if (editQuestion) {
+    
       // const editQuestion = questions[1];
       setActiveAnswerJson(editQuestion.answersJson);
       setSelectedOption(editQuestion.answersJson[0]);
@@ -180,9 +183,11 @@ const Layout = () => {
     }
 
     if (editAnswer) {
+      
       try {
         const parsedEditAnswer = JSON.parse(editAnswer);
         setAnswers(parsedEditAnswer);
+        // console.log("edit load 4", editAnswer)
         // Use parsedData for further processing
       } catch (error) {
         console.error("Error parsing JSON:", error);

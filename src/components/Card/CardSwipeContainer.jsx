@@ -24,10 +24,10 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
   const handleSwipeChange = (swiper) => {
     const activeIndex = swiper.realIndex;
-    localStorage.removeItem(
-      "selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : ""
-    );
-    localStorage.setItem("selectedQuestionIndex", activeIndex);
+    // localStorage.removeItem(
+    //   "selectedQuestionIndex" in localStorage ? "selectedQuestionIndex" : ""
+    // );
+      localStorage.setItem("selectedQuestionIndex", activeIndex);
 
 
     setQuestion(questions[activeIndex]);
