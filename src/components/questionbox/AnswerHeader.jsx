@@ -1,16 +1,18 @@
+/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Backdrop from "@mui/material/Backdrop";
 import Switch from "@mui/material/Switch";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import DataContext from "../../context/DataContexts"
 
-const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
+  const { setIsDrag } = useContext(DataContext);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
-
   };
   const handleOpen = () => {
     setOpen(true);
@@ -18,11 +20,12 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
 
   const [checked, setChecked] = useState(false);
 
-  const handleChange = (e) => {
-    const isChecked = e.target.checked;
-    console.log
-    setChecked(isChecked);
-    handleToggle(isChecked);
+  const handleChange = (event) => {
+    const isChecked = event.target.checked;
+    setChecked(event.target.checked);
+    handleToggle(!isChecked);
+    // setIsDrag(true);
+    
   };
   //mui
   return (
@@ -72,9 +75,11 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
               </h2>
             </div>
 
-            <div className="">
-              <Switch checked={checked} onClick={handleChange} {...label}/>
-            </div>
+            <Switch
+              checked={checked}
+              onChange={handleChange}
+              inputProps={{ "aria-label": "controlled" }}
+            />
           </div>
         </div>
       </Backdrop>

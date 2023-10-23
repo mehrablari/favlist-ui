@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-//dependent component
 import AnsweredList from "./questionbox/AnsweredList";
 import Searchbox from "../utils/Searchbox";
 import Suggestion from "../utils/Suggestion";
@@ -13,9 +12,6 @@ import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
 import { useState, useEffect, createContext, useCallback } from "react";
-
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
@@ -24,12 +20,16 @@ import { Link } from "react-router-dom";
 export const LayoutContext = createContext();
 
 const Layout = () => {
-  const { isLoading, questions, error, editQuestion, editAnswer } =
-    useContext(DataContext);
+  const {
+    isLoading,
+    questions,
+    error,
+    editQuestion,
+    editAnswer,
+    
+  } = useContext(DataContext);
 
   //state management
-
-
 
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
@@ -43,7 +43,7 @@ const Layout = () => {
   const [daysRemaining, setDaysRemaining] = useState("");
 
   const [isAnswered, setIsAnswered] = useState(null);
-  const [minAnswer, setMinAnswer] = useState(null);
+  const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState(null);
   const [noResultsMessage, setNoResultsMessage] = useState("");
   //sound when a suggestion is clicked
@@ -58,8 +58,6 @@ const Layout = () => {
       navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
     }
   };
-
-
 
   function initializeQuestionState(questions) {
     const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
@@ -80,7 +78,6 @@ const Layout = () => {
 
   useEffect(() => {
     initializeQuestionState(questions);
-   
   }, [questions]);
 
   //answer removal
@@ -96,7 +93,7 @@ const Layout = () => {
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
-      return; // Item was dropped outside a valid droppable area
+      return; 
     }
 
     const reorderedAnswers = Array.from(answers);
@@ -104,6 +101,7 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
+   
   };
 
   //manage when a suggestion is clicked
@@ -117,7 +115,7 @@ const Layout = () => {
 
   //manage the swiping card of question container
   const handleSwipe = useCallback((activeQuestion) => {
-    console.log(activeQuestion)
+    console.log(activeQuestion);
     if (activeQuestion) {
       setActiveAnswerJson(activeQuestion?.answersJson);
       setSelectedOption(activeQuestion?.answersJson[0]);
@@ -135,22 +133,15 @@ const Layout = () => {
       let count = 1;
       if (storedAnswers) {
         if (count === 1) {
-          // setAnswers(JSON.parse(storedAnswers));
-      
           count++;
         }
         if (count === 2) {
-         
           setTimeout(() => {
             console.log("checking ")
             localStorage.removeItem("answers");
-            console.log("checking 2 ")
-            
-            // localStorage.removeItem("selectedQuestionIndex");
           }, 1000);
         }
       } else {
-    
         setAnswers([]);
       }
     }
@@ -158,10 +149,8 @@ const Layout = () => {
 
 
   useEffect(() => {
-  
     if (editQuestion) {
-    
-      // const editQuestion = questions[1];
+      
       setActiveAnswerJson(editQuestion.answersJson);
       setSelectedOption(editQuestion.answersJson[0]);
       setSuggestedOption(editQuestion.answersJson);
@@ -175,12 +164,10 @@ const Layout = () => {
     }
 
     if (editAnswer) {
-      
       try {
         const parsedEditAnswer = JSON.parse(editAnswer);
         setAnswers(parsedEditAnswer);
-        // console.log("edit load 4", editAnswer)
-        // Use parsedData for further processing
+    
       } catch (error) {
         console.error("Error parsing JSON:", error);
       }
@@ -228,10 +215,10 @@ const Layout = () => {
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
         <div className="animate-bounce animate-infinite flex-col text-center">
           <h1 className="text-[30px]">An error exist</h1>
-          
+
           <Link to="/" className="text-center">
-            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px]">
-             Refresh
+            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px] pb-[10px]">
+              Refresh
             </button>
           </Link>
         </div>
@@ -292,19 +279,16 @@ const Layout = () => {
               {noResultsMessage}
             </p>
           )}
-
-          <DndProvider backend={HTML5Backend}>
-            <AnsweredList
-              answers={answers}
-              handleDismiss={handleDismiss}
-              questionId={questionId}
-              questionName={questionName}
-              minAnswer={minAnswer}
-              handleDragEnd={handleDragEnd}
-              graphicTitle={graphicTitle}
-              maxAnswer={maxAnswer}
-            />
-          </DndProvider>
+          <AnsweredList
+            answers={answers}
+            handleDismiss={handleDismiss}
+            questionId={questionId}
+            questionName={questionName}
+            minAnswer={minAnswer}
+            handleDragEnd={handleDragEnd}
+            graphicTitle={graphicTitle}
+            maxAnswer={maxAnswer}
+          />
         </div>
       )}
     </LayoutContext.Provider>

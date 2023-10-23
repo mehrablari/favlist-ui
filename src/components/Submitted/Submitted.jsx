@@ -63,15 +63,15 @@ const Submit = () => {
         <meta property="og:site_name" content="favlist" />
         {/* twitter  */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="x:image:alt" content="favorite answers" />
-        <meta name="x:image" itemProp="image" content={graphicUrl + "/"} />
-        <meta property="x:image:width" content="600" />
-        <meta property="x:image:height" content="314" />
-        <meta property="x:card" content="app" />
-        <meta property="x:url" content="https://favlist.surge.sh" />
-        <meta property="x:title" content="favlist" />
+        <meta name="twitter:image:alt" content="favorite answers" />
+        <meta name="twitter:image" itemProp="image" content={graphicUrl + "/"} />
+        <meta property="twitter:image:width" content="600" />
+        <meta property="twitter:image:height" content="314" />
+        <meta property="twitter:card" content="app" />
+        <meta property="twitter:url" content="https://favlist.surge.sh" />
+        <meta property="twitter:title" content="favlist" />
         <meta
-          property="x:description"
+          property="twitter:description"
           content="Give answers to your favorite things"
         />
       </Helmet>

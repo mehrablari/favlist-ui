@@ -4,9 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import "./style/suggestion.css";
 import { Pagination } from "swiper";
-
 import { useState } from "react";
-
 import AnswerModal from "../components/questionbox/AnswerModal";
 import Backdrop from "@mui/material/Backdrop";
 

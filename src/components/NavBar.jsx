@@ -24,7 +24,7 @@ const NavBar = () => {
   };
 
   return (
-    <main className="flex flex-col fixed top-0 sm:w-min-[320px] w-full z-30 bg-primary shadow-md">
+    <main className="flex flex-col fixed top-0 sm:w-min-[320px] w-full z-40 bg-primary shadow-md">
       <nav className="flex flex-row px-[24px] justify-between h-[56px] py-[20px]">
         <header className="hover:cursor-pointer" onClick={() => handleRoute()}>
           {/* <Link to="/"> */}

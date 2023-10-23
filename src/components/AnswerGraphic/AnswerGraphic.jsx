@@ -70,13 +70,13 @@ const AnswerGraphics = () => {
                 </button>
               </RWebShare>
             </div>
-            <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[250px]">
+            <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[240px]">
               <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
               <Link
                 to="/"
                 className="text-[14px] font-semibold text-primary-light"
               >
-                Go back to question
+                Home
               </Link>
             </div>
           </div>

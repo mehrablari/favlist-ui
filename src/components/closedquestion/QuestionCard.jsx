@@ -2,7 +2,6 @@ import { useContext } from "react";
 import Calendar from "../../assets/images/Calendar.png";
 import { ClosedQuestionContext } from "./ClosedQuestion";
 import { Link } from "react-router-dom";
-import ArrowBack from "../../assets/images/back.png";
 import { Helmet } from "react-helmet-async";
 import NavBar from "../NavBar";
 import CloseQuestionHeader from "./CloseQuestionHeader";
