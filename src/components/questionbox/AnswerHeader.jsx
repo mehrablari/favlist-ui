@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import DataContext from "../../context/DataContexts"
 
 const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
-  const { setIsDrag } = useContext(DataContext);
+  const { setIsDrag, isDrag } = useContext(DataContext);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -24,7 +24,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
     const isChecked = event.target.checked;
     setChecked(event.target.checked);
     handleToggle(!isChecked);
-    // setIsDrag(true);
+    setIsDrag(!isDrag);
     
   };
   //mui
@@ -54,6 +54,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
           justifyContent: "center",
         }}
         open={open}
+        onClick={handleClose}
       >
         <div className="flex flex-col w-full justify-center fixed rounded-t-[24px] h-[204px] bg-neutral bottom-0 left-0 right-0 ">
           <hr className="mx-auto w-[64px] rounded-[3px] h-[4px] bg-primary-bg" />
@@ -61,9 +62,9 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
             <h1 className="flex leading-3 text-gray-dark justify-start font-[700] text-[16px]">
               Answer settings
             </h1>
-            <Link to="/" onClick={handleClose} className="cursor-pointer">
+            {/* <Link to="/"  className="cursor-pointer">
               <CancelIcon className="text-gray-dark w-[15px] h-[15px]" />
-            </Link>
+            </Link> */}
           </div>
           <div className="flex flex-row w-[327px] sm:w-[300px] mx-auto justify-center">
             <div className="flex flex-col p-[10px]">

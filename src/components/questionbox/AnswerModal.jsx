@@ -93,7 +93,7 @@ const AnswerModal = ({
   };
 
   //const totalSlides = Math.ceil(filteredOption.length / 20);
-  const totalSlides = Math.min(Math.ceil(filteredOption.length / 14), 6);
+  const totalSlides = Math.ceil(filteredOption.length / 20);
 
   const renderSwiperSlides = () => {
     const slides = [];

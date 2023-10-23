@@ -116,14 +116,14 @@ const Submit = () => {
                 }}
                 onClick={() => console.log("shared successfully!")}
               >
-                <button className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral ">
+                <button className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[300px] flex-grow flex-shrink text-[14px] text-neutral ">
                   Share to social media
                 </button>
               </RWebShare>
             </div>
             <span
              onClick={handleSubmit}
-              className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"
+              className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[300px]"
             >
               <img
                 src={Home}

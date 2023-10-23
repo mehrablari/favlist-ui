@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import Video from "../../assets/icons/video.svg";
-import ArrowBack from "../../assets/icons/arrowback.svg";
+import Home from "../../assets/icon2/HomeOutlined.svg";
 import congrats from "../../assets/gif/congrats.gif";
 import { Helmet } from "react-helmet-async";
 
@@ -65,13 +65,13 @@ const AnswerGraphics = () => {
                 }}
                 onClick={() => console.log("shared successfully!")}
               >
-                <button className="h-[40px] w-[250px] hover:bg-opacity-75 text-center mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary ">
+                <button className="h-[40px] w-[320px] hover:bg-opacity-75 text-center mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary ">
                   Share to social media
                 </button>
               </RWebShare>
             </div>
-            <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[240px]">
-              <img src={ArrowBack} alt="" className="h-full pr-[2px]" />
+            <div className="flex flex-row items-center justify-center mx-auto rounded-lg h-[35px] p-[10px] bg-button-inactive min-w-[320px]">
+              <img src={Home} alt="" className="h-full pr-[2px]" />
               <Link
                 to="/"
                 className="text-[14px] font-semibold text-primary-light"

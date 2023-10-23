@@ -36,13 +36,9 @@ const AnsweredList = ({
 
     };
 
-    // const handleSubmit = (event) => {
-    //   event.preventDefault();
-    // };
-
     const handleChange = (isChecked) => {
       // console.log("ischecked",isChecked);
-      setIsDrag(!false)
+      setIsDrag(!isDrag)
       setShowIndex(!isChecked);
     };
 

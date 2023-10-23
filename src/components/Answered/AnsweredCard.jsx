@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import path14 from "../../assets/images/path14.png";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
@@ -69,5 +70,17 @@ const AnsweredCard = ({ cardData }) => {
     </div>
   );
 };
+
+AnsweredCard.propTypes = {
+  cardData: PropTypes.shape({
+    dateToPost: PropTypes.any,
+    sponsor: PropTypes.shape({
+      logoS3Url: PropTypes.any,
+      name: PropTypes.any,
+      url: PropTypes.any
+    }),
+    text: PropTypes.any
+  })
+}
 
 export default AnsweredCard;

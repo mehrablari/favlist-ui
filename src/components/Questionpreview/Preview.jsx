@@ -163,17 +163,17 @@ const Preview = () => {
           }}
         >
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
-            <div className="text-gray-list flex flex-wrap align-middle text-[25px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
+            <div className="text-gray-list flex flex-wrap align-middle text-[20px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
             </div>
             {dataContainer?.answers.map((answer, index) => (
               <div
                 key={index}
-                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px] pb-[5px]"
+                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
               >{isDrag && (<span className="text-[16px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>)}
-                <h2 className="font-[700] rounded-[8px] px-[10px] ">
-                  {answer.length > 30
-                    ? `${answer.substring(0, 30)}...`
+                <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] ">
+                  {answer.length > 40
+                    ? `${answer.substring(0, 32)}.`
                     : answer}
                 </h2>
               </div>
@@ -183,7 +183,7 @@ const Preview = () => {
 
         <form
           onClick={handleSubmit}
-          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[287px] w-[260px] sm:w-[240px] mx-auto px-[20px] bg-primary rounded-lg  my-[5px] "
+          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[320px] w-[320px] sm:w-[300px] mx-auto px-[20px] bg-primary rounded-lg  my-[5px] "
         >
           <div className="">
             <button
@@ -197,9 +197,9 @@ const Preview = () => {
         </form>
         <div
           onClick={() => handleEditQuestion()}
-          className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]"
+          className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[320px] sm:w-[300px]"
         >
-          <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
+          <img src={ArrowBack} alt="" className="h-full pr-[5px]" />
           <span className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light">
             Go back to edit answers
           </span>
