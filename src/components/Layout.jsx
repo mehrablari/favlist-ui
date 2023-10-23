@@ -131,19 +131,7 @@ const Layout = () => {
       setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
       const storedAnswers = localStorage.getItem("answers");
-    //  console.log(storedAnswers)
-    //  if (storedAnswers) {
-    //   console.log("work remove")
-    //   setAnswers([]);
-    //       setTimeout(() => {
-    //         console.log("working 3")
-    //         localStorage.removeItem("answers");
-    //         // localStorage.removeItem("selectedQuestionIndex");
-    //       }, 3000);
-     
-    //  }
-    //  console.log(answers)
-    //  setAnswers(storedAnswers ? JSON.parse(storedAnswers) : []);
+
       let count = 1;
       if (storedAnswers) {
         if (count === 1) {
@@ -154,7 +142,10 @@ const Layout = () => {
         if (count === 2) {
          
           setTimeout(() => {
+            console.log("checking ")
             localStorage.removeItem("answers");
+            console.log("checking 2 ")
+            
             // localStorage.removeItem("selectedQuestionIndex");
           }, 1000);
         }
@@ -164,6 +155,7 @@ const Layout = () => {
       }
     }
   }, []);
+
 
   useEffect(() => {
   

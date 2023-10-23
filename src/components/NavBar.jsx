@@ -3,16 +3,19 @@ import Logo from "../assets/images/logoAllWhite.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleRoute = () => {
     localStorage.removeItem("selectedQuestionIndex");
     localStorage.setItem("selectedQuestionIndex", 0);
+
+    navigate("/");
+    
     window.location.reload();
     // navigate("/")
   };
