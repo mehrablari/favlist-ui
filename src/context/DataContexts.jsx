@@ -8,11 +8,13 @@ export const DataProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
   const [search, setSearch] = useState("");
   const [editQuestion, setEditQuestion] = useState(null);
+  const [answers, setAnswers] = useState([]);
 
   const [editAnswer, setEdittAnswer] = useState([]);
   const [isDrag, setIsDrag] = useState(false);
 
   const { data, error, isLoading } = useQuestions();
+
 
   useEffect(() => {
     if (!isLoading && !error) {
@@ -44,6 +46,8 @@ export const DataProvider = ({ children }) => {
         editAnswer,
         isDrag,
         setIsDrag,
+        answers,
+        setAnswers
       }}
     >
       {children}

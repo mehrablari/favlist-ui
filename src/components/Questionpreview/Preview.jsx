@@ -19,7 +19,9 @@ const Preview = () => {
  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { goBackToEditAnswers, setEdittAnswer, isDrag } = useContext(DataContext);
+  const { goBackToEditAnswers, setEdittAnswer, isDrag, setAnswers  } = useContext(DataContext);
+
+
 
   const { mutate: mutateQuestion} = useQuestions()
 
@@ -29,7 +31,6 @@ const Preview = () => {
   const questionName = dataContainer?.questionName;
 
   const containerRef = useRef(null);
-
 
   const handleGenerateImage = useCallback(async () => {
     try {
@@ -51,11 +52,19 @@ const Preview = () => {
 
 
   const handleEditQuestion = useCallback(() => {
+
     const questionId = localStorage.getItem("selectedQuestionId");
-    const answers = localStorage.getItem("answers");
-    questionId ? goBackToEditAnswers(questionId) : null;
-    answers ? setEdittAnswer(answers) : null;
+    // const newanswers = localStorage.getItem("answers");
+    // console.log(questionId)
+   if (questionId) {goBackToEditAnswers(questionId) }
+
+   setAnswers(dataContainer.answers)
+
+
+  //  if (newanswers) { setEdittAnswer(dataContainer.answers) }
+
     navigate("/");
+
   }, [goBackToEditAnswers, setEdittAnswer, navigate]);
 
   const handleSubmit = async () => {

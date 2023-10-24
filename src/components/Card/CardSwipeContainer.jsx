@@ -10,23 +10,30 @@ import Clock from "../../assets/images/clock.png";
 import DataContext from "../../context/DataContexts";
 
 const CardSwipeContainer = ({ handleSwipe }) => {
-  const { questions } = useContext(DataContext);
+  const { questions, setAnswers } = useContext(DataContext);
 
   //local storage
   const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
   const [question, setQuestion] = useState(storedQuestionIndex);
 
+
   const handleSwipeChange = (swiper) => {
     // const activeIndex = swiper.realIndex;
-    const activeIndex = isNaN(swiper.realIndex) ? 0 : swiper.realIndex;
+    const activeIndex =  swiper.realIndex;
    
-    
+   
       localStorage.setItem("selectedQuestionIndex", activeIndex);
 
-
+  
     setQuestion(questions[activeIndex]);
 
     handleSwipe(questions[activeIndex]);
+
+    // localStorage.removeItem("answers");
+    // localStorage.removeItem("selectedQuestionId");
+    setAnswers([]);
+   
+  
   };
 
   const generateRandomColors = (count) => {
@@ -94,7 +101,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
               <div className="flex flex-row justify-center items-center h-[40px] pb-[10px]">
                 <img src={Clock} alt="clock" className="w-[15px] h-[15px]" />
                 <h1 className="text-[13px] pl-[5px] text-primary-light font-[400] font-baloo2">
-                  {remaining(question.daysToRemainOpen + 1)}
+                  {remaining(question?.daysToRemainOpen + 1)}
                 </h1>
               </div>
             </div>

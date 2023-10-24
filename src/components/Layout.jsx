@@ -26,6 +26,8 @@ const Layout = () => {
     error,
     editQuestion,
     editAnswer,
+    answers,
+    setAnswers
     
   } = useContext(DataContext);
 
@@ -34,7 +36,7 @@ const Layout = () => {
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
-  const [answers, setAnswers] = useState([]);
+  // const [answers, setAnswers] = useState([]);
   const [clickedValue, setClickedValue] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState();
   const [questionId, setQuestionId] = useState("");
@@ -106,8 +108,10 @@ const Layout = () => {
 
   //manage when a suggestion is clicked
   const handleClick = (option) => {
+      //  console.log(option)
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
+      // console.log(answers)
       playSoundEffect();
       handleVibration();
     }
@@ -115,7 +119,6 @@ const Layout = () => {
 
   //manage the swiping card of question container
   const handleSwipe = useCallback((activeQuestion) => {
-    console.log(activeQuestion);
     if (activeQuestion) {
       setActiveAnswerJson(activeQuestion?.answersJson);
       setSelectedOption(activeQuestion?.answersJson[0]);
@@ -128,50 +131,40 @@ const Layout = () => {
       setMaxAnswer(activeQuestion?.maxAnswerCount);
       setDaysRemaining(activeQuestion?.daysToRemainOpen);
 
-      const storedAnswers = localStorage.getItem("answers");
-
-      let count = 1;
-      if (storedAnswers) {
-        if (count === 1) {
-          count++;
-        }
-        if (count === 2) {
-          setTimeout(() => {
-            console.log("checking ")
-            localStorage.removeItem("answers");
-          }, 1000);
-        }
-      } else {
-        setAnswers([]);
-      }
+     
     }
   }, []);
 
 
   useEffect(() => {
     if (editQuestion) {
-      
-      setActiveAnswerJson(editQuestion.answersJson);
-      setSelectedOption(editQuestion.answersJson[0]);
-      setSuggestedOption(editQuestion.answersJson);
-      setQuestionId(editQuestion.id);
-      setGraphicTitle(editQuestion.graphicTitle);
-      setQuestionName(editQuestion.text);
-      setIsAnswered(editQuestion.userSubmission);
-      setMinAnswer(editQuestion.minAnswerCount);
-      setMaxAnswer(editQuestion.maxAnswerCount);
-      setDaysRemaining(editQuestion.daysToRemainOpen);
+      setActiveAnswerJson(editQuestion?.answersJson);
+      setSelectedOption(editQuestion?.answersJson[0]);
+      setSuggestedOption(editQuestion?.answersJson);
+      setQuestionId(editQuestion?.id);
+      setGraphicTitle(editQuestion?.graphicTitle);
+      setQuestionName(editQuestion?.text);
+      setIsAnswered(editQuestion?.userSubmission);
+      setMinAnswer(editQuestion?.minAnswerCount);
+      setMaxAnswer(editQuestion?.maxAnswerCount);
+      setDaysRemaining(editQuestion?.daysToRemainOpen);
     }
 
-    if (editAnswer) {
-      try {
-        const parsedEditAnswer = JSON.parse(editAnswer);
-        setAnswers(parsedEditAnswer);
+    // console.log(editQuestion, "2")
+
+    // console.log( 'editans', answers)
+    setAnswers(answers)
+
+    // if (editAnswer) {
+    //   try {
+    //     // const parsedEditAnswer = JSON.parse(editAnswer);
+    //     console.log(editAnswer)
+    //     // setAnswers(parsedEditAnswer);
     
-      } catch (error) {
-        console.error("Error parsing JSON:", error);
-      }
-    }
+    //   } catch (error) {
+    //     console.error("Error parsing JSON:", error);
+    //   }
+    // }
   }, [editAnswer, editQuestion]);
 
   const handleFilter = (inputValue) => {
