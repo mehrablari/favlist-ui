@@ -19,7 +19,7 @@ const Preview = () => {
  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { goBackToEditAnswers, setEdittAnswer, isDrag, setAnswers  } = useContext(DataContext);
+  const { goBackToEditAnswers,  isDrag, setAnswers  } = useContext(DataContext);
 
 
 
