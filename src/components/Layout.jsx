@@ -115,7 +115,7 @@ const Layout = () => {
 
   //manage the swiping card of question container
   const handleSwipe = useCallback((activeQuestion) => {
-    console.log(activeQuestion);
+  
     if (activeQuestion) {
       setActiveAnswerJson(activeQuestion?.answersJson);
       setSelectedOption(activeQuestion?.answersJson[0]);
@@ -212,7 +212,7 @@ const Layout = () => {
     return (
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
         <div className="animate-bounce animate-infinite flex-col text-center">
-          <h1 className="text-[30px]">An error exist</h1>
+          <h1 className="text-[30px]">Network error exist, reload and</h1>
 
           <Link to="/" className="text-center">
             <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px] pb-[10px]">

@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
-import imgPreview from "../../assets/images/bgimage.png";
-import BgImage from "../../assets/images/favbg.jpg";
+import imgPreview from "../../assets/images/favimg.png";
+import BgImage from "../../assets/images/favlistbg.jpg";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
 import useQuestions from "../../hooks/useQuestions";
@@ -28,6 +28,12 @@ const Preview = () => {
   const graphicTitle = dataContainer?.graphicTitle;
   const questionName = dataContainer?.questionName;
 
+  const handleVibration = () => {
+    if ("vibrate" in navigator) {
+      navigator.vibrate(2000); // Vibrate for 1000 milliseconds (1 second)
+    }
+  };
+
   const containerRef = useRef(null);
 
 
@@ -40,7 +46,8 @@ const Preview = () => {
         return dataUrl.split(",")[1];
       }
     } catch (error) {
-      console.error("Error generating image:", error);
+      toast.error("Error generating image:",error)
+  
       return null;
     }
   }, [containerRef]);
@@ -100,19 +107,19 @@ const Preview = () => {
             mutateQuestion()
           } else {
             // Handle error scenarios
-            console.error("Submission was not successful");
+            toast.error("Submission was not successful");
           }
         } else {
           // Handle HTTP error scenarios
-          console.error("HTTP request to submission endpoint failed");
+          toast.error("HTTP request to submission endpoint failed");
         }
       } else {
         // Handle the case where image generation failed
-        console.error("Image generation failed");
+        toast.error("Image generation failed");
       }
     } catch (error) {
       // Handle any other errors
-      console.error("An error occurred:", error);
+      toast.error("An error occurred:", error);
       toast.error(error.message);
     } finally {
       setIsSubmitting(false);

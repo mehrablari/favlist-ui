@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import Video from "../../assets/images/video.png";
 import People from "../../assets/images/People.png";
 import { Link } from "react-router-dom";
@@ -59,5 +60,15 @@ const AnswerProvided = ({ answerData }) => {
     </div>
   );
 };
+
+AnswerProvided.propTypes = {
+  answerData: PropTypes.shape({
+    answerGraphicLink: PropTypes.any,
+    answers: PropTypes.shape({
+      map: PropTypes.func
+    }),
+    questionId: PropTypes.any
+  })
+}
 
 export default AnswerProvided;

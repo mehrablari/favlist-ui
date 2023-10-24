@@ -37,7 +37,6 @@ const AnsweredList = ({
     };
 
     const handleChange = (isChecked) => {
-      // console.log("ischecked",isChecked);
       setIsDrag(!isDrag)
       setShowIndex(!isChecked);
     };

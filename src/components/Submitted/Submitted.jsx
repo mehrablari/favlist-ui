@@ -3,7 +3,7 @@ import Home from "../../assets/icons/Home.svg";
 import congrats from "../../assets/gif/congrats.gif";
 import {  useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { RWebShare } from "react-web-share";
 import useQuestions from "../../hooks/useQuestions";
@@ -36,6 +36,16 @@ const Submit = () => {
   //  window.location.reload();
  
   };
+
+  const handleVibration = () => {
+    if ("vibrate" in navigator) {
+      navigator.vibrate(1000); // Vibrate for 1000 milliseconds (1 second)
+    }
+  };
+
+  useEffect(() => {
+    handleVibration();
+  }, []);
 
   return (
     <>
@@ -89,7 +99,7 @@ const Submit = () => {
         <div className="bg-neutral w-[360px] sm:w-[340px] md:w-[360px] rounded-lg mx-auto py-[10px]">
           <div className="flex flex-col">
             <h2 className="w-[327px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
-              Yaayy! Your answers have been submitted! 1{" "}
+              Yaayy! Your answers have been submitted!
             </h2>
 
             <div className="flex flex-row justify-center">

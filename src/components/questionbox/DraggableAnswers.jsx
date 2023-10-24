@@ -35,7 +35,7 @@ const DraggableAnswers = ({answers, handleDismiss, handleDragEnd}) => {
                     <div className="sm:w-[340px] max-w-[360px] cursor-pointer bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[44px] mx-auto flex flex-row justify-between hover:bg-primary-bg">
                       <div className="flex">
                         <img src={Drag} alt="drag" className="pr-[10px]" />
-                        <span className="text-[14px] h-[20px] text-ellipsis overflow-hidden w-[270px] sm:w-[250px]">
+                        <span className="text-[14px] h-[20px] text-ellipsis   w-[270px] sm:w-[250px]">
                           {answer}
                         </span>
                       </div>
