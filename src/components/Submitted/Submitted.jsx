@@ -11,7 +11,7 @@ import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
 
-  const {  setEditQuestion } =
+  const {  setEditQuestion, setIsDrag, isDrag } =
     useContext(DataContext);
 
    
@@ -32,6 +32,7 @@ const Submit = () => {
     // localStorage.removeItem("selectedQuestionId");
     setEditQuestion(null);
     navigate('/');
+    setIsDrag(isDrag)
      // Refresh the page
   //  window.location.reload();
  

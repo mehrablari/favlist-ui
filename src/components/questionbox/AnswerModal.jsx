@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
@@ -20,10 +19,9 @@ const AnswerModal = ({
 }) => {
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(1000); // Vibrate for 1000 milliseconds (1 second)
+      navigator.vibrate(1000); 
     }
   };
-
   // State to store the selected answers
   const [answeredList, setAnsweredList] = useState([]);
   const [answerSet, setAnswerSet] = useState(new Set());
@@ -92,7 +90,6 @@ const AnswerModal = ({
     localStorage.setItem("answers", JSON.stringify(answeredList));
   };
 
-  //const totalSlides = Math.ceil(filteredOption.length / 20);
   const totalSlides = Math.ceil(filteredOption.length / 20);
 
   const renderSwiperSlides = () => {

@@ -25,7 +25,7 @@ const Layout = () => {
     questions,
     error,
     editQuestion,
-    editAnswer,
+    editAnswer, setIsDrag, isDrag
     
   } = useContext(DataContext);
 
@@ -159,6 +159,7 @@ const Layout = () => {
       setMinAnswer(editQuestion.minAnswerCount);
       setMaxAnswer(editQuestion.maxAnswerCount);
       setDaysRemaining(editQuestion.daysToRemainOpen);
+      setIsDrag(isDrag);
     }
 
     if (editAnswer) {

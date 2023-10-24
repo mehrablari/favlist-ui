@@ -6,9 +6,9 @@ import Backdrop from "@mui/material/Backdrop";
 import Switch from "@mui/material/Switch";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useContext, useState } from "react";
-import DataContext from "../../context/DataContexts"
+import DataContext from "../../context/DataContexts";
 
-const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
+const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
   const { setIsDrag, isDrag } = useContext(DataContext);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -25,7 +25,6 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
     setChecked(event.target.checked);
     handleToggle(!isChecked);
     setIsDrag(!isDrag);
-    
   };
   //mui
   return (
@@ -78,7 +77,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer}) => {
 
             <Switch
               checked={checked}
-              onChange={handleChange}
+              onClick={handleChange}
               inputProps={{ "aria-label": "controlled" }}
             />
           </div>

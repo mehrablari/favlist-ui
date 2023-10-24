@@ -11,7 +11,7 @@ import DataContext from "../../context/DataContexts";
 
 const CardSwipeContainer = ({ handleSwipe }) => {
   const { questions } = useContext(DataContext);
-
+  
   //local storage
   const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
   const [question, setQuestion] = useState(storedQuestionIndex);
