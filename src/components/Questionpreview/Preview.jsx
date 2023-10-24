@@ -65,7 +65,7 @@ const Preview = () => {
 
     navigate("/");
 
-  }, [goBackToEditAnswers, setEdittAnswer, navigate]);
+  }, [goBackToEditAnswers, setAnswers, navigate, dataContainer.answers]);
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
