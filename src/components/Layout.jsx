@@ -103,6 +103,9 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
+    setIsDrag(!isDrag)
+
+    
    
   };
 
@@ -147,9 +150,8 @@ const Layout = () => {
       setMinAnswer(editQuestion?.minAnswerCount);
       setMaxAnswer(editQuestion?.maxAnswerCount);
       setDaysRemaining(editQuestion?.daysToRemainOpen);
-      setIsDrag(isDrag);
+    
     }
-
 
     setAnswers(answers)
 

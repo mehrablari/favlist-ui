@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import DataContext from "../../context/DataContexts";
 
 const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
-  const { setIsDrag, isDrag } = useContext(DataContext);
+  const { setIsDrag, isDrag, checked, setChecked } = useContext(DataContext);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -18,7 +18,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
     setOpen(true);
   };
 
-  const [checked, setChecked] = useState(false);
+  
 
   const handleChange = (event) => {
     const isChecked = event.target.checked;
@@ -77,7 +77,7 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
 
             <Switch
               checked={checked}
-              onClick={handleChange}
+              onChange={handleChange}
               inputProps={{ "aria-label": "controlled" }}
             />
           </div>

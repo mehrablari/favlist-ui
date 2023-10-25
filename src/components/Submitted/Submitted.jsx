@@ -40,7 +40,7 @@ const Submit = () => {
 
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(1000); // Vibrate for 1000 milliseconds (1 second)
+      navigator.vibrate(1000); 
     }
   };
 

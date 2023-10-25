@@ -9,10 +9,11 @@ export const DataProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [editQuestion, setEditQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
+  const [showIndex, setShowIndex] = useState(false);
 
   const [editAnswer, setEdittAnswer] = useState([]);
   const [isDrag, setIsDrag] = useState(false);
-
+  const [checked, setChecked] = useState(false);
   const { data, error, isLoading } = useQuestions();
 
 
@@ -28,6 +29,9 @@ export const DataProvider = ({ children }) => {
     if (newquestion) {
       setEditQuestion(newquestion);
     }
+    // setIsDrag(isDrag);
+    // setShowIndex(!showIndex)
+    
   };
 
   return (
@@ -47,7 +51,7 @@ export const DataProvider = ({ children }) => {
         isDrag,
         setIsDrag,
         answers,
-        setAnswers
+        setAnswers, showIndex,setShowIndex, checked, setChecked
       }}
     >
       {children}
