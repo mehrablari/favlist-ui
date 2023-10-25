@@ -12,7 +12,6 @@ const NavBar = () => {
   const handleRoute = () => {
     localStorage.removeItem("selectedQuestionIndex");
     localStorage.setItem("selectedQuestionIndex", 0);
-    navigate("/")
     window.location.reload();
   };
   const handleToggle = () => {

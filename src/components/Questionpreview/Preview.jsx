@@ -28,12 +28,6 @@ const Preview = () => {
   const graphicTitle = dataContainer?.graphicTitle;
   const questionName = dataContainer?.questionName;
 
-  const handleVibration = () => {
-    if ("vibrate" in navigator) {
-      navigator.vibrate(2000); // Vibrate for 1000 milliseconds (1 second)
-    }
-  };
-
   const containerRef = useRef(null);
 
 
@@ -69,7 +63,6 @@ const Preview = () => {
     setIsSubmitting(true);
     const imageState = await handleGenerateImage();
 
- 
     try {
       if (imageState ) {
         const answerSubmit = {
@@ -177,7 +170,7 @@ const Preview = () => {
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
-              >{isDrag && (<span className="text-[16px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>)}
+              >{isDrag ? (<span className="text-[16px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>) : null}
                 <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] ">
                   {answer.length > 40
                     ? `${answer.substring(0, 32)}.`

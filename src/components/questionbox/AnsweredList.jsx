@@ -17,22 +17,25 @@ const AnsweredList = ({
   questionId,
   handleDismiss,
   handleDragEnd,
-  answers,
+ 
   
 }) =>
 
   {
-    const { setIsDrag, isDrag } = useContext(DataContext);
+    const { setIsDrag, isDrag, answers } = useContext(DataContext);
+
 
     const [showIndex, setShowIndex] = useState(false);
     const handlePreviewAnswers = () => {
 
-      localStorage.removeItem("answers" in localStorage ? "answers" : '');
-      localStorage.removeItem("selectedQuestionId" in localStorage ? "selectedQuestionId" : '');
-    
-      localStorage.setItem("answers", JSON.stringify(answers));
+      if(questionId) {
       localStorage.setItem("selectedQuestionId", questionId);
+      }
+      // localStorage.removeItem("selectedQuestionId" in localStorage ? "selectedQuestionId" : '');
+      // localStorage.removeItem("answers" in localStorage ? "answers" : '');
       
+      localStorage.setItem("answers", JSON.stringify(answers));
+     
 
     };
 

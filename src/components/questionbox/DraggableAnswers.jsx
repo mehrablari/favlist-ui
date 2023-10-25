@@ -3,10 +3,15 @@
 import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Drag from "../../assets/images/Drag.png";
+import {  useContext } from "react";
+import DataContext from "../../context/DataContexts";
 
-const DraggableAnswers = ({answers, handleDismiss, handleDragEnd}) => {
+const DraggableAnswers = ({ handleDismiss, handleDragEnd}) => {
 
- 
+  const {  answers } = useContext(DataContext);
+
+  // console.log(answers)
+  
   return (
     <DragDropContext onDragEnd={handleDragEnd} >
       <Droppable droppableId="updatedAnswers" direction="vertical">
