@@ -36,7 +36,6 @@ const Layout = () => {
   const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
-  // const [answers, setAnswers] = useState([]);
   const [clickedValue, setClickedValue] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState();
   const [questionId, setQuestionId] = useState("");
@@ -48,6 +47,7 @@ const Layout = () => {
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState(null);
   const [noResultsMessage, setNoResultsMessage] = useState("");
+
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
   const playSoundEffect = () => {
@@ -57,7 +57,7 @@ const Layout = () => {
   //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
+      navigator.vibrate(100); 
     }
   };
 
@@ -86,7 +86,7 @@ const Layout = () => {
   const handleRemoveAnswer = (index) => {
     handleDismiss(index);
 
-    // Update the answers state to remove the answer
+    
     const updated = [...answers];
     updated.splice(index, 1);
     setAnswers(updated);
@@ -111,10 +111,10 @@ const Layout = () => {
 
   //manage when a suggestion is clicked
   const handleClick = (option) => {
-      //  console.log(option)
+      
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
-      // console.log(answers)
+     
       playSoundEffect();
       handleVibration();
     }

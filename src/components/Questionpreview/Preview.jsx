@@ -63,6 +63,8 @@ const Preview = () => {
     setIsSubmitting(true);
     const imageState = await handleGenerateImage();
 
+
+
     try {
       if (imageState ) {
         const answerSubmit = {
@@ -129,7 +131,7 @@ const Preview = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        borderRadius: "16px",
+        
       }}
     >
       <div className="mx-auto pt-[2px] sm:pt-[5px]">
@@ -163,15 +165,15 @@ const Preview = () => {
           }}
         >
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
-            <div className="text-gray-list flex flex-wrap align-middle text-[20px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
+            <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
             </div>
             {dataContainer?.answers.map((answer, index) => (
               <div
                 key={index}
-                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
-              >{isDrag ? (<span className="text-[16px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>) : null}
-                <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] ">
+                className="bg-center text-[#572df2] text-[20px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
+              >{isDrag ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>) : null}
+                <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] text-[18px]">
                   {answer.length > 40
                     ? `${answer.substring(0, 32)}.`
                     : answer}

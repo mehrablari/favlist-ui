@@ -1,7 +1,7 @@
 import Video from "../../assets/icons/video.svg";
 import Home from "../../assets/icons/Home.svg";
 import congrats from "../../assets/gif/congrats.gif";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext, useEffect } from "react";
 
@@ -10,37 +10,31 @@ import useQuestions from "../../hooks/useQuestions";
 import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
+  const { setEditQuestion, setIsDrag, isDrag } = useContext(DataContext);
 
-  const {  setEditQuestion, setIsDrag, isDrag } =
-    useContext(DataContext);
-
-   
   const location = useLocation();
   const graphicUrl = location.state.graphicUrl;
 
   const navigate = useNavigate();
 
-  const { mutate: mutateQuestion} = useQuestions()
+  const { mutate: mutateQuestion } = useQuestions();
 
+  const handleSubmit = () => {
+    mutateQuestion();
 
-  const handleSubmit =  () => {
-
-    mutateQuestion()
-    
     localStorage.removeItem("answers");
     // localStorage.removeItem("selectedQuestionIndex");
     // localStorage.removeItem("selectedQuestionId");
     setEditQuestion(null);
-    navigate('/');
-    setIsDrag(isDrag)
-     // Refresh the page
-  //  window.location.reload();
- 
+    navigate("/");
+    setIsDrag(isDrag);
+    // Refresh the page
+    //  window.location.reload();
   };
 
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(1000); 
+      navigator.vibrate(1000);
     }
   };
 
@@ -75,7 +69,11 @@ const Submit = () => {
         {/* twitter  */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image:alt" content="favorite answers" />
-        <meta name="twitter:image" itemProp="image" content={graphicUrl + "/"} />
+        <meta
+          name="twitter:image"
+          itemProp="image"
+          content={graphicUrl + "/"}
+        />
         <meta property="twitter:image:width" content="600" />
         <meta property="twitter:image:height" content="314" />
         <meta property="twitter:card" content="app" />
@@ -132,8 +130,9 @@ const Submit = () => {
                 </button>
               </RWebShare>
             </div>
+           
             <span
-             onClick={handleSubmit}
+              onClick={handleSubmit}
               className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[300px]"
             >
               <img
