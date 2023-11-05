@@ -33,7 +33,8 @@ const Layout = () => {
 
   //state management
 
-  const [activeAnswerJson, setActiveAnswerJson] = useState(null);
+
+  // const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
   // const [answers, setAnswers] = useState([]);
@@ -65,7 +66,7 @@ const Layout = () => {
     const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
     if (questions.length > 0) {
       const initialQuestion = questions[storedQuestionIndex];
-      setActiveAnswerJson(initialQuestion?.answersJson);
+      // setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);
       setSuggestedOption(initialQuestion?.answersJson);
       setQuestionId(initialQuestion?.id);
@@ -120,7 +121,7 @@ const Layout = () => {
   //manage the swiping card of question container
   const handleSwipe = useCallback((activeQuestion) => {
     if (activeQuestion) {
-      setActiveAnswerJson(activeQuestion?.answersJson);
+      // setActiveAnswerJson(activeQuestion?.answersJson);
       setSelectedOption(activeQuestion?.answersJson[0]);
       setSuggestedOption(activeQuestion?.answersJson);
       setQuestionId(activeQuestion?.id);
@@ -135,26 +136,29 @@ const Layout = () => {
     }
   }, []);
 
-
+   
   useEffect(() => {
+
+   
     if (editQuestion) {
-      setActiveAnswerJson(editQuestion?.answersJson);
-      setSelectedOption(editQuestion?.answersJson[0]);
-      setSuggestedOption(editQuestion?.answersJson);
-      setQuestionId(editQuestion?.id);
-      setGraphicTitle(editQuestion?.graphicTitle);
-      setQuestionName(editQuestion?.text);
-      setIsAnswered(editQuestion?.userSubmission);
-      setMinAnswer(editQuestion?.minAnswerCount);
-      setMaxAnswer(editQuestion?.maxAnswerCount);
-      setDaysRemaining(editQuestion?.daysToRemainOpen);
+     
+      // setActiveAnswerJson(editQuestion?.answersJson);
+      // setSelectedOption(editQuestion?.answersJson[0]);
+      // setSuggestedOption(editQuestion?.answersJson);
+      // setQuestionId(editQuestion?.id);
+      // setGraphicTitle(editQuestion?.graphicTitle);
+      // setQuestionName(editQuestion?.text);
+      // setIsAnswered(editQuestion?.userSubmission);
+      // setMinAnswer(editQuestion?.minAnswerCount);
+      // setMaxAnswer(editQuestion?.maxAnswerCount);
+      // setDaysRemaining(editQuestion?.daysToRemainOpen);
+      // const newanswers = localStorage.getItem("answers");
+      setAnswers(answers)
     }
 
-    // console.log(editQuestion, "2")
-
-    // console.log( 'editans', answers)
-    setAnswers(answers)
-
+    // setAnswers(answers)
+    
+   
     // if (editAnswer) {
     //   try {
     //     // const parsedEditAnswer = JSON.parse(editAnswer);
@@ -273,7 +277,7 @@ const Layout = () => {
             </p>
           )}
           <AnsweredList
-            answers={answers}
+            // answers={answers}
             handleDismiss={handleDismiss}
             questionId={questionId}
             questionName={questionName}

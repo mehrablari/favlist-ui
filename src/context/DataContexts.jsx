@@ -15,6 +15,8 @@ export const DataProvider = ({ children }) => {
 
   const { data, error, isLoading } = useQuestions();
 
+ 
+
 
   useEffect(() => {
     if (!isLoading && !error) {

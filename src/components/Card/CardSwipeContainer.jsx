@@ -32,6 +32,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
     // localStorage.removeItem("answers");
     // localStorage.removeItem("selectedQuestionId");
     setAnswers([]);
+  
    
   
   };

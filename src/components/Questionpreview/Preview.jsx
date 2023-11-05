@@ -22,7 +22,6 @@ const Preview = () => {
   const { goBackToEditAnswers,  isDrag, setAnswers  } = useContext(DataContext);
 
 
-
   const { mutate: mutateQuestion} = useQuestions()
 
   const location = useLocation();
@@ -59,6 +58,7 @@ const Preview = () => {
    if (questionId) {goBackToEditAnswers(questionId) }
 
    setAnswers(dataContainer.answers)
+
 
 
   //  if (newanswers) { setEdittAnswer(dataContainer.answers) }
