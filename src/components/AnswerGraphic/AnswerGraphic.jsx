@@ -9,6 +9,7 @@ const AnswerGraphics = () => {
   const location = useLocation();
   const imgUrl = location.state;
 
+
   return (
     <>
       <Helmet defer={false} prioritizeSeoTags>

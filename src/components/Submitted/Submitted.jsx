@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 
 import { RWebShare } from "react-web-share";
-import useQuestions from "../../hooks/useQuestions";
+// import useQuestions from "../../hooks/useQuestions";
 import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
@@ -20,12 +20,12 @@ const Submit = () => {
 
   const navigate = useNavigate();
 
-  const { mutate: mutateQuestion} = useQuestions()
+  // const { mutate: mutateQuestion} = useQuestions()
 
 
   const handleSubmit =  () => {
 
-    mutateQuestion()
+    // mutateQuestion()
     
     localStorage.removeItem("answers");
     // localStorage.removeItem("selectedQuestionIndex");
