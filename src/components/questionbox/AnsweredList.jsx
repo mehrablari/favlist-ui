@@ -22,30 +22,23 @@ const AnsweredList = ({
 }) =>
 
   {
-    const { setIsDrag, isDrag, answers } = useContext(DataContext);
+    const { setIsDrag, isDrag, answers,showIndex, setShowIndex } = useContext(DataContext);
 
 
-    const [showIndex, setShowIndex] = useState(false);
+    
     const handlePreviewAnswers = () => {
 
       if(questionId) {
       localStorage.setItem("selectedQuestionId", questionId);
       }
-      // localStorage.removeItem("selectedQuestionId" in localStorage ? "selectedQuestionId" : '');
-      // localStorage.removeItem("answers" in localStorage ? "answers" : '');
       
       localStorage.setItem("answers", JSON.stringify(answers));
      
 
     };
 
-    // const handleSubmit = (event) => {
-    //   event.preventDefault();
-    // };
-
     const handleChange = (isChecked) => {
-      // console.log("ischecked",isChecked);
-      setIsDrag(!false)
+      setIsDrag(!isDrag)
       setShowIndex(!isChecked);
     };
 

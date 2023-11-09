@@ -96,6 +96,7 @@ const Suggestion = ({
             flexDirection: "column",
           }}
           open={openBackdrop}
+          
         >
           {openBackdrop && (
             <AnswerModal

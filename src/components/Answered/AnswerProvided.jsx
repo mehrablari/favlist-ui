@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import Video from "../../assets/images/video.png";
 import People from "../../assets/images/People.png";
 import { Link } from "react-router-dom";
@@ -7,11 +8,11 @@ const AnswerProvided = ({ answerData }) => {
 
   return (
     <div className="p-[10px]">
-      <div className="flex flex-row justify-between w-[340px] mx-auto pb-[10px]">
+      <div className="flex flex-row justify-between w-[360px] mx-auto pb-[10px]">
         <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4">
           All answers
         </h1>
-        <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4 pl-[40px]">
+        <h1 className="flex justify-start w-[327px] font-[600] text-[15px] leading-4 pl-[60px]">
           Current global rank
         </h1>
       </div>
@@ -59,5 +60,15 @@ const AnswerProvided = ({ answerData }) => {
     </div>
   );
 };
+
+AnswerProvided.propTypes = {
+  answerData: PropTypes.shape({
+    answerGraphicLink: PropTypes.any,
+    answers: PropTypes.shape({
+      map: PropTypes.func
+    }),
+    questionId: PropTypes.any
+  })
+}
 
 export default AnswerProvided;

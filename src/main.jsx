@@ -3,14 +3,19 @@ import App from "./App.jsx";
 import "./index.css";
 import React from "react";
 import { HelmetProvider } from "react-helmet-async";
-import { register } from 'swiper/element/bundle';
+import { register } from "swiper/element/bundle";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <HelmetProvider>
-      <App />
-    </HelmetProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<App />} />
+      </Routes>
+    </BrowserRouter>
+  </HelmetProvider>
   // <React.StrictMode>
-    
+
   // </React.StrictMode>
 );
 register();

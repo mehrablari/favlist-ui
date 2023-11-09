@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
-import imgPreview from "../../assets/images/bgimage.png";
-import BgImage from "../../assets/images/favbg.jpg";
+import imgPreview from "../../assets/images/favimg.png";
+import BgImage from "../../assets/images/favlistbg.jpg";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
 import useQuestions from "../../hooks/useQuestions";
@@ -31,6 +31,7 @@ const Preview = () => {
 
   const containerRef = useRef(null);
 
+
   const handleGenerateImage = useCallback(async () => {
     try {
       if (containerRef.current === null) {
@@ -40,7 +41,8 @@ const Preview = () => {
         return dataUrl.split(",")[1];
       }
     } catch (error) {
-      console.error("Error generating image:", error);
+      toast.error("Error generating image:", error)
+  
       return null;
     }
   }, [containerRef]);
@@ -51,10 +53,8 @@ const Preview = () => {
 
 
   const handleEditQuestion = useCallback(() => {
-
     const questionId = localStorage.getItem("selectedQuestionId");
     // const newanswers = localStorage.getItem("answers");
-    // console.log(questionId)
    if (questionId) {goBackToEditAnswers(questionId) }
 
    setAnswers(dataContainer.answers)
@@ -64,14 +64,14 @@ const Preview = () => {
   //  if (newanswers) { setEdittAnswer(dataContainer.answers) }
 
     navigate("/");
-
-  }, [goBackToEditAnswers, setAnswers, navigate, dataContainer.answers]);
+  }, [goBackToEditAnswers, navigate, setAnswers, dataContainer.answers]);
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
     const imageState = await handleGenerateImage();
 
- 
+
+
     try {
       if (imageState ) {
         const answerSubmit = {
@@ -94,6 +94,7 @@ const Preview = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log('working fine')
 
           if (
             data &&
@@ -101,27 +102,37 @@ const Preview = () => {
             typeof data.status === "string" &&
             data.status.toLowerCase() === "success"
           ) {
+
             localStorage.removeItem("answers");
+
+            // navigate("/submitted");
             
             navigate("/submitted", {
               state: { graphicUrl: data.data.answerGraphicLink },
-            }, { replace: true });
+            },{ replace: true });
+      
             mutateQuestion()
+
           } else {
             // Handle error scenarios
-            console.error("Submission was not successful");
+            toast.error("Submission was not successful");
+            console.log('Submission was not successful')
           }
         } else {
           // Handle HTTP error scenarios
-          console.error("HTTP request to submission endpoint failed");
+          toast.error("HTTP request to submission endpoint failed");
+          console.log('HTTP request to submission endpoint failed')
+          
         }
       } else {
         // Handle the case where image generation failed
-        console.error("Image generation failed");
+        toast.error("Image generation failed");
+        console.log('Image generation failed')
       }
     } catch (error) {
       // Handle any other errors
-      console.error("An error occurred:", error);
+      toast.error("An error occurred:", error);
+      console.log('An error occurred',error.message )
       toast.error(error.message);
     } finally {
       setIsSubmitting(false);
@@ -138,7 +149,7 @@ const Preview = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        borderRadius: "16px",
+        
       }}
     >
       <div className="mx-auto pt-[2px] sm:pt-[5px]">
@@ -172,17 +183,17 @@ const Preview = () => {
           }}
         >
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
-            <div className="text-gray-list flex flex-wrap align-middle text-[25px] w-[270px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
+            <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
             </div>
             {dataContainer?.answers.map((answer, index) => (
               <div
                 key={index}
-                className="bg-center text-[#572df2] text-[16px] flex flex-wrap  font-sans w-[230px] pb-[5px]"
-              >{isDrag && (<span className="text-[16px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>)}
-                <h2 className="font-[700] rounded-[8px] px-[10px] ">
-                  {answer.length > 30
-                    ? `${answer.substring(0, 30)}...`
+                className="bg-center text-[#572df2] text-[20px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
+              >{isDrag ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>) : null}
+                <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] text-[18px]">
+                  {answer.length > 40
+                    ? `${answer.substring(0, 32)}.`
                     : answer}
                 </h2>
               </div>
@@ -192,7 +203,7 @@ const Preview = () => {
 
         <form
           onClick={handleSubmit}
-          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[287px] w-[260px] sm:w-[240px] mx-auto px-[20px] bg-primary rounded-lg  my-[5px] "
+          className="hover:bg-opacity-75 flex justify-center align-middle max-w-[320px] w-[320px] sm:w-[300px] mx-auto px-[20px] bg-primary rounded-lg  my-[5px] "
         >
           <div className="">
             <button
@@ -206,9 +217,9 @@ const Preview = () => {
         </form>
         <div
           onClick={() => handleEditQuestion()}
-          className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[260px] sm:w-[240px]"
+          className=" hover:cursor-pointer flex flex-row items-center justify-center mx-auto rounded-lg h-[30px] py-[10px] mb-[10px] bg-button-inactive w-[320px] sm:w-[300px]"
         >
-          <img src={ArrowBack} alt="" className="h-full pr-[10px]" />
+          <img src={ArrowBack} alt="" className="h-full pr-[5px]" />
           <span className="text-[14px] sm:text-[13px] md:text-[13px] font-semibold text-primary-light">
             Go back to edit answers
           </span>

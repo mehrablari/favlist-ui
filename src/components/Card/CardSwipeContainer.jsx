@@ -18,7 +18,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
 
   const handleSwipeChange = (swiper) => {
-    // const activeIndex = swiper.realIndex;
+    
     const activeIndex =  swiper.realIndex;
    
    
@@ -29,8 +29,6 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
     handleSwipe(questions[activeIndex]);
 
-    // localStorage.removeItem("answers");
-    // localStorage.removeItem("selectedQuestionId");
     setAnswers([]);
   
    

@@ -27,7 +27,7 @@ const Layout = () => {
     editQuestion,
     editAnswer,
     answers,
-    setAnswers
+    setAnswers,setIsDrag, isDrag,
     
   } = useContext(DataContext);
 
@@ -37,7 +37,6 @@ const Layout = () => {
   // const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
-  // const [answers, setAnswers] = useState([]);
   const [clickedValue, setClickedValue] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState();
   const [questionId, setQuestionId] = useState("");
@@ -49,16 +48,17 @@ const Layout = () => {
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState(null);
   const [noResultsMessage, setNoResultsMessage] = useState("");
+
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
   const playSoundEffect = () => {
     audio.play();
   };
-
+ 
   //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(100); // Vibrate for 1000 milliseconds (1 second)
+      navigator.vibrate(100); 
     }
   };
 
@@ -87,7 +87,7 @@ const Layout = () => {
   const handleRemoveAnswer = (index) => {
     handleDismiss(index);
 
-    // Update the answers state to remove the answer
+    
     const updated = [...answers];
     updated.splice(index, 1);
     setAnswers(updated);
@@ -104,15 +104,18 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
+    setIsDrag(!isDrag)
+
+    
    
   };
 
   //manage when a suggestion is clicked
   const handleClick = (option) => {
-      //  console.log(option)
+      
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
-      // console.log(answers)
+     
       playSoundEffect();
       handleVibration();
     }
@@ -165,10 +168,6 @@ const Layout = () => {
     //     console.log(editAnswer)
     //     // setAnswers(parsedEditAnswer);
     
-    //   } catch (error) {
-    //     console.error("Error parsing JSON:", error);
-    //   }
-    // }
   }, [editAnswer, editQuestion]);
 
   const handleFilter = (inputValue) => {
@@ -211,7 +210,7 @@ const Layout = () => {
     return (
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
         <div className="animate-bounce animate-infinite flex-col text-center">
-          <h1 className="text-[30px]">An error exist</h1>
+          <h1 className="text-[30px]">An error exist ... server or network error</h1>
 
           <Link to="/" className="text-center">
             <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px] pb-[10px]">

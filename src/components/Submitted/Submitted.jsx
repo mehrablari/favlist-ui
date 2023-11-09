@@ -16,7 +16,7 @@ const Submit = () => {
 
    
   const location = useLocation();
-  const graphicUrl = location.state.graphicUrl;
+  const graphicUrl = location.state?.graphicUrl;
 
   const navigate = useNavigate();
 
