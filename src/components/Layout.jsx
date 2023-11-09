@@ -145,17 +145,7 @@ const Layout = () => {
    
     if (editQuestion) {
      
-      // setActiveAnswerJson(editQuestion?.answersJson);
-      // setSelectedOption(editQuestion?.answersJson[0]);
-      // setSuggestedOption(editQuestion?.answersJson);
-      // setQuestionId(editQuestion?.id);
-      // setGraphicTitle(editQuestion?.graphicTitle);
-      // setQuestionName(editQuestion?.text);
-      // setIsAnswered(editQuestion?.userSubmission);
-      // setMinAnswer(editQuestion?.minAnswerCount);
-      // setMaxAnswer(editQuestion?.maxAnswerCount);
-      // setDaysRemaining(editQuestion?.daysToRemainOpen);
-      // const newanswers = localStorage.getItem("answers");
+    
       setAnswers(answers)
     }
 

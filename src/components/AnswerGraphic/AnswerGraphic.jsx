@@ -9,6 +9,16 @@ const AnswerGraphics = () => {
   const location = useLocation();
   const imgUrl = location.state;
 
+  // const handleInstagramShare = () => {
+  //   // const image_url = 'https://example.com/your-image.jpg'; // Replace with your image URL
+  //   const caption = 'Your Caption Here';
+
+
+  //   console.log(imgUrl)
+  //   const instagramShareUrl = `https://www.instagram.com/share?url=${encodeURIComponent(imgUrl)}&caption=${encodeURIComponent(caption)}`;
+
+  //   window.open(instagramShareUrl, '_blank');
+  // };
 
   return (
     <>
@@ -58,6 +68,8 @@ const AnswerGraphics = () => {
           </div>
           <div className="flex flex-col pb-[10px]">
             <div className="flex flex-col justify-center align-middle pb-[5px]">
+             
+
               <RWebShare
                 data={{
                   text: "My answers",
