@@ -47,7 +47,7 @@ const NavBar = () => {
                 </Link>
               </li> */}
               {/* <hr className="w-full pl-[16px] text-[#F6F6F6] border-2 " /> */}
-              <li className="cursor-pointer pl-[16px]">How it works</li>
+              <li className="cursor-pointer pl-[16px] hover:bg-sky-700">How it works</li>
               <li className="cursor-pointer pl-[16px]">About Favlist</li>
               <li className="cursor-pointer pl-[16px]">Terms & Conditions</li>
               

@@ -15,7 +15,7 @@ import { useState, useEffect, createContext, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
-import { Link } from "react-router-dom";
+import NoDataComponent from "./Error/NoDataComponent";
 
 export const LayoutContext = createContext();
 
@@ -27,12 +27,12 @@ const Layout = () => {
     editQuestion,
     editAnswer,
     answers,
-    setAnswers,setIsDrag, isDrag,
-    
+    setAnswers,
+    setIsDrag,
+    isDrag,
   } = useContext(DataContext);
 
   //state management
-
 
   // const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
@@ -54,11 +54,11 @@ const Layout = () => {
   const playSoundEffect = () => {
     audio.play();
   };
- 
+
   //vibration handler
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(100); 
+      navigator.vibrate(100);
     }
   };
 
@@ -87,7 +87,6 @@ const Layout = () => {
   const handleRemoveAnswer = (index) => {
     handleDismiss(index);
 
-    
     const updated = [...answers];
     updated.splice(index, 1);
     setAnswers(updated);
@@ -96,7 +95,7 @@ const Layout = () => {
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
-      return; 
+      return;
     }
 
     const reorderedAnswers = Array.from(answers);
@@ -104,18 +103,14 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
-    setIsDrag(!isDrag)
-
-    
-   
+    setIsDrag(!isDrag);
   };
 
   //manage when a suggestion is clicked
   const handleClick = (option) => {
-      
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
-     
+
       playSoundEffect();
       handleVibration();
     }
@@ -134,30 +129,21 @@ const Layout = () => {
       setMinAnswer(activeQuestion?.minAnswerCount);
       setMaxAnswer(activeQuestion?.maxAnswerCount);
       setDaysRemaining(activeQuestion?.daysToRemainOpen);
-
-     
     }
   }, []);
 
-   
   useEffect(() => {
-
-   
     if (editQuestion) {
-     
-    
-      setAnswers(answers)
+      setAnswers(answers);
     }
 
     // setAnswers(answers)
-    
-   
+
     // if (editAnswer) {
     //   try {
     //     // const parsedEditAnswer = JSON.parse(editAnswer);
     //     console.log(editAnswer)
     //     // setAnswers(parsedEditAnswer);
-    
   }, [editAnswer, editQuestion]);
 
   const handleFilter = (inputValue) => {
@@ -198,17 +184,10 @@ const Layout = () => {
 
   if (error) {
     return (
-      <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
-        <div className="animate-bounce animate-infinite flex-col text-center">
-          <h1 className="text-[30px]">An error exist ... server or network error</h1>
-
-          <Link to="/" className="text-center">
-            <button className="bg-primary text-neutral rounded-[24px] py-[10px] w-[100px] px-[10px] pb-[10px]">
-              Refresh
-            </button>
-          </Link>
-        </div>
-      </div>
+      <NoDataComponent
+        message="An error exist ... server or network error"
+        buttonText="Refresh"
+      />
     );
   }
 
@@ -224,6 +203,12 @@ const Layout = () => {
           <p className="text-center">Please Wait ...</p>
         </div>
       </div>
+    );
+  }
+
+  if (questions.length === 0) {
+    return (
+      <NoDataComponent message="No questions available" buttonText="Refresh" />
     );
   }
 
