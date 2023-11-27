@@ -9,7 +9,9 @@ import { Helmet } from "react-helmet-async";
 
 const AnswerGraphics = () => {
   const location = useLocation();
-  const imgUrl = location.state;
+  //const imgUrl = location.state;
+  const imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png'
+  //const imgUrl = 'https://upload.wikimedia.org/wikipedia/en/f/f6/Sample_0.JPEG'
   console.log(imgUrl);
 
   const [filesArrayContent, setFilesArrayContent] = useState(null);
@@ -32,12 +34,12 @@ const AnswerGraphics = () => {
     try {
       // Fetch the image from the remote URL and convert it to a blob
 
-      const response = fetchData();
-      console.log(response);
+      const blobImageAsset = await fetchData();
+      //console.log(response);
 
-      if (response) {
+      if (blobImageAsset) {
         // const blobImageAsset = await response.blob();
-        const blobImageAsset = new Blob([response], { type: "image/png" });
+        // const blobImageAsset = new Blob([response], { type: "image/png" });
         console.log(blobImageAsset)
         setFilesArrayContent(blobImageAsset)
       
@@ -55,22 +57,22 @@ const AnswerGraphics = () => {
 
         // Set up the share data
         const shareData = {
-          title: "Favlist",
+          // title: "Favlist",
           files: filesArray,
         };
 
         console.log(shareData);
         // Check if the navigator supports sharing and the provided data
         console.log("fist", navigator.canShare);
-        console.log("second", navigator.canShare(shareData));
+        //console.log("second", navigator.canShare(shareData));
 
-        if (navigator.canShare && navigator.canShare(shareData)) {
+        if (navigator.canShare) {
           // Use the Web Share API to share the image
           await navigator.share(shareData);
           console.log("Successfully shared to Instagram");
-          // return true; // Sharing successful
+          return true; // Sharing successful
         } else {
-          console.error("Web Share API not supported or data not shareable.");
+          console.error("Web Share API is not supported on this browser.");
           return false; // Sharing failed
         }
       }
@@ -86,7 +88,7 @@ const AnswerGraphics = () => {
   //   // const image_url = 'https://example.com/your-image.jpg'; // Replace with your image URL
   //   const caption = 'Your Caption Here';
 
-  //   console.log(imgUrl)
+  //   console.log()
   //   const instagramShareUrl = `https://www.instagram.com/share?url=${encodeURIComponent(imgUrl)}&caption=${encodeURIComponent(caption)}`;
 
   //   window.open(instagramShareUrl, '_blank');
