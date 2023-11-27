@@ -9,8 +9,9 @@ import { Helmet } from "react-helmet-async";
 
 const AnswerGraphics = () => {
   const location = useLocation();
-  //const imgUrl = location.state;
-  const imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png'
+  const imgUrl = location.state;
+  // console.log(imgUrl)
+  // const imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png'
   //const imgUrl = 'https://upload.wikimedia.org/wikipedia/en/f/f6/Sample_0.JPEG'
   console.log(imgUrl);
 

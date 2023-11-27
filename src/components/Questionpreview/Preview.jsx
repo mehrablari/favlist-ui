@@ -38,6 +38,7 @@ const Preview = () => {
         return null;
       } else {
         const dataUrl = await toPng(containerRef.current, { cacheBust: true });
+        console.log("dataurl", dataUrl);
         return dataUrl.split(",")[1];
       }
     } catch (error) {
@@ -69,6 +70,7 @@ const Preview = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     const imageState = await handleGenerateImage();
+    console.log(imageState)
 
 
 
