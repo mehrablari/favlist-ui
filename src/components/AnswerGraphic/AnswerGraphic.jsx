@@ -16,18 +16,29 @@ const AnswerGraphics = () => {
   const imgFile = dataContainer?.graphicFile;
   // console.log(imgUrl);
 
+  // const [isMobile, setIsMobile] = useState(
+  //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+  // );
   const [isMobile, setIsMobile] = useState(
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    window.matchMedia("(max-width: 915px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   );
 
+
   useEffect(() => {
+   
+      setIsMobile(window.matchMedia("(max-width: 915px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 
-      setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+  
+  }, []);
+
+  // useEffect(() => {
+
+  //     setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
  
-  }, []); 
+  // }, []); 
 
 
-
+  console.log('working',isMobile)
 
 
   const shareToInstagram = async () => {
@@ -146,7 +157,7 @@ const AnswerGraphics = () => {
                 className="h-[40px] w-[320px] hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary "
                 onClick={shareToInstagram}
               >
-                 Share to social media
+                Share to instagram
               </button>
                  ) : (
               <RWebShare

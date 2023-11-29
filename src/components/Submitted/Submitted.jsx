@@ -22,16 +22,16 @@ const Submit = () => {
   const navigate = useNavigate();
 
   const [isMobile, setIsMobile] = useState(
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    window.matchMedia("(max-width: 915px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   );
 
   useEffect(() => {
+   
+    setIsMobile(window.matchMedia("(max-width: 915px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 
-    setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
-
-}, []);  
+}, []); 
   // const { mutate: mutateQuestion} = useQuestions()
-
+ 
   const shareToInstagram = async () => {
     try {
       // Fetch the image from the remote URL and convert it to a blob
@@ -170,12 +170,12 @@ const Submit = () => {
           <div className=""></div>
 
           <div className="flex flex-col pb-[10px] mx-auto">
-          {isMobile ? (
+          {!isMobile ? (
             <button
               className="h-[40px]  hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary"
               onClick={shareToInstagram}
             >
-               Share to Social Media
+               Share to instagram
             </button>
           ) : (
             <div className="p-[5px] mx-auto">
