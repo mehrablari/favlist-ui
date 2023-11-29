@@ -41,7 +41,7 @@ export const DataProvider = ({ children }) => {
         search,
         setSearch,
         error,
-        isLoading,
+        // isLoading,
         questions,
         setQuestions,
         editQuestion,
