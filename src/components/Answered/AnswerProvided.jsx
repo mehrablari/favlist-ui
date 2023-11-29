@@ -4,7 +4,9 @@ import People from "../../assets/images/People.png";
 import { Link } from "react-router-dom";
 
 const AnswerProvided = ({ answerData }) => {
-  const { answerGraphicLink, answers } = answerData;
+
+  const { answerGraphicLink, answers, graphicFile } = answerData;
+
 
   return (
     <div className="p-[10px]">
@@ -46,7 +48,7 @@ const AnswerProvided = ({ answerData }) => {
       ))}
       <Link
         to="/answergraphics"
-        state={answerGraphicLink}
+        state={{  graphicFile: graphicFile,  answerGraphicLink: answerGraphicLink  }}
         className="flex justify-center align-middle py-[5px] h-[42px] px-[14px] text-center rounded-lg font-[600] text-[14px] sm:w-[320px] pl-[20px] w-[350px]  mx-auto gap-[8px]
           bg-primary text-neutral mt-[10px] hover:bg-button-hover"
       >
@@ -64,9 +66,8 @@ const AnswerProvided = ({ answerData }) => {
 AnswerProvided.propTypes = {
   answerData: PropTypes.shape({
     answerGraphicLink: PropTypes.any,
-    answers: PropTypes.shape({
-      map: PropTypes.func
-    }),
+    graphicFile: PropTypes.any,
+    answers: PropTypes.array
     // questionId: PropTypes.any
   })
 }

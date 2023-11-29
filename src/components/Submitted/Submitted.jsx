@@ -3,7 +3,7 @@ import Home from "../../assets/icons/Home.svg";
 import congrats from "../../assets/gif/congrats.gif";
 import {  useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useContext } from "react";
+import { useContext,  useEffect, useState} from "react";
 
 import { RWebShare } from "react-web-share";
 // import useQuestions from "../../hooks/useQuestions";
@@ -11,16 +11,77 @@ import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
 
-  const {  setEditQuestion } =
+  const { setEditQuestion } =
     useContext(DataContext);
 
-   
   const location = useLocation();
   const graphicUrl = location.state?.graphicUrl;
+  const graphicFile = location.state?.graphicFile;
+
 
   const navigate = useNavigate();
 
+  const [isMobile, setIsMobile] = useState(
+    window.matchMedia("(max-width: 915px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  );
+
+  useEffect(() => {
+   
+    setIsMobile(window.matchMedia("(max-width: 915px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+
+}, []); 
   // const { mutate: mutateQuestion} = useQuestions()
+ 
+  const shareToInstagram = async () => {
+    try {
+      // Fetch the image from the remote URL and convert it to a blob
+
+
+      if (graphicFile) {
+        // const blobImageAsset = await response.blob();
+        const blobImageAsset = new Blob([graphicFile], { type: "image/png" });
+        // setFilesArrayContent(blobImageAsset)
+      
+
+        // Create a File object from the blob
+        const filesArray = [
+          new File([blobImageAsset], `Favlist_${new Date().getTime()}.png`, {
+            type: "image/png",
+            lastModified: new Date().getTime(),
+          }),
+        ];
+
+     
+        // setFilesArrayContent(filesArray)
+
+        // Set up the share data
+        const shareData = {
+          title: "Favlist",
+          files: filesArray,
+        };
+
+        // console.log()
+
+       
+        // Check if the navigator supports sharing and the provided data
+        console.log("fist", navigator.canShare);
+        //console.log("second", navigator.canShare(shareData));
+
+        if (navigator.canShare) {
+          // Use the Web Share API to share the image
+          await navigator.share(shareData);
+          console.log("Successfully shared to Instagram");
+          return true; // Sharing successful
+        } else {
+          console.error("Web Share API is not supported on this browser.");
+          return false; // Sharing failed
+        }
+      }
+    } catch (error) {
+      console.error("Error sharing image to Instagram:", error);
+      return false; // Sharing failed
+    }
+  };
 
 
   const handleSubmit =  () => {
@@ -32,8 +93,7 @@ const Submit = () => {
     // localStorage.removeItem("selectedQuestionId");
     setEditQuestion(null);
     navigate('/');
-     // Refresh the page
-  //  window.location.reload();
+  
  
   };
 
@@ -99,14 +159,25 @@ const Submit = () => {
               </h1>
             </div>
           </div>
+          <div>
           <img
-            src={graphicUrl}
+            // src={graphicUrl}
+            src={URL.createObjectURL(graphicFile)}
             alt="Your Answer Graphic"
             className=" mx-auto p-[10px]"
           />
+          </div>
           <div className=""></div>
 
           <div className="flex flex-col pb-[10px] mx-auto">
+          {!isMobile ? (
+            <button
+              className="h-[40px]  hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary"
+              onClick={shareToInstagram}
+            >
+               Share to instagram
+            </button>
+          ) : (
             <div className="p-[5px] mx-auto">
               <RWebShare
                 data={{
@@ -116,11 +187,12 @@ const Submit = () => {
                 }}
                 onClick={() => console.log("shared successfully!")}
               >
-                <button className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg  font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral ">
-                  Share to social media
+                <button className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral">
+                  Share to Social Media
                 </button>
               </RWebShare>
             </div>
+          )}
             <span
              onClick={handleSubmit}
               className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"

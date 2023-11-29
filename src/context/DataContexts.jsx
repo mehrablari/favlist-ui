@@ -18,7 +18,6 @@ export const DataProvider = ({ children }) => {
 
  
 
-
   useEffect(() => {
     if (!isLoading && !error) {
       setQuestions(data.reverse());
@@ -42,7 +41,7 @@ export const DataProvider = ({ children }) => {
         search,
         setSearch,
         error,
-        isLoading,
+        // isLoading,
         questions,
         setQuestions,
         editQuestion,

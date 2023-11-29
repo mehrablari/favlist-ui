@@ -21,7 +21,6 @@ export const LayoutContext = createContext();
 
 const Layout = () => {
   const {
-    isLoading,
     questions,
     error,
     editQuestion,
@@ -31,6 +30,8 @@ const Layout = () => {
     setIsDrag,
     isDrag,
   } = useContext(DataContext);
+
+  // console.log(questions)
 
   //state management
 
@@ -191,7 +192,7 @@ const Layout = () => {
     );
   }
 
-  if (isLoading) {
+  if (questions.length === 0) {
     return (
       <div className="flex justify-center items-center flex-col  mx-auto pt-[100px]  bg-neutral h-screen">
         <div className="animate-bounce animate-infinite">
@@ -206,11 +207,11 @@ const Layout = () => {
     );
   }
 
-  if (questions.length === 0) {
-    return (
-      <NoDataComponent message="No questions available" buttonText="Refresh" />
-    );
-  }
+  // if (questions.length === 0) {
+  //   return (
+  //     <NoDataComponent message="No questions available" buttonText="Refresh" />
+  //   );
+  // }
 
   return (
     <LayoutContext.Provider
