@@ -179,7 +179,7 @@ const Preview = () => {
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[20px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
-              >{isDrag ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">#{index+1}</span>) : null}
+              >{isDrag ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2] h-[25px]">#{index+1}</span>) : null}
                 <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] text-[18px]">
                   {answer.length > 40
                     ? `${answer.substring(0, 32)}.`
