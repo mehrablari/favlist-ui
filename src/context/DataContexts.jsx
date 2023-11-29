@@ -18,7 +18,6 @@ export const DataProvider = ({ children }) => {
 
  
 
-
   useEffect(() => {
     if (!isLoading && !error) {
       setQuestions(data.reverse());

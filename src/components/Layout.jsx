@@ -32,6 +32,8 @@ const Layout = () => {
     isDrag,
   } = useContext(DataContext);
 
+  // console.log(questions)
+
   //state management
 
   // const [activeAnswerJson, setActiveAnswerJson] = useState(null);
