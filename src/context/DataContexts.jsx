@@ -16,6 +16,8 @@ export const DataProvider = ({ children }) => {
   const [checked, setChecked] = useState(false);
   const { data, error, isLoading } = useQuestions();
 
+ 
+
 
   useEffect(() => {
     if (!isLoading && !error) {

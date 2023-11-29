@@ -30,6 +30,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
     handleSwipe(questions[activeIndex]);
 
     setAnswers([]);
+  
    
   
   };

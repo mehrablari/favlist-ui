@@ -19,7 +19,8 @@ const Preview = () => {
  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { goBackToEditAnswers, setEdittAnswer, isDrag } = useContext(DataContext);
+  const { goBackToEditAnswers,  isDrag, setAnswers  } = useContext(DataContext);
+
 
   const { mutate: mutateQuestion} = useQuestions()
 
@@ -37,10 +38,11 @@ const Preview = () => {
         return null;
       } else {
         const dataUrl = await toPng(containerRef.current, { cacheBust: true });
+        console.log("dataurl", dataUrl);
         return dataUrl.split(",")[1];
       }
     } catch (error) {
-      toast.error("Error generating image:",error)
+      toast.error("Error generating image:", error)
   
       return null;
     }
@@ -53,15 +55,22 @@ const Preview = () => {
 
   const handleEditQuestion = useCallback(() => {
     const questionId = localStorage.getItem("selectedQuestionId");
-    const answers = localStorage.getItem("answers");
-    questionId ? goBackToEditAnswers(questionId) : null;
-    answers ? setEdittAnswer(answers) : null;
+    // const newanswers = localStorage.getItem("answers");
+   if (questionId) {goBackToEditAnswers(questionId) }
+
+   setAnswers(dataContainer.answers)
+
+
+
+  //  if (newanswers) { setEdittAnswer(dataContainer.answers) }
+
     navigate("/");
-  }, [goBackToEditAnswers, setEdittAnswer, navigate]);
+  }, [goBackToEditAnswers, navigate, setAnswers, dataContainer.answers]);
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
     const imageState = await handleGenerateImage();
+    console.log(imageState)
 
 
 
@@ -87,6 +96,7 @@ const Preview = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log('working fine')
 
           if (
             data &&
@@ -94,27 +104,37 @@ const Preview = () => {
             typeof data.status === "string" &&
             data.status.toLowerCase() === "success"
           ) {
+
             localStorage.removeItem("answers");
+
+            // navigate("/submitted");
             
             navigate("/submitted", {
               state: { graphicUrl: data.data.answerGraphicLink },
-            }, { replace: true });
+            },{ replace: true });
+      
             mutateQuestion()
+
           } else {
             // Handle error scenarios
             toast.error("Submission was not successful");
+            console.log('Submission was not successful')
           }
         } else {
           // Handle HTTP error scenarios
           toast.error("HTTP request to submission endpoint failed");
+          console.log('HTTP request to submission endpoint failed')
+          
         }
       } else {
         // Handle the case where image generation failed
         toast.error("Image generation failed");
+        console.log('Image generation failed')
       }
     } catch (error) {
       // Handle any other errors
       toast.error("An error occurred:", error);
+      console.log('An error occurred',error.message )
       toast.error(error.message);
     } finally {
       setIsSubmitting(false);

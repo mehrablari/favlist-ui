@@ -4,7 +4,7 @@ import People from "../../assets/images/People.png";
 import { Link } from "react-router-dom";
 
 const AnswerProvided = ({ answerData }) => {
-  const { answerGraphicLink, answers, questionId } = answerData;
+  const { answerGraphicLink, answers } = answerData;
 
   return (
     <div className="p-[10px]">
@@ -67,7 +67,7 @@ AnswerProvided.propTypes = {
     answers: PropTypes.shape({
       map: PropTypes.func
     }),
-    questionId: PropTypes.any
+    // questionId: PropTypes.any
   })
 }
 

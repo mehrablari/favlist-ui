@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import AnswerProvided from "./AnswerProvided";
 import AnsweredResponse from "../../utils/AnsweredResponse";
 
@@ -11,3 +12,6 @@ const AnsweredContainer = ({ isAnswered }) => {
 };
 
 export default AnsweredContainer;
+AnsweredContainer.propTypes = {
+  isAnswered: PropTypes.object, 
+};
