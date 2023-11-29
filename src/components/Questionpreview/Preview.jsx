@@ -12,6 +12,7 @@ import BgImage from "../../assets/images/favlistbg.jpg";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
 import useQuestions from "../../hooks/useQuestions";
+import "./preview.css"
 
 
 
@@ -144,15 +145,8 @@ const Preview = () => {
 
   return (
     <div
-      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px]"
-      style={{
-        backgroundImage: `url(${BgImage})`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        width: "100%",
-        
-      }}
+      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px] preview_img"
+      
     >
       <div className="mx-auto pt-[2px] sm:pt-[5px]">
         <h1 className="text-neutral font-[700] text-[16px] leading-3 pb-[5px]">
@@ -174,15 +168,8 @@ const Preview = () => {
         </div>
         <div
           ref={containerRef}
-          className="w-full my-[10px] "
-          style={{
-            backgroundImage: `url(${imgPreview})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            width: "100%",
-            height: "370px",
-          }}
+          className="w-full my-[10px] preview_bg"
+          
         >
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
             <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">

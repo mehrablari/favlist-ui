@@ -1,0 +1,18 @@
+.preview_bg {
+	background-image: url("../../assets/images/favimg.png");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 370px;
+
+}
+
+.preview_img {
+	background-image: url("../../assets/images/favlistbg.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	
+}
