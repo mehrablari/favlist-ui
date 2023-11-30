@@ -1,6 +1,5 @@
 import Video from "../../assets/icons/video.svg";
 import Home from "../../assets/icons/Home.svg";
-import congrats from "../../assets/gif/congrats.gif";
 import {  useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext,  useEffect, useState} from "react";
@@ -42,7 +41,7 @@ const Submit = () => {
         // const blobImageAsset = await response.blob();
         const blobImageAsset = new Blob([graphicFile], { type: "image/png" });
         // setFilesArrayContent(blobImageAsset)
-      w
+    
         // Create a File object from the blob
         const filesArray = [
           new File([blobImageAsset], `Favlist_${new Date().getTime()}.png`, {
@@ -56,7 +55,7 @@ const Submit = () => {
 
         // Set up the share data
         const shareData = {
-          title: "Favlist",
+          // title: "Favlist",
           files: filesArray,
         };
 
@@ -137,19 +136,12 @@ const Submit = () => {
       </Helmet>
       <div
         className="bg_submitted pt-[50px] sm:pt-[120px] md:pt-[120px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto sm:h-screen"
-        // style={{
-        //   backgroundImage: `url(${congrats})`,
-        //   backgroundPosition: "center",
-        //   backgroundRepeat: "no-repeat",
-        //   backgroundSize: "cover",
-        //   height: "100vh",
-        //   width: "100%",
-        // }}
+
       >
         <div className="bg-neutral w-[360px] sm:w-[340px] md:w-[360px] rounded-lg mx-auto py-[10px]">
           <div className="flex flex-col">
             <h2 className="w-[327px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
-              Yaayy! Your answers have been submitted! 1{" "}
+              Yaayy! Your answers have been submitted! {" "}
             </h2>
 
             <div className="flex flex-row justify-center">
@@ -170,7 +162,7 @@ const Submit = () => {
           <div className=""></div>
 
           <div className="flex flex-col pb-[10px] mx-auto">
-          {!isMobile ? (
+          {isMobile ? (
             <button
               className="h-[40px]  hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary"
               onClick={shareToInstagram}

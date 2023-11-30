@@ -7,8 +7,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { toPng } from "html-to-image";
-import imgPreview from "../../assets/images/favimg.png";
-import BgImage from "../../assets/images/favlistbg.jpg";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
 import useQuestions from "../../hooks/useQuestions";

@@ -69,7 +69,7 @@ const Layout = () => {
       const initialQuestion = questions[storedQuestionIndex];
       // setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);
-      setSuggestedOption(initialQuestion?.answersJson);
+      setSuggestedOption(initialQuestion.answersJson);
       setQuestionId(initialQuestion?.id);
       setGraphicTitle(initialQuestion?.graphicTitle);
       setQuestionName(initialQuestion?.text);
