@@ -164,10 +164,10 @@ const Submit = () => {
           <div className="flex flex-col pb-[10px] mx-auto">
           {isMobile ? (
             <button
-              className="h-[40px]  hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary"
+              className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral"
               onClick={shareToInstagram}
             >
-               Share to instagram
+               Share to Social Media
             </button>
           ) : (
             <div className="p-[5px] mx-auto">
