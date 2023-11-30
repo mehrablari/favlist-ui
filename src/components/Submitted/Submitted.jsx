@@ -4,6 +4,7 @@ import congrats from "../../assets/gif/congrats.gif";
 import {  useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext,  useEffect, useState} from "react";
+import "./submited.css"
 
 import { RWebShare } from "react-web-share";
 // import useQuestions from "../../hooks/useQuestions";
@@ -41,8 +42,7 @@ const Submit = () => {
         // const blobImageAsset = await response.blob();
         const blobImageAsset = new Blob([graphicFile], { type: "image/png" });
         // setFilesArrayContent(blobImageAsset)
-      
-
+      w
         // Create a File object from the blob
         const filesArray = [
           new File([blobImageAsset], `Favlist_${new Date().getTime()}.png`, {
@@ -136,15 +136,15 @@ const Submit = () => {
         />
       </Helmet>
       <div
-        className="pt-[50px] sm:pt-[120px] md:pt-[120px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto sm:h-screen"
-        style={{
-          backgroundImage: `url(${congrats})`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          height: "100vh",
-          width: "100%",
-        }}
+        className="bg_submitted pt-[50px] sm:pt-[120px] md:pt-[120px] pb-[10px] h-screen md:h-screen mdx:h-screen mx-auto sm:h-screen"
+        // style={{
+        //   backgroundImage: `url(${congrats})`,
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundSize: "cover",
+        //   height: "100vh",
+        //   width: "100%",
+        // }}
       >
         <div className="bg-neutral w-[360px] sm:w-[340px] md:w-[360px] rounded-lg mx-auto py-[10px]">
           <div className="flex flex-col">
