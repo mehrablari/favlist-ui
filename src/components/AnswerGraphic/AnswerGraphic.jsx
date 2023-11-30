@@ -7,6 +7,7 @@ import Home from "../../assets/icon2/HomeOutlined.svg";
 import congrats from "../../assets/gif/congrats.gif";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
+import "./answergraphic.css"
 
 const AnswerGraphics = () => {
 
@@ -121,15 +122,8 @@ const AnswerGraphics = () => {
         <meta name="twitter:image:alt" content="favourite answers" />
       </Helmet>
       <div
-        className="pt-[100px] sm:pt-[130px] md:pt-[130px]  pb-[10px] sm:h-screen h-screen md:full mdx:h-screen mx-auto"
-        style={{
-          backgroundImage: `url(${congrats})`,
-          height: "100vh",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-          backgroundSize: "cover",
-        }}
+        className="graphics_img pt-[100px] sm:pt-[130px] md:pt-[130px]  pb-[10px] sm:h-screen h-screen md:full mdx:h-screen mx-auto"
+        
       >
         <div className="bg-neutral min-h-[300px] w-[400px]  sm:w-[340px] md:w-[360px] mx-auto rounded-[24px]">
           <div className="flex flex-row justify-center align-middle mx-auto">
