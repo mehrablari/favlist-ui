@@ -12,6 +12,7 @@ import BgImage from "../../assets/images/favlistbg.jpg";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
 import useQuestions from "../../hooks/useQuestions";
+import "./preview.css"
 
 const Preview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -155,14 +156,8 @@ const Preview = () => {
 
   return (
     <div
-      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px]"
-      style={{
-        backgroundImage: `url(${BgImage})`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        width: "100%",
-      }}
+      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px] preview_img"
+      
     >
       {/* <div>  
         <img
@@ -191,15 +186,8 @@ const Preview = () => {
         </div>
         <div
           ref={containerRef}
-          className="w-full my-[10px] "
-          style={{
-            backgroundImage: `url(${imgPreview})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            width: "100%",
-            height: "370px",
-          }}
+          className="w-full my-[10px] preview_bg"
+          
         >
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
             <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
@@ -209,12 +197,7 @@ const Preview = () => {
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[20px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
-              >
-                {isDrag ? (
-                  <span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2]">
-                    #{index + 1}
-                  </span>
-                ) : null}
+              >{isDrag ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2] h-[25px]">#{index+1}</span>) : null}
                 <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] text-[18px]">
                   {answer.length > 40 ? `${answer.substring(0, 32)}.` : answer}
                 </h2>
