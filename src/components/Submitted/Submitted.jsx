@@ -56,7 +56,7 @@ const Submit = () => {
 
         // Set up the share data
         const shareData = {
-          title: "Favlist",
+          // title: "Favlist",
           files: filesArray,
         };
 
@@ -149,7 +149,7 @@ const Submit = () => {
         <div className="bg-neutral w-[360px] sm:w-[340px] md:w-[360px] rounded-lg mx-auto py-[10px]">
           <div className="flex flex-col">
             <h2 className="w-[327px] font-[500] mx-auto text-center text-[14px] leading-5 pt-[10px]">
-              Yaayy! Your answers have been submitted! 1{" "}
+              Yaayy! Your answers have been submitted! {" "}
             </h2>
 
             <div className="flex flex-row justify-center">
@@ -170,7 +170,7 @@ const Submit = () => {
           <div className=""></div>
 
           <div className="flex flex-col pb-[10px] mx-auto">
-          {!isMobile ? (
+          {isMobile ? (
             <button
               className="h-[40px]  hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary"
               onClick={shareToInstagram}
