@@ -8,6 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import cancelIcon from "../../assets/images/cancelicon.png";
 import "./style/answermodal.css";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 SwiperCore.use([Pagination]);
 
