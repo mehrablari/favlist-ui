@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Backdrop from "@mui/material/Backdrop";
 import Switch from "@mui/material/Switch";
-import CancelIcon from "@mui/icons-material/Cancel";
+// import CancelIcon from "@mui/icons-material/Cancel";
 import { useContext, useState } from "react";
 import DataContext from "../../context/DataContexts";
 
 const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
-  const { setIsDrag, isDrag, checked, setChecked } = useContext(DataContext);
+  const {  checked, setChecked } = useContext(DataContext);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -24,7 +24,6 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
     const isChecked = event.target.checked;
     setChecked(event.target.checked);
     handleToggle(!isChecked);
-    setIsDrag(!isDrag);
   };
   //mui
   return (

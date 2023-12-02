@@ -27,8 +27,8 @@ const Layout = () => {
     editAnswer,
     answers,
     setAnswers,
-    setIsDrag,
-    isDrag,
+    // setIsDrag,
+    // isDrag,
   } = useContext(DataContext);
 
   // console.log(questions)
@@ -104,7 +104,7 @@ const Layout = () => {
     reorderedAnswers.splice(result.destination.index, 0, movedAnswer);
 
     setAnswers(reorderedAnswers);
-    setIsDrag(!isDrag);
+    // setIsDrag(!isDrag);
   };
 
   //manage when a suggestion is clicked

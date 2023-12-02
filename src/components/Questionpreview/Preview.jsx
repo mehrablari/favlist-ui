@@ -16,9 +16,11 @@ const Preview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   // const [image, setImage] = useState(false);
 
-  const { goBackToEditAnswers, isDrag, setAnswers } = useContext(DataContext);
+  const { goBackToEditAnswers, setAnswers, showIndex } = useContext(DataContext);
 
   const { mutate: mutateQuestion } = useQuestions();
+
+  console.log(showIndex)
 
   const location = useLocation();
   const dataContainer = location.state;
@@ -34,7 +36,6 @@ const Preview = () => {
         return null;
       } else {
         const dataUrl = await toPng(containerRef.current, { cacheBust: true });
-        console.log("dataurl", dataUrl);
         return dataUrl.split(",")[1];
       }
     } catch (error) {
@@ -82,7 +83,7 @@ const Preview = () => {
 
       
           const blobImage = convertBase64ToBlob(imageState, 'image/png');
-          console.log(blobImage);
+       
           // setImage(URL.createObjectURL(blobImage));
           // Perform further actions with the Blob as needed
       
@@ -107,7 +108,6 @@ const Preview = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("working fine");
           if (
             data &&
             data.status &&
@@ -195,7 +195,7 @@ const Preview = () => {
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[20px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
-              >{isDrag ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2] h-[25px]">#{index+1}</span>) : null}
+              >{showIndex ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2] h-[25px]">#{index+1}</span>) : null}
                 <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] text-[18px]">
                   {answer.length > 40 ? `${answer.substring(0, 32)}.` : answer}
                 </h2>
