@@ -10,7 +10,7 @@ const DraggableAnswers = ({ handleDismiss, handleDragEnd}) => {
 
   const {  answers } = useContext(DataContext);
 
-  // console.log(answers)
+
   
   return (
     <DragDropContext onDragEnd={handleDragEnd} >

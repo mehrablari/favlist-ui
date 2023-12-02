@@ -12,7 +12,6 @@ export const DataProvider = ({ children }) => {
   const [showIndex, setShowIndex] = useState(false);
 
   const [editAnswer, setEdittAnswer] = useState([]);
-  const [isDrag, setIsDrag] = useState(false);
   const [checked, setChecked] = useState(false);
   const { data, error, isLoading } = useQuestions();
 
@@ -49,8 +48,6 @@ export const DataProvider = ({ children }) => {
         goBackToEditAnswers,
         setEdittAnswer,
         editAnswer,
-        isDrag,
-        setIsDrag,
         answers,
         setAnswers, showIndex,setShowIndex, checked, setChecked
       }}

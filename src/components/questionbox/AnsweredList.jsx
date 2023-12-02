@@ -3,7 +3,7 @@ import AnswerHeader from "./AnswerHeader";
 import AnswerSettings from "./AnswerSettings";
 import DismissIcon from "../../assets/icons/Dismiss.svg";
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 // import PropTypes from "prop-types";
 import DataContext from "../../context/DataContexts";
 
@@ -22,10 +22,10 @@ const AnsweredList = ({
 }) =>
 
   {
-    const { setIsDrag, isDrag, answers,showIndex, setShowIndex } = useContext(DataContext);
+    const {  answers,showIndex, setShowIndex } = useContext(DataContext);
 
 
-    
+     
     const handlePreviewAnswers = () => {
 
       if(questionId) {
@@ -38,9 +38,10 @@ const AnsweredList = ({
     };
 
     const handleChange = (isChecked) => {
-      setIsDrag(!isDrag)
       setShowIndex(!isChecked);
     };
+
+   
 
     return (
       <form
@@ -51,8 +52,6 @@ const AnsweredList = ({
           maxAnswer={maxAnswer}
           minAnswer={minAnswer}
           handleToggle={handleChange}
-          isDrag={isDrag}
-          setIsDrag={setIsDrag}
         />
 
         {answers.length === 0 && <AnswerSettings />}
