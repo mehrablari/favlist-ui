@@ -131,7 +131,7 @@ const AnswerModal = ({
               </div>
             ))}
           </div>
-          <ToastContainer />
+          
         </SwiperSlide>
       );
     }
@@ -197,6 +197,7 @@ const AnswerModal = ({
           {noResultsMessage}
         </p>
       )}
+      <ToastContainer />
     </div>
   );
 };
