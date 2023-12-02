@@ -20,7 +20,7 @@ const Preview = () => {
 
   const { mutate: mutateQuestion } = useQuestions();
 
-  console.log(showIndex)
+
 
   const location = useLocation();
   const dataContainer = location.state;

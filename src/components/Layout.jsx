@@ -64,12 +64,12 @@ const Layout = () => {
   };
 
   function initializeQuestionState(questions) {
-    const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex");
+    const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex") ?? 0;
     if (questions.length > 0) {
       const initialQuestion = questions[storedQuestionIndex];
       // setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);
-      setSuggestedOption(initialQuestion.answersJson);
+      setSuggestedOption(initialQuestion?.answersJson);
       setQuestionId(initialQuestion?.id);
       setGraphicTitle(initialQuestion?.graphicTitle);
       setQuestionName(initialQuestion?.text);
@@ -109,6 +109,7 @@ const Layout = () => {
 
   //manage when a suggestion is clicked
   const handleClick = (option) => {
+    // console.log(option)
     if (!answers.includes(option) && answers.length < maxAnswer) {
       setAnswers((prevItems) => [...prevItems, option]);
 

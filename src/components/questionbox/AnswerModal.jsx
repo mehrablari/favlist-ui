@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useContext } from "react";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import SwiperCore, { Pagination } from "swiper";
@@ -7,8 +8,9 @@ import { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import cancelIcon from "../../assets/images/cancelicon.png";
 import "./style/answermodal.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import DataContext from "../../context/DataContexts";
  import 'react-toastify/dist/ReactToastify.css';
 
 SwiperCore.use([Pagination]);
@@ -19,14 +21,19 @@ const AnswerModal = ({
   handleClick,
   maxAnswer,
 }) => {
+  const { answers } = useContext(DataContext);
+
+  console.log(answers.length, answers);
+
   const handleVibration = () => {
     if ("vibrate" in navigator) {
-      navigator.vibrate(1000); 
+      navigator.vibrate(1000);
     }
   };
+
   // State to store the selected answers
-  const [answeredList, setAnsweredList] = useState([]);
-  const [answerSet, setAnswerSet] = useState(new Set());
+  // const [answeredList, setAnsweredList] = useState([]);
+  // const [answerSet, setAnswerSet] = useState(new Set());
 
   const [noResultsMessage, setNoResultsMessage] = useState("");
 
@@ -35,6 +42,8 @@ const AnswerModal = ({
   const [inputLength, setInputLength] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [filteredOption, setFilteredOptions] = useState([]);
+
+  // console.log(answerSet)
 
   useEffect(() => {
     setFilteredOptions(suggestedOption);
@@ -64,20 +73,20 @@ const AnswerModal = ({
 
     handleClick(answer);
 
-    if (answerSet.has(answer)) {
+    if (answers.includes(answer)) {
       toast.error(`${answer} is already added.`, {
         position: "top-right",
         autoClose: 1000,
       });
-    } else if (answerSet.size >= maxAnswer) {
+    } else if (answers.length >= maxAnswer) {
       toast.warning(`Maximum answers (${maxAnswer}) reached.`, {
         position: "top-right",
         autoClose: 1000,
       });
     } else {
-      const newAnswerSet = new Set(answerSet);
-      newAnswerSet.add(answer);
-      setAnswerSet(newAnswerSet);
+      // const newAnswerSet = new Set(answerSet);
+      // newAnswerSet.add(answer);
+      // setAnswerSet(newAnswerSet);
 
       toast.success(`${answer} has been added.`, {
         position: "top-right",
@@ -85,11 +94,11 @@ const AnswerModal = ({
       });
     }
 
-    const answeredList = Array.from(answerSet);
+    // const answeredList = Array.from(answerSet);
 
-    setAnsweredList((prevAnsweredList) => [...prevAnsweredList, answer]);
+    // setAnsweredList((prevAnsweredList) => [...prevAnsweredList, answer]);
 
-    localStorage.setItem("answers", JSON.stringify(answeredList));
+    localStorage.setItem("answers", JSON.stringify(answers));
   };
 
   const totalSlides = Math.ceil(filteredOption.length / 20);
@@ -118,7 +127,7 @@ const AnswerModal = ({
               >
                 <div
                   className={`bg-gray-four  mx-auto hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 px-[4px] py-[1px] rounded-[16px] md:mx-[1px] my-[1px]  sm:my-[0px] sm:px-[2px] w-full md:my-[1px] sm:w-full ${
-                    answerSet.has(answer) ? "bg-primary " : ""
+                    answers.includes(answer) ? "bg-primary " : ""
                   }`}
                 >
                   <h3
