@@ -10,7 +10,7 @@ import { RWebShare } from "react-web-share";
 import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
-  const { setEditQuestion } = useContext(DataContext);
+  const { setEditQuestion, questions } = useContext(DataContext);
 
   const location = useLocation();
   const graphicUrl = location.state?.graphicUrl;
@@ -91,6 +91,18 @@ const Submit = () => {
     setEditQuestion(null);
     navigate("/", { replace: true });
   };
+  const submissionExist = () => {
+    const questionLocalStorage =
+      localStorage.getItem("selectedQuestionIndex");
+
+    const initialQuestion = questions[questionLocalStorage];
+    if (initialQuestion?.userSubmission !== null) {
+      navigate("/");
+    }
+  };
+  useEffect(() => {
+    submissionExist();
+  }, [questions]);
 
   return (
     <>
