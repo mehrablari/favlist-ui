@@ -89,7 +89,7 @@ const Submit = () => {
     // localStorage.removeItem("selectedQuestionIndex");
     // localStorage.removeItem("selectedQuestionId");
     setEditQuestion(null);
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   return (
