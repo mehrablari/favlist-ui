@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext, useEffect, useState } from "react";
 import "./submited.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { RWebShare } from "react-web-share";
 // import useQuestions from "../../hooks/useQuestions";
@@ -70,14 +72,18 @@ const Submit = () => {
           // Use the Web Share API to share the image
           await navigator.share(shareData);
           console.log("Successfully shared to Instagram");
+          toast.success("Successfully shared to Instagram");
           return true; // Sharing successful
         } else {
           console.error("Web Share API is not supported on this browser.");
+          toast.error("Web Share API is not supported on this browser.");
+
           return false; // Sharing failed
         }
       }
     } catch (error) {
       console.error("Error sharing image to Instagram:", error);
+      toast.error("Error sharing image to Instagram");
       return false; // Sharing failed
     }
   };
@@ -91,7 +97,6 @@ const Submit = () => {
     setEditQuestion(null);
     navigate("/", { replace: true });
   };
- 
 
   return (
     <>
@@ -166,7 +171,7 @@ const Submit = () => {
                   className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral"
                   onClick={shareToInstagram}
                 >
-                  Share to Social Media
+                  Share to Instagram
                 </button>
               </div>
             ) : (
