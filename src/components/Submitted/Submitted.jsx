@@ -156,13 +156,23 @@ const Submit = () => {
               </h1>
             </div>
           </div>
-          <div>
-            <img
+          <div style={{
+                backgroundImage: `url(${graphicUrl})`,
+                height: "300px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                width: "300px",
+                backgroundSize: "cover",
+              }} 
+              className="p-[10px] mx-auto"
+              >
+            {/* <img
+              
               // src={graphicUrl}
-              src={URL.createObjectURL(graphicFile)}
-              alt="Your Answer Graphic"
+              // src={URL.createObjectURL(graphicFile)}
+              // alt="Your Answer Graphic"
               className=" mx-auto p-[10px]"
-            />
+            /> */}
           </div>
           <div className=""></div>
 
