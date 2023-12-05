@@ -136,15 +136,8 @@ const AnswerGraphics = () => {
             </h1>
           </div>
           <div
-            className="p-[10px] mx-auto"
-            style={{
-              backgroundImage: `url(${imgUrl})`,
-              height: "310px",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "300px",
-              backgroundSize: "cover",
-            }}
+            className="answergraphics_image w-[300px] h-[300px] p-[10px] mx-auto"
+            
           >
             {/* <img
               src={imgUrl}
@@ -195,3 +188,13 @@ const AnswerGraphics = () => {
 };
 
 export default AnswerGraphics;
+
+
+// style={{
+//   backgroundImage: `url(${imgUrl})`,
+//   height: "310px",
+//   backgroundPosition: "center",
+//   backgroundRepeat: "no-repeat",
+//   width: "300px",
+//   backgroundSize: "cover",
+// }}

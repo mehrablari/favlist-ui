@@ -156,16 +156,10 @@ const Submit = () => {
               </h1>
             </div>
           </div>
-          <div style={{
-                backgroundImage: `url(${graphicUrl})`,
-                height: "300px",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                width: "300px",
-                backgroundSize: "cover",
-              }} 
-              className="p-[10px] mx-auto"
+          <div 
+              className="bg_image p-[10px] mx-auto h-[300px] w-[300px]"
               >
+                
             {/* <img
               
               // src={graphicUrl}
@@ -226,3 +220,13 @@ const Submit = () => {
 };
 
 export default Submit;
+
+
+// style={{
+//   backgroundImage: `url(${graphicUrl})`,
+//   height: "300px",
+//   backgroundPosition: "center",
+//   backgroundRepeat: "no-repeat",
+//   width: "300px",
+//   backgroundSize: "cover",
+// }} 
