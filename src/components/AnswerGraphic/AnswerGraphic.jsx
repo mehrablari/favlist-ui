@@ -5,8 +5,11 @@ import { RWebShare } from "react-web-share";
 import Video from "../../assets/icons/video.svg";
 import Home from "../../assets/icon2/HomeOutlined.svg";
 import congrats from "../../assets/gif/congrats.gif";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
+import "./answergraphic.css"
 
 const AnswerGraphics = () => {
 
@@ -92,11 +95,13 @@ const AnswerGraphics = () => {
           return true; // Sharing successful
         } else {
           console.error("Web Share API is not supported on this browser.");
+          toast.error("Web Share API is not supported on this browser.")
           return false; // Sharing failed
         }
       }
     } catch (error) {
       console.error("Error sharing image to Instagram:", error);
+      toast.error("Error sharing image to Instagram")
       return false; // Sharing failed
     }
   };
@@ -121,15 +126,8 @@ const AnswerGraphics = () => {
         <meta name="twitter:image:alt" content="favourite answers" />
       </Helmet>
       <div
-        className="pt-[100px] sm:pt-[130px] md:pt-[130px]  pb-[10px] sm:h-screen h-screen md:full mdx:h-screen mx-auto"
-        style={{
-          backgroundImage: `url(${congrats})`,
-          height: "100vh",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-          backgroundSize: "cover",
-        }}
+        className="graphics_img pt-[100px] sm:pt-[130px] md:pt-[130px]  pb-[10px] sm:h-screen h-screen md:full mdx:h-screen mx-auto"
+        
       >
         <div className="bg-neutral min-h-[300px] w-[400px]  sm:w-[340px] md:w-[360px] mx-auto rounded-[24px]">
           <div className="flex flex-row justify-center align-middle mx-auto">
@@ -157,7 +155,7 @@ const AnswerGraphics = () => {
                 className="h-[40px] w-[320px] hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary "
                 onClick={shareToInstagram}
               >
-                Share to instagram
+                Share to Instagram
               </button>
                  ) : (
               <RWebShare
@@ -186,6 +184,7 @@ const AnswerGraphics = () => {
             </div>
           </div>
         </div>
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </>
   );

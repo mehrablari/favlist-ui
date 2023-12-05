@@ -40,7 +40,7 @@ const NavBar = () => {
             />
           )}
           {open && (
-            <ul className="z-10 shadow-xl flex flex-col font-[700] sm:font-[600] md:font-[600]  w-[180px] h-[160px] justify-center align-middle rounded-[12px] bg-neutral gap-[8px] text-gray-list py-[10px] text-[14px] absolute top-[25px] right-[1px] font-baloo2">
+            <ul className="z-10 shadow-xl flex flex-col font-[700] sm:font-[600] md:font-[600] md:w-[140px] md:h-[120px] sm:w-[130px] sm:h-[100px]  w-[180px] h-[150px] justify-center align-middle rounded-[12px] bg-neutral gap-[8px] text-gray-list py-[10px] text-[14px] sm:text-[13px] absolute top-[25px] right-[1px] font-baloo2">
               {/* <li className="cursor-pointer pl-[16px] font-baloo2">
                   Closed Questions
                 <Link to="/closedquestion" className="font-baloo2">

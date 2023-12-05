@@ -11,6 +11,7 @@ import "./style/answermodal.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import DataContext from "../../context/DataContexts";
+ import 'react-toastify/dist/ReactToastify.css';
 
 SwiperCore.use([Pagination]);
 
@@ -139,7 +140,7 @@ const AnswerModal = ({
               </div>
             ))}
           </div>
-          <ToastContainer />
+          
         </SwiperSlide>
       );
     }
@@ -205,6 +206,7 @@ const AnswerModal = ({
           {noResultsMessage}
         </p>
       )}
+      <ToastContainer />
     </div>
   );
 };

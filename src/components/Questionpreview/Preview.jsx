@@ -2,7 +2,7 @@
 import Video from "../../assets/icons/video.svg";
 import ArrowBack from "../../assets/icons/arrowback.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -10,17 +10,33 @@ import { toPng } from "html-to-image";
 import DataContext from "../../context/DataContexts";
 import { useContext } from "react";
 import useQuestions from "../../hooks/useQuestions";
-import "./preview.css"
+import "./preview.css";
 
 const Preview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   // const [image, setImage] = useState(false);
 
-  const { goBackToEditAnswers, setAnswers, showIndex } = useContext(DataContext);
+  const { goBackToEditAnswers, setAnswers, showIndex, questions } =
+    useContext(DataContext);
+
+ 
+
+  const submissionExist = () => {
+    const questionLocalStorage =
+      localStorage.getItem("selectedQuestionIndex");
+
+    const initialQuestion = questions[questionLocalStorage];
+    if (initialQuestion?.userSubmission !== null) {
+      navigate("/");
+    }
+  };
+  useEffect(() => {
+    submissionExist();
+  }, [questions]);
+
+
 
   const { mutate: mutateQuestion } = useQuestions();
-
-
 
   const location = useLocation();
   const dataContainer = location.state;
@@ -57,7 +73,6 @@ const Preview = () => {
     navigate("/");
   }, [goBackToEditAnswers, navigate, setAnswers, dataContainer.answers]);
 
-
   const convertBase64ToBlob = (base64String, fileType) => {
     const byteCharacters = atob(base64String);
     const byteNumbers = new Array(byteCharacters.length);
@@ -71,22 +86,17 @@ const Preview = () => {
     return blob;
   };
 
-
-
   const handleSubmit = async () => {
     setIsSubmitting(true);
     const imageState = await handleGenerateImage();
-  
 
     try {
       if (imageState) {
+        const blobImage = convertBase64ToBlob(imageState, "image/png");
 
-      
-          const blobImage = convertBase64ToBlob(imageState, 'image/png');
-       
-          // setImage(URL.createObjectURL(blobImage));
-          // Perform further actions with the Blob as needed
-      
+        // setImage(URL.createObjectURL(blobImage));
+        // Perform further actions with the Blob as needed
+
         const answerSubmit = {
           questionId: dataContainer.questionId,
           answersJson: dataContainer.answers,
@@ -119,8 +129,9 @@ const Preview = () => {
             navigate(
               "/submitted",
               {
-                state: { graphicFile: blobImage ,
-                  graphicUrl: data.data.answerGraphicLink  
+                state: {
+                  graphicFile: blobImage,
+                  graphicUrl: data.data.answerGraphicLink,
                 },
               },
               { replace: true }
@@ -153,10 +164,7 @@ const Preview = () => {
   };
 
   return (
-    <div
-      className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px] preview_img"
-      
-    >
+    <div className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px] preview_img">
       {/* <div>  
         <img
                 src={image}
@@ -182,11 +190,7 @@ const Preview = () => {
             </h1>
           </div>
         </div>
-        <div
-          ref={containerRef}
-          className="w-full my-[10px] preview_bg"
-          
-        >
+        <div ref={containerRef} className="w-full my-[10px] preview_bg">
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
             <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
@@ -195,7 +199,12 @@ const Preview = () => {
               <div
                 key={index}
                 className="bg-center text-[#572df2] text-[20px] flex flex-wrap  font-sans w-[300px] pb-[6px]"
-              >{showIndex ? (<span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2] h-[25px]">#{index+1}</span>) : null}
+              >
+                {showIndex ? (
+                  <span className="text-[18px] text-neutral rounded-[100%] px-[5px] bg-[#572df2] h-[25px]">
+                    #{index + 1}
+                  </span>
+                ) : null}
                 <h2 className="font-[700] rounded-[8px] text-ellipsis w-[260px] overflow-hidden px-[10px] text-[18px]">
                   {answer.length > 40 ? `${answer.substring(0, 32)}.` : answer}
                 </h2>
