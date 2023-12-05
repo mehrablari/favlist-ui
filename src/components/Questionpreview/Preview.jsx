@@ -19,7 +19,7 @@ const Preview = () => {
   const { goBackToEditAnswers, setAnswers, showIndex, questions } =
     useContext(DataContext);
 
-  // console.log("question", questions[0].userSubmission)
+ 
 
   const submissionExist = () => {
     const questionLocalStorage =
@@ -34,9 +34,7 @@ const Preview = () => {
     submissionExist();
   }, [questions]);
 
-  // Now indexOfSelectedQuestion will contain the index of the question with the matching ID
 
-  // console.log("question",initialQuestion )
 
   const { mutate: mutateQuestion } = useQuestions();
 

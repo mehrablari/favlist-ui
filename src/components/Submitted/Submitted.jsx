@@ -91,18 +91,7 @@ const Submit = () => {
     setEditQuestion(null);
     navigate("/", { replace: true });
   };
-  const submissionExist = () => {
-    const questionLocalStorage =
-      localStorage.getItem("selectedQuestionIndex");
-
-    const initialQuestion = questions[questionLocalStorage];
-    if (initialQuestion?.userSubmission !== null) {
-      navigate("/");
-    }
-  };
-  useEffect(() => {
-    submissionExist();
-  }, [questions]);
+ 
 
   return (
     <>
