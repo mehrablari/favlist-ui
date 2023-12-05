@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import Layout from "./components/Layout";
@@ -15,14 +15,16 @@ import Skeleton from "./utils/Skeleton";
 const App = () => {
   const navigate = useNavigate();
 
-  const Preview = lazy(() => import('./components/Questionpreview/Preview'));
-  // const Submitted = lazy(() => import('./components/Submitted/Submitted'));
-  const AnswerGraphics = lazy(() => import('./components/AnswerGraphic/AnswerGraphic'));
+  const Preview = lazy(() => import("./components/Questionpreview/Preview"));
+  // const Submitted = lazy(() => import("./components/Submitted/Submitted"));
+  const AnswerGraphics = lazy(() =>
+    import("./components/AnswerGraphic/AnswerGraphic")
+  );
 
   return (
     <DataProvider>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route  path="/" element={<Layout />} />
         <Route path="/closedquestion" element={<ClosedQuestion />} />
         <Route path="/submitted" element={<Submitted />} />
         <Route path="/closedinfo" element={<ClosedInfo />} />
@@ -35,7 +37,7 @@ const App = () => {
           element={
             <ErrorBoundary
               FallbackComponent={NoMatch}
-              onReset={() => navigate('/')}
+              onReset={() => navigate("/")}
             >
               <Suspense fallback={<Skeleton />}>
                 <AnswerGraphics />
@@ -43,25 +45,13 @@ const App = () => {
             </ErrorBoundary>
           }
         />
-        {/* <Route
-          path="submitted"
-          element={
-            <ErrorBoundary
-              FallbackComponent={NoMatch}
-              onReset={() => navigate('/')}
-            >
-              <Suspense fallback={<Skeleton />}>
-                <Submitted />
-              </Suspense>
-            </ErrorBoundary>
-          }
-        /> */}
+
         <Route
           path="preview"
           element={
             <ErrorBoundary
               FallbackComponent={NoMatch}
-              onReset={() => navigate('/')}
+              onReset={() => navigate("/")}
             >
               <Suspense fallback={<Skeleton />}>
                 <Preview />
@@ -69,6 +59,20 @@ const App = () => {
             </ErrorBoundary>
           }
         />
+
+        {/* <Route
+          path="submitted"
+          element={
+            <ErrorBoundary
+              FallbackComponent={NoMatch}
+              onReset={() => navigate("/")}
+            >
+              <Suspense fallback={<Skeleton />}>
+                <Submitted />
+              </Suspense>
+            </ErrorBoundary>
+          }
+        /> */}
       </Routes>
     </DataProvider>
   );

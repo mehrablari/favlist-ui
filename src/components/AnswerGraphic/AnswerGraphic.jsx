@@ -157,7 +157,7 @@ const AnswerGraphics = () => {
                 className="h-[40px] w-[320px] hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary "
                 onClick={shareToInstagram}
               >
-                Share to social media
+                Share to instagram
               </button>
                  ) : (
               <RWebShare

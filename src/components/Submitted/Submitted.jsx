@@ -11,9 +11,9 @@ import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
 
-  const { setEditQuestion } =
+  const { setEditQuestion, questions, } =
     useContext(DataContext);
-
+console.log(questions)
   const location = useLocation();
   const graphicUrl = location.state?.graphicUrl;
   const graphicFile = location.state?.graphicFile;
@@ -148,7 +148,7 @@ const Submit = () => {
               <img src={Video} alt="video" className="pr-[10px]" />
               <h1 className="font-[500] text-[13px] text-text-blue">
                 Your Answer graphic
-              </h1>
+              </h1>p
             </div>
           </div>
           <div>
@@ -167,7 +167,7 @@ const Submit = () => {
               className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral"
               onClick={shareToInstagram}
             >
-               Share to Social Media
+               Share to instagram
             </button>
           ) : (
             <div className="p-[5px] mx-auto">
