@@ -4,7 +4,7 @@ import {  useState } from "react";
 import { RWebShare } from "react-web-share";
 import Video from "../../assets/icons/video.svg";
 import Home from "../../assets/icon2/HomeOutlined.svg";
-import congrats from "../../assets/gif/congrats.gif";
+// import congrats from "../../assets/gif/congrats.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet-async";

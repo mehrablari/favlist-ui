@@ -153,7 +153,7 @@ const Submit = () => {
               <img src={Video} alt="video" className="pr-[10px]" />
               <h1 className="font-[500] text-[13px] text-text-blue">
                 Your Answer graphic
-              </h1>p
+              </h1>
             </div>
           </div>
           <div>
