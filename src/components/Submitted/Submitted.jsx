@@ -12,7 +12,7 @@ import { RWebShare } from "react-web-share";
 import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
-  const { setEditQuestion, questions } = useContext(DataContext);
+  const { setEditQuestion } = useContext(DataContext);
 
   const location = useLocation();
   const graphicUrl = location.state?.graphicUrl;
@@ -154,13 +154,23 @@ const Submit = () => {
               </h1>
             </div>
           </div>
-          <div>
-            <img
+          <div style={{
+                backgroundImage: `url(${graphicUrl})`,
+                height: "300px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                width: "300px",
+                backgroundSize: "cover",
+              }} 
+              className="p-[10px] mx-auto"
+              >
+            {/* <img
+              
               // src={graphicUrl}
-              src={URL.createObjectURL(graphicFile)}
-              alt="Your Answer Graphic"
+              // src={URL.createObjectURL(graphicFile)}
+              // alt="Your Answer Graphic"
               className=" mx-auto p-[10px]"
-            />
+            /> */}
           </div>
           <div className=""></div>
 
