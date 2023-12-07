@@ -154,15 +154,12 @@ const Submit = () => {
               </h1>
             </div>
           </div>
-          <div 
-              className="bg_image p-[10px] mx-auto h-[300px] w-[300px]"
-              >
-                
+          <div className="p-[10px] mx-auto h-[300px] w-[320px]" style={{ backgroundImage: `url(${graphicUrl})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             {/* <img
               
-              // src={graphicUrl}
-              // src={URL.createObjectURL(graphicFile)}
-              // alt="Your Answer Graphic"
+              src={graphicUrl}
+              //src={URL.createObjectURL(graphicFile)}
+              alt="Your Answer Graphic"
               className=" mx-auto p-[10px]"
             /> */}
           </div>
@@ -208,6 +205,7 @@ const Submit = () => {
               </button>
             </span>
           </div>
+          <ToastContainer/>
         </div>
       </div>
     </>
@@ -216,12 +214,3 @@ const Submit = () => {
 
 export default Submit;
 
-
-// style={{
-//   backgroundImage: `url(${graphicUrl})`,
-//   height: "300px",
-//   backgroundPosition: "center",
-//   backgroundRepeat: "no-repeat",
-//   width: "300px",
-//   backgroundSize: "cover",
-// }} 

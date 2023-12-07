@@ -106,6 +106,15 @@ const AnswerGraphics = () => {
     }
   };
 
+  // const graphicImage = {
+  //   backgroundImage: `url(${imgUrl})`,
+  //   height: "300px",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat",
+  //   width: "300px",
+  //   backgroundSize: "cover",
+  // };
+
   return (
     <>
       <Helmet defer={false} prioritizeSeoTags>
@@ -136,14 +145,10 @@ const AnswerGraphics = () => {
             </h1>
           </div>
           <div
-            className="answergraphics_image w-[300px] h-[300px] p-[10px] mx-auto"
-            
+            className="w-[300px] h-[300px] p-[10px] mx-auto"
+            style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
           >
-            {/* <img
-              src={imgUrl}
-              alt="Your Answer Graphic"
-              className=" w-[400px] sm:w-[340px] md:w-[360px] h-[340px] sm:h-[300px]"
-            /> */}
+            
           </div>
           <div className="flex flex-col py-[10px]">
             <div className="flex flex-col justify-center align-middle pb-[5px]">
