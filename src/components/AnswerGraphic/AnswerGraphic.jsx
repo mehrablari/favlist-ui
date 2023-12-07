@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RWebShare } from "react-web-share";
 import Video from "../../assets/icons/video.svg";
 import Home from "../../assets/icon2/HomeOutlined.svg";
-import congrats from "../../assets/gif/congrats.gif";
+// import congrats from "../../assets/gif/congrats.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet-async";
@@ -145,10 +145,20 @@ const AnswerGraphics = () => {
             </h1>
           </div>
           <div
+<<<<<<< HEAD
             className="w-[300px] h-[300px] p-[10px] mx-auto"
             style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
           >
             
+=======
+           
+          >
+             <img
+              src={imgUrl}
+              alt="Your Answer Graphic"
+              className=" w-[400px] sm:w-[340px] md:w-[360px] h-[340px] sm:h-[300px]"
+            />
+>>>>>>> 34733cfc2a4af8f409bd0ef84f5a91506d0ea9fd
           </div>
           <div className="flex flex-col py-[10px]">
             <div className="flex flex-col justify-center align-middle pb-[5px]">
@@ -157,7 +167,7 @@ const AnswerGraphics = () => {
                   className="h-[40px] w-[320px] hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary "
                   onClick={shareToInstagram}
                 >
-                  Share to Instagram
+                  Share to Social Media
                 </button>
               ) : (
                 <RWebShare
