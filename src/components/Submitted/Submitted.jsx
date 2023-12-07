@@ -157,16 +157,16 @@ const Submit = () => {
             </div>
           </div>
           <div 
-              className="bg_image p-[10px] mx-auto h-[300px] w-[300px]"
+             
               >
                 
-            {/* <img
+            <img
               
               // src={graphicUrl}
-              // src={URL.createObjectURL(graphicFile)}
-              // alt="Your Answer Graphic"
+              src={URL.createObjectURL(graphicFile)}
+              alt="Your Answer Graphic"
               className=" mx-auto p-[10px]"
-            /> */}
+            /> 
           </div>
           <div className=""></div>
 
@@ -178,7 +178,7 @@ const Submit = () => {
                   className="h-[40px] bg-primary hover:bg-opacity-75 text-center rounded-lg font-[600] w-[250px] flex-grow flex-shrink text-[14px] text-neutral"
                   onClick={shareToInstagram}
                 >
-                  Share to Instagram
+                  Share to Social Media
 
                 </button>
               </div>

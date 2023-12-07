@@ -136,14 +136,13 @@ const AnswerGraphics = () => {
             </h1>
           </div>
           <div
-            className="answergraphics_image w-[300px] h-[300px] p-[10px] mx-auto"
-            
+           
           >
-            {/* <img
+             <img
               src={imgUrl}
               alt="Your Answer Graphic"
               className=" w-[400px] sm:w-[340px] md:w-[360px] h-[340px] sm:h-[300px]"
-            /> */}
+            />
           </div>
           <div className="flex flex-col py-[10px]">
             <div className="flex flex-col justify-center align-middle pb-[5px]">
@@ -152,7 +151,7 @@ const AnswerGraphics = () => {
                   className="h-[40px] w-[320px] hover:bg-opacity-75 text-center mb-[7px] mx-auto rounded-lg  font-[600] flex-grow flex-shrink text-[14px] text-neutral bg-primary "
                   onClick={shareToInstagram}
                 >
-                  Share to Instagram
+                  Share to Social Media
                 </button>
               ) : (
                 <RWebShare
