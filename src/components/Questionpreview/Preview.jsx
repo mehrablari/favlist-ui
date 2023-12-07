@@ -155,9 +155,9 @@ const Preview = () => {
       }
     } catch (error) {
       // Handle any other errors
-      toast.error("An error occurred:", error);
-      console.log("An error occurred", error.message);
-      toast.error(error.message);
+      toast.error("Please check your network connection and retry :", error);
+      // console.log("An error occurred", error.message);
+      // toast.error(error.message);
     } finally {
       setIsSubmitting(false);
     }
