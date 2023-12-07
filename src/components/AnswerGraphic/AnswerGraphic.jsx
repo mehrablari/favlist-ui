@@ -145,21 +145,13 @@ const AnswerGraphics = () => {
             </h1>
           </div>
           <div
-<<<<<<< HEAD
             className="w-[300px] h-[300px] p-[10px] mx-auto"
-            style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
-          >
-            
-=======
-           
-          >
-             <img
-              src={imgUrl}
-              alt="Your Answer Graphic"
-              className=" w-[400px] sm:w-[340px] md:w-[360px] h-[340px] sm:h-[300px]"
-            />
->>>>>>> 34733cfc2a4af8f409bd0ef84f5a91506d0ea9fd
-          </div>
+            style={{
+              backgroundImage: `url(${imgUrl})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
           <div className="flex flex-col py-[10px]">
             <div className="flex flex-col justify-center align-middle pb-[5px]">
               {isMobile ? (
@@ -203,7 +195,6 @@ const AnswerGraphics = () => {
 };
 
 export default AnswerGraphics;
-
 
 // style={{
 //   backgroundImage: `url(${imgUrl})`,

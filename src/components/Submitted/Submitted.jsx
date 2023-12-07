@@ -12,9 +12,7 @@ import { RWebShare } from "react-web-share";
 import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
-
-  const { setEditQuestion} = useContext(DataContext);
-
+  const { setEditQuestion } = useContext(DataContext);
 
   const location = useLocation();
   const graphicUrl = location.state?.graphicUrl;
@@ -156,24 +154,24 @@ const Submit = () => {
               </h1>
             </div>
           </div>
-          <div className="p-[10px] mx-auto h-[300px] w-[320px]" style={{ backgroundImage: `url(${graphicUrl})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-            {/* <img
-          <div 
-             
-              >
-                
-            <img
-              
-              // src={graphicUrl}
+          <div
+            className="p-[10px] mx-auto h-[300px] w-[320px]"
+            style={{
+              backgroundImage: `url(${graphicUrl})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div
+            
               src={URL.createObjectURL(graphicFile)}
               alt="Your Answer Graphic"
               className=" mx-auto p-[10px]"
-            /> 
+            />
           </div>
           <div className=""></div>
 
           <div className="flex flex-col pb-[10px] mx-auto">
-
             {isMobile ? (
               <div className="p-[5px] mx-auto">
                 <button
@@ -181,7 +179,6 @@ const Submit = () => {
                   onClick={shareToInstagram}
                 >
                   Share to Social Media
-
                 </button>
               </div>
             ) : (
@@ -214,7 +211,7 @@ const Submit = () => {
               </button>
             </span>
           </div>
-          <ToastContainer/>
+          <ToastContainer />
         </div>
         <ToastContainer position="top-right" autoClose={3000} />
       </div>
@@ -223,4 +220,3 @@ const Submit = () => {
 };
 
 export default Submit;
-
