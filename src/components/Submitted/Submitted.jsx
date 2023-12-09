@@ -12,7 +12,7 @@ import { RWebShare } from "react-web-share";
 import DataContext from "../../context/DataContexts";
 
 const Submit = () => {
-  const { setEditQuestion } = useContext(DataContext);
+  const { setEditQuestion, questions,isSubmit, setIsSubmit } = useContext(DataContext);
 
   const location = useLocation();
   const graphicUrl = location.state?.graphicUrl;
@@ -97,6 +97,8 @@ const Submit = () => {
     setEditQuestion(null);
     navigate("/", { replace: true });
   };
+
+ 
 
   return (
     <>

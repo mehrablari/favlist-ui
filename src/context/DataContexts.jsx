@@ -14,6 +14,7 @@ export const DataProvider = ({ children }) => {
   const [editAnswer, setEdittAnswer] = useState([]);
   const [checked, setChecked] = useState(false);
   const { data, error, isLoading } = useQuestions();
+  const [isSubmit, setIsSubmit] = useState(false);
 
  
 
@@ -49,7 +50,7 @@ export const DataProvider = ({ children }) => {
         setEdittAnswer,
         editAnswer,
         answers,
-        setAnswers, showIndex,setShowIndex, checked, setChecked
+        setAnswers, showIndex,setShowIndex, checked, setChecked, isSubmit, setIsSubmit
       }}
     >
       {children}
