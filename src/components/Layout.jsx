@@ -237,7 +237,7 @@ const Layout = () => {
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
-        <div className="pt-[250px] z-10">
+        <div className="pt-[225px] z-10">
           <Searchbox />
 
           {!noResultsMessage ? (

@@ -180,7 +180,7 @@ const Preview = () => {
           PREVIEW YOUR ANSWERS
         </h1>
       </div>
-      <div className="flex flex-col bg-neutral rounded-lg py-[30px] w-[380px] mx-auto">
+      <div className="flex flex-col bg-neutral rounded-lg pt-[10px] pb-[30px] w-[380px] mx-auto">
         <div className="flex flex-col px-[10px]">
           <h1 className="font-[500] text-[14px] text-text-blue">Question</h1>
           <h1 className="font-[700] text-[18px] leading-[20px] text-gray-list py-[2px]">
@@ -195,9 +195,9 @@ const Preview = () => {
         </div>
         <div ref={containerRef} className="w-full my-[10px] preview_bg">
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
-            <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
+            {/* <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
               {graphicTitle}
-            </div>
+            </div> */}
             {dataContainer?.answers.map((answer, index) => (
               <div
                 key={index}

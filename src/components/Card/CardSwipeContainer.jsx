@@ -74,7 +74,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
   };
 
   return (
-    <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 ">
+    <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 pb-[5px]">
       <Swiper
         effect={"cards"}
         grabCursor={true}
@@ -87,14 +87,14 @@ const CardSwipeContainer = ({ handleSwipe }) => {
         {questions.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[240px] drop-shadow-lg border-4`}
+            className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[215px] drop-shadow-lg border-4`}
             style={{ borderColor: borderColors[id] }}
           >
             <p className="text-gray-dark text-[21px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[700] tracking-tighter">
               {question.text}
             </p>
-            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[40px] mx-auto pb-[10px]">
-              <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px]">
+            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[14px] mx-auto pb-[10px]">
+              <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px] pt-[6px]">
                 {formatDate(question.dateToPost)}
               </p>
               <div className="flex flex-row justify-center items-center h-[40px] pb-[10px]">
@@ -105,7 +105,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
               </div>
             </div>
             <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[30px]">
-              <h3 className="text-gray-light text-[14px] font-[400]">
+              <h3 className="text-gray-light text-[14px] font-[400] pt-[6px]">
                 affiliate
               </h3>
               <div className="flex justify-center ">
@@ -128,7 +128,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
                 </h3>
               </div>
 
-              <div className="youtube absolute bottom-md right-[0px] top-[210px] font-baloo2">
+              <div className="youtube absolute bottom-md right-[0px] top-[178px] font-baloo2">
                 <a
                   href={`${question.sponsor.adsS3Url}`}
                   target="_blank"
