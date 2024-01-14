@@ -25,11 +25,11 @@ const AnswerModal = ({
 
   console.log(answers.length, answers);
 
-  const handleVibration = () => {
-    if ("vibrate" in navigator) {
-      navigator.vibrate(1000);
-    }
-  };
+  // const handleVibration = () => {
+  //   if ("vibrate" in navigator) {
+  //     navigator.vibrate(1000);
+  //   }
+  // };
 
   // State to store the selected answers
   // const [answeredList, setAnsweredList] = useState([]);
@@ -69,7 +69,9 @@ const AnswerModal = ({
   };
 
   const handleAnswerClick = (answer) => {
-    handleVibration();
+    //handleVibration();
+
+    console.log('clicked')
 
     handleClick(answer);
 
