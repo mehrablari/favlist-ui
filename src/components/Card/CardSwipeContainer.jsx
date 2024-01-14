@@ -87,7 +87,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
         {questions.map((question, id) => (
           <SwiperSlide
             key={id}
-            className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[10px] max-w-[380px] h-[215px] drop-shadow-lg border-4`}
+            className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[8px] max-w-[380px] h-[215px] drop-shadow-lg border-4`}
             style={{ borderColor: borderColors[id] }}
           >
             <p className="text-gray-dark text-[21px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[700] tracking-tighter mt-[3px]">

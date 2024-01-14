@@ -190,14 +190,15 @@ const AnswerModal = ({
           // slidesPerColumn={1}
           grabCursor={true}
           loop={true}
-          pagination={{ clickable: true }}
+          pagination={{ clickable: true}}
           style={{
             "--swiper-pagination-color": "#632A7E",
             "--swiper-pagination-bullet-inactive-color": "#999999",
             "--swiper-pagination-bullet-inactive-opacity": "1",
             "--swiper-pagination-bullet-size": "10px",
-            // "--swiper-pagination-bullet": "10px",
             "--swiper-pagination-bullet-horizontal-gap": "4px",
+            "--swiper-pagination-bullet-wrap": "nowrap",
+            
           }}
           className="mySwiper h-[670px] md:h-[300px] mdx:h-[400px] pb-[4px] sm:pt-[10px] lg:pt-[5px] xl:pt-[20px] sm:h-[300px] lg:h-[700px] md:pt-[10px] flex justify-center sm:w-full w-[325px] align-middle md:w-full mx-auto mdx:pt-[2px] pt-[10px]"
         >
