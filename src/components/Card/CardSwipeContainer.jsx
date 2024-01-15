@@ -93,11 +93,11 @@ const CardSwipeContainer = ({ handleSwipe }) => {
             <p className="text-gray-dark text-[21px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[700] tracking-tighter mt-[3px]">
               {question.text}
             </p>
-            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[14px] mx-auto pb-[10px]">
-              <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px] pt-[6px]">
+            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[19px] mx-auto ">
+              <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px] pt-[11px]">
                 {formatDate(question.dateToPost)}
               </p>
-              <div className="flex flex-row justify-center items-center h-[40px] pb-[10px]">
+              <div className="flex flex-row justify-center items-center h-[40px]">
                 <img src={Clock} alt="clock" className="w-[15px] h-[15px]" />
                 <h1 className="text-[13px] pl-[5px] text-primary-light font-[400] font-baloo2">
                   {remaining(question?.daysToRemainOpen + 1)}

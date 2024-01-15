@@ -5,7 +5,7 @@
     
   }
   .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
-    text-wrap: nowrap !important;
+    white-space: nowrap;
 
   }
   
