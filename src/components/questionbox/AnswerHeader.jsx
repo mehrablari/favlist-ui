@@ -4,7 +4,7 @@
 import SettingsIcon from "@mui/icons-material/Settings";
 import Backdrop from "@mui/material/Backdrop";
 import Switch from "@mui/material/Switch";
-// import CancelIcon from "@mui/icons-material/Cancel";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useContext, useState } from "react";
 import DataContext from "../../context/DataContexts";
 
@@ -60,9 +60,9 @@ const AnswerHeader = ({ handleToggle, minAnswer, maxAnswer }) => {
             <h1 className="flex leading-3 text-gray-dark justify-start font-[700] text-[16px]">
               Answer settings
             </h1>
-            {/* <Link to="/"  className="cursor-pointer">
-              <CancelIcon className="text-gray-dark w-[15px] h-[15px]" />
-            </Link> */}
+            {/* <Link to="/"  className="cursor-pointer"> */}
+            <CancelIcon className="text-gray-dark w-[15px] h-[15px]" />
+            {/* </Link> */}
           </div>
           <div className="flex flex-row w-[327px] sm:w-[300px] mx-auto justify-center">
             <div className="flex flex-col p-[10px]">

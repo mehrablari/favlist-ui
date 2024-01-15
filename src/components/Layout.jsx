@@ -131,7 +131,8 @@ const Layout = () => {
       setMinAnswer(activeQuestion?.minAnswerCount);
       setMaxAnswer(activeQuestion?.maxAnswerCount);
       setDaysRemaining(activeQuestion?.daysToRemainOpen);
-      setFilteredOptions([]);
+      //setFilteredOptions([]);
+      handleFilter("")
       //clearSearch();
     }
   }, []);
