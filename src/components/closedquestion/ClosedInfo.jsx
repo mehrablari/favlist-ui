@@ -70,17 +70,17 @@ const ClosedInfo = () => {
   return (
     <>
       <NavBar />
-      <div className="flex flex-col pb-[10px] pt-[50px] pl-[10px] font-sans fixed h-[100px] w-full bg-neutral z-30">
+      <div className="flex flex-col pb-[10px] pt-[50px] pl-[10px] font-sans fixed h-[100px] w-full bg-neutral">
         <Link to="/closedquestion" className="pt-[10px] flex justify-between w-[60px]">
           <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
           <h2 className="text-[18px] font-semibold">Back</h2>
         </Link>
         <div
           key={id}
-          className="sm:w-[340px] md:w-[360px] mdx:w-[380px] pt-[30px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col items-center justify-center text-center align-middle gap-[10px] mt-[5px] max-w-[380px] h-[240px] drop-shadow-lg border-2 border-primary"
+          className="sm:w-[340px] md:w-[360px] mdx:w-[380px] pt-[12px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col items-center justify-center text-center align-middle gap-[8px] mt-[5px] max-w-[380px] h-[200px] drop-shadow-lg border-2 border-primary"
         >
-          <div className="flex flex-col bg-neutral  rounded-lg gap-[15px] h-[212px]">
-            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[300px] text-[20px] mx-auto h-[72px] leading-[24px] px-[10px] font-[700]">
+          <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] h-[212px]">
+            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[300px] text-[20px] mx-auto h-[84px] leading-[24px] px-[10px] font-[700]">
               {text}
             </div>
             <p className="text-[14px] text-gray-light font-[400] ">
@@ -106,7 +106,7 @@ const ClosedInfo = () => {
                 </h3>
               </div>
             </div>
-            <div className="youtube absolute bottom-md right-[0px] top-[205px]">
+            <div className="youtube absolute bottom-md right-[0px] top-[166px]">
               <a
                 href={`${sponsor.youTubeLink}`}
                 target="_blank"
@@ -123,9 +123,9 @@ const ClosedInfo = () => {
           </div>
         </div>
       </div>
-      <div className="bg-neutral pt-[320px] z-20">
-        <ClosedAnswers answerData={answers} answerId={id} />
-      </div>
+        <div className="bg-neutral pt-[320px]">
+          <ClosedAnswers answerData={answers} answerId={id} />
+        </div>
     </>
   );
 };

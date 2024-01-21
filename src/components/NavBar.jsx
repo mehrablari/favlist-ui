@@ -1,5 +1,5 @@
 import Logo from "../assets/images/logoAllWhite.png";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 // import { useNavigate } from "react-router-dom";
@@ -40,13 +40,14 @@ const NavBar = () => {
             />
           )}
           {open && (
-            <ul className="z-10 shadow-xl flex flex-col font-[700] sm:font-[600] md:font-[600] md:w-[140px] md:h-[120px] sm:w-[130px] sm:h-[100px]  w-[180px] h-[150px] justify-center align-middle rounded-[12px] bg-neutral gap-[8px] text-gray-list py-[10px] text-[14px] sm:text-[13px] absolute top-[25px] right-[1px] font-baloo2">
-              {/* <li className="cursor-pointer pl-[16px] font-baloo2">
-                  Closed Questions
-                <Link to="/closedquestion" className="font-baloo2">
+            <ul className="z-10 shadow-xl flex flex-col font-[700] sm:font-[600] md:font-[600] md:w-[145px] md:h-[145px] sm:w-[130px] sm:h-[135px]  w-[180px] h-[150px] justify-center align-middle rounded-[12px] bg-neutral gap-[8px] text-gray-list py-[10px] text-[14px] sm:text-[13px] absolute top-[25px] right-[1px] font-baloo2">
+              <li className="cursor-pointer pl-[14px] font-baloo2">
+                  
+                <Link to="/closedquestion" className="font-baloo2 ">
+                Closed Questions
                 </Link>
-              </li> */}
-              {/* <hr className="w-full pl-[16px] text-[#F6F6F6] border-2 " /> */}
+              </li>
+              <hr className="w-full pl-[16px] text-[#F6F6F6] border-2 " />
               <li className="cursor-pointer pl-[16px] hover:bg-sky-700">How it works</li>
               <li className="cursor-pointer pl-[16px]">About Favlist</li>
               <li className="cursor-pointer pl-[16px]">Terms & Conditions</li>
