@@ -5,7 +5,7 @@ import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import NavBar from "../NavBar";
 import ClosedAnswers from "./ClosedAnswers";
 import Logo from "../../assets/images/logoblack.png";
-import ArrowBack from "../../assets/images/back.png";
+import ArrowBack from "../../assets/images/arrow-right.png";
 import "./closeinfo.css";
 
 const ClosedInfo = () => {
@@ -68,19 +68,19 @@ const ClosedInfo = () => {
   };
 
   return (
-    <>
+    <div>
       <NavBar />
-      <div className="flex flex-col pb-[10px] pt-[50px] pl-[10px] font-sans fixed h-[100px] w-full bg-neutral">
+      <div className="flex flex-col pb-[10px] pt-[50px] pl-[10px] font-sans h-[310px] fixed w-full bg-primary">
         <Link to="/closedquestion" className="pt-[10px] flex justify-between w-[60px]">
-          <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
-          <h2 className="text-[18px] font-semibold">Back</h2>
+          <img src={ArrowBack} alt="" className="h-[22px] pr-[5px] mt-[2px]" />
+          <h2 className="text-[18px] font-semibold text-white text-[#fff]">Back</h2>
         </Link>
         <div
           key={id}
           className="sm:w-[340px] md:w-[360px] mdx:w-[380px] pt-[12px] lg:w-[600px] bg-neutral rounded-[24px] mx-auto flex flex-col items-center justify-center text-center align-middle gap-[8px] mt-[5px] max-w-[380px] h-[200px] drop-shadow-lg border-2 border-primary"
         >
           <div className="flex flex-col bg-neutral  rounded-lg gap-[8px] h-[212px]">
-            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[300px] text-[20px] mx-auto h-[84px] leading-[24px] px-[10px] font-[700]">
+            <div className="text-gray-dark mdx:w-[340px] w-[360px] md:w-[320px] sm:w-[100%] text-[20px] mx-auto h-[80px] leading-[24px] px-[10px] font-[700]">
               {text}
             </div>
             <p className="text-[14px] text-gray-light font-[400] ">
@@ -123,10 +123,10 @@ const ClosedInfo = () => {
           </div>
         </div>
       </div>
-        <div className="bg-neutral pt-[320px]">
-          <ClosedAnswers answerData={answers} answerId={id} />
-        </div>
-    </>
+      <div className="bg-neutral pt-[300px]">
+        <ClosedAnswers answerData={answers} answerId={id} />
+      </div>
+    </div>
   );
 };
 

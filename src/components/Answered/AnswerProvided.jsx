@@ -29,7 +29,7 @@ const AnswerProvided = ({ answerData }) => {
               {index + 1}
             </span>
             <div className="sm:w-[320px] w-[340px] bg-button-inactive rounded-lg font-[400] text-gray-light px-[12px] py-[10px] h-[48px] mx-auto flex flex-row justify-between hover:bg-primary-bg ">
-              <span className="text-[13px] h-[22px] cursor-pointer text-ellipsis w-[200px] truncate">
+              <span className="text-[13px] h-[22px] cursor-pointer text-ellipsis w-[200px] truncate leading-[25px]">
                 {question.text}
               </span>
               <div className="flex flex-row">

@@ -196,7 +196,7 @@ const Preview = () => {
         <div ref={containerRef} className="w-full my-[10px] preview_bg">
           <div className="pl-[20px] pt-[10px] pb-[5px] ">
             <div className="text-gray-list flex flex-wrap align-middle text-[22px] w-[300px] tracking-tighter font-[700] pl-[10px] pb-[10px]">
-              {graphicTitle} ?
+              {graphicTitle}
             </div>
             {dataContainer?.answers.map((answer, index) => (
               <div

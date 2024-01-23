@@ -6,7 +6,7 @@ const ClosedAnswers = ({ answerData }) => {
  
 
   return (
-    <div className="pt-[40px] font-sans mx-auto overflow-auto">
+    <div className="pt-[25px] font-sans mx-auto overflow-auto">
        <h1 className="font-sans text-[16px] font-[700] leading-6 mx-auto w-[327px] flex flex-start pb-[10px] z-10">All Answers</h1>
       {answers.map((answer, index) => (
         <div
