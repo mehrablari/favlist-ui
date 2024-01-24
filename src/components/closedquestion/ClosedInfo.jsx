@@ -106,7 +106,7 @@ const ClosedInfo = () => {
                 </h3>
               </div>
             </div>
-            <div className="youtube absolute bottom-md right-[0px] top-[166px]">
+            <div className="youtube absolute bottom-md right-[20px] top-[240px]">
               <a
                 href={`${sponsor.youTubeLink}`}
                 target="_blank"
