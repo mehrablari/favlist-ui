@@ -7,7 +7,7 @@ const ClosedAnswers = ({ answerData }) => {
 
   return (
     <div className="pt-[25px] font-sans mx-auto overflow-auto">
-       <h1 className="font-sans text-[16px] font-[700] leading-6 mx-auto w-[327px] flex flex-start pb-[10px] z-10">All Answers</h1>
+       <h1 className="font-sans text-[20px] font-[700] leading-6 mx-auto w-[327px] flex flex-start pb-[10px] z-10">All Answers</h1>
       {answers.map((answer, index) => (
         <div
           key={index}
@@ -20,7 +20,7 @@ const ClosedAnswers = ({ answerData }) => {
                 answer.userAnswered ? "bg-primary-bg text-white" : "bg-button-inactive"
               }`}>
             <span
-              className="text-[13px] flex flex-wrap"
+              className="text-[16px] flex flex-wrap"
               style={{ wordWrap: "break-word", overflow: "hidden" }}
             >
               {answer.text}
