@@ -115,6 +115,10 @@ const FilterCategory = ({ filterData }) => {
   return (
     <div className="flex flex-col font-sans">
       <KeywordFilter handleInputChange={handleInputChange} />
+      <CategoryChecker
+        filterCategory={filterData}
+        handleChange={handleChange}
+      />
       <FilterDate
         handleTabOne={handleTabOne}
         handleTabTwo={handleTabTwo}
@@ -127,10 +131,6 @@ const FilterCategory = ({ filterData }) => {
         handleEndDateChange={handleEndDateChange}
       />
 
-      <CategoryChecker
-        filterCategory={filterData}
-        handleChange={handleChange}
-      />
       <FilterSubmission handleSubmit={handleSubmission} isLoading={isLoading} />
     </div>
   );

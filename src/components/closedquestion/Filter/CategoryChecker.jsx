@@ -16,8 +16,8 @@ const CategoryChecker = ({filterCategory, handleChange}) => {
 
 
   return (
-	<div className="pt-[180px] ">
-        <h1 className="font-[500] h-[32px] text-[14px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full ">
+	<div>
+        <h1 className="font-[500] h-[32px] text-[14px] pl-[20px] pb-[5px]leading-4 flex bg-bg-grey w-full pt-[6px] ">
           FILTER BY CATEGORY
         </h1>
         <div className="pl-[20px]">

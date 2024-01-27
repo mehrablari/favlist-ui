@@ -4,7 +4,7 @@ import ArrowBack from "../../../assets/images/back.png";
 const FilterHeader = () => {
   return (
     <div className="px-[20px] font-sans">
-      <div className="flex flex-row items-center pt-[80px] ">
+      <div className="flex flex-row items-center pt-[65px] ">
         <img src={ArrowBack} alt="" className="h-[22px] pr-[5px]" />
         <Link
           to="/closedquestion"
@@ -13,7 +13,7 @@ const FilterHeader = () => {
           Back
         </Link>
       </div>
-      <h1 className="font-[700] text-[18px] leading-6 py-[20px]">Filter</h1>
+      {/* <h1 className="font-[700] text-[18px] leading-6 py-[20px]">Filter</h1> */}
     </div>
   );
 };

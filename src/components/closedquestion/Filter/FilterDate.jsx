@@ -46,7 +46,7 @@ const FilterDate = ({
         </ul>
         <div>
           {activeTab === "tabone" ? (
-            <div className="flex flex-row h-[44px] border rounded-[12px] mt-[20px] pl-[12px] mx-auto w-[327px] ">
+            <div className="flex flex-row h-[44px] border rounded-[12px] pl-[12px] mx-auto w-[327px] ">
               <img
                 src={Calendar}
                 alt="calendar"

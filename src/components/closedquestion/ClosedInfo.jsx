@@ -11,6 +11,7 @@ import "./closeinfo.css";
 const ClosedInfo = () => {
   const { id } = useParams();
   const [infoData, setInfoData] = useState(null);
+  const [answers , setAnswers] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,12 @@ const ClosedInfo = () => {
         response.data;
 
         setInfoData(response.data.data);
+        
+        if(response.data.data.answers.length > 50){
+          setAnswers(response.data.data.answers.slice(0,50))
+        }else {
+          setAnswers(response.data.data.answers)
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         setInfoData(null); // Optional: Handle error state
@@ -51,8 +58,8 @@ const ClosedInfo = () => {
     );
   }
 
-  const { text, dateToPost, sponsor, answers, answerGraphicLink } = infoData;
-
+  const { text, dateToPost, sponsor, answerGraphicLink } = infoData;
+  
   const formatDate = (inputDate) => {
     const options = {
       weekday: "long",

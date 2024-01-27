@@ -10,7 +10,7 @@ const KeywordFilter = ({ handleInputChange }) => {
     handleInputChange(event);
   };
   return (
-    <div>
+    <div className="h-[120px]">
       <h1 className="pl-[20px] font-[500] text-[14px] leading-4 bg-bg-grey h-[33px] px-[24px]  py-[8px] font-sans">
         FILTER BY KEYWORD
       </h1>
