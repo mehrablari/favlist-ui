@@ -53,7 +53,7 @@ const Preview = () => {
       } else {
         await toPng(containerRef.current, { cacheBust: true });
         await toPng(containerRef.current, { cacheBust: true });
-        await toPng(containerRef.current, { cacheBust: true });
+        // await toPng(containerRef.current, { cacheBust: true });
         const dataUrl = await toPng(containerRef.current, { cacheBust: true });
         return dataUrl.split(",")[1];
       }

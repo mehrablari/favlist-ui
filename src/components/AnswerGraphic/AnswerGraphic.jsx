@@ -91,17 +91,16 @@ const AnswerGraphics = () => {
         if (navigator.canShare) {
           // Use the Web Share API to share the image
           await navigator.share(shareData);
-          console.log("Successfully shared to Instagram");
+          console.log("Your favlist has been shared!");
           return true; // Sharing successful
         } else {
           console.error("Web Share API is not supported on this browser.");
-          toast.error("Web Share API is not supported on this browser.");
+          toast.error("Social sharing is not supported on your browser :(");
           return false; // Sharing failed
         }
       }
     } catch (error) {
-      console.error("Error sharing image to Instagram:", error);
-      toast.error("Error sharing image to Instagram");
+      toast.error("We had trouble sharing your favlist, please try again later!");
       return false; // Sharing failed
     }
   };
