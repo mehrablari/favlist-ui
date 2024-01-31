@@ -80,7 +80,7 @@ const Suggestion = ({
         <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
           <span className="text-primary cursor-pointer text-[14px] font-[500]">
-            See All
+            See More
           </span>
           <ArrowCircleRightOutlinedIcon
             sx={{ color: "#A13E97", height: "18px" }}
