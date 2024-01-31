@@ -67,9 +67,11 @@ const Layout = () => {
     const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex") ?? 0;
     if (questions.length > 0) {
       const initialQuestion = questions[storedQuestionIndex];
+
+      console.log(initialQuestion, 'optionssssssssss')
       // setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);
-      setSuggestedOption(initialQuestion?.answersJson);
+      setSuggestedOption(initialQuestion?.answersJson.slice(0,200));
       setQuestionId(initialQuestion?.id);
       setGraphicTitle(initialQuestion?.graphicTitle);
       setQuestionName(initialQuestion?.text);

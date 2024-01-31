@@ -90,10 +90,10 @@ const CardSwipeContainer = ({ handleSwipe }) => {
             className={`sm:w-[340px] md:w-[350px] mdx:w-[360px] lg:w-[360px] bg-neutral rounded-[30px] mx-auto flex flex-col justify-center text-center mt-[2rem] pb-[8px] max-w-[380px] h-[215px] drop-shadow-lg border-4`}
             style={{ borderColor: borderColors[id] }}
           >
-            <p className="text-gray-dark text-[21px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[700] tracking-tighter mt-[3px]">
+            <p className="text-gray-dark text-[21px] items-center font-baloo2 sm:text-[20px] md:text-[20px] px-[10px] max-w-[360px] sm:w-[300px] md:w-[340px] font-[700] tracking-tighter mt-[3px] h-[90px]">
               {question.text}
             </p>
-            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[19px] mx-auto ">
+            <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[1px] mx-auto ">
               <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px] pt-[11px]">
                 {formatDate(question.dateToPost)}
               </p>
@@ -104,7 +104,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 pt-[30px]">
+            <div className="flex flex-col justify-center w-[280px] h-[56px] mx-auto font-baloo2 ">
               <h3 className="text-gray-light text-[14px] font-[400] pt-[6px]">
                 affiliate
               </h3>
