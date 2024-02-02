@@ -47,6 +47,7 @@ const AnswerModal = ({
 
   useEffect(() => {
     setFilteredOptions(suggestedOption);
+    console.log(suggestedOption, 'suggested', suggestedOption.length)
   }, [suggestedOption]);
 
   const handleInputChange = (event) => {

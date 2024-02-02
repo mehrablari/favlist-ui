@@ -100,7 +100,7 @@ const Suggestion = ({
         >
           {openBackdrop && (
             <AnswerModal
-              suggestedOption={suggestedOption}
+              suggestedOption={suggestedOption.slice(0,200)}
               maxAnswer={maxAnswer}
               closeBackdrop={handleCloseBackdrop}
               handleClick={handleClick}
