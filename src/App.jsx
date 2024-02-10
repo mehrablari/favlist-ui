@@ -11,6 +11,9 @@ import NoMatch from "./NoMatch";
 import FilterPage from "./components/closedquestion/Filter/FilterPage";
 import { DataProvider } from "./context/DataContexts";
 import Skeleton from "./utils/Skeleton";
+import TermsAndConditions from "./components/TermsAndConditions/Terms"
+import HowItWorks from "./components/HowItWorks/HowItWorks"
+import About from "./components/About/About";
 
 const App = () => {
   const navigate = useNavigate();
@@ -32,6 +35,9 @@ const App = () => {
         <Route path="/filterpage" element={<FilterPage />} />
         <Route path="/closedinfo/:id" element={<ClosedInfo />} />
         <Route path="*" element={<NoMatch />} />
+        <Route path="/termsandconditions" element={<TermsAndConditions />} />
+        <Route path="/howitworks" element={<HowItWorks />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="answergraphics"
           element={

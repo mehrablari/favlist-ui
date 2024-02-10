@@ -22,9 +22,9 @@ const NavBar = () => {
     <main className="flex flex-col fixed top-0 sm:w-min-[320px] w-full z-40 bg-primary shadow-md">
       <nav className="flex flex-row px-[24px] justify-between h-[56px] py-[20px]">
         <header className="hover:cursor-pointer" onClick={() => handleRoute()}>
-          {/* <Link to="/"> */}
+          <Link to="/">
             <img src={Logo} alt="logo" className="max-h-[20px]" />
-          {/* </Link> */}
+          </Link>
         </header>
         <div className="relative">
           {!open && (
@@ -48,10 +48,21 @@ const NavBar = () => {
                 </Link>
               </li>
               <hr className="w-full pl-[16px] text-[#F6F6F6] border-2 " />
-              <li className="cursor-pointer pl-[16px] hover:bg-sky-700">How it works</li>
-              <li className="cursor-pointer pl-[16px]">About Favlist</li>
-              <li className="cursor-pointer pl-[16px]">Terms & Conditions</li>
-              
+              <li className="cursor-pointer pl-[16px] hover:bg-sky-700">
+                <Link to="/howitworks">
+                  How it works
+                </Link>
+              </li>
+              <li className="cursor-pointer pl-[16px]">
+                <Link to="/about">
+                  About Favlist
+                </Link>
+                </li>
+              <li className="cursor-pointer pl-[16px]">
+                <Link to="/termsandconditions">
+                  Terms & Conditions
+                </Link>
+              </li>
             </ul>
           )}
         </div>

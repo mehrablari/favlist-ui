@@ -8,6 +8,7 @@ import "./tindercards.css";
 import youtubeIcon from "../../assets/images/youtubeIcon.jpg";
 import Clock from "../../assets/images/clock.png";
 import DataContext from "../../context/DataContexts";
+import InfoIcon from '@mui/icons-material/Info';
 
 const CardSwipeContainer = ({ handleSwipe }) => {
   const { questions, setAnswers } = useContext(DataContext);
@@ -130,16 +131,11 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
               <div className="youtube absolute bottom-md right-[0px] top-[178px] font-baloo2">
                 <a
-                  href={`${question.sponsor.adsS3Url}`}
+                  href="https://favlist.net"
                   target="_blank"
-                  rel="noreferrer"
                   className="w-[56px]"
                 >
-                  <img
-                    src={youtubeIcon}
-                    alt="youtube icon"
-                    className="w-[24px] h-[17px] "
-                  />
+                  <InfoIcon />
                 </a>
               </div>
             </div>

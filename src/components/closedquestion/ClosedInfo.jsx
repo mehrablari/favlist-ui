@@ -7,6 +7,8 @@ import ClosedAnswers from "./ClosedAnswers";
 import Logo from "../../assets/images/logoblack.png";
 import ArrowBack from "../../assets/images/arrow-right.png";
 import "./closeinfo.css";
+import InfoIcon from '@mui/icons-material/Info';
+
 
 const ClosedInfo = () => {
   const { id } = useParams();
@@ -114,18 +116,13 @@ const ClosedInfo = () => {
               </div>
             </div>
             <div className="youtube absolute bottom-md right-[20px] top-[240px]">
-              <a
-                href={`${sponsor.youTubeLink}`}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:bg-primary-bg bg-grey-text w-[56px]"
-              >
-                <img
-                  src={youtubeIcon}
-                  alt="youtube icon"
-                  className="w-[24px] h-[17px]"
-                />
-              </a>
+                <a
+                  href="https://favlist.net"
+                  target="_blank"
+                  className="w-[56px]"
+                >
+                  <InfoIcon />
+                </a>
             </div>
           </div>
         </div>
