@@ -9,8 +9,7 @@ const TermsAndConditions = () => {
             <NavBar />
             <div className="pt-[65px] mx-[15px] text-justify ">
                 <p className="text-[19px] font-bold">Terms and Conditions for FavList</p>
-                <p className="font-bold text-[16px] mb-[5px]">Last Updated: February 6, 2023</p>
-                <p>Please read these terms and conditions ("Terms") carefully before using FavList (the "Website") operated by FavList Corp. ("us," "we," or "our").</p>
+                <p className="font-bold text-[16px] mb-[5px]">Last Updated: February 6, 2024</p>
             </div>
             <div className="mx-[15px] text-justify mt-[22px]">
                 <p className="font-bold text-lg">1. Acceptance of Terms:</p>
@@ -65,7 +64,7 @@ ssing or using the Website, you agree to be bound by these Terms. If you do not 
             </div>
             <div className="mx-[15px] text-justify mt-[22px] mb-[15px]">
                 <p className="font-bold text-lg">13.  Contact Information:</p>
-                <p>If you have any questions about these Terms, please contact us at info@favlist.net.</p>
+                <p>If you have any questions about these Terms, please contact us at <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@favlist.net" target="_blanck">info@favlist.net</a> .</p>
             </div>
         </>
     )

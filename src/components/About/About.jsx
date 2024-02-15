@@ -20,10 +20,10 @@ const About = () => {
                 <p className="font-semibold text-lg">Every day a new FavList question brings the world together, focusing everyone on the same captivating topic.</p>
             </div>
             <div className="mx-[15px] text-justify mt-[22px]">
-                <p className="font-semibold text-lg">Please contact us for opportunities to collaborate: info@favlist.net</p>
+                <p className="font-semibold text-lg">Please contact us for opportunities to collaborate: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@favlist.net" target="_blanck">info@favlist.net</a> </p>
             </div>
             <div className="mx-[15px] text-justify mt-[22px]">
-                <p className="font-semibold text-lg">"® FavList is a registered trademark of Favlist Corp. All rights reserved.</p>
+                <p className="font-semibold text-lg inline">® FavList is a </p><p className="font-[800] text-[19px] inline">Registered</p> <p className="font-semibold text-lg inline">trademark of Favlist Corp. All rights reserved.</p>
             </div>
         </>
     )
