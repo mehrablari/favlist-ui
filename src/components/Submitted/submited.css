@@ -1,0 +1,16 @@
+.bg_submitted {
+	background-image: url("../../assets/gif/congrats.gif");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+	width: 100%;
+}
+.bg_image {
+	background-image: url("https://storage.googleapis.com/favlist_store/20231129113314-graphic");
+	
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	background-size: cover;
+}

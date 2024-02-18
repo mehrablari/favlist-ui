@@ -1,0 +1,27 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
+.swiper-pagination-bullet {
+  padding:10px;
+  background-color: black;
+}
+
+#root {
+  font-family: Baloo 2;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.font-link {
+  font-family: 'Baloo 2', sans-serif;
+}
+
+* {
+  overflow: hidden;
+}

@@ -1,0 +1,22 @@
+.MySwiper {
+    width: 320px;
+    height: 320px;
+
+    
+  }
+  .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
+    white-space: nowrap;
+
+  }
+  
+  /* .answermodal {
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+  } */
+
+
+  
+
+  
+ 

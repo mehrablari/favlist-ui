@@ -1,0 +1,11 @@
+.youtube {
+      /* background-color: rgba(237, 14, 22, 0.05);
+      border-top-left-radius: 24px;
+      border-bottom-right-radius: 24px; */
+    height:40px;
+    padding-top:15px;
+    padding-bottom:30px;
+    padding-left:10px;
+    padding-right:10px;
+    margin: auto;
+  }

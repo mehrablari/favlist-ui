@@ -1,0 +1,24 @@
+.graphics_img {
+	background-image: url("../../assets/gif/congrats.gif/");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+}
+.answergraphics_image {
+	background-image: url("https://storage.googleapis.com/favlist_store/20231129113314-graphic");
+	
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	background-size: cover;
+}
+/* style={{
+	backgroundImage: `url(${congrats})`,
+	height: "100vh",
+	backgroundPosition: "center",
+	backgroundRepeat: "no-repeat",
+	width: "100%",
+	backgroundSize: "cover",
+  }} */
