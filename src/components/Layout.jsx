@@ -11,12 +11,11 @@ import soundEffect from "../assets/audio/softwave.mp3";
 import Logo from "../assets/images/logoblack.png";
 
 //effect and packages
-import { useState, useEffect, createContext, useCallback } from "react";
+import { useState, useEffect, createContext, useCallback, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
 import NoDataComponent from "./Error/NoDataComponent";
-
 export const LayoutContext = createContext();
 
 const Layout = () => {

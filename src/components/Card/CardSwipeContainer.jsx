@@ -74,6 +74,15 @@ const CardSwipeContainer = ({ handleSwipe }) => {
     return formattedDate;
   };
 
+  const setDataLayer = (category, action, label) => {
+    window.dataLayer.push({
+      event: 'events',
+      eventCategory: category,
+      eventAction: action,
+      eventLabel: label
+    })
+  };
+
   return (
     <div className="bg-primary w-full overflow-hidden fixed top-[0] right-[0] left-[0] z-20 pb-[5px]">
       <Swiper
@@ -109,7 +118,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
               <h3 className="text-gray-light text-[14px] font-[400] pt-[6px]">
                 affiliate
               </h3>
-              <div className="flex justify-center ">
+              <div className="flex justify-center " onClick={ () => setDataLayer('ux', 'click', 'question-affiliate')}>
                 <a
                   href={`${question.sponsor.url}`}
                   target="_blank"
@@ -129,7 +138,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
                 </h3>
               </div>
 
-              <div className="youtube absolute bottom-md right-[0px] top-[178px] font-baloo2">
+              <div className="youtube absolute bottom-md right-[0px] top-[178px] font-baloo2" onClick={ () => setDataLayer('ux', 'click', 'question-info')}>
                 <a
                   href="https://favlist.net"
                   target="_blank"

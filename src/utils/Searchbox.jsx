@@ -19,6 +19,14 @@ const Searchbox = () => {
       setSelectedOption(null);
     }
   };
+  const setDataLayer = (category, action, label) => {
+    window.dataLayer.push({
+      event: 'events',
+      eventCategory: category,
+      eventAction: action,
+      eventLabel: label
+    })
+  };
 
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[70px] font-baloo2">
@@ -31,7 +39,7 @@ const Searchbox = () => {
             />
           </span>
         )}
-        <div className="flex-grow">
+        <div className="flex-grow" onClick={ () => setDataLayer('ux', 'click', 'searchBox')}>
           <input 
             onChange={(event, newValue) => {
               handleInputChange(event, newValue);
