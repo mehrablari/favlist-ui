@@ -166,6 +166,15 @@ const Preview = () => {
     }
   };
 
+  const setDataLayer = (category, action, label) => {
+    window.dataLayer.push({
+      event: 'events',
+      eventCategory: category,
+      eventAction: action,
+      eventLabel: label
+    })
+  };
+
   return (
     <div className="flex flex-col sm:py-[20px] mx-auto sm:h-screen mdx:h-screen md:h-screen h-screen lg:h-screen xl:h-screen overflow-hidden pt-[30px] sm:pt-[50px] md:pt-[50px] sm:pr-[16px] md:sm:pr-[12px] preview_img">
       {/* <div>  
@@ -220,7 +229,7 @@ const Preview = () => {
           onClick={handleSubmit}
           className="hover:bg-opacity-75 flex justify-center align-middle max-w-[320px] w-[320px] sm:w-[300px] mx-auto px-[20px] bg-primary rounded-lg  my-[5px] "
         >
-          <div className="">
+          <div className="" onClick={ () => setDataLayer('ux', 'click', 'submit-answer')}> 
             <button
               disabled={isSubmitting}
               type="submit"

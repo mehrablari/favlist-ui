@@ -28,6 +28,15 @@ const AnsweredList = ({
      
     const handlePreviewAnswers = () => {
 
+      
+      window.dataLayer.push({
+        event: 'events',
+        eventCategory: 'ux',
+        eventAction: 'click',
+        eventLabel: 'preview-button'
+      })
+    
+
       if(questionId) {
       localStorage.setItem("selectedQuestionId", questionId);
       }
