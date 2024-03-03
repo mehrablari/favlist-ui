@@ -184,11 +184,11 @@ const Preview = () => {
                   alt="Favlistqq"
                   style={{ maxWidth: "100%" }}
                 /></div> */}
-      <div className="mx-auto pt-[2px] sm:pt-[5px]">
+      {/* <div className="mx-auto pt-[2px] sm:pt-[5px]">
         <h1 className="text-neutral font-[700] text-[16px] leading-3 pb-[5px]">
           PREVIEW YOUR ANSWERS
         </h1>
-      </div>
+      </div> */}
       <div className="flex flex-col bg-neutral rounded-lg pt-[20px] pb-[6px] w-[380px] mx-auto">
         <div className="flex flex-col px-[10px]">
           {/* <h1 className="font-[500] text-[14px] text-text-blue">Question</h1>
@@ -197,7 +197,7 @@ const Preview = () => {
           </h1> */}
           <div className="flex">
             <img src={Video} alt="video" className="pr-[10px]" />
-            <h1 className="font-[500] text-[14px] text-text-blue">
+            <h1 className="font-[500] text-[14px] text-primary-light">
               Your preview image
             </h1>
           </div>

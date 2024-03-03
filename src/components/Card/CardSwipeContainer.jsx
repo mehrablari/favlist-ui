@@ -140,7 +140,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
               <div className="youtube absolute bottom-md right-[0px] top-[178px] font-baloo2" onClick={ () => setDataLayer('ux', 'click', 'question-info')}>
                 <a
-                  href="https://favlist.net"
+                  href="https://home.favlist.net"
                   target="_blank"
                   className="w-[56px]"
                 >

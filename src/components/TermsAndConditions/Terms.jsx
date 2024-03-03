@@ -1,7 +1,11 @@
 import NavBar from "../NavBar"
+import { useNavigate } from "react-router";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const TermsAndConditions = () => {
 
+    const navigate = useNavigate()
 
 
     return(
@@ -65,6 +69,9 @@ ssing or using the Website, you agree to be bound by these Terms. If you do not 
             <div className="mx-[15px] text-justify mt-[22px] mb-[15px]">
                 <p className="font-bold text-lg">13.  Contact Information:</p>
                 <p>If you have any questions about these Terms, please contact us at <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@favlist.net" target="_blanck">info@favlist.net</a> .</p>
+            </div>
+            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate(-1)}>
+                <ArrowBackIcon />
             </div>
         </>
     )

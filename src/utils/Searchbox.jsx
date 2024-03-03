@@ -1,5 +1,5 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { LayoutContext } from "../components/Layout";
 
 const Searchbox = () => {
@@ -10,8 +10,9 @@ const Searchbox = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event) => {
+    console.log(event)
     const inputValue = event.target.value;
-
+    console.log(inputValue, 'val val val')
     handleFilter(inputValue);
     setInputLength(inputValue.length);
     setInputValue(inputValue);
@@ -27,6 +28,15 @@ const Searchbox = () => {
       eventLabel: label
     })
   };
+
+  // useEffect( () => {
+  //   if(clear){
+  //     console.log('here' , clear)
+  //     // handleFilter('');
+  //     // setInputLength(null);
+  //     // setInputValue('');
+  //   }
+  // }, [clear])
 
   return (
     <div className="flex flex-col justify-center mx-auto bg-neutral w-full h-full pt-[70px] font-baloo2">

@@ -49,6 +49,7 @@ const Layout = () => {
   const [maxAnswer, setMaxAnswer] = useState(null);
   const [noResultsMessage, setNoResultsMessage] = useState("");
 
+
   //sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
   const playSoundEffect = () => {
@@ -67,7 +68,6 @@ const Layout = () => {
     if (questions.length > 0) {
       const initialQuestion = questions[storedQuestionIndex];
 
-      console.log(initialQuestion, 'optionssssssssss')
       // setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);
       setSuggestedOption(initialQuestion?.answersJson.slice(0,200));
@@ -78,6 +78,7 @@ const Layout = () => {
       setMinAnswer(initialQuestion?.minAnswerCount);
       setMaxAnswer(initialQuestion?.maxAnswerCount);
       setDaysRemaining(initialQuestion?.daysToRemainOpen);
+      
     }
   }
 
@@ -135,6 +136,7 @@ const Layout = () => {
       //setFilteredOptions([]);
       handleFilter("")
       //clearSearch();
+      setClearInput(true)
     }
   }, []);
 
