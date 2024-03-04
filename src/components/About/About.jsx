@@ -27,7 +27,7 @@ const About = () => {
             <div className="mx-[15px] text-justify mt-[22px]">
                 <p className="font-semibold text-lg inline">® FavList is a </p><p className="font-[800] text-[19px] inline">Registered</p> <p className="font-semibold text-lg inline">trademark of Favlist Corp. All rights reserved.</p>
             </div>
-            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate(-1)}>
+            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate('/')}>
                 <ArrowBackIcon />
             </div>
             

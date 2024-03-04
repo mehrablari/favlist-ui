@@ -197,7 +197,7 @@ const Preview = () => {
           </h1> */}
           <div className="flex">
             <img src={Video} alt="video" className="pr-[10px]" />
-            <h1 className="font-[500] text-[14px] text-primary-light">
+            <h1 className="font-[500] text-[14px] text-black">
               Your preview image
             </h1>
           </div>

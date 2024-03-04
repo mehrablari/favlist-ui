@@ -31,7 +31,7 @@ const HowItWorks = () => {
                 <p className="font-bold text-lg">4. Closed Questions</p>
                 <p>Each question is closed after seven days and the aggregate results are counted.  The list of the top 50 answers is shown in Closed Questions.</p>
             </div>
-            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate(-1)}>
+            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate('/')}>
                 <ArrowBackIcon />
             </div>  
         </>

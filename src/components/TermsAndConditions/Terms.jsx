@@ -70,7 +70,7 @@ ssing or using the Website, you agree to be bound by these Terms. If you do not 
                 <p className="font-bold text-lg">13.  Contact Information:</p>
                 <p>If you have any questions about these Terms, please contact us at <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@favlist.net" target="_blanck">info@favlist.net</a> .</p>
             </div>
-            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate(-1)}>
+            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate('/')}>
                 <ArrowBackIcon />
             </div>
         </>
