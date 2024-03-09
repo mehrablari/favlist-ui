@@ -1,13 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import Calendar from "../../assets/images/Calendar.png";
 import { ClosedQuestionContext } from "./ClosedQuestion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import NavBar from "../NavBar";
 import CloseQuestionHeader from "./CloseQuestionHeader";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
 
 const QuestionCard = () => {
   const { questions } = useContext(ClosedQuestionContext);
+  const [page, setPage] = useState(1)
+
+  const [questionPaginations, setQuestionPaginations] = useState(questions)
+  const [paginatedQuestions, setPaginated] = useState(questionPaginations.slice(0,10))
 
   const formatDate = (inputDate) => {
     const options = {
@@ -23,6 +30,17 @@ const QuestionCard = () => {
     return formattedDate;
   };
 
+  const handlePagination = (event, value) => {
+    setPage(value)
+    
+    console.log('contextttttttttt', value, questionPaginations)
+    let start = (value - 1)*10
+    let end = start + 10
+    
+    setPaginated(questionPaginations.slice(start , end))
+  }
+
+
   return (
     <>
       <NavBar />
@@ -32,7 +50,7 @@ const QuestionCard = () => {
           <title>Closed Question page</title>
           <meta name="description" content="Description for Closed Question" />
         </Helmet>
-        {questions.map((question, index) => (
+        {paginatedQuestions.map((question, index) => (
           <div key={index} className="shadow-sm px-[24px] min-h-[50px] pb-[10px]">
             <Link
               to={`/closedinfo/${question.id}`}
@@ -53,6 +71,12 @@ const QuestionCard = () => {
           </div>
         ))}
       </div>
+      <div className="pl-[35px] h-[75px]">
+        <Stack spacing={2}> 
+        <Pagination count={10} page={page} onChange={handlePagination} />
+        </Stack>
+      </div>
+      
     </>
   );
 };

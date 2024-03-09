@@ -36,6 +36,8 @@ const CardSwipeContainer = ({ handleSwipe }) => {
   
   };
 
+
+
   const generateRandomColors = (count) => {
     const colors = [];
     for (let i = 0; i < count; i++) {
@@ -62,12 +64,14 @@ const CardSwipeContainer = ({ handleSwipe }) => {
 
   const formatDate = (inputDate) => {
     const options = {
-      weekday: "long",
       month: "short",
       day: "numeric",
       year: "numeric",
     };
-    const formattedDate = new Date(inputDate).toLocaleDateString(
+    const newDate = new Date(inputDate).getTime() + 7 * 24 * 60 * 60 * 1000
+    console.log(new Date(newDate), 'date daete date')
+
+    const formattedDate = new Date(newDate).toLocaleDateString(
       undefined,
       options
     );
@@ -105,7 +109,7 @@ const CardSwipeContainer = ({ handleSwipe }) => {
             </p>
             <div className="flex flex-row justify-center bg-neutral rounded-lg w-[320px] pt-[1px] mx-auto ">
               <p className="text-[13px] text-gray-light font-baloo2 font-[400] pr-[10px] pt-[11px]">
-                {formatDate(question.dateToPost)}
+                Vote by {formatDate(question.dateToPost)}
               </p>
               <div className="flex flex-row justify-center items-center h-[40px]">
                 <img src={Clock} alt="clock" className="w-[15px] h-[15px]" />

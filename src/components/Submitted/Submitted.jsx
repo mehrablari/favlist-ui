@@ -1,5 +1,5 @@
 import Video from "../../assets/icons/video.svg";
-import Home from "../../assets/icons/Home.svg";
+import HomeLight from "../../assets/icons/Home-light.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext, useEffect, useState } from "react";
@@ -76,7 +76,7 @@ const Submit = () => {
           return true; // Sharing successful
         } else {
           console.error("Web Share API is not supported on this browser.");
-          toast.error("Social sharing is not supported on your browser :(");
+          // toast.error("Social sharing is not supported on your browser :(");
 
           return false; // Sharing failed
         }
@@ -204,7 +204,7 @@ const Submit = () => {
               className="flex flex-row  bg-button-inactive items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"
             >
               <img
-                src={Home}
+                src={HomeLight}
                 alt="home"
                 className="h-[20px] w-[20px] pr-[5px]"
               />

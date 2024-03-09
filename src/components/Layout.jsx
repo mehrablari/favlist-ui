@@ -136,7 +136,7 @@ const Layout = () => {
       //setFilteredOptions([]);
       handleFilter("")
       //clearSearch();
-      setClearInput(true)
+      // setClearInput(true)
     }
   }, []);
 
