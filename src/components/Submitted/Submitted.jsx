@@ -1,5 +1,5 @@
 import Video from "../../assets/icons/video.svg";
-import Home from "../../assets/icons/Home.svg";
+import HomeLight from "../../assets/icons/Home-light.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext, useEffect, useState } from "react";
@@ -76,7 +76,7 @@ const Submit = () => {
           return true; // Sharing successful
         } else {
           console.error("Web Share API is not supported on this browser.");
-          toast.error("Social sharing is not supported on your browser :(");
+          // toast.error("Social sharing is not supported on your browser :(");
 
           return false; // Sharing failed
         }
@@ -151,7 +151,7 @@ const Submit = () => {
 
             <div className="flex flex-row justify-center">
               <img src={Video} alt="video" className="pr-[10px]" />
-              <h1 className="font-[500] text-[13px] text-text-blue">
+              <h1 className="font-[500] text-[13px] text-black">
                 Your Answer graphic
               </h1>
             </div>
@@ -201,14 +201,14 @@ const Submit = () => {
             )}
             <span
               onClick={handleSubmit}
-              className="flex flex-row bg-primary items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"
+              className="flex flex-row  bg-button-inactive items-center justify-center mx-auto rounded-lg h-[40px] hover:bg-primary-lighter px-[10px] w-[250px]"
             >
               <img
-                src={Home}
+                src={HomeLight}
                 alt="home"
                 className="h-[20px] w-[20px] pr-[5px]"
               />
-              <button className="text-[14px] text-neutral  font-semibold h-[26px]">
+              <button className="text-[14px]    text-primary-light font-semibold h-[26px]">
                 Go Home
               </button>
             </span>

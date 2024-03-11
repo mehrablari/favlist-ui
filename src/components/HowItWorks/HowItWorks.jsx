@@ -1,9 +1,12 @@
 
 
 import NavBar from "../NavBar"
+import { useNavigate } from "react-router";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const HowItWorks = () => {
 
+    const navigate = useNavigate()
 
 
     return(
@@ -28,6 +31,9 @@ const HowItWorks = () => {
                 <p className="font-bold text-lg">4. Closed Questions</p>
                 <p>Each question is closed after seven days and the aggregate results are counted.  The list of the top 50 answers is shown in Closed Questions.</p>
             </div>
+            <div className="mx-[15px] text-justify mt-[22px] w-fit" onClick={() => navigate('/')}>
+                <ArrowBackIcon />
+            </div>  
         </>
     )
 }
