@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import Layout from "./components/Layout";
@@ -24,6 +24,24 @@ const App = () => {
     import("./components/AnswerGraphic/AnswerGraphic")
   );
 
+  
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     console.log(event)
+  //     // By not setting event.returnValue, we do not trigger the confirmation dialog
+  //     // Alternatively, for clarity, you can explicitly set it to undefined
+  //     // event.returnValue = undefined;
+  //     event.currentTarget.confirm()
+  //     event.preventDefault()
+  //     event.returnValue = 'okk'
+  //   };
+  
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
+  
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   };
+  // }, []);
   return (
     <DataProvider>
       <Routes>
