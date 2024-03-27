@@ -14,7 +14,7 @@ import Skeleton from "./utils/Skeleton";
 import TermsAndConditions from "./components/TermsAndConditions/Terms"
 import HowItWorks from "./components/HowItWorks/HowItWorks"
 import About from "./components/About/About";
-
+import Quiz from "./components/PubQuiz/quiz";
 const App = () => {
   const navigate = useNavigate();
 
@@ -56,6 +56,7 @@ const App = () => {
         <Route path="/termsandconditions" element={<TermsAndConditions />} />
         <Route path="/howitworks" element={<HowItWorks />} />
         <Route path="/about" element={<About />} />
+        <Route path="/test" element={<Quiz />}/>
         <Route
           path="answergraphics"
           element={
