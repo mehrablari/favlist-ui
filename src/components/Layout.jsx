@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import DataContext from "../context/DataContexts";
 import NoDataComponent from "./Error/NoDataComponent";
+import Modal from "./Modal/welcome-modal";
 export const LayoutContext = createContext();
 
 const Layout = () => {
@@ -48,6 +49,9 @@ const Layout = () => {
   const [minAnswer, setMinAnswer] = useState([]);
   const [maxAnswer, setMaxAnswer] = useState(null);
   const [noResultsMessage, setNoResultsMessage] = useState("");
+
+  const [isOpen, setIsOpen] = useState(true); // Initially open the modal
+  const handleClose = () => setIsOpen(false);
 
 
   //sound when a suggestion is clicked
@@ -240,6 +244,7 @@ const Layout = () => {
         <title>Favlist Homepage</title>
         <meta name="description" content="Description for Home Page" />
       </Helmet>
+      <Modal isOpen={isOpen} onClose={handleClose} />
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (

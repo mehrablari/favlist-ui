@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import Layout from "./components/Layout";
@@ -14,7 +14,7 @@ import Skeleton from "./utils/Skeleton";
 import TermsAndConditions from "./components/TermsAndConditions/Terms"
 import HowItWorks from "./components/HowItWorks/HowItWorks"
 import About from "./components/About/About";
-
+import Quiz from "./components/PubQuiz/quiz";
 const App = () => {
   const navigate = useNavigate();
 
@@ -24,6 +24,24 @@ const App = () => {
     import("./components/AnswerGraphic/AnswerGraphic")
   );
 
+  
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     console.log(event)
+  //     // By not setting event.returnValue, we do not trigger the confirmation dialog
+  //     // Alternatively, for clarity, you can explicitly set it to undefined
+  //     // event.returnValue = undefined;
+  //     event.currentTarget.confirm()
+  //     event.preventDefault()
+  //     event.returnValue = 'okk'
+  //   };
+  
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
+  
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   };
+  // }, []);
   return (
     <DataProvider>
       <Routes>
@@ -38,6 +56,7 @@ const App = () => {
         <Route path="/termsandconditions" element={<TermsAndConditions />} />
         <Route path="/howitworks" element={<HowItWorks />} />
         <Route path="/about" element={<About />} />
+        <Route path="/test" element={<Quiz />}/>
         <Route
           path="answergraphics"
           element={
