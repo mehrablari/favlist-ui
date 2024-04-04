@@ -59,8 +59,8 @@ const Suggestion = ({
                   onClick={() => handleClick(suggestion)}
                 >
                   <h3 className="text-[15px] text-center font-[500] text-gray-darker text-opacity-90 overflow-hidden whitespace-nowrap w-full leading-[14px]  cursor-pointer">
-                    {suggestion.length > 14
-                      ? `${suggestion.slice(0, 18)}...`
+                    {suggestion.length > 17
+                      ? `${suggestion.slice(0, 14)}...`
                       : suggestion}
                   </h3>
                 </div>
