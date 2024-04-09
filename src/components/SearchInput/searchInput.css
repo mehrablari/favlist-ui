@@ -1,0 +1,77 @@
+.search-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #ccc; /* Adjust the border as needed */
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+  
+.chip {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #9c27b0; /* Purple background, adjust if necessary */
+    color: #ffffff;
+    border-radius: 16px;
+    margin-right: 5px; /* Spacing between chips */
+    margin-bottom: 5px; /* Spacing for when chips wrap to the next line */
+}
+  
+.remove-chip {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 16px;
+}
+  
+.search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+  
+  /* Focus styles for the input */
+.search-input:focus {
+    outline: none;
+}
+  
+  /* Hide the input placeholder when a chip is added */
+/* .search-input:not(:focus)::placeholder {
+    color: transparent;
+} */
+
+.text-container {
+
+    p {
+        color: #FFFFFF;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+}
+
+.options-container {
+    width: 106%;
+    margin-left: -11px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.option-container{
+    height: 48px;
+    background-color: rgba(237, 236, 238, 0.16);
+    width: 100% ;
+    border-radius: 12px;
+
+    p{
+        font-weight: 600;
+        font-size: 16px;
+        color: #FFFFFF;
+        line-height: 3;
+    }
+}
+  

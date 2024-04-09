@@ -1,0 +1,15 @@
+.question-text {
+    font-size: 28px;
+    font-weight: 700px;
+    color: #FFF;
+}
+
+.input-container {
+    margin-top: 30px;
+
+    
+    p {
+        color: #FFF;
+        font-size: 12px;
+    }
+}

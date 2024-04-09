@@ -1,0 +1,118 @@
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adjust the gap between cards as needed */
+}
+
+.card {
+    /* background: purple; */
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+}
+
+.expanded-card {
+    /* background: purple; */
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 240px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.add-button {
+    border: 1px solid #FFF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    font-size: large; /* Adjust the size as needed */
+    cursor: pointer;
+    background-color: #FFF;
+    font-size: 40px;
+    line-height: 1;
+    color: #515253;
+
+
+}
+
+.card-title {
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #FFF; /* Replace with the actual color codes */
+}
+
+.card-expire {
+    margin-left: auto;
+    font-size: small; /* Adjust the size as needed */
+    color: #FFF; /* Replace with the actual color codes */
+    writing-mode: vertical-lr;
+    position: absolute;
+    right: 30px;
+    font-size: 9px;
+}
+.card-expire-num {
+    margin-left: auto;
+    font-size: small; /* Adjust the size as needed */
+    color: #FFF; /* Replace with the actual color codes */
+    writing-mode: vertical-lr;
+    position: absolute;
+    right: 20px;
+    font-size: 9px;
+}
+  
+.header {
+    font-size: 40px;
+    font-weight: 700px;
+    color: #FFF;
+}
+
+.intro-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #ECD8EA;
+}
+
+.ex-card {
+    display: flex;
+    width: 100%;
+    margin-top: 185px;
+
+}
+
+.text {
+    display: flex;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+    width: 80%;
+}
+
+.answer {
+    /* margin-left: 150px; */
+    border: 1px solid #FFF;
+    background-color: #FFF;
+    width: 81px;
+    height: 27px;
+    border-radius: 50px;
+    color: #895F9E;
+    font-size: 14px;
+    font-weight: 800;
+    margin-top: 20px;
+
+}
+
+.home {
+    height: 100%;
+}
