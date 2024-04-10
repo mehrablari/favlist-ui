@@ -2,3 +2,12 @@
     filter: blur(5px);
     /* Add additional styles for the blurred background */
   }
+
+.active-question-text {
+  p{
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+  
+}

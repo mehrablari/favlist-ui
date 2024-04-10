@@ -52,7 +52,7 @@ const Suggestion = ({
             return (
               <div
                 key={index}
-                className="w-1/3 min-h-[40px] mx-auto flex justify-around"
+                className="w-1/2 min-h-[40px] mx-auto flex justify-around"
               >
                 <div
                   className="bg-gray-four hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "

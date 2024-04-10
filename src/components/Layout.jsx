@@ -17,6 +17,8 @@ import { useContext } from "react";
 import DataContext from "../context/DataContexts";
 import NoDataComponent from "./Error/NoDataComponent";
 import Modal from "./Modal/welcome-modal";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import './Layout.css'
 export const LayoutContext = createContext();
 
 const Layout = () => {
@@ -31,6 +33,9 @@ const Layout = () => {
     // isDrag,
   } = useContext(DataContext);
 
+
+  const {state} = useLocation()
+  const navigate = useNavigate()
   // console.log(questions)
 
   //state management
@@ -44,6 +49,7 @@ const Layout = () => {
   const [graphicTitle, setGraphicTitle] = useState("");
   const [questionName, setQuestionName] = useState("");
   const [daysRemaining, setDaysRemaining] = useState("");
+  const [sponsor, setSponsor] = useState(null)
 
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
@@ -82,7 +88,7 @@ const Layout = () => {
       setMinAnswer(initialQuestion?.minAnswerCount);
       setMaxAnswer(initialQuestion?.maxAnswerCount);
       setDaysRemaining(initialQuestion?.daysToRemainOpen);
-      
+      setSponsor(initialQuestion?.sponsor);
     }
   }
 
@@ -237,8 +243,20 @@ const Layout = () => {
       }}
     >
       <NavBar />
-      <div className="bg-primary w-full">
-        <CardSwipeContainer handleSwipe={handleSwipe} />
+      <div className="bg-primary w-full h-[270px] pt-[100px] px-[20px]">
+        {/* <CardSwipeContainer handleSwipe={handleSwipe} /> */}
+        <div className="active-question-text max-[20px]">
+          <p>{(questionName ? `${questionName}` : '')}</p>
+        </div>
+        
+        <div className="active-question-sponser w-[56px]">
+        {
+          sponsor &&
+          <a target="_blank" href={sponsor.adsS3Url}>
+            <img src={sponsor.logoS3Url}/>
+          </a>
+        }
+        </div>
       </div>
       <Helmet>
         <title>Favlist Homepage</title>
@@ -248,7 +266,7 @@ const Layout = () => {
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
-        <div className="pt-[225px] z-10">
+        <div className=" z-10">
           <Searchbox />
 
           {!noResultsMessage ? (
