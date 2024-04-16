@@ -1,0 +1,34 @@
+.answers-container{
+    background-color: #FFFFFF29;
+    margin: 0 auto;
+}
+
+.share-btn-container{
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    display: flex;
+    margin-top: 40px;
+    .go-home{
+        background-color: #FFFFFF29;
+        color: rgba(255, 255, 255, 1);
+        font-size: 14px;
+        font-weight: 800;
+        width: 168.5px;
+        height: 48px;
+        border-radius: 50px;
+        padding: 10px 24px 10px 24px;
+
+    }
+
+    .share{
+        background-color: #FFFFFF;
+        color: #7f076d;
+        font-size: 14px;
+        font-weight: 800;
+        width: 168.5px;
+        height: 48px;
+        border-radius: 50px;
+        padding: 10px 24px 10px 24px;
+    }
+}

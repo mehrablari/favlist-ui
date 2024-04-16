@@ -170,7 +170,7 @@ const Home = () => {
     ]
 
     const answerQuestion = (question) => {
-        navigate('/', {state: {question, index} })
+        navigate('/answer', {state: question})
     }
 
     const selectOrRemoveSelected = (index) => {
@@ -201,7 +201,7 @@ const Home = () => {
                             <div className="expanded-card" style={{'background': `${question.color}`}}>
                                 <div className="ex-card">
                                     <div className="text">{question.text}</div>
-                                    <button className="answer" onClick={() => answerQuestion(index)}>ANSWER</button>
+                                    <button className="answer" onClick={() => answerQuestion(question)}>ANSWER</button>
                                 </div>
                             </div>
                         }

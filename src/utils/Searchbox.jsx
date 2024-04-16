@@ -57,7 +57,7 @@ const Searchbox = () => {
             disabled={selectedOption && selectedOption.length >= 5}
             type="search"
             placeholder="Start typing an answer..."
-            className=" text-[16px] placeholder:w-[200px] sm:placeholder:w-[150px] sm:placeholder:text-[14px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[20px] md:placeholder:pl-[10px] placeholder:pl-[10px] placeholder:pt-[10px] border-2 border-primary-lighter active:border-type-active p-[12px] text-base outline-none sm:w-[340px] w-[360px] rounded-[17px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
+            className=" text-[16px] placeholder:w-[200px] sm:placeholder:w-[150px] sm:placeholder:text-[14px] placeholder:text-[14px] placeholder:h-[20px] sm:placeholder:pl-[20px] md:placeholder:pl-[10px] placeholder:pl-[10px] placeholder:pt-[10px] border-2 border-[#909499] active:border-type-active p-[12px] text-base outline-none sm:w-[345px] w-[360px] rounded-[50px] h-[44px] hover:bg-button-inactive active:bg-neutral focus:bg-neutral"
           />
         </div>
       </div>
