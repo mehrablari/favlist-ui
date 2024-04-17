@@ -113,7 +113,7 @@ const AnsweredList = ({
               disabled={answers.length < minAnswer}
               onClick={handlePreviewAnswers}
             >
-              Preview Answers
+              CONTINUE
             </button>
           </Link>
         )}

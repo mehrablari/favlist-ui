@@ -52,15 +52,15 @@ const Suggestion = ({
             return (
               <div
                 key={index}
-                className="w-1/3 min-h-[40px] mx-auto flex justify-around"
+                className="w-1/2 min-h-[40px] mx-auto flex justify-around"
               >
                 <div
                   className="bg-gray-four hover:bg-button-inactive focus:outline-none focus:ring-primary-bg bg-opacity-10 py-[10px] px-[2px] mx-[2px] w-full rounded-[16px] h-[34px] flex justify-evenly overflow-hidden "
                   onClick={() => handleClick(suggestion)}
                 >
                   <h3 className="text-[15px] text-center font-[500] text-gray-darker text-opacity-90 overflow-hidden whitespace-nowrap w-full leading-[14px]  cursor-pointer">
-                    {suggestion.length > 14
-                      ? `${suggestion.slice(0, 18)}...`
+                    {suggestion.length > 17
+                      ? `${suggestion.slice(0, 14)}...`
                       : suggestion}
                   </h3>
                 </div>

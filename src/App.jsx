@@ -15,6 +15,9 @@ import TermsAndConditions from "./components/TermsAndConditions/Terms"
 import HowItWorks from "./components/HowItWorks/HowItWorks"
 import About from "./components/About/About";
 import Quiz from "./components/PubQuiz/quiz";
+import Home from "./components/Home/home";
+import NewLayout from "./components/NewLayout/new";
+import NewPreview from "./components/Preview/new-preview";
 const App = () => {
   const navigate = useNavigate();
 
@@ -57,6 +60,9 @@ const App = () => {
         <Route path="/howitworks" element={<HowItWorks />} />
         <Route path="/about" element={<About />} />
         <Route path="/test" element={<Quiz />}/>
+        <Route path="/home" element={<Home />}/>
+        <Route path="/answer" element={<NewLayout />}/>
+        <Route path="/new-preview" element={<NewPreview />}/>
         <Route
           path="answergraphics"
           element={
