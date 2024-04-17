@@ -2,10 +2,13 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import NavBar from '../NavBar';
 import './new-preview.css'
 import Logo from '../../assets/images/favlist-logo-small.png'
+import { useState } from 'react';
 
 
 
 const NewPreview = () => {
+
+    const [color , setColor] = useState('primary')
 
     const answers = [
         'Belgium',
@@ -20,7 +23,7 @@ const NewPreview = () => {
     return (
         <>
             <NavBar />
-            <div className="w-full h-[100vh] bg-primary pt-[100px]">
+            <div className="main-container w-full h-[100vh] pt-[100px]">
                 <div className="w-[353px] px-[20px]">
                     <span><KeyboardBackspaceIcon style={{'color': '#FFFFFF'}}/></span>
                     <span className="ml-[16px] text-[#FFF] font-bold text-[20px]">Your list is ready</span>

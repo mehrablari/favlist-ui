@@ -32,3 +32,9 @@
         padding: 10px 24px 10px 24px;
     }
 }
+
+.main-container {
+    --tw-bg-opacity: 1;
+    background-color: rgb(99 42 126 / var(--tw-bg-opacity));
+
+}
