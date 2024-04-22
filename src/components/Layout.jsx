@@ -243,13 +243,13 @@ const Layout = () => {
       }}
     >
       <NavBar />
-      <div className="bg-primary w-full h-[270px] pt-[100px] px-[20px]">
+      <div className="bg-primary w-full h-[270px] pt-[100px] px-[20px] mx-auto">
         {/* <CardSwipeContainer handleSwipe={handleSwipe} /> */}
-        <div className="active-question-text max-[20px]">
+        <div className="active-question-text max-[20px] max-w-[360px] mx-auto">
           <p>{(questionName ? `${questionName}` : '')}</p>
         </div>
         
-        <div className="active-question-sponser w-[56px]">
+        <div className="active-question-sponser w-[56px] mx-auto ">
         {
           sponsor &&
           <a target="_blank" href={sponsor.adsS3Url}>

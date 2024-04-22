@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 const NewPreview = () => {
 
-    const [color , setColor] = useState('primary')
 
     const answers = [
         'Belgium',
