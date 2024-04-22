@@ -10,7 +10,7 @@ import SampleImage from '../../assets/images/sample-img.jpeg'
 const Home = () => {
 
     // const [questions, setQuestion] = useState([])
-    const [selectedCard , setSelectedCard ] = useState(null)
+    const [selectedCard , setSelectedCard ] = useState(0)
     const [selectedClosed, setSelectedClosed] = useState(null)
     const navigate = useNavigate()
 
