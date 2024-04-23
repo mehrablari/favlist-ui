@@ -48,7 +48,7 @@ const App = () => {
   return (
     <DataProvider>
       <Routes>
-        <Route  path="/" element={<Layout />} />
+        <Route  path="/" element={<Home />} />
         <Route path="/closedquestion" element={<ClosedQuestion />} />
         <Route path="/submitted" element={<Submitted />} />
         <Route path="/closedinfo" element={<ClosedInfo />} />
@@ -60,8 +60,8 @@ const App = () => {
         <Route path="/howitworks" element={<HowItWorks />} />
         <Route path="/about" element={<About />} />
         <Route path="/test" element={<Quiz />}/>
-        <Route path="/home" element={<Home />}/>
-        <Route path="/answer" element={<NewLayout />}/>
+        {/* <Route path="/home" element={<Home />}/> */}
+        <Route path="/answer" element={<Layout />}/>
         <Route path="/new-preview" element={<NewPreview />}/>
         <Route
           path="answergraphics"
