@@ -3,13 +3,14 @@ import NavBar from "../NavBar"
 import './home.css'
 import { useNavigate } from "react-router-dom"
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import SampleImage from '../../assets/images/sample-img.jpeg'
 
 
 
 const Home = () => {
 
     // const [questions, setQuestion] = useState([])
-    const [selectedCard , setSelectedCard ] = useState(null)
+    const [selectedCard , setSelectedCard ] = useState(0)
     const [selectedClosed, setSelectedClosed] = useState(null)
     const navigate = useNavigate()
 
@@ -73,6 +74,7 @@ const Home = () => {
         {
             text: 'What are your favorite places to travel?',
             color: 'gray',
+            image: '',
             short: 'First question',
             tags: ['tag1', 'tag2', 'tag3'],
             id: 1,
@@ -198,7 +200,7 @@ const Home = () => {
                     
                         {
                             index === selectedCard &&
-                            <div className="expanded-card" style={{'background': `${question.color}`}}>
+                            <div className="expanded-card">
                                 <div className="ex-card">
                                     <div className="text">{question.text}</div>
                                     <button className="answer" onClick={() => answerQuestion(question)}>ANSWER</button>
@@ -207,7 +209,7 @@ const Home = () => {
                         }
                         {
                             index !== selectedCard &&
-                            <div className="card" style={{'background': `${question.color}`}}>
+                            <div className="card">
                                 <div className="card-content">
                                     <button className="add-button" onClick={() => setSelectedCard(index)}>+</button>
                                     <div className="card-title">{question.short}</div>
@@ -235,8 +237,8 @@ const Home = () => {
                                                 <p className="p1">{question.short}</p>
                                                 <p className="p2">413 people voted</p>
                                             </div>
-                                            <div className="close-image w-[42px] h-[42px] rounded-[8px] absolute right-[28px]" style={{'background': `${question.color}`}}>
-                                                {/* Question's image appears here */}
+                                            <div className="close-image w-[42px] h-[42px] rounded-[8px] absolute right-[28px]" >
+                                                <img src={SampleImage} className="rounded-[8px]"></img>
                                             </div>
                                         </div>
                                         <div className="answers-report mt-[16px]">
@@ -267,7 +269,7 @@ const Home = () => {
                                                 <p className="p2">413 people voted</p>
                                             </div>
                                             <div className="close-image w-[42px] h-[42px] rounded-[8px] absolute right-[28px]" style={{'background': `${question.color}`}}>
-                                                {/* Question's image appears here */}
+                                                <img src={SampleImage} className=" w-full h-auto rounded-[8px]"></img>
                                             </div>
                                     </div>
                                     <div className="closed-date ">
