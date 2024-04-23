@@ -28,7 +28,7 @@ const NewPreview = () => {
                     <span className="ml-[16px] text-[#FFF] font-bold text-[20px]">Your list is ready</span>
                 </div>
                 <div className="answers-container w-[324.29px] h-[576px] mx-[50px] rounded-[14.7px] mt-[20px] pt-[18.37px]">
-                    <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] bg-gray-light mx-[18.37px] ">
+                    <div className="question-image w-[287.54px] h-[265.49px] rounded-[3.67px] mx-[18.37px] ">
 
                     </div>
                     <div className="pt-[18px] px-[15px] [&>*:nth-child(2)]:mt-[28px]">
