@@ -99,7 +99,7 @@ const AnsweredList = ({
 
         {answers.length > 0 && (
           <Link
-            to="/preview"
+            to="/new-preview"
             state={{ answers, questionId, questionName, graphicTitle }}
             className="flex justify-center align-middle pt-[10px] font-sans"
           >
