@@ -262,7 +262,7 @@ const Layout = () => {
         <title>Favlist Homepage</title>
         <meta name="description" content="Description for Home Page" />
       </Helmet>
-      <Modal isOpen={isOpen} onClose={handleClose} />
+      {/* <Modal isOpen={isOpen} onClose={handleClose} /> */}
       {isAnswered ? (
         <AnsweredContainer isAnswered={isAnswered} />
       ) : (
