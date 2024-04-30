@@ -38,3 +38,8 @@
     background-color: rgb(99 42 126 / var(--tw-bg-opacity));
 
 }
+
+.question-image{
+    background-image: url('../../assets/images/sample-img.jpeg');
+    background-size: cover;
+}
