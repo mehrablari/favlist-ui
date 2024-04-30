@@ -3,6 +3,8 @@ import NavBar from '../NavBar';
 import './new-preview.css'
 import Logo from '../../assets/images/favlist-logo-small.png'
 import { useState } from 'react';
+import SampleImage from '../../assets/images/sample-img.jpeg'
+
 
 
 
@@ -29,7 +31,7 @@ const NewPreview = () => {
                 </div>
                 <div className="answers-container w-[324.29px] h-[576px] rounded-[14.7px] mt-[20px] pt-[18.37px]">
                     <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] bg-gray-light mx-[18.37px]">
-
+                        <img src={SampleImage} className=" h-full w-full"></img>
                     </div>
                     <div className="pt-[18px] px-[15px] [&>*:nth-child(2)]:mt-[28px]">
                         <span className="text-[18.37px] font-bold text-[#FFF] w-[231.63px]">My favorite place to travel are:</span>
