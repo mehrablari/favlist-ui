@@ -4,12 +4,89 @@ import './new-preview.css'
 import Logo from '../../assets/images/favlist-logo-small.png'
 import { useState } from 'react';
 import SampleImage from '../../assets/images/sample-img.jpeg'
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 
 
 
 
 const NewPreview = () => {
 
+    const location = useLocation();
+    const graphicUrl = location.state?.graphicUrl;
+    const graphicFile = location.state?.graphicFile;
+
+    const navigate = useNavigate();
+
+    const [isMobile, setIsMobile] = useState(
+    window.matchMedia("(max-width: 915px)").matches ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+        )
+    );
+
+    useEffect(() => {
+    setIsMobile(
+        window.matchMedia("(max-width: 915px)").matches ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+        )
+    );
+    }, []);
+
+    const shareToInstagram = async () => {
+        try {
+          // Fetch the image from the remote URL and convert it to a blob
+    
+          if (graphicFile) {
+            // const blobImageAsset = await response.blob();
+            const blobImageAsset = new Blob([graphicFile], { type: "image/png" });
+            // setFilesArrayContent(blobImageAsset)
+    
+            // Create a File object from the blob
+            const filesArray = [
+              new File([blobImageAsset], `Favlist_${new Date().getTime()}.png`, {
+                type: "image/png",
+                lastModified: new Date().getTime(),
+              }),
+            ];
+    
+            // setFilesArrayContent(filesArray)
+    
+            // Set up the share data
+            const shareData = {
+              // title: "Favlist",
+              files: filesArray,
+            };
+    
+            // console.log()
+    
+            // Check if the navigator supports sharing and the provided data
+            console.log("fist", navigator.canShare);
+            //console.log("second", navigator.canShare(shareData));
+    
+            if (navigator.canShare) {
+              // Use the Web Share API to share the image
+              await navigator.share(shareData);
+              console.log("Successfully shared to Instagram");
+              toast.success("Your favlist has been shared!");
+              return true; // Sharing successful
+            } else {
+              console.error("Web Share API is not supported on this browser.");
+              // toast.error("Social sharing is not supported on your browser :(");
+    
+              return false; // Sharing failed
+            }
+          }
+        } catch (error) {
+          console.error("Error sharing image to Instagram:", error);
+          toast.error("We had trouble sharing your favlist, please try again later!");
+          return false; // Sharing failed
+        }
+      };
+    
 
     const answers = [
         'Belgium',
@@ -55,7 +132,7 @@ const NewPreview = () => {
 
                 <div className='share-btn-container'>
                     <button className='go-home'>GO HOME</button>
-                    <button className='share'>SHARE</button>
+                    <button className='share' onClick={shareToInstagram()}>SHARE</button>
                 </div>
             </div>
         </>
