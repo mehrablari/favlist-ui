@@ -101,14 +101,14 @@ const NewPreview = () => {
     return (
         <>
             <NavBar />
-            <div className="main-container w-full h-[100vh] pt-[100px]">
+            <div className="main-container w-full h-[105vh] pt-[100px]">
                 <div className="w-[353px] px-[20px]">
                     <span><KeyboardBackspaceIcon style={{'color': '#FFFFFF'}}/></span>
                     <span className="ml-[16px] text-[#FFF] font-bold text-[20px]">Your list is ready</span>
                 </div>
                 <div className="answers-container w-[324.29px] h-[576px] rounded-[14.7px] mt-[20px] pt-[18.37px]">
-                    <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] bg-gray-light mx-[18.37px]">
-                        <img src={SampleImage} className=" h-full w-full"></img>
+                    <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] mx-[18.37px]">
+                        <img src={SampleImage} className=" h-full w-full rounded-[3.67px]"></img>
                     </div>
                     <div className="pt-[18px] px-[15px] [&>*:nth-child(2)]:mt-[28px]">
                         <span className="text-[18.37px] font-bold text-[#FFF] w-[231.63px]">My favorite place to travel are:</span>
@@ -122,7 +122,7 @@ const NewPreview = () => {
                             ))
                         }
 
-                        <div className=' flex mt-[60px] gap-[23%]'>
+                        <div className=' flex mt-[60px] gap-[21%]'>
                             <img src={Logo} className='w-[77px] h-[14px]'/>
                             <span className=' font-semibold text-[14px] text-[#FFFFFF]'>I Voted on FavList.net!</span>
                         </div>
