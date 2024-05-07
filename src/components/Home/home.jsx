@@ -10,7 +10,7 @@ import SampleImage from '../../assets/images/sample-img.jpeg'
 const Home = () => {
 
     // const [questions, setQuestion] = useState([])
-    const [selectedCard , setSelectedCard ] = useState(0)
+    const [selectedCard , setSelectedCard ] = useState(null)
     const [selectedClosed, setSelectedClosed] = useState(null)
     const navigate = useNavigate()
 
@@ -191,7 +191,7 @@ const Home = () => {
         <div className="px-[10px] bg-primary h-[100vh]">
             <div className="pt-[60px]">
                 <h1 className="header">Welcome</h1>
-                <p className="intro-text">We celebrate the human fascination with <br/> organizing our preferences into lists, recognizing <br /> the power they have to reflect our unique tastes and interests.</p>
+                <p className="intro-text">Review questions, list your favorite answers, and <br/> share your choices. Every list is a story that  <br /> should be shared and counted.</p>
             </div>
 
             <div className="card-list mt-[30px]">
