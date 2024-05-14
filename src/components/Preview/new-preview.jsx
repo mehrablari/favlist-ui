@@ -14,9 +14,12 @@ import html2canvas from 'html2canvas';
 
 const NewPreview = () => {
 
-    const location = useLocation();
+    const {state} = useLocation();
     const graphicUrl = location.state?.graphicUrl;
     const graphicFile = location.state?.graphicFile;
+
+
+    console.log(state, 'sldkfhsdfsdlhf')
 
     // const navigate = useNavigate();
 
@@ -186,10 +189,10 @@ const NewPreview = () => {
                         <img src={SampleImage} className=" h-full w-full rounded-[3.67px]"></img>
                     </div>
                     <div className="pt-[18px] px-[15px] [&>*:nth-child(2)]:mt-[28px]">
-                        <span className="text-[18.37px] font-bold text-[#FFF] w-[231.63px]">My favorite place to travel are:</span>
+                        <span className="text-[18.37px] font-bold text-[#FFF] w-[231.63px]">{state?.graphicTitle}:</span>
 
                         {
-                            answers.map( (answer , index) => (
+                            state?.answers.map( (answer , index) => (
                                 <div>
                                     <span className="font-bold text-[#FFFFFF] text-[12px]">{index+1}-  </span>
                                     <span className="font-bold text-[#FFFFFF] text-[12px]">{answer}</span>
