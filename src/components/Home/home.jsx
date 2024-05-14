@@ -186,7 +186,7 @@ const Home = () => {
     ]
 
     const answerQuestion = (question) => {
-        navigate('/answer', {state: question})
+        navigate('/answer', {state: {question : question}})
     }
 
     const selectOrRemoveSelected = (index) => {
