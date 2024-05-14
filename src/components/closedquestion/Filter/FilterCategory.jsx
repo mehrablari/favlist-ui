@@ -76,7 +76,7 @@ const FilterCategory = ({ filterData }) => {
         : null,
     };
 
-    let apiUrl = "https://dev.pacerlabs.co/api/v1/search-archive/filter?";
+    let apiUrl = "https://api.favlist.net/api/v1/search-archive/filter?";
 
     // Add conditions to the URL based on the payload
     if (payload.searchText) {

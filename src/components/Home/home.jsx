@@ -3,7 +3,10 @@ import NavBar from "../NavBar"
 import './home.css'
 import { useNavigate } from "react-router-dom"
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import SampleImage from '../../assets/images/sample-img.jpeg'
+import SampleImage from '../../assets/images/sample-img.jpeg';
+import { useContext } from "react";
+import DataContext from "../../context/DataContexts";
+
 
 
 
@@ -13,63 +16,74 @@ const Home = () => {
     const [selectedCard , setSelectedCard ] = useState(null)
     const [selectedClosed, setSelectedClosed] = useState(null)
     const navigate = useNavigate()
+    const {
+        questions,
+        error,
+        editQuestion,
+        editAnswer,
+        answers,
+        setAnswers,
+        // setIsDrag,
+        // isDrag,
+      } = useContext(DataContext);
 
-    const questions = [
-        {
-            text: 'What are your favorite places to travel?',
-            color: 'gray',
-            short: 'First question',
-            tags: ['tag1', 'tag2', 'tag3'],
-            id: 1,
-            remainDate: 4,
-            minAnswerCount: 3,
-            maxAnswerCount: 5,
-            answersJson : [
-                "Ryan Reynolds ",
-                "Samuel L. Jackson ",
-                "Scarlett Johansson ",
-                "Ben Affleck ",
-                "Chris Evans ",
-                "Chris Hemsworth ",
-                "Chris Pratt ",
-                "Jason Momoa ",
-                "Robert Downey Jr. ",
-                "Michael B. Jordan ",
-                "Paul Rudd ",
-                "Dwayne \"The Rock\" Johnson ",
-                "Gal Gadot ",
-                "Henry Cavill "
-            ]
+    // const questions = [
+    //     {
+    //         text: 'What are your favorite places to travel?',
+    //         color: 'gray',
+    //         short: 'First question',
+    //         tags: ['tag1', 'tag2', 'tag3'],
+    //         id: 1,
+    //         remainDate: 4,
+    //         minAnswerCount: 3,
+    //         maxAnswerCount: 5,
+    //         answersJson : [
+    //             "Ryan Reynolds ",
+    //             "Samuel L. Jackson ",
+    //             "Scarlett Johansson ",
+    //             "Ben Affleck ",
+    //             "Chris Evans ",
+    //             "Chris Hemsworth ",
+    //             "Chris Pratt ",
+    //             "Jason Momoa ",
+    //             "Robert Downey Jr. ",
+    //             "Michael B. Jordan ",
+    //             "Paul Rudd ",
+    //             "Dwayne \"The Rock\" Johnson ",
+    //             "Gal Gadot ",
+    //             "Henry Cavill "
+    //         ]
 
-        },
-        {
-            text: 'this is second test question',
-            color: 'green',
-            short: 'second Question',
-            tags: ['tag1', 'tag2', 'tag3'],
-            id: 1,
-            remainDate: 4,
-            minAnswerCount: 3,
-            maxAnswerCount: 5,
-            answersJson : [
-                "Ryan Reynolds ",
-                "Samuel L. Jackson ",
-                "Scarlett Johansson ",
-                "Ben Affleck ",
-                "Chris Evans ",
-                "Chris Hemsworth ",
-                "Chris Pratt ",
-                "Jason Momoa ",
-                "Robert Downey Jr. ",
-                "Michael B. Jordan ",
-                "Paul Rudd ",
-                "Dwayne \"The Rock\" Johnson ",
-                "Gal Gadot ",
-                "Henry Cavill "
-            ]
-        },
-    ]
+    //     },
+    //     {
+    //         text: 'this is second test question',
+    //         color: 'green',
+    //         short: 'second Question',
+    //         tags: ['tag1', 'tag2', 'tag3'],
+    //         id: 1,
+    //         remainDate: 4,
+    //         minAnswerCount: 3,
+    //         maxAnswerCount: 5,
+    //         answersJson : [
+    //             "Ryan Reynolds ",
+    //             "Samuel L. Jackson ",
+    //             "Scarlett Johansson ",
+    //             "Ben Affleck ",
+    //             "Chris Evans ",
+    //             "Chris Hemsworth ",
+    //             "Chris Pratt ",
+    //             "Jason Momoa ",
+    //             "Robert Downey Jr. ",
+    //             "Michael B. Jordan ",
+    //             "Paul Rudd ",
+    //             "Dwayne \"The Rock\" Johnson ",
+    //             "Gal Gadot ",
+    //             "Henry Cavill "
+    //         ]
+    //     },
+    // ]
 
+    console.log(questions, 'dfdfdfdfdfdfd')
     const closedQuestions = [
         {
             text: 'What are your favorite places to travel?',
@@ -195,31 +209,38 @@ const Home = () => {
             </div>
 
             <div className="card-list mt-[30px]">
-                {questions.map((question, index) => (
+                {questions.map((question, index) => {
+                    const bgStyle = {
+                        backgroundImage: question.imagePath ? `url(${question.imagePath}` : `url(${SampleImage}`
+                    }
+
+                    return(
+
                     <>
                     
                         {
                             index === selectedCard &&
-                            <div className="expanded-card">
+                            <div className="expanded-card" style={bgStyle}>
                                 <div className="ex-card">
-                                    <div className="text">{question.text}</div>
+                                    <div className="text">{question?.text}</div>
                                     <button className="answer" onClick={() => answerQuestion(question)}>ANSWER</button>
                                 </div>
                             </div>
                         }
                         {
                             index !== selectedCard &&
-                            <div className="card">
+                            <div className="card" style={bgStyle}>
                                 <div className="card-content">
                                     <button className="add-button" onClick={() => setSelectedCard(index)}>+</button>
-                                    <div className="card-title">{question.short}</div>
-                                    <div className="card-expire-num">{question.remainDate} days</div>
+                                    <div className="card-title">{question.graphicTitle}</div>
+                                    <div className="card-expire-num">{question.daysToRemainOpen} days</div>
                                     <div className="card-expire">to expire</div>
                                 </div>
                             </div>
                         }
                     </>
-                ))}
+                    )
+                })}
             </div>
 
             <div className="closedQuestions bg-primary">

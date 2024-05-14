@@ -12,8 +12,7 @@
     justify-content: space-between;
     align-items: center;
     height: 72px;
-    background-image: url('../../assets/images/sample-img.jpeg');
-    opacity: 0.5;
+    /* background-image: url('../../assets/images/sample-img.jpeg'); */
 }
 
 .expanded-card {
@@ -24,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
     height: 240px;
-    background-image: url('../../assets/images/sample-img.jpeg');
+    /* background-image: url('../../assets/images/sample-img.jpeg'); */
     background-size: cover;
 }
 
