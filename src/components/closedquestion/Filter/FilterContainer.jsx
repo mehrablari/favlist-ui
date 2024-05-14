@@ -12,7 +12,7 @@ const FilterContainer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://dev.pacerlabs.co/api/v1/search-archive/filter",
+          "https://api.favlist.net/api/v1/search-archive/filter",
           {
             headers: {
               "Content-Type": "application/json",

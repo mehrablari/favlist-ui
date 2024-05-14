@@ -8,6 +8,6 @@ export default defineConfig({
   plugins: [react(),VitePWA({ registerType: 'autoUpdate',  })], 
   server: {
     host: '0.0.0.0',
-    port: 3000,
+    port: 7000,
   },
 })

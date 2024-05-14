@@ -40,7 +40,7 @@ const Layout = () => {
 
   //state management
 
-  // const [activeAnswerJson, setActiveAnswerJson] = useState(null);
+  const [activeAnswerJson, setActiveAnswerJson] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [suggestedOption, setSuggestedOption] = useState([]);
   const [clickedValue, setClickedValue] = useState([]);
@@ -60,7 +60,7 @@ const Layout = () => {
   const handleClose = () => setIsOpen(false);
 
 
-  //sound when a suggestion is clicked
+  // sound when a suggestion is clicked
   const audio = new Audio(soundEffect);
   const playSoundEffect = () => {
     audio.play();
@@ -73,10 +73,10 @@ const Layout = () => {
     }
   };
 
-  function initializeQuestionState(questions) {
+  function initializeQuestionState() {
     const storedQuestionIndex = localStorage.getItem("selectedQuestionIndex") ?? 0;
-    if (questions.length > 0) {
-      const initialQuestion = questions[storedQuestionIndex];
+    if (state && state.question) {
+      const initialQuestion = state.question;
 
       // setActiveAnswerJson(initialQuestion?.answersJson);
       setSelectedOption(initialQuestion?.answersJson[0]);

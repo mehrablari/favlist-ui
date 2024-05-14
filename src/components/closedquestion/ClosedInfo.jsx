@@ -19,7 +19,7 @@ const ClosedInfo = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://dev.pacerlabs.co/api/v1/search-archive/${id}`,
+          `https://api.favlist.net/api/v1/search-archive/${id}`,
           {
             headers: {
               "Content-Type": "application/json",

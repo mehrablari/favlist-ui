@@ -22,7 +22,7 @@ const Answered = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://dev.pacerlabs.co/api/v1/submissions/${id}`,
+          `https://api.favlist.net/api/v1/submissions/${id}`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -109,7 +109,7 @@ const Preview = () => {
         };
 
         const response = await fetch(
-          "https://dev.pacerlabs.co/api/v1/submissions",
+          "https://api.favlist.net/api/v1/submissions",
           {
             method: "POST",
             headers: {
