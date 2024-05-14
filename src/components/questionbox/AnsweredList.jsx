@@ -17,7 +17,7 @@ const AnsweredList = ({
   questionId,
   handleDismiss,
   handleDragEnd,
- 
+  image
   
 }) =>
 
@@ -100,7 +100,7 @@ const AnsweredList = ({
         {answers.length > 0 && (
           <Link
             to="/new-preview"
-            state={{ answers, questionId, questionName, graphicTitle }}
+            state={{ answers, questionId, questionName, graphicTitle, image }}
             className="flex justify-center align-middle pt-[10px] font-sans"
           >
             <button

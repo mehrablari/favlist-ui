@@ -186,7 +186,7 @@ const NewPreview = () => {
                 </div>
                 <div className="answers-container w-[324.29px] h-[576px] rounded-[14.7px] mt-[20px] pt-[18.37px]" id='target'>
                     <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] mx-[18.37px]">
-                        <img src={SampleImage} className=" h-full w-full rounded-[3.67px]"></img>
+                        <img src={state.image} className=" h-full w-full rounded-[3.67px]"></img>
                     </div>
                     <div className="pt-[18px] px-[15px] [&>*:nth-child(2)]:mt-[28px]">
                         <span className="text-[18.37px] font-bold text-[#FFF] w-[231.63px]">{state?.graphicTitle}:</span>

@@ -50,6 +50,7 @@ const Layout = () => {
   const [questionName, setQuestionName] = useState("");
   const [daysRemaining, setDaysRemaining] = useState("");
   const [sponsor, setSponsor] = useState(null)
+  const [image, setImage] = useState("")
 
   const [isAnswered, setIsAnswered] = useState(null);
   const [minAnswer, setMinAnswer] = useState([]);
@@ -89,6 +90,7 @@ const Layout = () => {
       setMaxAnswer(initialQuestion?.maxAnswerCount);
       setDaysRemaining(initialQuestion?.daysToRemainOpen);
       setSponsor(initialQuestion?.sponsor);
+      setImage(initialQuestion?.imagePath)
     }
   }
 
@@ -290,6 +292,7 @@ const Layout = () => {
             handleDragEnd={handleDragEnd}
             graphicTitle={graphicTitle}
             maxAnswer={maxAnswer}
+            image={image}
           />
         </div>
       )}
