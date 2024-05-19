@@ -210,9 +210,16 @@ const Home = () => {
 
             <div className="card-list mt-[30px]">
                 {questions.map((question, index) => {
-                    const bgStyle = {
-                        backgroundImage: question.imagePath ? `url(${question.imagePath}` : `url(${SampleImage}`
-                    }
+                        const encodedImagePath = question.imagePath
+                        .replace(/ /g, '%20')
+                        .replace(/\(/g, '%28')
+                        .replace(/\)/g, '%29');
+                        const bgStyle = {
+                            backgroundImage: `url(${encodedImagePath})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }
+                        console.log(`Index: ${index}, EncodedImagePath: ${encodedImagePath}, BgStyle: ${bgStyle.backgroundImage}`);
 
                     return(
 

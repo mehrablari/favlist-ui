@@ -5,25 +5,23 @@
 }
 
 .card {
-    /* background: purple; */
     border-radius: 10px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 72px;
-    /* background-image: url('../../assets/images/sample-img.jpeg'); */
+    background-size: cover;
+    background-position: center;
 }
 
 .expanded-card {
-    /* background: purple; */
     border-radius: 10px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 240px;
-    /* background-image: url('../../assets/images/sample-img.jpeg'); */
     background-size: cover;
 }
 
