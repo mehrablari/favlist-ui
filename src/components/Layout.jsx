@@ -251,11 +251,11 @@ const Layout = () => {
           <p>{(questionName ? `${questionName}` : '')}</p>
         </div>
         
-        <div className="active-question-sponser w-[56px] mx-auto ">
+        <div className="active-question-sponser w-[56px] mx-auto flex w-full">
         {
           sponsor &&
           <a target="_blank" href={sponsor.adsS3Url}>
-            <img src={sponsor.logoS3Url}/>
+            <img src={sponsor.logoS3Url} className="w-[150px]"/>
           </a>
         }
         </div>

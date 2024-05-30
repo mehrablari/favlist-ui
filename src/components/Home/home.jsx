@@ -202,7 +202,7 @@ const Home = () => {
         <>
         <NavBar />
 
-        <div className="px-[10px] bg-primary h-[100vh]">
+        <div className="px-[10px] bg-primary h-[105vh]">
             <div className="pt-[60px]">
                 <h1 className="header">Welcome</h1>
                 <p className="intro-text">Review questions, list your favorite answers, and <br/> share your choices. Every list is a story that  <br /> should be shared and counted.</p>
@@ -228,8 +228,14 @@ const Home = () => {
                         {
                             index === selectedCard &&
                             <div className="expanded-card" style={bgStyle}>
+                                                                <div className="card-overlay"></div>
+
                                 <div className="ex-card">
-                                    <div className="text">{question?.text}</div>
+                                    <div className="text">
+                                        <span>
+                                            {question?.text}
+                                        </span>
+                                    </div>
                                     <button className="answer" onClick={() => answerQuestion(question)}>ANSWER</button>
                                 </div>
                             </div>
@@ -237,11 +243,14 @@ const Home = () => {
                         {
                             index !== selectedCard &&
                             <div className="card" style={bgStyle}>
+                                <div className="card-overlay"></div>
                                 <div className="card-content">
                                     <button className="add-button" onClick={() => setSelectedCard(index)}>+</button>
-                                    <div className="card-title">{question.graphicTitle}</div>
-                                    <div className="card-expire-num">{question.daysToRemainOpen} days</div>
-                                    <div className="card-expire">to expire</div>
+                                    <div className="card-title">
+                                        <span>{question.graphicTitle}</span>
+                                    </div>
+                                    {/* <div className="card-expire-num">{question.daysToRemainOpen} days</div>
+                                    <div className="card-expire">to expire</div> */}
                                 </div>
                             </div>
                         }
@@ -266,7 +275,7 @@ const Home = () => {
                                                 <p className="p2">413 people voted</p>
                                             </div>
                                             <div className="close-image w-[42px] h-[42px] rounded-[8px] absolute right-[28px]" >
-                                                <img src={SampleImage} className="rounded-[8px]"></img>
+                                                <img src={SampleImage} className="rounded-[8px] h-full"></img>
                                             </div>
                                         </div>
                                         <div className="answers-report mt-[16px]">

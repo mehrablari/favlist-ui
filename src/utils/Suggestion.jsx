@@ -86,7 +86,7 @@ const Suggestion = ({
   return (
     <main className="bg-neutral pt-[10px] font-baloo2 flex flex-col justify-center mx-auto font-sans z-20">
       <div className="flex flex-row justify-between bg-neutral sm:w-[350px] w-[380px] mx-auto">
-        <div className="text-grey-text text-[16px] font-[600]">Suggestions</div>
+        <div className="text-black text-[16px] font-[600]">Suggestions</div>
         <div onClick={handleOpenBackdrop}>
           <span className="text-primary cursor-pointer text-[14px] font-[500]" onClick={ () => setDataLayer('ux', 'click', 'seeMore')}>
             See More

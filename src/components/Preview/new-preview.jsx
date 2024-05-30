@@ -17,6 +17,7 @@ const NewPreview = () => {
     const {state} = useLocation();
     const graphicUrl = location.state?.graphicUrl;
     const graphicFile = location.state?.graphicFile;
+    const navigate = useNavigate()
 
 
     console.log(state, 'sldkfhsdfsdlhf')
@@ -90,15 +91,6 @@ const NewPreview = () => {
     //     }
     //   };
     
-
-
-    const answers = [
-        'Belgium',
-        'Croatia',
-        'Ukraine',
-        'Czechia',
-        'United Kingdom'
-    ]
 
 
     // const captureDivToBlob = async (divId) => {
@@ -181,7 +173,7 @@ const NewPreview = () => {
             <NavBar />
             <div className="main-container w-full h-[105vh] pt-[100px]">
                 <div className="w-[353px] px-[20px]">
-                    <span><KeyboardBackspaceIcon style={{'color': '#FFFFFF'}}/></span>
+                    <span onClick={() => navigate('/')}><KeyboardBackspaceIcon style={{'color': '#FFFFFF'}}/></span>
                     <span className="ml-[16px] text-[#FFF] font-bold text-[20px]">Your list is ready</span>
                 </div>
                 <div className="answers-container w-[324.29px] h-[576px] rounded-[14.7px] mt-[20px] pt-[18.37px]" id='target'>

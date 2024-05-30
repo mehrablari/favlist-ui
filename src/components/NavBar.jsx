@@ -35,7 +35,7 @@ const NavBar = () => {
             <img src={Logo} alt="logo" className="max-h-[20px]" />
           </Link>
         </header>
-        <div className="relative">
+        <div className="relative text-[20px]">
           {!open && (
             <FaBars
               className="text-neutral cursor-pointer"

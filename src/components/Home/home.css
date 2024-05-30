@@ -5,6 +5,16 @@
 }
 
 .card {
+    /* border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    background-size: cover;
+    background-position: center; */
+
+    position: relative; /* Ensure the overlay layer is positioned relative to this */
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -13,9 +23,23 @@
     height: 72px;
     background-size: cover;
     background-position: center;
+    overflow: hidden; /* Ensure the overlay doesn't overflow */
 }
 
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    z-index: 1; /* Ensure the overlay is above the content */
+    border-radius: inherit; /* Inherit the border radius from the parent */
+}
+  
+
 .expanded-card {
+    position: relative; /* Ensure the overlay layer is positioned relative to this */
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -23,9 +47,17 @@
     align-items: center;
     height: 240px;
     background-size: cover;
+    overflow: hidden; /* Ensure the overlay doesn't overflow */
+
 }
 
 .card-content {
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+
+    position: relative; /* Ensure content is stacked above overlay */
+    z-index: 2; /* Ensure content is above the overlay */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -94,10 +126,12 @@
 
 .text {
     display: flex;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
     color: #FFFFFF;
     width: 80%;
+    position: relative; /* Ensure content is stacked above overlay */
+    z-index: 2; /* Ensure content is above the overlay */
 }
 
 .answer {
@@ -111,7 +145,8 @@
     font-size: 14px;
     font-weight: 800;
     margin-top: 20px;
-
+    position: relative; /* Ensure content is stacked above overlay */
+    z-index: 2; /* Ensure content is above the overlay */
 }
 
 .home {
@@ -148,7 +183,11 @@
     background-color: #EDECEE;
     font-size: 28px;
 }
-
+.close-image{
+    img{
+        height: 100% !important;
+    }
+}
 .exp-text{
     height: 47px;
     .p1{
@@ -207,6 +246,3 @@
         color: #464E56;
     }
 }
-
-
-
