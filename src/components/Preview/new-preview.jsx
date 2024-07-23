@@ -9,218 +9,81 @@ import { toast } from "react-toastify";
 import html2canvas from 'html2canvas';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import axios from 'axios';
 
 const NewPreview = () => {
 
     const {state} = useLocation();
-    const graphicUrl = location.state?.graphicUrl;
-    const graphicFile = location.state?.graphicFile;
-    const navigate = useNavigate()
 
+    const containerRef = useRef(null);
 
-        const divRef = useRef(null);
-    
-        const captureDivToBlob = async () => {
-            if (divRef.current) {
-                try {
-                    const blob = await domtoimage.toBlob(divRef.current);
-                    return blob;
-                } catch (error) {
-                    console.error('Error capturing div:', error);
-                }
-            }
-        };
-    
-        const handleDownload = async () => {
-            const blob = await captureDivToBlob();
-            if (blob) {
-                saveAs(blob, 'capture.png');
-            }
-        };
-    
-        const handleShare = async () => {
-            const blob = await captureDivToBlob();
-            if (blob) {
-                const url = URL.createObjectURL(blob);
-                navigator.clipboard.writeText(url).then(() => {
-                    alert('Image URL copied to clipboard!');
-                }).catch(err => {
-                    console.error('Error copying URL to clipboard:', err);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
+
+    // Function to check if images are fully loaded
+    const loadImages = (srcs) => {
+        return Promise.all(
+            srcs.map(
+                src =>
+                    new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.onload = resolve;
+                        img.onerror = reject;
+                        img.src = src;
+                    })
+            )
+        );
+    };
+
+    // Share image function
+    const shareImage = async () => {
+        if (!imagesLoaded) {
+            toast.error('Images are not fully loaded yet. Please wait.');
+            return;
+        }
+        
+        const element = containerRef.current;
+        try {
+            console.log('Capturing canvas');
+            const canvas = await html2canvas(element, {
+                useCORS: true,
+                logging: true,
+                scale: 2 // Increase scale for higher resolution
+            });
+            console.log('Canvas created');
+            const dataUrl = canvas.toDataURL('image/png');
+            const blob = await (await fetch(dataUrl)).blob();
+            const file = new File([blob], 'screenshot.png', { type: 'image/png' });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    title: 'FavList',
+                    text: 'Check out my list!',
+                    files: [file],
                 });
+                console.log('Successful share');
+            } else {
+                toast.error('Sharing is not supported in your browser.');
             }
-        };
+        } catch (error) {
+            console.error('Error sharing:', error);
+            toast.error('Error sharing the image.');
+        }
+    };
+
+    // Effect to load images and update state
+    useEffect(() => {
+        if (state.image) {
+            loadImages([state.image, Logo]).then(() => {
+                console.log('Images loaded');
+                setImagesLoaded(true);
+            }).catch(err => {
+                console.error('Error loading images:', err);
+                toast.error('Error loading images.');
+            });
+        }
+    }, [state.image]);
 
 
-    console.log(state, 'sldkfhsdfsdlhf')
-
-    // const navigate = useNavigate();
-
-    // const [isMobile, setIsMobile] = useState(
-    // window.matchMedia("(max-width: 915px)").matches ||
-    //     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    //     navigator.userAgent
-    //     )
-    // );
-
-    // useEffect(() => {
-    // setIsMobile(
-    //     window.matchMedia("(max-width: 915px)").matches ||
-    //     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    //         navigator.userAgent
-    //     )
-    // );
-    // }, []);
-
-    // const shareToInstagram = async () => {
-    //     try {
-    //       // Fetch the image from the remote URL and convert it to a blob
-    
-    //       if (graphicFile) {
-    //         // const blobImageAsset = await response.blob();
-    //         const blobImageAsset = new Blob([graphicFile], { type: "image/png" });
-    //         // setFilesArrayContent(blobImageAsset)
-    
-    //         // Create a File object from the blob
-    //         const filesArray = [
-    //           new File([blobImageAsset], `Favlist_${new Date().getTime()}.png`, {
-    //             type: "image/png",
-    //             lastModified: new Date().getTime(),
-    //           }),
-    //         ];
-    
-    //         // setFilesArrayContent(filesArray)
-    
-    //         // Set up the share data
-    //         const shareData = {
-    //           // title: "Favlist",
-    //           files: filesArray,
-    //         };
-    
-    //         // console.log()
-    
-    //         // Check if the navigator supports sharing and the provided data
-    //         console.log("fist", navigator.canShare);
-    //         //console.log("second", navigator.canShare(shareData));
-    
-    //         if (navigator.canShare) {
-    //           // Use the Web Share API to share the image
-    //           await navigator.share(shareData);
-    //           console.log("Successfully shared to Instagram");
-    //           toast.success("Your favlist has been shared!");
-    //           return true; // Sharing successful
-    //         } else {
-    //           console.error("Web Share API is not supported on this browser.");
-    //           // toast.error("Social sharing is not supported on your browser :(");
-    
-    //           return false; // Sharing failed
-    //         }
-    //       }
-    //     } catch (error) {
-    //       console.error("Error sharing image to Instagram:", error);
-    //       toast.error("We had trouble sharing your favlist, please try again later!");
-    //       return false; // Sharing failed
-    //     }
-    //   };
-    
-
-
-    // const captureDivToBlob = async (divId) => {
-    //   const div = document.getElementById(divId);
-    //   const canvas = await html2canvas(div);
-    //   return new Promise((resolve, reject) => {
-    //       canvas.toBlob(blob => {
-    //           if (blob) {
-    //               resolve(blob);
-    //           } else {
-    //               reject(new Error('Canvas to Blob conversion failed'));
-    //           }
-    //       }, 'image/png');
-    //   });
-    // };
-
-    // const shareImage = async (divId) => {
-    //   try {
-    //       const imageBlob = await captureDivToBlob(divId);
-    //       const file = new File([imageBlob], "share.png", { type: "image/png" });
-    //       if (navigator.share) {
-    //           await navigator.share({
-    //               files: [file],
-    //               title: 'Check out this image!',
-    //               text: 'Generated from my web app!'
-    //           });
-    //           console.log('Image shared successfully');
-    //       } else {
-    //           console.error('Web Share API is not supported in this browser.');
-    //       }
-    //   } catch (error) {
-    //       console.error('Failed to share the image:', error);
-    //   }
-    // };
-
-
-    // const captureDivToBlob = async (divId) => {
-    //     const div = document.getElementById(divId);
-    //     if (!div) {
-    //         console.error(`No element found with id ${divId}`);
-    //         return;
-    //     }
-    
-    //     // Create a clone of the div with inline styles applied
-    //     const cloneDiv = div.cloneNode(true);
-    //     const computedStyles = window.getComputedStyle(div);
-    
-    //     // Apply all computed styles to the clone
-    //     for (let key of computedStyles) {
-    //         cloneDiv.style[key] = computedStyles.getPropertyValue(key);
-    //     }
-    
-    //     // Ensure all fonts are loaded
-    //     await document.fonts.ready;
-    
-    //     // Append the clone to the body to ensure it's in the DOM when captured
-    //     document.body.appendChild(cloneDiv);
-    
-    //     // Capture the clone to a canvas
-    //     const options = {
-    //         scale: window.devicePixelRatio,
-    //         logging: true,
-    //         useCORS: true
-    //     };
-    //     const canvas = await html2canvas(cloneDiv, options);
-    
-    //     // Remove the clone after capturing
-    //     document.body.removeChild(cloneDiv);
-    
-    //     return new Promise((resolve, reject) => {
-    //         canvas.toBlob(blob => {
-    //             if (blob) {
-    //                 resolve(blob);
-    //             } else {
-    //                 reject(new Error('Canvas to Blob conversion failed'));
-    //             }
-    //         }, 'image/png');
-    //     });
-    // };
-    
-  
-//   const shareImage = async (divId) => {
-//       try {
-//           const imageBlob = await captureDivToBlob(divId);
-//           const file = new File([imageBlob], "share.png", { type: "image/png" });
-//           if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-//               await navigator.share({
-//                   files: [file],
-//                   title: 'Check out this image!',
-//                   text: 'Generated from my web app!'
-//               });
-//               console.log('Image shared successfully');
-//           } else {
-//               console.error('Web Share API is not supported or cannot share files in this browser.');
-//           }
-//       } catch (error) {
-//           console.error('Failed to share the image:', error);
-//       }
-//   };
 
 
     return (
@@ -231,8 +94,8 @@ const NewPreview = () => {
                     <span onClick={() => navigate('/')}><KeyboardBackspaceIcon style={{'color': '#FFFFFF'}}/></span>
                     <span className="ml-[16px] text-[#FFF] font-bold text-[20px]">Your list is ready</span>
                 </div>
-                <div className="answers-container w-[324.29px] h-[576px] rounded-[14.7px] mt-[20px] pt-[18.37px]" id='target' ref={divRef}>
-                    <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] mx-[18.37px]">
+                <div className="answers-container w-[324.29px] h-[576px] rounded-[14.7px] mt-[20px] pt-[18.37px] bg-[#925B9C]" id='target' ref={containerRef}>
+                    <div className="w-[287.54px] h-[265.49px] rounded-[3.67px] mx-[18.37px]" id='test'>
                         <img src={state.image} className=" h-full w-full rounded-[3.67px]"></img>
                     </div>
                     <div className="pt-[18px] px-[15px] [&>*:nth-child(2)]:mt-[28px]">
@@ -256,8 +119,8 @@ const NewPreview = () => {
                 </div>
 
                 <div className='share-btn-container'>
-                    <button className='go-home' onClick={() =>handleDownload()}>GO HOME</button>
-                    <button className='share' onClick={() =>handleShare()}>SHARE</button>
+                    <button className='go-home' onClick={() =>console.log("12321")}>GO HOME</button>
+                    <button className='share' onClick={() =>shareImage('target')}>SHARE</button>
                 </div>
             </div>
         </>
