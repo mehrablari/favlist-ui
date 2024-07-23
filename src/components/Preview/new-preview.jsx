@@ -15,6 +15,10 @@ const NewPreview = () => {
 
     const {state} = useLocation();
 
+    const isIOS = () => {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    };
+
     const containerRef = useRef(null);
 
     const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -47,7 +51,7 @@ const NewPreview = () => {
             const canvas = await html2canvas(element, {
                 useCORS: true,
                 logging: true,
-                scale: 2 // Increase scale for higher resolution
+                scale: 2
             });
             console.log('Canvas created');
             const dataUrl = canvas.toDataURL('image/png');
@@ -61,6 +65,13 @@ const NewPreview = () => {
                     files: [file],
                 });
                 console.log('Successful share');
+            } else if (isIOS()) {
+                await navigator.share({
+                    title: 'FavList',
+                    text: 'Check out my list!',
+                    url: dataUrl,
+                });
+                console.log('Successful share on iOS');
             } else {
                 toast.error('Sharing is not supported in your browser.');
             }
@@ -70,7 +81,6 @@ const NewPreview = () => {
         }
     };
 
-    // Effect to load images and update state
     useEffect(() => {
         if (state.image) {
             loadImages([state.image, Logo]).then(() => {
